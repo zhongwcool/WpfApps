@@ -1,5 +1,11 @@
 ## WpfApp1
 
+### 播放效果
+
+![](./art/200105.png)
+
+### LibVLCSharp
+
 [LibVLCSharp](https://code.videolan.org/videolan/LibVLCSharp/) is a cross-platform audio and video API for .NET
 platforms based on VideoLAN's LibVLC Library. It provides a comprehensive multimedia API that can be used across mobile,
 server and desktop to render video and output audio as well as encode and stream.
