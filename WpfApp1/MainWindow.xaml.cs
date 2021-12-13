@@ -33,11 +33,13 @@ namespace WpfApp1
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            if (VideoView.MediaPlayer.IsPlaying) return;
+            var mediaPlay = VideoView.MediaPlayer;
+            if (null == mediaPlay) return;
+            if (mediaPlay.IsPlaying) return;
             //using var media = new Media(_libVlc, new Uri("rtmp://192.168.7.239:1935/live/stream"));
             using var media = new Media(_libVlc,
                 new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
-            VideoView.MediaPlayer.Play(media);
+            mediaPlay.Play(media);
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
