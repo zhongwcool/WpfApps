@@ -18,6 +18,7 @@ namespace WpfApp2
         {
             InitializeComponent();
 
+            //TODO 填充语言选项
             var voiceInstalled = _speechSynthesizer.GetInstalledVoices().FirstOrDefault(
                 x => x.VoiceInfo.Description.Contains(VoiceName)
             ) != null;

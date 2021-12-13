@@ -37,8 +37,7 @@ namespace WpfApp1
             if (null == mediaPlay) return;
             if (mediaPlay.IsPlaying) return;
             //using var media = new Media(_libVlc, new Uri("rtmp://192.168.7.239:1935/live/stream"));
-            using var media = new Media(_libVlc,
-                new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
+            using var media = new Media(_libVlc, new Uri("http://zbbf1.ahtv.cn/live/756.flv"));
             mediaPlay.Play(media);
         }
 
