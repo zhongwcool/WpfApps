@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,10 +12,18 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         private readonly SpeechSynthesizer _speechSynthesizer = new SpeechSynthesizer();
+        private const string VoiceName = "Microsoft Huihui Desktop";
 
         public MainWindow()
         {
             InitializeComponent();
+
+            var voiceInstalled = _speechSynthesizer.GetInstalledVoices().FirstOrDefault(
+                x => x.VoiceInfo.Description.Contains(VoiceName)
+            ) != null;
+
+            if (!voiceInstalled) MessageBox.Show($"Voice '{VoiceName}' is not installed in system. Now we exit");
+            _speechSynthesizer.SelectVoice(VoiceName);
         }
 
         private void VolumeChanged(object sender, RoutedEventArgs args)
