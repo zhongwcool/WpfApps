@@ -20,7 +20,7 @@ namespace WpfApp1
             _mediaPlayer = new MediaPlayer(_libVlc);
 
             // we need the VideoView to be fully loaded before setting a MediaPlayer on it.
-            VideoView.Loaded += (sender, e) => VideoView.MediaPlayer = _mediaPlayer;
+            VideoView.Loaded += (_, _) => VideoView.MediaPlayer = _mediaPlayer;
             Unloaded += VideoView_Unloaded;
         }
 
@@ -33,19 +33,16 @@ namespace WpfApp1
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!VideoView.MediaPlayer.IsPlaying)
-                //"rtmp://192.168.7.239:1935/live/stream"
-                using (var media = new Media(_libVlc,
-                           new Uri(
-                               "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")))
-                {
-                    VideoView.MediaPlayer.Play(media);
-                }
+            if (VideoView.MediaPlayer.IsPlaying) return;
+            //using var media = new Media(_libVlc, new Uri("rtmp://192.168.7.239:1935/live/stream"));
+            using var media = new Media(_libVlc,
+                new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"));
+            VideoView.MediaPlayer.Play(media);
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            if (VideoView.MediaPlayer.IsPlaying) VideoView.MediaPlayer.Stop();
+            if (VideoView.MediaPlayer is { IsPlaying: true }) VideoView.MediaPlayer.Stop();
         }
 
         protected override void OnClosed(EventArgs e)

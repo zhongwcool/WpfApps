@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Vlc播放器" Height="450" Width="800">
     <Grid>
         <Grid.Background>
             <VisualBrush Viewbox="0.20,0.20,0.6,0.6">
@@ -19,7 +19,7 @@
             </VisualBrush>
         </Grid.Background>
         <wpf:VideoView x:Name="VideoView" Panel.ZIndex="1">
-            <StackPanel Orientation="Horizontal" x:Name="test">
+            <StackPanel Orientation="Horizontal">
                 <Button Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left"
                         Click="PlayButton_Click" />
                 <Button Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left"
