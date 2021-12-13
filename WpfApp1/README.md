@@ -2,7 +2,7 @@
 
 ### 播放效果
 
-![](./art/200105.png)
+![](./file/200105.png)
 
 ### LibVLCSharp
 
