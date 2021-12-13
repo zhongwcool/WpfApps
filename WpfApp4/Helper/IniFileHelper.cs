@@ -44,8 +44,7 @@ public class IniFileHelper
     /// </see>
     /// <returns>返回0表示失败，非0为成功</returns>
     [DllImport("kernel32")]
-    private static extern long WritePrivateProfileString(byte[] sectionName, byte[] key, byte[] value,
-        string filePath);
+    private static extern long WritePrivateProfileString(byte[] sectionName, byte[] key, byte[] value, string filePath);
 
     #endregion
 
@@ -72,11 +71,7 @@ public class IniFileHelper
     public static List<string> GetSectionNames(string filePath)
     {
         var buffer = new byte[255];
-        var length = GetPrivateProfileString(
-            null,
-            Encoding.UTF8.GetBytes(""),
-            Encoding.UTF8.GetBytes(""), buffer,
-            255,
+        var length = GetPrivateProfileString(null, Encoding.UTF8.GetBytes(""), Encoding.UTF8.GetBytes(""), buffer, 255,
             filePath);
         var rs = Encoding.UTF8.GetString(buffer, 0, length)
             .Split(new[] { "\0" }, StringSplitOptions.RemoveEmptyEntries);
@@ -92,10 +87,7 @@ public class IniFileHelper
     public static List<string> GetKeys(string sectionName, string filePath)
     {
         var buffer = new byte[255];
-        var length = GetPrivateProfileString(
-            Encoding.UTF8.GetBytes(sectionName),
-            null,
-            Encoding.UTF8.GetBytes(""),
+        var length = GetPrivateProfileString(Encoding.UTF8.GetBytes(sectionName), null, Encoding.UTF8.GetBytes(""),
             buffer, 255, filePath);
         var rs = Encoding.UTF8.GetString(buffer, 0, length)
             .Split(new[] { "\0" }, StringSplitOptions.RemoveEmptyEntries);
@@ -113,9 +105,7 @@ public class IniFileHelper
     /// <returns>返回一个包含key名称的集合</returns>
     public static bool SetValue(string sectionName, string key, string value, string filePath)
     {
-        var rs = (int)WritePrivateProfileString(
-            Encoding.UTF8.GetBytes(sectionName),
-            Encoding.UTF8.GetBytes(key),
+        var rs = (int)WritePrivateProfileString(Encoding.UTF8.GetBytes(sectionName), Encoding.UTF8.GetBytes(key),
             Encoding.UTF8.GetBytes(value), filePath);
         return rs > 0;
     }
@@ -128,10 +118,7 @@ public class IniFileHelper
     /// <returns></returns>
     public static bool RemoveSection(string sectionName, string filePath)
     {
-        var rs = (int)WritePrivateProfileString(
-            Encoding.UTF8.GetBytes(sectionName),
-            null,
-            Encoding.UTF8.GetBytes(""),
+        var rs = (int)WritePrivateProfileString(Encoding.UTF8.GetBytes(sectionName), null, Encoding.UTF8.GetBytes(""),
             filePath);
         return rs > 0;
     }
@@ -145,10 +132,7 @@ public class IniFileHelper
     /// <returns></returns>
     public static bool RemoveKey(string sectionName, string key, string filePath)
     {
-        var rs = (int)WritePrivateProfileString(
-            Encoding.UTF8.GetBytes(sectionName),
-            Encoding.UTF8.GetBytes(key),
-            null,
+        var rs = (int)WritePrivateProfileString(Encoding.UTF8.GetBytes(sectionName), Encoding.UTF8.GetBytes(key), null,
             filePath);
         return rs > 0;
     }

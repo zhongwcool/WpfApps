@@ -10,7 +10,7 @@ namespace WpfApp4.ViewModel;
 
 public class MainViewModel : ObservableObject
 {
-    private static MainViewModel? _instance;
+    private static MainViewModel _instance;
 
     private MainViewModel()
     {
@@ -21,7 +21,7 @@ public class MainViewModel : ObservableObject
         });
     }
 
-    public static MainViewModel? CreateInstance()
+    public static MainViewModel CreateInstance()
     {
         _instance ??= new MainViewModel();
         return _instance;
