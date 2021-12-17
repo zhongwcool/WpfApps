@@ -1,10 +1,10 @@
 ﻿namespace WpfApp7;
 
-public static class GlobalData
+public static class Dummy
 {
-    static GlobalData()
+    static Dummy()
     {
-        m_orderExample.m_orderDetails.Add(new OrderDetail
+        OrderExample.ItemList.Add(new Item
         {
             Sku = "MBP1304",
             Spec = "黑色",
@@ -13,7 +13,7 @@ public static class GlobalData
             UnitPrice = 5000.00m,
             Description = "送你的"
         });
-        m_orderExample.m_orderDetails.Add(new OrderDetail
+        OrderExample.ItemList.Add(new Item
         {
             Sku = "DDR1600",
             Spec = "",
@@ -22,7 +22,7 @@ public static class GlobalData
             UnitPrice = 200.00m,
             Description = ""
         });
-        m_orderExample.m_orderDetails.Add(new OrderDetail
+        OrderExample.ItemList.Add(new Item
         {
             Sku = "FAN68",
             Spec = "",
@@ -31,7 +31,7 @@ public static class GlobalData
             UnitPrice = 40.00m,
             Description = "fan fan"
         });
-        m_orderExample.m_orderDetails.Add(new OrderDetail
+        OrderExample.ItemList.Add(new Item
         {
             Sku = "MANUALBOOK",
             Spec = "",
@@ -40,7 +40,7 @@ public static class GlobalData
             UnitPrice = 30.00m,
             Description = ""
         });
-        m_orderExample.m_orderDetails.Add(new OrderDetail
+        OrderExample.ItemList.Add(new Item
         {
             Sku = "KK103-AF",
             Spec = "USB接口",
@@ -49,7 +49,7 @@ public static class GlobalData
             UnitPrice = 35.00m,
             Description = ""
         });
-        m_orderExample.m_orderDetails.Add(new OrderDetail
+        OrderExample.ItemList.Add(new Item
         {
             Sku = "DISP-1200",
             Spec = "白色",
@@ -60,7 +60,7 @@ public static class GlobalData
         });
     }
 
-    public static OrderMaster m_orderExample = new()
+    public static readonly OrderMaster OrderExample = new()
     {
         OrderNo = "106587",
         CustomerName = "BPMF公司",

@@ -11,17 +11,15 @@ public class OrderMaster
     public string Express { get; set; }
     public decimal Freight { get; set; }
 
-    public List<OrderDetail> OrderDetails => m_orderDetails;
-
-    public List<OrderDetail> m_orderDetails = new();
+    public readonly List<Item> ItemList = new();
 
     public decimal TotalPrice
     {
-        get { return m_orderDetails.Sum(o => o.UnitPrice * o.Number) + Freight; }
+        get { return ItemList.Sum(o => o.UnitPrice * o.Number) + Freight; }
     }
 }
 
-public class OrderDetail
+public class Item
 {
     public string Sku { get; set; }
     public string Spec { get; set; }

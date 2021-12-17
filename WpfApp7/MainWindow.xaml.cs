@@ -35,7 +35,7 @@ public partial class MainWindow : Window
     private void btnPrintPreview_Click(object sender, RoutedEventArgs e)
     {
         var previewWnd =
-            new PrintPreviewWindow("OrderDocument.xaml", GlobalData.m_orderExample, new OrderDocumentRenderer())
+            new PrintPreviewWindow("OrderDocument.xaml", Dummy.OrderExample, new OrderDocumentRenderer())
             {
                 Owner = this,
                 ShowInTaskbar = false
@@ -45,11 +45,11 @@ public partial class MainWindow : Window
 
     private void btnPrintDlg_Click(object sender, RoutedEventArgs e)
     {
-        var pdl = new PrintDialog();
-        if (pdl.ShowDialog() != true) return;
-        var doc = PrintPreviewWindow.LoadDocumentAndRender("OrderDocument.xaml", GlobalData.m_orderExample,
-            new OrderDocumentRenderer());
-        Dispatcher.BeginInvoke(new DoPrintMethod(DoPrint), DispatcherPriority.ApplicationIdle, pdl,
+        var dialog = new PrintDialog();
+        if (dialog.ShowDialog() != true) return;
+        var doc = PrintPreviewWindow.LoadDocumentAndRender("OrderDocument.xaml",
+            Dummy.OrderExample, new OrderDocumentRenderer());
+        Dispatcher.BeginInvoke(new DoPrintMethod(DoPrint), DispatcherPriority.ApplicationIdle, dialog,
             ((IDocumentPaginatorSource)doc).DocumentPaginator);
     }
 
@@ -57,8 +57,8 @@ public partial class MainWindow : Window
     {
         BtnPrintDirect.IsEnabled = false;
         var dialog = new PrintDialog();
-        var doc = PrintPreviewWindow.LoadDocumentAndRender("OrderDocument.xaml", GlobalData.m_orderExample,
-            new OrderDocumentRenderer());
+        var doc = PrintPreviewWindow.LoadDocumentAndRender("OrderDocument.xaml",
+            Dummy.OrderExample, new OrderDocumentRenderer());
         Dispatcher.BeginInvoke(new DoPrintMethod(DoPrint), DispatcherPriority.ApplicationIdle, dialog,
             ((IDocumentPaginatorSource)doc).DocumentPaginator);
         _mTimerToEnableButton = new Timer(TestTimerCallback, null, 3000, Timeout.Infinite);

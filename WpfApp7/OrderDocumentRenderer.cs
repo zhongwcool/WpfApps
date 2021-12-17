@@ -10,7 +10,7 @@ internal class OrderDocumentRenderer : IDocumentRenderer
     {
         var group = doc.FindName("rowsDetails") as TableRowGroup;
         var styleCell = doc.Resources["BorderedCell"] as Style;
-        foreach (var item in ((OrderMaster)data).OrderDetails)
+        foreach (var item in ((OrderMaster)data).ItemList)
         {
             var row = new TableRow();
 
