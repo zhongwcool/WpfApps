@@ -2,14 +2,15 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net5.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LibVLCSharp.WPF" Version="3.6.3"/>
+        <PackageReference Include="LibVLCSharp" Version="3.6.4"/>
+        <PackageReference Include="LibVLCSharp.WPF" Version="3.6.4"/>
         <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16"/>
     </ItemGroup>
 
