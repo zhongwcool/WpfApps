@@ -20,10 +20,17 @@
         </Grid.Background>
         <wpf:VideoView x:Name="VideoView" Panel.ZIndex="1">
             <StackPanel Orientation="Horizontal">
-                <Button Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                        Click="PlayButton_Click" />
-                <Button Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                        Click="StopButton_Click" />
+                <Button x:Name="BtnPlay" Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Click="PlayButton_Click" IsEnabled="True" />
+                <Button x:Name="BtnStop" Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Click="StopButton_Click" IsEnabled="False" />
+                <Border Background="#8000" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <TextBox x:Name="TextUrlInput" Width="250"
+                             Style="{DynamicResource SimpleTextBox}"
+                             Text="http://zbbf1.ahtv.cn/live/756.flv" />
+                </Border>
             </StackPanel>
         </wpf:VideoView>
     </Grid>
