@@ -6,7 +6,7 @@ using System.Windows.Documents;
 using System.Windows.Threading;
 using System.Windows.Xps.Packaging;
 
-namespace WpfApp7;
+namespace WpfApp7.Views;
 
 public partial class PrintPreviewWindow : Window
 {

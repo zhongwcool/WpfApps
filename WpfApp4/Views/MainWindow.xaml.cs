@@ -4,9 +4,9 @@ using System.Windows.Controls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using WpfApp4.Config;
 using WpfApp4.Models;
-using WpfApp4.ViewModel;
+using WpfApp4.ViewModels;
 
-namespace WpfApp4;
+namespace WpfApp4.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml

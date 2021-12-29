@@ -1,8 +1,9 @@
 ﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Documents;
+using WpfApp7.Models;
 
-namespace WpfApp7;
+namespace WpfApp7.Views;
 
 internal class OrderDocumentRenderer : IDocumentRenderer
 {

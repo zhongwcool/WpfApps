@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using WpfApp3.Models;
 
 namespace WpfApp3.Utils;
 

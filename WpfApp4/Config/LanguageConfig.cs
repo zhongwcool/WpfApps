@@ -10,7 +10,7 @@ public class LanguageConfig
 
     static LanguageConfig()
     {
-        Instance ??= new LanguageConfig();
+        Instance = new LanguageConfig();
     }
 
     private static readonly string IniFilePath = Path.Combine(Environment.CurrentDirectory, @"Config.ini");

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Documents;
 
-namespace WpfApp7;
+namespace WpfApp7.Views;
 
 public interface IDocumentRenderer
 {

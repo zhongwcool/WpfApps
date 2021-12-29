@@ -1,4 +1,4 @@
-﻿namespace WpfApp3;
+﻿namespace WpfApp3.Models;
 
 public class NetworkInfo
 {

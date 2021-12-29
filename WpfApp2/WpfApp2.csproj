@@ -5,7 +5,8 @@
         <TargetFramework>net48</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
-        <ApplicationIcon>image\voice_32.ico</ApplicationIcon>
+        <ApplicationIcon>Image\voice_32.ico</ApplicationIcon>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System.Speech"/>

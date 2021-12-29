@@ -6,7 +6,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using WpfApp4.Models;
 
-namespace WpfApp4.ViewModel;
+namespace WpfApp4.ViewModels;
 
 public class MainViewModel : ObservableObject
 {

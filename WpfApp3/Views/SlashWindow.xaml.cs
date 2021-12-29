@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfApp3;
+namespace WpfApp3.Views;
 
 public partial class SlashWindow : Window
 {

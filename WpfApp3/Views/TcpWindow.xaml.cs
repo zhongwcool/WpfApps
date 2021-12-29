@@ -9,21 +9,25 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using WpfApp3.Models;
 using WpfApp3.Utils;
 
-namespace WpfApp3;
+namespace WpfApp3.Views;
 
-public partial class UdpWindow
+/// <summary>
+///     Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class TcpWindow
 {
-    private static UdpWindow _instance;
+    private static TcpWindow _instance;
 
-    public static UdpWindow GetInstance()
+    public static TcpWindow GetInstance()
     {
-        _instance ??= new UdpWindow();
+        _instance ??= new TcpWindow();
         return _instance;
     }
 
-    public UdpWindow()
+    public TcpWindow()
     {
         InitializeComponent();
 
@@ -38,8 +42,9 @@ public partial class UdpWindow
         _worker?.CancelAsync();
         _tokenSourceRecv?.Cancel();
         _tokenSourceSend?.Cancel();
-        _udpClient?.Close();
-        _udpClient = null;
+        _tokenSourceConn?.Cancel();
+        _tcpClient?.Close();
+        _tcpClient = null;
     }
 
     protected override void OnClosed(EventArgs e)
@@ -48,58 +53,17 @@ public partial class UdpWindow
         _instance = null;
     }
 
-    private static string GetMessage(string content)
-    {
-        return TimeUtil.GetTimeStamp() + " " + content + "\n" + Environment.NewLine;
-    }
-
-    private static string GetMessage(byte[] content, int count)
-    {
-        return TimeUtil.GetTimeStamp() + " " + Encoding.UTF8.GetString(content, 0, count) + Environment.NewLine;
-    }
-
-    private UdpClient _udpClient;
-    private IPEndPoint _multicast;
-
-    private void worker_DoWork(object sender, DoWorkEventArgs e)
-    {
-        var args = (Tuple<NetworkInfo, string>)e.Argument;
-        if (null == args) return;
-
-        _udpClient?.Close();
-        var ipAddress = IPAddress.Parse(args.Item1.Ip);
-        var localEndPoint = new IPEndPoint(ipAddress, 0);
-        _udpClient = new UdpClient(localEndPoint);
-        _multicast = new IPEndPoint(TrimBroadcastIpAddress(args.Item1.Ip), int.Parse(args.Item2));
-        try
-        {
-            Thread.Sleep(500);
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(">>>>>>>>" + exception.Message);
-            Dispatcher.Invoke(() =>
-            {
-                MyStatusBar.Background = Brushes.Red;
-                StatusInfo.Text = "UDP连接失败:" + exception.Message;
-            });
-
-            _udpClient.Close();
-            _udpClient = null;
-        }
-    }
-
-    private static IPAddress TrimBroadcastIpAddress(string localIp)
-    {
-        var ips = localIp.Split('.');
-        return ips.Length == 4 ? IPAddress.Parse(ips[0] + "." + ips[1] + "." + ips[2] + "." + "255") : null;
-    }
-
     private void NetComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var info = (NetworkInfo)NetComboBox.SelectedItem;
-
+        //停止就连接的接收发送
+        _tokenSourceRecv?.Cancel();
+        _tokenSourceRecv = null;
+        _tokenSourceSend?.Cancel();
+        _tokenSourceSend = null;
+        //显示等待框
         MaskProgressBar.Visibility = Visibility.Visible;
+
         _worker = new BackgroundWorker();
         //异步取消 需要增加这个 不然取消失效
         _worker.WorkerSupportsCancellation = true;
@@ -111,8 +75,7 @@ public partial class UdpWindow
         _worker.DoWork += worker_DoWork;
         //任务完毕触发
         _worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-        //任务开始
-        _worker.RunWorkerAsync(new Tuple<NetworkInfo, string>(info, TextPort.Text));
+        _worker.RunWorkerAsync(new Tuple<NetworkInfo, string, string>(info, TextServer.Text, TextPort.Text));
     }
 
     private BackgroundWorker _worker;
@@ -128,16 +91,14 @@ public partial class UdpWindow
         if (sender is not BackgroundWorker worker) return;
         if (!e.Cancelled)
         {
-            if (null != _udpClient)
+            if (null != _tcpClient)
             {
                 MyStatusBar.Background = Brushes.Green;
                 StatusInfo.Text = "连接成功";
-
                 //清除旧的消息
                 RecvDataRichTextBox.Document.Blocks.Clear();
                 RecvDataRichTextBox.AppendText(GetMessage("连接成功"));
                 RecvDataRichTextBox.ScrollToEnd();
-
                 //接收消息
                 _tokenSourceRecv ??= new CancellationTokenSource();
                 Task.Factory.StartNew(TaskRecv, _tokenSourceRecv.Token);
@@ -159,18 +120,71 @@ public partial class UdpWindow
     private void TaskRecv(object obj)
     {
         var token = (CancellationToken)obj;
+        var netStream = _tcpClient.GetStream();
+        var recvBytes = new byte[1024];
         while (!token.IsCancellationRequested)
         {
-            var result = _udpClient.ReceiveAsync();
-            var recvBytes = result.Result.Buffer;
-            if (result.Result.Buffer.Length <= 0)
+            var count = netStream.ReadAsync(recvBytes, 0, recvBytes.Length, token);
+            if (count.Result <= 0)
                 Task.WaitAny(new[] { Task.Delay(100, token) }, token);
             else
                 Dispatcher.Invoke(() =>
                 {
-                    RecvDataRichTextBox.AppendText(GetMessage(recvBytes, recvBytes.Length));
+                    RecvDataRichTextBox.AppendText(GetMessage(recvBytes, count.Result));
                     RecvDataRichTextBox.ScrollToEnd();
                 });
+        }
+    }
+
+    private static string GetMessage(string content)
+    {
+        return TimeUtil.GetTimeStamp() + " " + content + "\n" + Environment.NewLine;
+    }
+
+    private static string GetMessage(byte[] content, int count)
+    {
+        return TimeUtil.GetTimeStamp() + " " + Encoding.UTF8.GetString(content, 0, count) + Environment.NewLine;
+    }
+
+    private TcpClient _tcpClient;
+    private readonly CancellationTokenSource _tokenSourceConn = new();
+
+    private void worker_DoWork(object sender, DoWorkEventArgs e)
+    {
+        var args = (Tuple<NetworkInfo, string, string>)e.Argument;
+        if (null == args) return;
+
+        _tcpClient?.Close();
+        var ipAddress = IPAddress.Parse(args.Item1.Ip);
+        var localEndPoint = new IPEndPoint(ipAddress, 0);
+        _tcpClient = new TcpClient(localEndPoint);
+        try
+        {
+            _tcpClient.ConnectAsync(args.Item2, int.Parse(args.Item3));
+            while (!_tcpClient.Connected)
+            {
+                if (_worker.CancellationPending)
+                {
+                    e.Cancel = true; //这里才真正取消 
+                    return;
+                }
+
+                Task.WaitAny(new[] { Task.Delay(100, _tokenSourceConn.Token) }, _tokenSourceConn.Token);
+            }
+
+            Task.WaitAny(new[] { Task.Delay(500, _tokenSourceConn.Token) }, _tokenSourceConn.Token);
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            Dispatcher.Invoke(() =>
+            {
+                MyStatusBar.Background = Brushes.Red;
+                StatusInfo.Text = "连接失败:" + exception.Message;
+            });
+
+            _tcpClient.Close();
+            _tcpClient = null;
         }
     }
 
@@ -182,7 +196,7 @@ public partial class UdpWindow
     private void ButtonSingle_OnClick(object sender, RoutedEventArgs e)
     {
         var data = Encoding.UTF8.GetBytes("hello, i am: " + ((NetworkInfo)NetComboBox.SelectedItem).Ip);
-        _udpClient?.Send(data, data.Length, _multicast);
+        _tcpClient?.GetStream().Write(data, 0, data.Length);
     }
 
     private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -190,36 +204,32 @@ public partial class UdpWindow
         XuNiBox.Focus();
     }
 
-    private readonly CancellationTokenSource _tokenSourceSend = new();
-    private readonly ManualResetEvent _resetEvent = new(true);
-    private Task _taskSendContinuous;
+    private CancellationTokenSource _tokenSourceSend;
 
-    private void ButtonContinuous_OnClick(object sender, RoutedEventArgs e)
+    private void CheckBoxContinuous_OnChecked(object sender, RoutedEventArgs e)
     {
-        // 禁用持续按钮
-        ButtonContinuous.IsEnabled = false;
-        _taskSendContinuous ??= Task.Factory.StartNew(TaskSendContinuous, _tokenSourceSend.Token);
-        if (null != _taskSendContinuous) _resetEvent.Set();
+        _tokenSourceSend?.Cancel();
+        _tokenSourceSend = new CancellationTokenSource();
+
+        Task.Factory.StartNew(TaskSendContinuous, _tokenSourceSend.Token);
+    }
+
+    private void CheckBoxContinuous_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        _tokenSourceSend?.Cancel();
+        _tokenSourceSend = null;
     }
 
     private void TaskSendContinuous(object obj)
     {
         var token = (CancellationToken)obj;
+
         var count = 0;
         while (!token.IsCancellationRequested)
         {
-            // 初始化为true时执行WaitOne不阻塞
-            _resetEvent.WaitOne();
-
             var data = Encoding.UTF8.GetBytes("hello, Count: " + count++);
-            _udpClient?.Send(data, data.Length, _multicast);
+            _tcpClient?.GetStream().WriteAsync(data, 0, data.Length, token);
             Task.WaitAny(new[] { Task.Delay(500, token) }, token);
         }
-    }
-
-    private void ButtonPause_OnClick(object sender, RoutedEventArgs e)
-    {
-        ButtonContinuous.IsEnabled = true;
-        _resetEvent.Reset();
     }
 }

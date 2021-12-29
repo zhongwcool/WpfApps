@@ -1,4 +1,4 @@
-﻿namespace WpfApp7;
+﻿namespace WpfApp7.Models;
 
 public static class Dummy
 {

@@ -4,4 +4,4 @@
 
 ### 效果演示
 
-![](./file/JMpLN5tjNA.gif)
+![](./Assets/JMpLN5tjNA.gif)

@@ -2,7 +2,7 @@
 using System.Windows;
 using LibVLCSharp.Shared;
 
-namespace WpfApp1
+namespace WpfApp1.View
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

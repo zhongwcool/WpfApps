@@ -2,9 +2,9 @@
 
 > 微软官方的System.Speech目前还无法在.net5以上的目标框架使用。
 
-![演示效果](./file/vs_reference_menu.png)
-![演示效果](./file/vs_reference_dialog.png)
+![演示效果](./Assets/vs_reference_menu.png)
+![演示效果](./Assets/vs_reference_dialog.png)
 
 ### 演示效果
 
-![演示效果](./file/150519.png)
+![演示效果](./Assets/150519.png)

@@ -3,8 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Threading;
+using WpfApp7.Models;
 
-namespace WpfApp7;
+namespace WpfApp7.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
@@ -35,7 +36,7 @@ public partial class MainWindow : Window
     private void btnPrintPreview_Click(object sender, RoutedEventArgs e)
     {
         var previewWnd =
-            new PrintPreviewWindow("OrderDocument.xaml", Dummy.OrderExample, new OrderDocumentRenderer())
+            new PrintPreviewWindow("Views/OrderDocument.xaml", Dummy.OrderExample, new OrderDocumentRenderer())
             {
                 Owner = this,
                 ShowInTaskbar = false

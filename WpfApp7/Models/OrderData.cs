@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace WpfApp7;
+namespace WpfApp7.Models;
 
 public class OrderMaster
 {

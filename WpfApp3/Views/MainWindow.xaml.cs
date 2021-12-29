@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfApp3;
+namespace WpfApp3.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
