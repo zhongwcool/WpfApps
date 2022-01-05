@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using LibVLCSharp.Shared;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1.View
 {
@@ -11,10 +12,13 @@ namespace WpfApp1.View
     {
         private readonly LibVLC _libVlc;
         private readonly MediaPlayer _mediaPlayer;
+        private readonly MainWindowViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = new MainWindowViewModel();
+            DataContext = _viewModel;
 
             _libVlc = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVlc);
@@ -47,17 +51,12 @@ namespace WpfApp1.View
 
             using var media = new Media(_libVlc, new Uri(source));
             mediaPlay.Play(media);
-
-            BtnPlay.IsEnabled = false;
-            BtnStop.IsEnabled = true;
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             if (VideoView.MediaPlayer is not { IsPlaying: true }) return;
             VideoView.MediaPlayer.Stop();
-            BtnPlay.IsEnabled = true;
-            BtnStop.IsEnabled = false;
         }
 
         protected override void OnClosed(EventArgs e)

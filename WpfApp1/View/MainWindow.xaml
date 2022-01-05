@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+        xmlns:vm="clr-namespace:WpfApp1.ViewModel"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="Vlc播放器" Height="450" Width="800">
     <Grid>
         <Grid.Background>
@@ -20,12 +22,14 @@
         </Grid.Background>
         <wpf:VideoView x:Name="VideoView" Panel.ZIndex="1">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="BtnPlay" Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom"
+                <Button Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
-                        Click="PlayButton_Click" IsEnabled="True" />
-                <Button x:Name="BtnStop" Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom"
+                        Command="{Binding CommandPlay}"
+                        Click="PlayButton_Click" />
+                <Button Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
-                        Click="StopButton_Click" IsEnabled="False" />
+                        Command="{Binding CommandStop}"
+                        Click="StopButton_Click" />
                 <Border Background="#8000" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <TextBox x:Name="TextUrlInput" Width="250"
                              Style="{DynamicResource SimpleTextBox}"
