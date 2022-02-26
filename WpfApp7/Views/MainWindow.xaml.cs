@@ -58,8 +58,11 @@ public partial class MainWindow : Window
     {
         BtnPrintDirect.IsEnabled = false;
         var dialog = new PrintDialog();
-        var doc = PrintPreviewWindow.LoadDocumentAndRender("OrderDocument.xaml",
-            Dummy.OrderExample, new OrderDocumentRenderer());
+        var doc = PrintPreviewWindow.LoadDocumentAndRender(
+            "Views/OrderDocument.xaml",
+            Dummy.OrderExample,
+            new OrderDocumentRenderer()
+        );
         Dispatcher.BeginInvoke(new DoPrintMethod(DoPrint), DispatcherPriority.ApplicationIdle, dialog,
             ((IDocumentPaginatorSource)doc).DocumentPaginator);
         _mTimerToEnableButton = new Timer(TestTimerCallback, null, 3000, Timeout.Infinite);
