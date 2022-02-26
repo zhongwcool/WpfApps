@@ -48,8 +48,11 @@ public partial class MainWindow : Window
     {
         var dialog = new PrintDialog();
         if (dialog.ShowDialog() != true) return;
-        var doc = PrintPreviewWindow.LoadDocumentAndRender("OrderDocument.xaml",
-            Dummy.OrderExample, new OrderDocumentRenderer());
+        var doc = PrintPreviewWindow.LoadDocumentAndRender(
+            "Views/OrderDocument.xaml",
+            Dummy.OrderExample,
+            new OrderDocumentRenderer()
+        );
         Dispatcher.BeginInvoke(new DoPrintMethod(DoPrint), DispatcherPriority.ApplicationIdle, dialog,
             ((IDocumentPaginatorSource)doc).DocumentPaginator);
     }
