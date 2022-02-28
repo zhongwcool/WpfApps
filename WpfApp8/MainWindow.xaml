@@ -9,37 +9,40 @@
     <Grid>
         <Popup x:Name="PopTest" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=BtnTest}"
                StaysOpen="False" SnapsToDevicePixels="True" ClipToBounds="True" AllowsTransparency="True"
-               Placement="Left" VerticalOffset="25">
+               Placement="Top" VerticalOffset="25">
             <Border BorderBrush="Gray" BorderThickness="1">
-                <WrapPanel x:Name="PanelTest" Width="450">
-                    <control:MetroButton Content="Button 01" Icon="Image/ic_action_toys.png"
+                <WrapPanel x:Name="PanelTest" Width="430">
+                    <control:MetroButton Content="连接" Icon="Image/ic_action_toys.png"
                                          Style="{StaticResource MetroButtonStyle}" Margin="3" />
-                    <control:MetroButton Content="Button 02" Icon="Image/ic_action_toys.png"
+                    <control:MetroButton Content="网络" Icon="Image/ic_action_toys.png"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3" />
-                    <control:MetroButton Content="Button 03" Icon="Image/ic_action_toys.png"
+                    <control:MetroButton Content="所有设置" Icon="Image/ic_action_toys.png"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3" />
-                    <control:MetroButton Content="Button 04" Icon="Image/ic_action_toys.png"
+                    <control:MetroButton Content="飞行模式" Icon="Image/ic_action_toys.png"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3" />
-                    <control:MetroButton Content="Button 05" Icon="Image/ic_action_toys.png"
+                    <control:MetroButton Content="定位" Icon="Image/ic_action_toys.png"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3" />
 
-                    <control:MetroCheckBox Content="CheckBox 01" Icon="Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="专注助手" Icon="Image/ic_action_toys.png"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
-                    <control:MetroCheckBox Content="CheckBox 02" Icon="Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="移动热点" Icon="Image/ic_action_toys.png"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
-                    <control:MetroCheckBox Content="CheckBox 03" Icon="Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="夜间模式" Icon="Image/ic_action_toys.png"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
-                    <control:MetroCheckBox Content="CheckBox 04" Icon="Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="未连接" Icon="Image/ic_action_toys.png"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
-                    <control:MetroCheckBox Content="CheckBox 05" Icon="Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="投影" Icon="Image/ic_action_toys.png"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
                 </WrapPanel>
             </Border>
         </Popup>
 
-        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="BtnTest" Content="别点我" />
-        </WrapPanel>
+        <!-- 状态栏 -->
+        <Grid x:Name="MyStatusBar" VerticalAlignment="Bottom" Margin="0,0,0,0" Background="DimGray">
+            <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center" Height="35">
+                <Button x:Name="BtnTest" Content="别点我" VerticalAlignment="Center" Height="35" />
+            </WrapPanel>
+        </Grid>
 
     </Grid>
 </Window>
