@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="ColorBackgroundRect">#808080</Color>
+    <SolidColorBrush x:Key="BrushBackgroundRect" Color="{StaticResource ColorBackgroundRect}" />
+    <Color x:Key="ColorBackgroundRectMouseOver">#A0A0A0</Color>
+    <SolidColorBrush x:Key="BrushBackgroundRectMouseOver" Color="{StaticResource ColorBackgroundRectMouseOver}" />
+    <SolidColorBrush x:Key="BorderBrushMouseOver" Color="White" />
+    <SolidColorBrush x:Key="BorderBrushChecked" Color="Tomato" />
+    <SolidColorBrush x:Key="BrushBackgroundRectChecked" Color="Tomato" />
+
+</ResourceDictionary>
