@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:control="clr-namespace:WpfApp8.Control">
 
+    <Style TargetType="{x:Type TextBlock}" x:Key="WrappingStyle">
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
     <Style TargetType="{x:Type control:MetroCheckBox}" x:Key="MetroCheckBoxStyle">
         <!--设置按钮的默认的样式-->
         <Setter Property="Height" Value="80" />
@@ -22,7 +26,11 @@
                             <ContentPresenter
                                 Margin="5,0,5,5"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom" />
+                                VerticalAlignment="Bottom">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource WrappingStyle}" />
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
                         </Grid>
                     </Border>
 

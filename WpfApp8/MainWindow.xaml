@@ -12,19 +12,27 @@
                Placement="Left" VerticalOffset="25">
             <Border BorderBrush="Gray" BorderThickness="1">
                 <WrapPanel x:Name="PanelTest" Width="450">
-                    <control:MetroButton Content="Button 01" Icon="Image/ic_action_toys_light.png"
-                                         Style="{StaticResource MetroButtonStyle}" Margin="5" />
-                    <Button Content="Button 02" Style="{DynamicResource ButtonStyle}" Margin="5" />
-                    <Button Content="Button 03" Style="{DynamicResource ButtonStyle}" Margin="5" />
-                    <Button Content="Button 04" Style="{DynamicResource ButtonStyle}" Margin="5" />
-                    <Button Content="Button 05" Style="{DynamicResource ButtonStyle}" Margin="5" />
+                    <control:MetroButton Content="Button 01" Icon="Image/ic_action_toys.png"
+                                         Style="{StaticResource MetroButtonStyle}" Margin="3" />
+                    <control:MetroButton Content="Button 02" Icon="Image/ic_action_toys.png"
+                                         Style="{DynamicResource MetroButtonStyle}" Margin="3" />
+                    <control:MetroButton Content="Button 03" Icon="Image/ic_action_toys.png"
+                                         Style="{DynamicResource MetroButtonStyle}" Margin="3" />
+                    <control:MetroButton Content="Button 04" Icon="Image/ic_action_toys.png"
+                                         Style="{DynamicResource MetroButtonStyle}" Margin="3" />
+                    <control:MetroButton Content="Button 05" Icon="Image/ic_action_toys.png"
+                                         Style="{DynamicResource MetroButtonStyle}" Margin="3" />
 
-                    <control:MetroCheckBox Content="CheckBox 01" Icon="Image/ic_action_toys_light.png"
-                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="5" />
-                    <CheckBox Content="CheckBox 02" Style="{DynamicResource CheckBoxStyle}" Margin="5" />
-                    <CheckBox Content="CheckBox 03" Style="{DynamicResource CheckBoxStyle}" Margin="5" />
-                    <CheckBox Content="CheckBox 04" Style="{DynamicResource CheckBoxStyle}" Margin="5" />
-                    <CheckBox Content="CheckBox 05" Style="{DynamicResource CheckBoxStyle}" Margin="5" />
+                    <control:MetroCheckBox Content="CheckBox 01" Icon="Image/ic_action_toys.png"
+                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
+                    <control:MetroCheckBox Content="CheckBox 02" Icon="Image/ic_action_toys.png"
+                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
+                    <control:MetroCheckBox Content="CheckBox 03" Icon="Image/ic_action_toys.png"
+                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
+                    <control:MetroCheckBox Content="CheckBox 04" Icon="Image/ic_action_toys.png"
+                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
+                    <control:MetroCheckBox Content="CheckBox 05" Icon="Image/ic_action_toys.png"
+                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3" />
                 </WrapPanel>
             </Border>
         </Popup>
