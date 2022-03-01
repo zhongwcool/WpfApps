@@ -9,11 +9,11 @@ public class MainViewModel : ObservableObject
 
     private MainViewModel()
     {
-        CommandConnect = new RelayCommand(() => { TxtConnect = "Connect: " + _cntConnect++; });
-        CommandNetwork = new RelayCommand(() => { TxtNetwork = "Network: " + _cntNetwork++; });
-        CommandSettings = new RelayCommand(() => { TxtSettings = "Settings: " + _cntSettings++; });
-        CommandAirplane = new RelayCommand(() => { TxtAirplane = "Airplane: " + _cntAirplane++; });
-        CommandLocate = new RelayCommand(() => { TxtLocate = "Locate: " + _cntLocate++; });
+        CommandConnect = new RelayCommand(() => { CntConnect++; });
+        CommandNetwork = new RelayCommand(() => { CntNetwork++; });
+        CommandSettings = new RelayCommand(() => { CntSettings++; });
+        CommandAirplane = new RelayCommand(() => { CntAirplane++; });
+        CommandLocate = new RelayCommand(() => { CntLocate++; });
     }
 
     public static MainViewModel CreateInstance()
@@ -23,86 +23,61 @@ public class MainViewModel : ObservableObject
     }
 
     private uint _cntConnect;
-    private string _txtConnect;
 
-    public string TxtConnect
+    public uint CntConnect
     {
-        get => _txtConnect;
-        set => SetProperty(ref _txtConnect, value);
+        get => _cntConnect;
+        set => SetProperty(ref _cntConnect, value);
     }
 
     public IRelayCommand CommandConnect { get; }
 
     private uint _cntNetwork;
-    private string _txtNetwork;
 
-    public string TxtNetwork
+    public uint CntNetwork
     {
-        get => _txtNetwork;
-        set => SetProperty(ref _txtNetwork, value);
+        get => _cntNetwork;
+        set => SetProperty(ref _cntNetwork, value);
     }
 
     public IRelayCommand CommandNetwork { get; }
 
     private uint _cntSettings;
-    private string _txtSettings;
 
-    public string TxtSettings
+    public uint CntSettings
     {
-        get => _txtSettings;
-        set => SetProperty(ref _txtSettings, value);
+        get => _cntSettings;
+        set => SetProperty(ref _cntSettings, value);
     }
 
     public IRelayCommand CommandSettings { get; }
 
     private uint _cntAirplane;
-    private string _txtAirplane;
 
-    public string TxtAirplane
+    public uint CntAirplane
     {
-        get => _txtAirplane;
-        set => SetProperty(ref _txtAirplane, value);
+        get => _cntAirplane;
+        set => SetProperty(ref _cntAirplane, value);
     }
 
     public IRelayCommand CommandAirplane { get; }
 
     private uint _cntLocate;
-    private string _txtLocate;
 
-    public string TxtLocate
+    public uint CntLocate
     {
-        get => _txtLocate;
-        set => SetProperty(ref _txtLocate, value);
+        get => _cntLocate;
+        set => SetProperty(ref _cntLocate, value);
     }
 
     public IRelayCommand CommandLocate { get; }
-
-    private string _textInFocus;
-
-    public string TextInFocus
-    {
-        get => _textInFocus;
-        set => SetProperty(ref _textInFocus, value);
-    }
 
     private bool _isInFocus;
 
     public bool IsInFocus
     {
         get => _isInFocus;
-        set
-        {
-            SetProperty(ref _isInFocus, value);
-            TextInFocus = "焦点:" + value;
-        }
-    }
-
-    private string _textHotpot;
-
-    public string TextHotpot
-    {
-        get => _textHotpot;
-        set => SetProperty(ref _textHotpot, value);
+        set => SetProperty(ref _isInFocus, value);
     }
 
     private bool _isHotpot;
@@ -110,19 +85,7 @@ public class MainViewModel : ObservableObject
     public bool IsHotpot
     {
         get => _isHotpot;
-        set
-        {
-            SetProperty(ref _isHotpot, value);
-            TextHotpot = "移动热点:" + value;
-        }
-    }
-
-    private string _textNightMode;
-
-    public string TextNightMode
-    {
-        get => _textNightMode;
-        set => SetProperty(ref _textNightMode, value);
+        set => SetProperty(ref _isHotpot, value);
     }
 
     private bool _isNightMode;
@@ -130,19 +93,7 @@ public class MainViewModel : ObservableObject
     public bool IsNightMode
     {
         get => _isNightMode;
-        set
-        {
-            SetProperty(ref _isNightMode, value);
-            TextNightMode = "夜间模式:" + value;
-        }
-    }
-
-    private string _textBluetooth;
-
-    public string TextBluetooth
-    {
-        get => _textBluetooth;
-        set => SetProperty(ref _textBluetooth, value);
+        set => SetProperty(ref _isNightMode, value);
     }
 
     private bool _isBluetooth;
@@ -150,19 +101,7 @@ public class MainViewModel : ObservableObject
     public bool IsBluetooth
     {
         get => _isBluetooth;
-        set
-        {
-            SetProperty(ref _isBluetooth, value);
-            TextBluetooth = "蓝牙:" + value;
-        }
-    }
-
-    private string _textProject;
-
-    public string TextProject
-    {
-        get => _textProject;
-        set => SetProperty(ref _textProject, value);
+        set => SetProperty(ref _isBluetooth, value);
     }
 
     private bool _isProject;
@@ -170,10 +109,6 @@ public class MainViewModel : ObservableObject
     public bool IsProject
     {
         get => _isProject;
-        set
-        {
-            SetProperty(ref _isProject, value);
-            TextProject = "投射:" + value;
-        }
+        set => SetProperty(ref _isProject, value);
     }
 }

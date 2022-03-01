@@ -52,37 +52,59 @@
         </Popup>
 
         <UniformGrid Columns="5" Height="200" Width="500" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TxtConnect}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TxtNetwork}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TxtSettings}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TxtAirplane}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TxtLocate}" />
-            </Border>
+            <UniformGrid.Resources>
+                <Style TargetType="TextBlock" x:Key="TextTitle">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Margin" Value="0,5,0,0" />
+                </Style>
+                <Style TargetType="TextBlock" x:Key="DigitContent">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                    <Setter Property="Margin" Value="0,0,0,5" />
+                </Style>
+            </UniformGrid.Resources>
+            <Grid>
+                <TextBlock Text="连接" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding CntConnect}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="网络" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding CntNetwork}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="所有设置" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding CntSettings}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="飞行模式" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding CntAirplane}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="位置" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding CntLocate}" Style="{StaticResource DigitContent}" />
+            </Grid>
 
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TextInFocus}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TextHotpot}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TextNightMode}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TextBluetooth}" />
-            </Border>
-            <Border BorderThickness="1">
-                <TextBlock Text="{Binding TextProject}" />
-            </Border>
+            <Grid>
+                <TextBlock Text="专注模式" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding IsInFocus}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="网络" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding IsHotpot}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="夜间模式" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding IsNightMode}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="蓝牙连接" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding IsBluetooth}" Style="{StaticResource DigitContent}" />
+            </Grid>
+            <Grid>
+                <TextBlock Text="投影" Style="{StaticResource TextTitle}" />
+                <TextBlock Text="{Binding IsProject}" Style="{StaticResource DigitContent}" />
+            </Grid>
         </UniformGrid>
         
         <!-- 状态栏 -->
