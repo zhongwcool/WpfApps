@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using WpfApp8.ViewModels;
 
-namespace WpfApp8;
+namespace WpfApp8.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
@@ -10,6 +11,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        DataContext = MainViewModel.CreateInstance();
+        
         BtnTest.Click += (s, e) => PopTest.IsOpen = true;
     }
 
