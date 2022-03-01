@@ -2,9 +2,10 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,10 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\WpfApp4\WpfApp4.csproj"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.4"/>
     </ItemGroup>
 
 </Project>
