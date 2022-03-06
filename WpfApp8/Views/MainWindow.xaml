@@ -16,35 +16,35 @@
                Placement="Top" VerticalOffset="25">
             <Border BorderBrush="Gray" BorderThickness="1">
                 <WrapPanel x:Name="PanelTest" Width="430">
-                    <control:MetroButton Content="连接" Icon="../Image/ic_action_toys.png"
+                    <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
                                          Style="{StaticResource MetroButtonStyle}" Margin="3"
                                          Command="{Binding CommandConnect}" />
-                    <control:MetroButton Content="网络" Icon="../Image/ic_action_toys.png"
+                    <control:MetroButton Content="网络" Icon="{StaticResource IconRightDrawer}"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3"
                                          Command="{Binding CommandNetwork}" />
-                    <control:MetroButton Content="所有设置" Icon="../Image/ic_action_toys.png"
+                    <control:MetroButton Content="所有设置" Icon="{StaticResource IconSetting}"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3"
                                          Command="{Binding CommandSettings}" />
-                    <control:MetroButton Content="飞行模式" Icon="../Image/ic_action_toys.png"
+                    <control:MetroButton Content="飞行模式" Icon="{StaticResource IconReconnect}"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3"
                                          Command="{Binding CommandAirplane}" />
-                    <control:MetroButton Content="定位" Icon="../Image/ic_action_toys.png"
+                    <control:MetroButton Content="定位" Icon="{StaticResource IconTonality}"
                                          Style="{DynamicResource MetroButtonStyle}" Margin="3"
                                          Command="{Binding CommandLocate}" />
 
-                    <control:MetroCheckBox Content="专注助手" Icon="../Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="专注助手" Icon="{StaticResource IconExpertMode}"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
                                            IsChecked="{Binding IsInFocus}" />
-                    <control:MetroCheckBox Content="移动热点" Icon="../Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="移动热点" Icon="{StaticResource IconGamepad}"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
                                            IsChecked="{Binding IsHotpot}" />
-                    <control:MetroCheckBox Content="夜间模式" Icon="../Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="夜间模式" Icon="{StaticResource IconGamepad}"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
                                            IsChecked="{Binding IsNightMode}" />
-                    <control:MetroCheckBox Content="未连接" Icon="../Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="未连接" Icon="{StaticResource IconGamepad}"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
                                            IsChecked="{Binding IsBluetooth}" />
-                    <control:MetroCheckBox Content="投影" Icon="../Image/ic_action_toys.png"
+                    <control:MetroCheckBox Content="投影" Icon="{StaticResource IconGamepad}"
                                            Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
                                            IsChecked="{Binding IsProject}" />
                 </WrapPanel>

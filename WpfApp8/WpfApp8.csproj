@@ -9,13 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Image\ic_action_toys_light.png"/>
-        <Resource Include="Image\ic_action_toys_light.png"/>
-        <None Remove="Image\ic_action_toys.png"/>
-        <Resource Include="Image\ic_action_toys.png"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.4"/>
     </ItemGroup>

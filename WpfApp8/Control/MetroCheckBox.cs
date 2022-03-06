@@ -7,8 +7,7 @@ namespace WpfApp8.Control;
 public class MetroCheckBox : CheckBox
 {
     public static readonly DependencyProperty IconProperty =
-        DependencyProperty.Register("Icon", typeof(ImageSource), typeof(MetroCheckBox), new PropertyMetadata(null));
-
+        DependencyProperty.Register("Icon", typeof(Geometry), typeof(MetroCheckBox), new PropertyMetadata(null));
 
     static MetroCheckBox()
     {
@@ -16,9 +15,9 @@ public class MetroCheckBox : CheckBox
             new FrameworkPropertyMetadata(typeof(MetroCheckBox)));
     }
 
-    public ImageSource Icon
+    public Geometry Icon
     {
-        get => (ImageSource)GetValue(IconProperty);
+        get => (Geometry)GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
 }
