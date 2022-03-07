@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Control/MetroButton.xaml" />
                 <ResourceDictionary Source="Control/MetroCheckBox.xaml" />
                 <ResourceDictionary Source="Control/IconButton.xaml" />
+                <ResourceDictionary Source="Control/IconCheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

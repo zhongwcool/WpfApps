@@ -60,20 +60,22 @@
             <ui:ThemeShadowChrome x:Name="MyToolBar" IsShadowEnabled="True"
                                   HorizontalAlignment="Center" VerticalAlignment="Top"
                                   Depth="32">
-                <WrapPanel Orientation="Horizontal" Background="Transparent">
+                <StackPanel Orientation="Horizontal" Background="#4FFF">
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}"
+                                        Margin="25,0,0,0" />
                     <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
                                         Style="{StaticResource ImageButtonStyle}" />
                     <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
                                         Style="{StaticResource ImageButtonStyle}" />
                     <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
                                         Style="{StaticResource ImageButtonStyle}" />
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
-                                        Style="{StaticResource ImageButtonStyle}" />
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
-                                        Style="{StaticResource ImageButtonStyle}" />
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
-                                        Style="{StaticResource ImageButtonStyle}" />
-                </WrapPanel>
+                    <control:IconCheckBox Icon="{StaticResource IconTraffic48}" Content="测试"
+                                          Style="{StaticResource IconCheckBoxStyle}" />
+                    <control:IconCheckBox Icon="{StaticResource IconTraffic48}" Content="测试"
+                                          Style="{StaticResource IconCheckBoxStyle}"
+                                          Margin="0,0,25,0" />
+                </StackPanel>
             </ui:ThemeShadowChrome>
 
             <UniformGrid Columns="5" Height="200" Width="500" HorizontalAlignment="Left" VerticalAlignment="Bottom">

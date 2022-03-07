@@ -11,9 +11,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="control1:MetroButton">
-                    <Border x:Name="PART_BORD" BorderThickness="1">
+                    <Border x:Name="PART_Bord" BorderThickness="1">
                         <Grid>
-                            <Rectangle x:Name="PART_BACK" Fill="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+                            <Rectangle x:Name="PART_Back" Fill="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
                             <Path Data="{TemplateBinding Icon}" Height="24" Width="24"
                                   Margin="5,5,0,0" Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
                                   HorizontalAlignment="Left"
@@ -28,14 +28,14 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.8" />
-                            <Setter TargetName="PART_BORD" Property="BorderBrush"
+                            <Setter TargetName="PART_Bord" Property="BorderBrush"
                                     Value="{DynamicResource SystemControlBackgroundBaseMediumBrush}" />
-                            <Setter TargetName="PART_BACK" Property="Fill"
+                            <Setter TargetName="PART_Back" Property="Fill"
                                     Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
                             <Setter Property="Opacity" Value="1.0" />
-                            <Setter TargetName="PART_BACK" Property="Fill"
+                            <Setter TargetName="PART_Back" Property="Fill"
                                     Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
