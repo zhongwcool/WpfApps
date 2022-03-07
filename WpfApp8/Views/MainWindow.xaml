@@ -9,13 +9,19 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Popup x:Name="PopTest" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=BtnTest}"
-               StaysOpen="False" SnapsToDevicePixels="True" ClipToBounds="True" AllowsTransparency="True"
-               Placement="Top" VerticalOffset="25">
+        Title="MainWindow" Height="720" Width="1080">
+    <Grid Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Popup x:Name="PopTest" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=BtnTest}"
+                   StaysOpen="False" SnapsToDevicePixels="True" ClipToBounds="True" AllowsTransparency="True"
+                   Placement="Top" VerticalOffset="25">
             <Border BorderBrush="Gray" BorderThickness="1">
-                <WrapPanel x:Name="PanelTest" Width="430">
+                <WrapPanel x:Name="PanelTest" Width="430"
+                           Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
                     <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
                                          Style="{StaticResource MetroButtonStyle}" Margin="3"
                                          Command="{Binding CommandConnect}" />
@@ -51,17 +57,38 @@
             </Border>
         </Popup>
 
-        <UniformGrid Columns="5" Height="200" Width="500" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ui:ThemeShadowChrome x:Name="MyToolBar" IsShadowEnabled="True"
+                                  HorizontalAlignment="Center" VerticalAlignment="Top"
+                                  Depth="32">
+                <WrapPanel Orientation="Horizontal" Background="Transparent">
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}" />
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}" />
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}" />
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}" />
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}" />
+                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                                        Style="{StaticResource ImageButtonStyle}" />
+                </WrapPanel>
+            </ui:ThemeShadowChrome>
+
+            <UniformGrid Columns="5" Height="200" Width="500" HorizontalAlignment="Left" VerticalAlignment="Bottom">
             <UniformGrid.Resources>
                 <Style TargetType="TextBlock" x:Key="TextTitle">
                     <Setter Property="HorizontalAlignment" Value="Left" />
                     <Setter Property="VerticalAlignment" Value="Top" />
                     <Setter Property="Margin" Value="0,5,0,0" />
+                    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
                 </Style>
                 <Style TargetType="TextBlock" x:Key="DigitContent">
                     <Setter Property="HorizontalAlignment" Value="Left" />
                     <Setter Property="VerticalAlignment" Value="Bottom" />
                     <Setter Property="Margin" Value="0,0,0,5" />
+                    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
                 </Style>
             </UniformGrid.Resources>
             <Grid>
@@ -106,11 +133,15 @@
                 <TextBlock Text="{Binding IsProject}" Style="{StaticResource DigitContent}" />
             </Grid>
         </UniformGrid>
+        </Grid>
         
         <!-- 状态栏 -->
-        <Grid x:Name="MyStatusBar" VerticalAlignment="Bottom" Margin="0,0,0,0" Background="DarkSlateBlue">
+        <Grid VerticalAlignment="Bottom" Margin="0,0,0,0"
+              Background="{DynamicResource SystemControlBackgroundAccentBrush}"
+              Grid.Row="1">
             <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center" Height="35">
-                <Button x:Name="BtnTest" Content="别点我" VerticalAlignment="Center" Height="35" />
+                <Button x:Name="BtnTest" Content="别点我" VerticalAlignment="Center" Height="35"
+                        Foreground="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
             </WrapPanel>
         </Grid>
 
