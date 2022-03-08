@@ -21,8 +21,7 @@
                             <Rectangle x:Name="PART_Back" Fill="{DynamicResource SystemControlBackgroundAltHighBrush}" />
                             <Path x:Name="PART_Icon" Data="{TemplateBinding Icon}" Height="24" Width="24"
                                   Margin="5,5,0,0"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
+                                  HorizontalAlignment="Left" VerticalAlignment="Top"
                                   Fill="{DynamicResource SystemControlForegroundBaseHighBrush}" />
                             <ContentPresenter
                                 Margin="5,0,5,5"

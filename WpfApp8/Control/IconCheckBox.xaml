@@ -12,22 +12,22 @@
         <Setter Property="Height" Value="60" />
         <Setter Property="Width" Value="60" />
         <!-- SystemControlForegroundBaseHighBrush就是这个 -->
-        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
         <!--设置按钮的模板-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="control:IconCheckBox">
-                    <Border x:Name="PART_Bord" BorderThickness="1" BorderBrush="Transparent">
+                    <Border x:Name="PART_Bord" BorderThickness="1">
                         <Grid>
-                            <Rectangle x:Name="PART_Back" Fill="Transparent" />
+                            <Rectangle x:Name="PART_Back" Fill="{DynamicResource SystemControlBackgroundAltHighBrush}" />
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="3*" />
                                     <RowDefinition Height="2*" />
                                 </Grid.RowDefinitions>
                                 <Path x:Name="PART_Icon" Data="{TemplateBinding Icon}"
-                                      Fill="{DynamicResource SystemControlForegroundChromeWhiteBrush}"
                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
                                       Grid.Row="0" />
                                 <ContentPresenter Margin="2"
                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -51,6 +51,12 @@
                             <Setter Property="Opacity" Value="0.9" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
+                            <Setter TargetName="PART_Icon" Property="Fill"
+                                    Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
+                            <Setter TargetName="PART_Bord" Property="BorderBrush"
+                                    Value="{DynamicResource SystemControlBackgroundAccentBrush}" />
                             <Setter TargetName="PART_Back" Property="Fill"
                                     Value="{DynamicResource SystemControlBackgroundAccentBrush}" />
                         </Trigger>

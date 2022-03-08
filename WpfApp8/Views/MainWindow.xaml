@@ -19,48 +19,48 @@
             <Popup x:Name="PopTest" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=BtnTest}"
                    StaysOpen="False" SnapsToDevicePixels="True" ClipToBounds="True" AllowsTransparency="True"
                    Placement="Top" VerticalOffset="25">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <WrapPanel x:Name="PanelTest" Width="430"
-                           Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
-                    <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
-                                         Style="{StaticResource MetroButtonStyle}" Margin="3"
-                                         Command="{Binding CommandConnect}" />
-                    <control:MetroButton Content="网络" Icon="{StaticResource IconRightDrawer}"
-                                         Style="{DynamicResource MetroButtonStyle}" Margin="3"
-                                         Command="{Binding CommandNetwork}" />
-                    <control:MetroButton Content="所有设置" Icon="{StaticResource IconSetting}"
-                                         Style="{DynamicResource MetroButtonStyle}" Margin="3"
-                                         Command="{Binding CommandSettings}" />
-                    <control:MetroButton Content="飞行模式" Icon="{StaticResource IconReconnect}"
-                                         Style="{DynamicResource MetroButtonStyle}" Margin="3"
-                                         Command="{Binding CommandAirplane}" />
-                    <control:MetroButton Content="定位" Icon="{StaticResource IconTonality}"
-                                         Style="{DynamicResource MetroButtonStyle}" Margin="3"
-                                         Command="{Binding CommandLocate}" />
+                <Border BorderBrush="Gray" BorderThickness="1">
+                    <WrapPanel x:Name="PanelTest" Width="430"
+                               Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
+                        <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
+                                             Style="{StaticResource MetroButtonStyle}" Margin="3"
+                                             Command="{Binding CommandConnect}" />
+                        <control:MetroButton Content="网络" Icon="{StaticResource IconRightDrawer}"
+                                             Style="{DynamicResource MetroButtonStyle}" Margin="3"
+                                             Command="{Binding CommandNetwork}" />
+                        <control:MetroButton Content="所有设置" Icon="{StaticResource IconSetting}"
+                                             Style="{DynamicResource MetroButtonStyle}" Margin="3"
+                                             Command="{Binding CommandSettings}" />
+                        <control:MetroButton Content="飞行模式" Icon="{StaticResource IconReconnect}"
+                                             Style="{DynamicResource MetroButtonStyle}" Margin="3"
+                                             Command="{Binding CommandAirplane}" />
+                        <control:MetroButton Content="定位" Icon="{StaticResource IconTonality}"
+                                             Style="{DynamicResource MetroButtonStyle}" Margin="3"
+                                             Command="{Binding CommandLocate}" />
 
-                    <control:MetroCheckBox Content="专注助手" Icon="{StaticResource IconExpertMode}"
-                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
-                                           IsChecked="{Binding IsInFocus}" />
-                    <control:MetroCheckBox Content="移动热点" Icon="{StaticResource IconGamepad}"
-                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
-                                           IsChecked="{Binding IsHotpot}" />
-                    <control:MetroCheckBox Content="夜间模式" Icon="{StaticResource IconGamepad}"
-                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
-                                           IsChecked="{Binding IsNightMode}" />
-                    <control:MetroCheckBox Content="未连接" Icon="{StaticResource IconGamepad}"
-                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
-                                           IsChecked="{Binding IsBluetooth}" />
-                    <control:MetroCheckBox Content="投影" Icon="{StaticResource IconGamepad}"
-                                           Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
-                                           IsChecked="{Binding IsProject}" />
-                </WrapPanel>
-            </Border>
-        </Popup>
+                        <control:MetroCheckBox Content="专注助手" Icon="{StaticResource IconExpertMode}"
+                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
+                                               IsChecked="{Binding IsInFocus}" />
+                        <control:MetroCheckBox Content="移动热点" Icon="{StaticResource IconGamepad}"
+                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
+                                               IsChecked="{Binding IsHotpot}" />
+                        <control:MetroCheckBox Content="夜间模式" Icon="{StaticResource IconGamepad}"
+                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
+                                               IsChecked="{Binding IsNightMode}" />
+                        <control:MetroCheckBox Content="未连接" Icon="{StaticResource IconGamepad}"
+                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
+                                               IsChecked="{Binding IsBluetooth}" />
+                        <control:MetroCheckBox Content="投影" Icon="{StaticResource IconGamepad}"
+                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="3"
+                                               IsChecked="{Binding IsProject}" />
+                    </WrapPanel>
+                </Border>
+            </Popup>
 
             <ui:ThemeShadowChrome x:Name="MyToolBar" IsShadowEnabled="True"
                                   HorizontalAlignment="Center" VerticalAlignment="Top"
-                                  Depth="32">
-                <StackPanel Orientation="Horizontal" Background="#4FFF">
+                                  Depth="32" ui:ThemeManager.RequestedTheme="Dark">
+                <StackPanel Orientation="Horizontal">
                     <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
                                         Style="{StaticResource ImageButtonStyle}"
                                         Margin="25,0,0,0" />
@@ -79,71 +79,71 @@
             </ui:ThemeShadowChrome>
 
             <UniformGrid Columns="5" Height="200" Width="500" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <UniformGrid.Resources>
-                <Style TargetType="TextBlock" x:Key="TextTitle">
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="VerticalAlignment" Value="Top" />
-                    <Setter Property="Margin" Value="0,5,0,0" />
-                    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
-                </Style>
-                <Style TargetType="TextBlock" x:Key="DigitContent">
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="VerticalAlignment" Value="Bottom" />
-                    <Setter Property="Margin" Value="0,0,0,5" />
-                    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
-                </Style>
-            </UniformGrid.Resources>
-            <Grid>
-                <TextBlock Text="连接" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding CntConnect}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="网络" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding CntNetwork}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="所有设置" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding CntSettings}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="飞行模式" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding CntAirplane}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="位置" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding CntLocate}" Style="{StaticResource DigitContent}" />
-            </Grid>
+                <UniformGrid.Resources>
+                    <Style TargetType="TextBlock" x:Key="TextTitle">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Top" />
+                        <Setter Property="Margin" Value="0,5,0,0" />
+                        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
+                    </Style>
+                    <Style TargetType="TextBlock" x:Key="DigitContent">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Bottom" />
+                        <Setter Property="Margin" Value="0,0,0,5" />
+                        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
+                    </Style>
+                </UniformGrid.Resources>
+                <Grid>
+                    <TextBlock Text="连接" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding CntConnect}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="网络" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding CntNetwork}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="所有设置" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding CntSettings}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="飞行模式" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding CntAirplane}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="位置" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding CntLocate}" Style="{StaticResource DigitContent}" />
+                </Grid>
 
-            <Grid>
-                <TextBlock Text="专注模式" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding IsInFocus}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="网络" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding IsHotpot}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="夜间模式" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding IsNightMode}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="蓝牙连接" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding IsBluetooth}" Style="{StaticResource DigitContent}" />
-            </Grid>
-            <Grid>
-                <TextBlock Text="投影" Style="{StaticResource TextTitle}" />
-                <TextBlock Text="{Binding IsProject}" Style="{StaticResource DigitContent}" />
-            </Grid>
-        </UniformGrid>
+                <Grid>
+                    <TextBlock Text="专注模式" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding IsInFocus}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="网络" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding IsHotpot}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="夜间模式" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding IsNightMode}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="蓝牙连接" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding IsBluetooth}" Style="{StaticResource DigitContent}" />
+                </Grid>
+                <Grid>
+                    <TextBlock Text="投影" Style="{StaticResource TextTitle}" />
+                    <TextBlock Text="{Binding IsProject}" Style="{StaticResource DigitContent}" />
+                </Grid>
+            </UniformGrid>
         </Grid>
-        
+
         <!-- 状态栏 -->
         <Grid VerticalAlignment="Bottom" Margin="0,0,0,0"
               Background="{DynamicResource SystemControlBackgroundAccentBrush}"
               Grid.Row="1">
             <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center" Height="35">
                 <Button x:Name="BtnTest" Content="别点我" VerticalAlignment="Center" Height="35"
-                        Foreground="{DynamicResource SystemControlForegroundChromeWhiteBrush}" />
+                        ui:ThemeManager.RequestedTheme="Dark" />
             </WrapPanel>
         </Grid>
 
