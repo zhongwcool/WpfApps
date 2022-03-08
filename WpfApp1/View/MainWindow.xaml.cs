@@ -12,13 +12,12 @@ namespace WpfApp1.View
     {
         private readonly LibVLC _libVlc;
         private readonly MediaPlayer _mediaPlayer;
-        private readonly MainWindowViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new MainWindowViewModel();
-            DataContext = _viewModel;
+            var viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
 
             _libVlc = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVlc);

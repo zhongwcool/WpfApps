@@ -6,8 +6,10 @@
         xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
         xmlns:vm="clr-namespace:WpfApp1.ViewModel"
         mc:Ignorable="d"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="Vlc播放器" Height="450" Width="800">
+        Title="Vlc播放器" Height="720" Width="1080">
     <Grid>
         <Grid.Background>
             <VisualBrush Viewbox="0.20,0.20,0.6,0.6">
@@ -21,19 +23,21 @@
             </VisualBrush>
         </Grid.Background>
         <wpf:VideoView x:Name="VideoView" Panel.ZIndex="1">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom"
-                        HorizontalAlignment="Left"
+            <StackPanel Orientation="Horizontal"
+                        ui:ThemeManager.RequestedTheme="Dark">
+                <Button Content="PLAY"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Left"
                         Command="{Binding CommandPlay}"
                         Click="PlayButton_Click" />
-                <Button Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom"
-                        HorizontalAlignment="Left"
+                <Button Content="STOP"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Left"
                         Command="{Binding CommandStop}"
                         Click="StopButton_Click" />
-                <Border Background="#8000" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Border Height="25"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <TextBox x:Name="TextUrlInput" Width="250"
                              Style="{DynamicResource SimpleTextBox}"
-                             Text="http://zbbf1.ahtv.cn/live/756.flv" />
+                             Text="http://playtv-live.ifeng.com:80/live/06OLEGEGM4G.m3u8" />
                 </Border>
             </StackPanel>
         </wpf:VideoView>
