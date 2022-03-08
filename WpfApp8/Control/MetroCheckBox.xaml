@@ -8,6 +8,7 @@
 
     <Style TargetType="{x:Type control:MetroCheckBox}" x:Key="MetroCheckBoxStyle">
         <!--设置按钮的默认的样式-->
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Height" Value="79" />
         <Setter Property="Width" Value="79" />
         <!-- SystemControlForegroundBaseHighBrush就是这个 -->

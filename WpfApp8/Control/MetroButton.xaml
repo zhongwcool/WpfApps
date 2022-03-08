@@ -4,6 +4,7 @@
 
     <Style TargetType="{x:Type control1:MetroButton}" x:Key="MetroButtonStyle">
         <!--设置按钮的默认的样式-->
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Height" Value="79" />
         <Setter Property="Width" Value="79" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />

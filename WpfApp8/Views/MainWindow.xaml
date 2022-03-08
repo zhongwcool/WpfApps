@@ -57,26 +57,29 @@
                 </Border>
             </Popup>
 
-            <ui:ThemeShadowChrome x:Name="MyToolBar" IsShadowEnabled="True"
-                                  HorizontalAlignment="Center" VerticalAlignment="Top"
-                                  Depth="32" ui:ThemeManager.RequestedTheme="Dark">
-                <StackPanel Orientation="Horizontal">
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+            <Border x:Name="MyToolBar" Margin="0,5,0,0"
+                    SnapsToDevicePixels="True" BorderBrush="Transparent" BorderThickness="0" CornerRadius="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Top" Background="#66FFFFFF">
+                <WrapPanel HorizontalAlignment="Center" Background="#8000" ui:ThemeManager.RequestedTheme="Dark">
+                    <control:IconButton Icon="{StaticResource IconShot}" Content="截屏"
                                         Style="{StaticResource ImageButtonStyle}"
                                         Margin="25,0,0,0" />
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                    <control:IconButton Icon="{StaticResource IconRecord}" Content="录像"
                                         Style="{StaticResource ImageButtonStyle}" />
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                    <control:IconButton Icon="{StaticResource IconGallery}" Content="文件"
                                         Style="{StaticResource ImageButtonStyle}" />
-                    <control:IconButton Icon="{StaticResource IconTraffic48}" Content="测试"
+                    <control:IconButton Icon="{StaticResource IconTask}" Content="任务编辑"
                                         Style="{StaticResource ImageButtonStyle}" />
-                    <control:IconCheckBox Icon="{StaticResource IconTraffic48}" Content="测试"
+                    <control:IconCheckBox Icon="{StaticResource IconOst}" Content="屏上文字"
                                           Style="{StaticResource IconCheckBoxStyle}" />
-                    <control:IconCheckBox Icon="{StaticResource IconTraffic48}" Content="测试"
+                    <control:IconCheckBox Icon="{StaticResource IconReport}" Content="报告系统"
                                           Style="{StaticResource IconCheckBoxStyle}"
                                           Margin="0,0,25,0" />
-                </StackPanel>
-            </ui:ThemeShadowChrome>
+                </WrapPanel>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="10" Opacity="1" />
+                </Border.Effect>
+            </Border>
 
             <UniformGrid Columns="5" Height="200" Width="500" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <UniformGrid.Resources>
