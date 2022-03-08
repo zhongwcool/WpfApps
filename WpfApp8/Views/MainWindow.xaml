@@ -6,11 +6,12 @@
         xmlns:control="clr-namespace:WpfApp8.Control"
         xmlns:vm="clr-namespace:WpfApp8.ViewModels;assembly=WpfApp8"
         xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
         Title="MainWindow" Height="720" Width="1080">
-    <Grid Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -56,6 +57,13 @@
                     </WrapPanel>
                 </Border>
             </Popup>
+
+            <UniformGrid>
+                <wpf:VideoView x:Name="VideoView0" Panel.ZIndex="0" />
+                <wpf:VideoView x:Name="VideoView1" Panel.ZIndex="0" />
+                <wpf:VideoView x:Name="VideoView2" Panel.ZIndex="0" />
+                <wpf:VideoView x:Name="VideoView3" Panel.ZIndex="0" />
+            </UniformGrid>
 
             <Border x:Name="MyToolBar" Margin="0,5,0,0"
                     SnapsToDevicePixels="True" BorderBrush="Transparent" BorderThickness="0" CornerRadius="1"

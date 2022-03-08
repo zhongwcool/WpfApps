@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using LibVLCSharp.Shared;
 
 namespace WpfApp8;
 
@@ -7,4 +8,8 @@ namespace WpfApp8;
 /// </summary>
 public partial class App : Application
 {
+    public App()
+    {
+        Core.Initialize();
+    }
 }
