@@ -13,9 +13,17 @@
         Title="MainWindow" Height="720" Width="1080">
     <Window.Resources>
         <!-- Opening -->
+        <Storyboard x:Key="OpenMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-280,0" To="0,0,0,0"
+                                DecelerationRatio="0.9" Duration="0:0:0.5" />
+        </Storyboard>
         <!-- Closing -->
+        <Storyboard x:Key="CloseMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-280,0"
+                                DecelerationRatio="0.9" Duration="0:0:0.5" />
+        </Storyboard>
     </Window.Resources>
-    <wpf:VideoView x:Name="VideoView0" Panel.ZIndex="1">
+    <wpf:VideoView x:Name="VideoView0" Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}" Panel.ZIndex="1">
         <Grid MouseDown="Window_MouseDown">
             <Grid.Resources>
                 <Style TargetType="HeaderedContentControl">
@@ -27,6 +35,7 @@
                                 <TextBlock
                                     Text="{Binding}"
                                     FontSize="14"
+                                    Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
                                     Style="{StaticResource BaseTextBlockStyle}"
                                     Margin="12,0,0,12" />
                             </DataTemplate>
@@ -35,9 +44,10 @@
                 </Style>
             </Grid.Resources>
             <!-- win10's background of side panel: SystemControlBackgroundAltMediumHighBrush -->
+            <!-- Width60*4 + Margin4*4 + 边12*2 -->
             <Grid x:Name="LeftMenu" Width="280"
-                  HorizontalAlignment="Left"
-                  Margin="-280,0,0,0"
+                  HorizontalAlignment="Right"
+                  Margin="0,0,-280,0"
                   Background="{DynamicResource SystemControlBackgroundAltMediumHighBrush}"
                   Panel.ZIndex="2">
                 <Grid.RowDefinitions>
@@ -171,12 +181,13 @@
             <!-- 状态栏 -->
             <Grid VerticalAlignment="Bottom" Margin="0,0,0,0">
                 <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center" Height="35">
-                    <Button x:Name="BtnTest" Content="别点我" VerticalAlignment="Center" Height="35"
+                    <Button x:Name="BtnTest" Content="别点我" 
+                            VerticalAlignment="Center" Height="35"
                             Click="BtnTest_OnClick"
                             ui:ThemeManager.RequestedTheme="Dark" />
                 </WrapPanel>
             </Grid>
-
+            
             <!-- 虚拟焦点 -->
             <TextBox Name="XuNiBox" Width="0" Height="0" Style="{x:Null}" />
         </Grid>
