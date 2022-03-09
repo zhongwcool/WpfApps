@@ -5,8 +5,8 @@
     <Style TargetType="{x:Type control1:MetroButton}" x:Key="MetroButtonStyle">
         <!--设置按钮的默认的样式-->
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Height" Value="79" />
-        <Setter Property="Width" Value="79" />
+        <Setter Property="Height" Value="60" />
+        <Setter Property="Width" Value="60" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
         <!--设置按钮的模板-->
         <Setter Property="Template">
@@ -14,7 +14,7 @@
                 <ControlTemplate TargetType="control1:MetroButton">
                     <Border x:Name="PART_Bord" BorderThickness="1">
                         <Grid>
-                            <Rectangle x:Name="PART_Back" Fill="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+                            <Rectangle x:Name="PART_Back" Fill="{DynamicResource SystemControlBackgroundAltHighBrush}" />
                             <Path Data="{TemplateBinding Icon}" Height="24" Width="24"
                                   Margin="5,5,0,0" Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
                                   HorizontalAlignment="Left"
@@ -32,12 +32,12 @@
                             <Setter TargetName="PART_Bord" Property="BorderBrush"
                                     Value="{DynamicResource SystemControlBackgroundBaseMediumBrush}" />
                             <Setter TargetName="PART_Back" Property="Fill"
-                                    Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+                                    Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
                             <Setter Property="Opacity" Value="1.0" />
                             <Setter TargetName="PART_Back" Property="Fill"
-                                    Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+                                    Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Opacity" Value="0.9" />
