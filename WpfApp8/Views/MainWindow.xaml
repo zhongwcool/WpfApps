@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:WpfApp8.ViewModels;assembly=WpfApp8"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+        xmlns:views="clr-namespace:WpfApp8.Views"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
@@ -23,75 +24,15 @@
                                 DecelerationRatio="0.9" Duration="0:0:0.5" />
         </Storyboard>
     </Window.Resources>
-    <wpf:VideoView x:Name="VideoView0" Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}" Panel.ZIndex="1">
+    <wpf:VideoView x:Name="VideoView0" 
+                   Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}" 
+                   Panel.ZIndex="1">
         <Grid MouseDown="Window_MouseDown">
-            <Grid.Resources>
-                <Style TargetType="HeaderedContentControl">
-                    <Setter Property="Margin" Value="0,0,0,0" />
-                    <Setter Property="IsTabStop" Value="False" />
-                    <Setter Property="HeaderTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <TextBlock
-                                    Text="{Binding}"
-                                    FontSize="14"
-                                    Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                    Style="{StaticResource BaseTextBlockStyle}"
-                                    Margin="12,0,0,12" />
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Grid.Resources>
-            <!-- win10's background of side panel: SystemControlBackgroundAltMediumHighBrush -->
-            <!-- Width60*4 + Margin4*4 + 边12*2 -->
-            <Grid x:Name="LeftMenu" Width="280"
-                  HorizontalAlignment="Right"
-                  Margin="0,0,-280,0"
-                  Background="{DynamicResource SystemControlBackgroundAltMediumHighBrush}"
-                  Panel.ZIndex="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#AF1719" BorderThickness="1" VerticalAlignment="Bottom" Grid.Row="0" />
-                <HeaderedContentControl Header="状态信息" VerticalAlignment="Bottom" Grid.Row="1">
-                    <WrapPanel Margin="12,0,12,12" Width="256">
-                        <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
-                                             Style="{StaticResource MetroButtonStyle}" Margin="2"
-                                             Command="{Binding CommandConnect}" />
-                        <control:MetroButton Content="网络" Icon="{StaticResource IconRightDrawer}"
-                                             Style="{DynamicResource MetroButtonStyle}" Margin="2"
-                                             Command="{Binding CommandNetwork}" />
-                        <control:MetroButton Content="所有设置" Icon="{StaticResource IconSetting}"
-                                             Style="{DynamicResource MetroButtonStyle}" Margin="2"
-                                             Command="{Binding CommandSettings}" />
-                        <control:MetroButton Content="飞行模式" Icon="{StaticResource IconReconnect}"
-                                             Style="{DynamicResource MetroButtonStyle}" Margin="2"
-                                             Command="{Binding CommandAirplane}" />
-                        <control:MetroButton Content="定位" Icon="{StaticResource IconTonality}"
-                                             Style="{DynamicResource MetroButtonStyle}" Margin="2"
-                                             Command="{Binding CommandLocate}" />
-
-                        <control:MetroCheckBox Content="专注助手" Icon="{StaticResource IconExpertMode}"
-                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="2"
-                                               IsChecked="{Binding IsInFocus}" />
-                        <control:MetroCheckBox Content="移动热点" Icon="{StaticResource IconGamepad}"
-                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="2"
-                                               IsChecked="{Binding IsHotpot}" />
-                        <control:MetroCheckBox Content="夜间模式" Icon="{StaticResource IconGamepad}"
-                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="2"
-                                               IsChecked="{Binding IsNightMode}" />
-                        <control:MetroCheckBox Content="未连接" Icon="{StaticResource IconGamepad}"
-                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="2"
-                                               IsChecked="{Binding IsBluetooth}" />
-                        <control:MetroCheckBox Content="投影" Icon="{StaticResource IconGamepad}"
-                                               Style="{DynamicResource MetroCheckBoxStyle}" Margin="2"
-                                               IsChecked="{Binding IsProject}" />
-                    </WrapPanel>
-                </HeaderedContentControl>
-            </Grid>
-
+            <views:SidePanelRight x:Name="LeftMenu" Width="280"
+                                  HorizontalAlignment="Right"
+                                  Margin="0,0,-280,0"
+                                  Panel.ZIndex="2" />
+            
             <Border x:Name="MyToolBar" Margin="0,5,0,0"
                     SnapsToDevicePixels="True" BorderBrush="Transparent" BorderThickness="0" CornerRadius="1"
                     HorizontalAlignment="Center" VerticalAlignment="Top" Background="#66FFFFFF">
