@@ -29,15 +29,15 @@
         </Grid.Resources>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <HeaderedContentControl Header="管理通知" VerticalAlignment="Top" Grid.Row="0">
             <ui:ListView x:Name="Control4" AllowDrop="True" 
                          ItemsSource="{Binding Notifications}"
                          VirtualizingPanel.ScrollUnit="Pixel"
-                         Margin="0,0,0,0" Width="256">
+                         Margin="0,0,0,6" Width="256">
                 <ui:ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="-11,3,-12,3" Height="80"
@@ -89,7 +89,7 @@
             </ui:ListView>
         </HeaderedContentControl>
 
-        <HeaderedContentControl Header="控制面板" VerticalAlignment="Bottom" Grid.Row="1">
+        <HeaderedContentControl x:Name="Control0" Header="控制面板" VerticalAlignment="Bottom" Grid.Row="1">
             <WrapPanel Margin="12,0,12,12" Width="256">
                 <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
                                      Style="{StaticResource MetroButtonStyle}" Margin="2"
