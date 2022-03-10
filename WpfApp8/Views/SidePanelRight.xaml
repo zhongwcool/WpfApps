@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:control="clr-namespace:WpfApp8.Control"
              xmlns:vm="clr-namespace:WpfApp8.ViewModels"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}">
     <!-- win10's background of side panel: SystemControlBackgroundAltMediumHighBrush -->
@@ -12,7 +13,7 @@
     <Grid Background="{DynamicResource SystemControlBackgroundAltMediumHighBrush}">
         <Grid.Resources>
             <Style TargetType="HeaderedContentControl">
-                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="Margin" Value="0,12,0,0" />
                 <Setter Property="IsTabStop" Value="False" />
                 <Setter Property="HeaderTemplate">
                     <Setter.Value>
@@ -26,14 +27,68 @@
                 </Setter>
             </Style>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <Border BorderBrush="#AF1719" BorderThickness="1" VerticalAlignment="Bottom" Grid.Row="0" />
-        
+
+        <HeaderedContentControl Header="管理通知" VerticalAlignment="Top" Grid.Row="0">
+            <ui:ListView x:Name="Control4" AllowDrop="True" 
+                         ItemsSource="{Binding Notifications}"
+                         VirtualizingPanel.ScrollUnit="Pixel"
+                         Margin="0,0,0,0" Width="256">
+                <ui:ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="-11,3,-12,3" Height="80"
+                              VerticalAlignment="Stretch"
+                              Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                              AutomationProperties.Name="{Binding Title, Mode=OneTime}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <Image Source="{Binding ImageLocation}"
+                                       Stretch="Fill" Margin="5,0,5,0" Height="40" />
+                            </Border>
+
+                            <Grid Margin="6,6,6,6" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Text="{Binding Title, Mode=OneTime}"
+                                    FontWeight="SemiBold"
+                                    Style="{DynamicResource BaseTextBlockStyle}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="NoWrap"
+                                    HorizontalAlignment="Left"
+                                    LineHeight="20"
+                                    Grid.Row="0" />
+                                <TextBlock
+                                    Text="{Binding Description, Mode=OneTime}"
+                                    FontFamily="Segoe UI"
+                                    FontWeight="Normal"
+                                    FontSize="12"
+                                    Style="{DynamicResource BodyTextBlockStyle}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="Wrap"
+                                    Grid.Row="1" />
+                                <TextBlock
+                                    Text="{Binding Date, Mode=OneTime}"
+                                    Style="{DynamicResource CaptionTextBlockStyle}"
+                                    Margin="0"
+                                    Grid.Row="2" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ui:ListView.ItemTemplate>
+            </ui:ListView>
+        </HeaderedContentControl>
+
         <HeaderedContentControl Header="控制面板" VerticalAlignment="Bottom" Grid.Row="1">
             <WrapPanel Margin="12,0,12,12" Width="256">
                 <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
