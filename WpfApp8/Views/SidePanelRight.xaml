@@ -36,12 +36,11 @@
         <HeaderedContentControl Header="管理通知" VerticalAlignment="Top" Grid.Row="0">
             <ui:ListView x:Name="Control4" AllowDrop="True" 
                          ItemsSource="{Binding Notifications}"
-                         VirtualizingPanel.ScrollUnit="Pixel"
+                         VirtualizingPanel.ScrollUnit="Pixel" 
                          Margin="0,0,0,6" Width="256">
                 <ui:ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="-11,3,-12,3" Height="80"
-                              VerticalAlignment="Stretch"
                               Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
                               AutomationProperties.Name="{Binding Title, Mode=OneTime}">
                             <Grid.ColumnDefinitions>
@@ -62,11 +61,12 @@
                                 <TextBlock
                                     Text="{Binding Title, Mode=OneTime}"
                                     FontWeight="SemiBold"
+                                    FontSize="12"
                                     Style="{DynamicResource BaseTextBlockStyle}"
+                                    Margin="1"
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="NoWrap"
                                     HorizontalAlignment="Left"
-                                    LineHeight="20"
                                     Grid.Row="0" />
                                 <TextBlock
                                     Text="{Binding Description, Mode=OneTime}"
@@ -74,13 +74,15 @@
                                     FontWeight="Normal"
                                     FontSize="12"
                                     Style="{DynamicResource BodyTextBlockStyle}"
+                                    Margin="1"
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="Wrap"
                                     Grid.Row="1" />
                                 <TextBlock
                                     Text="{Binding Date, Mode=OneTime}"
+                                    FontSize="11"
                                     Style="{DynamicResource CaptionTextBlockStyle}"
-                                    Margin="0"
+                                    Margin="1"
                                     Grid.Row="2" />
                             </Grid>
                         </Grid>
