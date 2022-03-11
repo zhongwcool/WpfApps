@@ -33,7 +33,7 @@ public class MainViewModel : ObservableObject
         get => _cntConnect;
         private set
         {
-            Notifications.Add(NotiModel.CreateDummy());
+            Notifications.Insert(0, NotiModel.CreateDummy());
             SetProperty(ref _cntConnect, value);
         }
     }
