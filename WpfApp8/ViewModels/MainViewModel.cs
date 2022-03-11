@@ -11,13 +11,20 @@ public class MainViewModel : ObservableObject
 
     private MainViewModel()
     {
-        CommandConnect = new RelayCommand(() => { CntConnect++; });
-        CommandNetwork = new RelayCommand(() => { CntNetwork++; });
-        CommandSettings = new RelayCommand(() => { CntSettings++; });
-        CommandAirplane = new RelayCommand(() => { CntAirplane++; });
-        CommandLocate = new RelayCommand(() => { CntLocate++; });
-
         Notifications = new ObservableCollection<NotiModel>();
+
+        CommandConnect = new RelayCommand(() =>
+        {
+            Notifications.Insert(0, NotiModel.CreateDummy());
+            while (Notifications.Count >= 10)
+            {
+                Notifications.RemoveAt(Notifications.Count - 1);
+            }
+        });
+        CommandNetwork = new RelayCommand(() => { });
+        CommandSettings = new RelayCommand(() => { });
+        CommandAirplane = new RelayCommand(() => { });
+        CommandLocate = new RelayCommand(() => { });
     }
 
     public static MainViewModel CreateInstance()
@@ -26,58 +33,10 @@ public class MainViewModel : ObservableObject
         return _instance;
     }
 
-    private uint _cntConnect;
-
-    public uint CntConnect
-    {
-        get => _cntConnect;
-        private set
-        {
-            Notifications.Insert(0, NotiModel.CreateDummy());
-            SetProperty(ref _cntConnect, value);
-        }
-    }
-
     public IRelayCommand CommandConnect { get; }
-
-    private uint _cntNetwork;
-
-    public uint CntNetwork
-    {
-        get => _cntNetwork;
-        set => SetProperty(ref _cntNetwork, value);
-    }
-
     public IRelayCommand CommandNetwork { get; }
-
-    private uint _cntSettings;
-
-    public uint CntSettings
-    {
-        get => _cntSettings;
-        set => SetProperty(ref _cntSettings, value);
-    }
-
     public IRelayCommand CommandSettings { get; }
-
-    private uint _cntAirplane;
-
-    public uint CntAirplane
-    {
-        get => _cntAirplane;
-        set => SetProperty(ref _cntAirplane, value);
-    }
-
     public IRelayCommand CommandAirplane { get; }
-
-    private uint _cntLocate;
-
-    public uint CntLocate
-    {
-        get => _cntLocate;
-        set => SetProperty(ref _cntLocate, value);
-    }
-
     public IRelayCommand CommandLocate { get; }
 
     private bool _isInFocus;
