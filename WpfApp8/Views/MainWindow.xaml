@@ -28,7 +28,7 @@
                    Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}" 
                    Panel.ZIndex="1">
         <Grid MouseDown="Window_MouseDown">
-            <views:SidePanelRight x:Name="LeftMenu" Width="280"
+            <views:SidePanelRight x:Name="RightMenu" Width="280"
                                   HorizontalAlignment="Right"
                                   Margin="0,0,-280,0"
                                   Panel.ZIndex="2" />

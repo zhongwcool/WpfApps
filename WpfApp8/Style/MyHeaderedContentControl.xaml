@@ -6,15 +6,28 @@
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="13,6,0,6" Height="40">
-                        <TextBlock Width="6"
-                                   Background="{DynamicResource SystemControlBackgroundAccentBrush}"/>
-                        <TextBlock Text="{Binding}" FontSize="14"
-                                   Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Margin="6,0,0,0"/>
-                    </StackPanel>
+                    <Grid>
+                        <Rectangle x:Name="PART_Back" Fill="Transparent" />
+                        <StackPanel Orientation="Horizontal" Margin="13,6,0,6" Height="40">
+                            <TextBlock Width="6"
+                                       Background="{DynamicResource SystemControlBackgroundAccentBrush}"/>
+                            <TextBlock Text="{Binding}" FontSize="14"
+                                       Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Margin="6,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.8" />
+                            <Setter TargetName="PART_Back" Property="Fill"
+                                    Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Opacity" Value="1.0" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

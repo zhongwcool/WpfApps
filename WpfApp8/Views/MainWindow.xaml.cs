@@ -35,12 +35,12 @@ public partial class MainWindow : Window
     {
         XuNiBox.Focus();
         var sb = Resources["CloseMenu"] as Storyboard;
-        sb?.Begin(LeftMenu);
+        sb?.Begin(RightMenu);
     }
 
     private void BtnTest_OnClick(object sender, RoutedEventArgs e)
     {
         var sb = Resources["OpenMenu"] as Storyboard;
-        sb?.Begin(LeftMenu);
+        sb?.Begin(RightMenu);
     }
 }
