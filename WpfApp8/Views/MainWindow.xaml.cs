@@ -7,9 +7,6 @@ using WpfApp8.ViewModels;
 
 namespace WpfApp8.Views;
 
-/// <summary>
-///     Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     private const string Source0 = "http://playtv-live.ifeng.com:80/live/06OLEGEGM4G.m3u8";

@@ -9,7 +9,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
                 <ResourceDictionary Source="Style/Colors.xaml" />
-                <ResourceDictionary Source="Style/MyHeaderedContentControl.xaml" />
+                <ResourceDictionary Source="Control/MyHeaderedContentControl.xaml" />
                 <ResourceDictionary Source="Image/Icons.xaml" />
                 <ResourceDictionary Source="Control/MetroButton.xaml" />
                 <ResourceDictionary Source="Control/MetroCheckBox.xaml" />

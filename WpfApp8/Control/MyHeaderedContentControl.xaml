@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style TargetType="HeaderedContentControl">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:control="clr-namespace:WpfApp8.Control">
+    <Style TargetType="control:MyHeaderedContentControl">
         <!-- 此处的Margin的bottom是针对下个同级Control的 -->
         <Setter Property="Margin" Value="0,6,0,6" />
         <Setter Property="IsTabStop" Value="False" />
@@ -8,14 +9,14 @@
             <Setter.Value>
                 <DataTemplate>
                     <!-- 此处的Margin的bottom是针对子Control的 -->
-                    <Grid Margin="0,0,0,6">
+                    <Grid x:Name="PART_Title" Margin="0,0,0,6">
                         <Rectangle x:Name="PART_Back" Fill="Transparent" />
                         <StackPanel Orientation="Horizontal" Margin="13,6,0,6" Height="40">
                             <TextBlock Width="6"
                                        Background="{DynamicResource SystemControlBackgroundAccentBrush}"/>
                             <TextBlock Text="{Binding}" FontSize="14"
                                        Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Style="{DynamicResource BaseTextBlockStyle}"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Margin="6,0,0,0"/>
                         </StackPanel>

@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WpfApp8.Concurrent;
 using WpfApp8.Models;
 
 namespace WpfApp8.ViewModels;
@@ -11,7 +12,7 @@ public class MainViewModel : ObservableObject
 
     private MainViewModel()
     {
-        Notifications = new ObservableCollection<NotiModel>();
+        Notifications = new MtObservableCollection<NotiModel>();
 
         CommandConnect = new RelayCommand(() =>
         {
@@ -32,6 +33,18 @@ public class MainViewModel : ObservableObject
         _instance ??= new MainViewModel();
         return _instance;
     }
+
+    private bool _visibilityControl4 = true;
+
+    public bool VisibilityControl4
+    {
+        get => _visibilityControl4;
+        set => SetProperty(ref _visibilityControl4, value);
+    }
+
+    public RelayCommand CommandClickControl4 => new Lazy<RelayCommand>(() =>
+        new RelayCommand(() => { VisibilityControl4 = !VisibilityControl4; })
+    ).Value;
 
     public IRelayCommand CommandConnect { get; }
     public IRelayCommand CommandNetwork { get; }
@@ -79,5 +92,5 @@ public class MainViewModel : ObservableObject
         set => SetProperty(ref _isProject, value);
     }
 
-    public ObservableCollection<NotiModel> Notifications { get; set; }
+    public MtObservableCollection<NotiModel> Notifications { get; set; }
 }
