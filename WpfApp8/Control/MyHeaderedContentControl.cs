@@ -22,8 +22,7 @@ public class MyHeaderedContentControl : HeaderedContentControl
 
     private static void OnCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        MyHeaderedContentControl control = d as MyHeaderedContentControl;
-        if (control == null) return;
+        if (d is not MyHeaderedContentControl control) return;
 
         control.MouseLeftButtonDown -= OnControlLeftClick;
         control.MouseLeftButtonDown += OnControlLeftClick;
@@ -31,13 +30,23 @@ public class MyHeaderedContentControl : HeaderedContentControl
 
     private static void OnControlLeftClick(object sender, MouseButtonEventArgs e)
     {
-        MyHeaderedContentControl control = sender as MyHeaderedContentControl;
-        if (control == null || control.ClickCommand == null) return;
+        var control = sender as MyHeaderedContentControl;
+        if (control?.ClickCommand == null) return;
 
-        ICommand command = control.ClickCommand;
+        var command = control.ClickCommand;
 
-        if (command.CanExecute(null))
-            command.Execute(null);
+        var element = e.OriginalSource as FrameworkElement;
+        var name = element?.Name;
+
+        switch (name)
+        {
+            case null:
+                return;
+            case "PART_Title":
+            case "PART_Back":
+                if (command.CanExecute(null)) command.Execute(null);
+                break;
+        }
 
         e.Handled = true;
     }
