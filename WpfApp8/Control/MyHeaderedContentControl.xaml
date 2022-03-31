@@ -3,25 +3,30 @@
                     xmlns:control="clr-namespace:WpfApp8.Control">
     <Style TargetType="control:MyHeaderedContentControl">
         <!-- 此处的Margin的bottom是针对下个同级Control的 -->
-        <Setter Property="Margin" Value="0,6,0,6" />
+        <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="HeaderTemplate">
+        <Setter Property="Template">
             <Setter.Value>
-                <DataTemplate>
-                    <!-- 此处的Margin的bottom是针对子Control的 -->
-                    <Grid x:Name="PART_Title" Margin="0,0,0,6">
-                        <Rectangle x:Name="PART_Back" Fill="Transparent" />
-                        <StackPanel Orientation="Horizontal" Margin="13,6,0,6" Height="40">
-                            <TextBlock Width="6"
-                                       Background="{DynamicResource SystemControlBackgroundAccentBrush}"/>
-                            <TextBlock Text="{Binding}" FontSize="14"
-                                       Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                       Style="{DynamicResource BaseTextBlockStyle}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       Margin="6,0,0,0"/>
-                        </StackPanel>
-                    </Grid>
-                    <DataTemplate.Triggers>
+                <ControlTemplate TargetType="control:MyHeaderedContentControl">
+                    <StackPanel>
+                        <!-- 此处的Margin的bottom是针对子Control的 -->
+                        <Grid x:Name="PART_Title" Margin="0,0,0,0">
+                            <Rectangle x:Name="PART_Back" Fill="Transparent" />
+                            <StackPanel Orientation="Horizontal" Margin="13,6,0,6" Height="40">
+                                <TextBlock Width="6"
+                                           Background="{DynamicResource SystemControlBackgroundAccentBrush}"/>
+                                <TextBlock Text="{TemplateBinding Header}" FontSize="14"
+                                           Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                                           Style="{DynamicResource BaseTextBlockStyle}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Margin="6,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                        <Border x:Name="PART_Content">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.8" />
                             <Setter TargetName="PART_Back" Property="Fill"
@@ -30,8 +35,8 @@
                         <Trigger Property="IsMouseOver" Value="False">
                             <Setter Property="Opacity" Value="1.0" />
                         </Trigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

@@ -6,12 +6,8 @@
              xmlns:control="clr-namespace:WpfApp8.Control"
              xmlns:vm="clr-namespace:WpfApp8.ViewModels"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:converter="clr-namespace:WpfApp8.Converter"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}">
-    <UserControl.Resources>
-        <converter:False2CollapsedConverter x:Key="False2CollapsedConverter" />
-    </UserControl.Resources>
     <!-- win10's background of side panel: SystemControlBackgroundAltMediumHighBrush -->
     <!-- Width60*4 + Margin4*4 + 边12*2 -->
     <Grid Background="{DynamicResource SystemControlBackgroundAltMediumHighBrush}">
@@ -20,11 +16,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <control:MyHeaderedContentControl Header="管理通知" VerticalAlignment="Top" Grid.Row="0" ClickCommand="{Binding CommandClickControl4}">
+        <control:MyHeaderedContentControl Header="管理通知" VerticalAlignment="Top" ClickToHide="True" Grid.Row="0" >
             <ui:ListView x:Name="Control4" AllowDrop="True"
                          ItemsSource="{Binding Notifications}"
                          VirtualizingPanel.ScrollUnit="Pixel"
-                         Visibility="{Binding VisibilityControl4, Converter={StaticResource False2CollapsedConverter}}"
                          Margin="0,0,0,6" Width="256">
                 <ui:ListView.ItemTemplate>
                     <DataTemplate>
@@ -79,7 +74,7 @@
             </ui:ListView>
         </control:MyHeaderedContentControl>
 
-        <control:MyHeaderedContentControl x:Name="Control0" Header="控制面板" VerticalAlignment="Bottom" Grid.Row="1">
+        <control:MyHeaderedContentControl x:Name="Control0" Header="控制面板" VerticalAlignment="Bottom" ClickToHide="False" Grid.Row="1">
             <WrapPanel Margin="12,0,12,12" Width="256">
                 <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
                                      Style="{StaticResource MetroButtonStyle}" Margin="2"

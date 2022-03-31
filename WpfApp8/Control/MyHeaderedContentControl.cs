@@ -6,34 +6,19 @@ namespace WpfApp8.Control;
 
 public class MyHeaderedContentControl : HeaderedContentControl
 {
-    public static readonly DependencyProperty ClickCommandProperty
-        = DependencyProperty.Register(
-            "ClickCommand",
-            typeof(ICommand),
-            typeof(MyHeaderedContentControl),
-            new PropertyMetadata(null, OnCommandPropertyChanged));
+    public static readonly DependencyProperty ClickToHideProperty =
+        DependencyProperty.Register("ClickToHide", typeof(bool), typeof(MyHeaderedContentControl),
+            new PropertyMetadata(null));
 
-    public ICommand ClickCommand
+    public bool ClickToHide
     {
-        get => (ICommand)GetValue(ClickCommandProperty);
-
-        set => SetValue(ClickCommandProperty, value);
+        get => (bool)GetValue(ClickToHideProperty);
+        set => SetValue(ClickToHideProperty, value);
     }
 
-    private static void OnCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
     {
-        if (d is not MyHeaderedContentControl control) return;
-
-        control.MouseLeftButtonDown -= OnControlLeftClick;
-        control.MouseLeftButtonDown += OnControlLeftClick;
-    }
-
-    private static void OnControlLeftClick(object sender, MouseButtonEventArgs e)
-    {
-        var control = sender as MyHeaderedContentControl;
-        if (control?.ClickCommand == null) return;
-
-        var command = control.ClickCommand;
+        base.OnPreviewMouseLeftButtonDown(e);
 
         var element = e.OriginalSource as FrameworkElement;
         var name = element?.Name;
@@ -44,7 +29,13 @@ public class MyHeaderedContentControl : HeaderedContentControl
                 return;
             case "PART_Title":
             case "PART_Back":
-                if (command.CanExecute(null)) command.Execute(null);
+                if (!ClickToHide) return;
+                if (element.Parent is not Grid elementHeader) return;
+                var elementRoot = elementHeader.Parent as StackPanel;
+                if (elementRoot?.FindName("PART_Content") is not Border elementContent) return;
+                elementContent.Visibility = elementContent.Visibility == Visibility.Visible
+                    ? Visibility.Collapsed
+                    : Visibility.Visible;
                 break;
         }
 
