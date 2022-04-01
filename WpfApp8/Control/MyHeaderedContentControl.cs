@@ -4,8 +4,11 @@ using System.Windows.Input;
 
 namespace WpfApp8.Control;
 
+[TemplatePart(Name = "PART_Content", Type = typeof(ContentPresenter))]
 public class MyHeaderedContentControl : HeaderedContentControl
 {
+    private ContentPresenter _content;
+
     public static readonly DependencyProperty ClickToHideProperty =
         DependencyProperty.Register("ClickToHide", typeof(bool), typeof(MyHeaderedContentControl),
             new PropertyMetadata(null));
@@ -16,28 +19,37 @@ public class MyHeaderedContentControl : HeaderedContentControl
         set => SetValue(ClickToHideProperty, value);
     }
 
+    public static readonly DependencyProperty HideContentFromBootProperty =
+        DependencyProperty.Register("HideContentFromBoot", typeof(bool), typeof(MyHeaderedContentControl),
+            new PropertyMetadata(null));
+
+    public bool HideContentFromBoot
+    {
+        get => (bool)GetValue(HideContentFromBootProperty);
+        set => SetValue(HideContentFromBootProperty, value);
+    }
+
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+        _content = GetTemplateChild("PART_Content") as ContentPresenter;
+        if (null == _content) return;
+        if (HideContentFromBoot) _content.Visibility = Visibility.Collapsed;
+    }
+
     protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
     {
         base.OnPreviewMouseLeftButtonDown(e);
 
-        var element = e.OriginalSource as FrameworkElement;
-        var name = element?.Name;
+        // Only a click on this control is handled, not children.
+        if (_content is null || !e.Source.Equals(this))
+            return;
 
-        switch (name)
-        {
-            case null:
-                return;
-            case "PART_Title":
-            case "PART_Back":
-                if (!ClickToHide) return;
-                if (element.Parent is not Grid elementHeader) return;
-                var elementRoot = elementHeader.Parent as StackPanel;
-                if (elementRoot?.FindName("PART_Content") is not Border elementContent) return;
-                elementContent.Visibility = elementContent.Visibility == Visibility.Visible
-                    ? Visibility.Collapsed
-                    : Visibility.Visible;
-                break;
-        }
+        // If the child (Content) is visible, collapse it, if it is collapsed, make it visible.
+        if (!ClickToHide) return;
+        _content.Visibility = _content.Visibility == Visibility.Collapsed
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         e.Handled = true;
     }

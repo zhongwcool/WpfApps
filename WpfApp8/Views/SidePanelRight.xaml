@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <control:MyHeaderedContentControl Header="管理通知" VerticalAlignment="Top" ClickToHide="True" Grid.Row="0" >
+        <control:MyHeaderedContentControl Header="管理通知" VerticalAlignment="Top" ClickToHide="True" HideContentFromBoot="False" Grid.Row="0" >
             <ui:ListView x:Name="Control4" AllowDrop="True"
                          ItemsSource="{Binding Notifications}"
                          VirtualizingPanel.ScrollUnit="Pixel"
@@ -74,7 +74,7 @@
             </ui:ListView>
         </control:MyHeaderedContentControl>
 
-        <control:MyHeaderedContentControl x:Name="Control0" Header="控制面板" VerticalAlignment="Bottom" ClickToHide="False" Grid.Row="1">
+        <control:MyHeaderedContentControl x:Name="Control0" Header="控制面板" VerticalAlignment="Bottom" HideContentFromBoot="False" ClickToHide="True" Grid.Row="1">
             <WrapPanel Margin="12,0,12,12" Width="256">
                 <control:MetroButton Content="连接" Icon="{StaticResource IconGamepad}"
                                      Style="{StaticResource MetroButtonStyle}" Margin="2"

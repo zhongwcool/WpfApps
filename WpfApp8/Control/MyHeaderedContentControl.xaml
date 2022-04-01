@@ -22,9 +22,7 @@
                                            Margin="6,0,0,0"/>
                             </StackPanel>
                         </Grid>
-                        <Border x:Name="PART_Content">
-                            <ContentPresenter Content="{TemplateBinding Content}"/>
-                        </Border>
+                        <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
