@@ -23,6 +23,10 @@ public class MyHeaderedContentControl : HeaderedContentControl
         DependencyProperty.Register("HideContentFromBoot", typeof(bool), typeof(MyHeaderedContentControl),
             new PropertyMetadata(null));
 
+    /// <summary>
+    /// If <see cref="HideContentFromBoot"/> is set to True, then <see cref="ClickToHide"/> will be overridden to True.
+    /// 如果 <see cref="HideContentFromBoot"/> 被赋值为True，那么 <see cref="ClickToHide"/> 会被覆写为Ture。
+    /// </summary>
     public bool HideContentFromBoot
     {
         get => (bool)GetValue(HideContentFromBootProperty);
@@ -34,7 +38,11 @@ public class MyHeaderedContentControl : HeaderedContentControl
         base.OnApplyTemplate();
         _content = GetTemplateChild("PART_Content") as ContentPresenter;
         if (null == _content) return;
-        if (HideContentFromBoot) _content.Visibility = Visibility.Collapsed;
+        if (HideContentFromBoot)
+        {
+            ClickToHide = true;
+            _content.Visibility = Visibility.Collapsed;
+        }
     }
 
     protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
