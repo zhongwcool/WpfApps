@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <title>地图显示</title>
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<!-- 加载地图JSAPI脚本 -->
+<script src="https://webapi.amap.com/maps?v=2.0&key=ab3f613df66602bea7de3e0d14736cfe"></script>
+<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<script>
+    var map = new AMap.Map('container', {
+        viewMode: '2D', // 默认使用 2D 模式，如果希望使用带有俯仰角的 3D 模式，请设置 viewMode: '3D',
+        zoom: 17, //初始化地图层级
+        center: [120.721603, 31.367004] //初始化地图中心点
+    });
+
+    function setMapCenter(lng, lat) {
+        map.setZoomAndCenter(17, new AMap.LngLat(lng, lat));
+    }
+
+    function randomZoomCenter() {
+        var zoom = Math.floor(Math.random() * 7) + 11;
+        var lng = 121.138398 + Math.floor(Math.random() * 589828) / 1e6;
+        var lat = 30.972688 + Math.floor(Math.random() * 514923) / 1e6;
+        map.setZoomAndCenter(zoom, [lng, lat]); //同时设置地图层级与中心点
+        //log.info(`当前层级已设为${zoom}级，中心点已设为 ${lng.toFixed(6)},${lat.toFixed(6)}`);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="App9.Map.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="高德地图" Height="720" Width="1080">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <WebBrowser x:Name="WebBrowser" Grid.Row="0" />
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1">
+            <Button Content="修改地图之心" Margin="10" Click="ButtonChangeCenter_OnClick" />
+            <Button Content="回到原点" Margin="10" Click="ButtonAddPolygon_OnClick" />
+        </WrapPanel>
+    </Grid>
+</Window>
