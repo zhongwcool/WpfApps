@@ -10,9 +10,9 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        WebBrowser.Loaded += (sender, args) =>
+        WebBrowser.Loaded += (_, _) =>
         {
-            var uri = new Uri(this._sUrl);
+            var uri = new Uri(_sUrl);
             WebBrowser.Navigate(uri);
         };
     }

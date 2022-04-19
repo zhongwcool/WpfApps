@@ -24,7 +24,15 @@
     var map = new AMap.Map('container', {
         viewMode: '2D', // 默认使用 2D 模式，如果希望使用带有俯仰角的 3D 模式，请设置 viewMode: '3D',
         zoom: 17, //初始化地图层级
-        center: [120.721603, 31.367004] //初始化地图中心点
+        center: [120.721603, 31.367004], //初始化地图中心点
+        layers: [
+            // 高德默认标准图层
+            AMap.createDefaultLayer(),
+            // 卫星
+            new AMap.TileLayer.Satellite(),
+            // 路网
+            //new AMap.TileLayer.RoadNet()
+        ],
     });
 
     function setMapCenter(lng, lat) {
