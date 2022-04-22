@@ -7,9 +7,15 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Viewbox>
         <Grid Width="34" Height="34">
-            <Path Name="MyCycleProcessBar1" Data="M17,3 A14,14 0 0 1 16,3 " Stroke="Green" StrokeThickness="3"
-                  Height="34" Width="34" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Label Name="LbValue" Content="50%" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="9" />
+            <Path x:Name="PART_Bar" 
+                  Data="M17,3 A14,14 0 0 1 16,3 " 
+                  Stroke="Green" StrokeThickness="3"
+                  Height="34" Width="34" 
+                  VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Label x:Name="PART_Text" 
+                   Content="50%" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   FontSize="9" />
         </Grid>
     </Viewbox>
 </UserControl>

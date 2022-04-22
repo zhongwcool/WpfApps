@@ -43,8 +43,14 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <control:CycleProcessBar Grid.Row="0" x:Name="CircleProgressBar" CurrentValue1="0.9" />
-            <Button x:Name="BtnStart" Content="开始" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" />
+            <control:CycleProcessBar 
+                x:Name="CircleProgressBar" CurrentValue="89"
+                Grid.Row="0"/>
+            <Button 
+                x:Name="BtnStart" Content="开始" 
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Click="Button_Click"
+                Grid.Row="1"/>
         </Grid>
 
     </Grid>

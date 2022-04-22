@@ -11,7 +11,7 @@ public static class DispatcherHelper
         RunOnUIThread(Application.Current, action);
     }
 
-    public static void RunOnUIThread(this DispatcherObject d, Action action)
+    private static void RunOnUIThread(this DispatcherObject d, Action action)
     {
         var dispatcher = d.Dispatcher;
         if (dispatcher.CheckAccess())

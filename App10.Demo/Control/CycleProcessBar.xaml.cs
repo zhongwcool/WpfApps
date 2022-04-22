@@ -12,13 +12,13 @@ public partial class CycleProcessBar : UserControl
         InitializeComponent();
     }
 
-    public double CurrentValue1
+    public double CurrentValue
     {
-        set { SetValue(value); }
+        set => SetValue(value);
     }
 
     /// <summary>
-    /// 设置百分百，输入小数，自动乘100
+    /// 设置百分百，输入整数，自动除100
     /// </summary>
     /// <param name="percentValue"></param>
     private void SetValue(double percentValue)
@@ -28,29 +28,25 @@ public partial class CycleProcessBar : UserControl
           环形半径为14，所以距离边框3个像素
           环形描边3个像素
         ******************************************/
-        double angel = percentValue * 360; //角度
-
-
-        double radius = 14; //环形半径
+        var angel = percentValue * 360 / 100; //角度
+        const double radius = 14; //环形半径
 
         //起始点
-        double leftStart = 17;
-        double topStart = 3;
+        const double leftStart = 17;
+        const double topStart = 3;
 
         //结束点
         double endLeft = 0;
         double endTop = 0;
 
-
         //数字显示
-        LbValue.Content = (percentValue * 100).ToString("0") + "%";
+        PART_Text.Content = percentValue.ToString("0") + "%";
 
         /***********************************************
         * 整个环形进度条使用Path来绘制，采用三角函数来计算
         * 环形根据角度来分别绘制，以90度划分，方便计算比例
         ***********************************************/
-
-        bool isLagreCircle = false; //是否优势弧，即大于180度的弧形
+        var isLargeCircle = false; //是否优势弧，即大于180度的弧形
 
         //小于90度
         if (angel <= 90)
@@ -64,11 +60,10 @@ public partial class CycleProcessBar : UserControl
                       *
                       *
             ******************/
-            double ra = (90 - angel) * Math.PI / 180; //弧度
+            var ra = (90 - angel) * Math.PI / 180; //弧度
             endLeft = leftStart + Math.Cos(ra) * radius; //余弦横坐标
             endTop = topStart + radius - Math.Sin(ra) * radius; //正弦纵坐标
         }
-
         else if (angel <= 180)
         {
             /*****************
@@ -81,11 +76,10 @@ public partial class CycleProcessBar : UserControl
                       *   *
             ******************/
 
-            double ra = (angel - 90) * Math.PI / 180; //弧度
+            var ra = (angel - 90) * Math.PI / 180; //弧度
             endLeft = leftStart + Math.Cos(ra) * radius; //余弦横坐标
             endTop = topStart + radius + Math.Sin(ra) * radius; //正弦纵坐标
         }
-
         else if (angel <= 270)
         {
             /*****************
@@ -97,12 +91,11 @@ public partial class CycleProcessBar : UserControl
                    *ra*
                   *   *
             ******************/
-            isLagreCircle = true; //优势弧
-            double ra = (angel - 180) * Math.PI / 180;
+            isLargeCircle = true; //优势弧
+            var ra = (angel - 180) * Math.PI / 180;
             endLeft = leftStart - Math.Sin(ra) * radius;
             endTop = topStart + radius + Math.Cos(ra) * radius;
         }
-
         else if (angel < 360)
         {
             /*****************
@@ -114,45 +107,47 @@ public partial class CycleProcessBar : UserControl
                       *
                       *
             ******************/
-            isLagreCircle = true; //优势弧
-            double ra = (angel - 270) * Math.PI / 180;
+            isLargeCircle = true; //优势弧
+            var ra = (angel - 270) * Math.PI / 180;
             endLeft = leftStart - Math.Cos(ra) * radius;
             endTop = topStart + radius - Math.Sin(ra) * radius;
         }
         else
         {
-            isLagreCircle = true; //优势弧
+            isLargeCircle = true; //优势弧
             endLeft = leftStart - 0.001; //不与起点在同一点，避免重叠绘制出非环形
             endTop = topStart;
         }
 
-        Point arcEndPt = new Point(endLeft, endTop); //结束点
-        Size arcSize = new Size(radius, radius);
-        SweepDirection direction = SweepDirection.Clockwise; //顺时针弧形
+        var arcEndPt = new Point(endLeft, endTop); //结束点
+        var arcSize = new Size(radius, radius);
+        const SweepDirection direction = SweepDirection.Clockwise; //顺时针弧形
         //弧形
-        ArcSegment arcsegment = new ArcSegment(arcEndPt, arcSize, 0, isLagreCircle, direction, true);
+        var arcSegment = new ArcSegment(arcEndPt, arcSize, 0, isLargeCircle, direction, true);
 
         //形状集合
-        PathSegmentCollection pathsegmentCollection = new PathSegmentCollection();
-        pathsegmentCollection.Add(arcsegment);
+        var pathSegmentCollection = new PathSegmentCollection { arcSegment };
 
         //路径描述
-        PathFigure pathFigure = new PathFigure();
-        pathFigure.StartPoint = new Point(leftStart, topStart); //起始地址
-        pathFigure.Segments = pathsegmentCollection;
+        var pathFigure = new PathFigure
+        {
+            StartPoint = new Point(leftStart, topStart), //起始地址
+            Segments = pathSegmentCollection
+        };
 
         //路径描述集合
-        PathFigureCollection pathFigureCollection = new PathFigureCollection();
-        pathFigureCollection.Add(pathFigure);
+        var pathFigureCollection = new PathFigureCollection { pathFigure };
 
         //复杂形状
-        PathGeometry pathGeometry = new PathGeometry();
-        pathGeometry.Figures = pathFigureCollection;
+        var pathGeometry = new PathGeometry
+        {
+            Figures = pathFigureCollection
+        };
 
         //Data赋值
-        MyCycleProcessBar1.Data = pathGeometry;
+        PART_Bar.Data = pathGeometry;
         //达到100%则闭合整个
         if (angel == 360)
-            MyCycleProcessBar1.Data = Geometry.Parse(MyCycleProcessBar1.Data.ToString() + " z");
+            PART_Bar.Data = Geometry.Parse(PART_Bar.Data.ToString() + " z");
     }
 }

@@ -12,31 +12,31 @@ namespace App10.Demo;
 /// </summary>
 public partial class MainWindow : Window
 {
-    readonly DispatcherTimer m_Timer1 = new();
+    private readonly DispatcherTimer _mTimer = new();
 
-    private double _mPercent = 0;
+    private int _mPercent = 0;
     private bool _mIsStart = false;
 
     public MainWindow()
     {
         InitializeComponent();
 
-        m_Timer1.Interval = new TimeSpan(0, 0, 0, 0, 100);
-        m_Timer1.Tick += M_Timer1_Tick;
+        _mTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+        _mTimer.Tick += MTimerTick;
     }
 
-    private void M_Timer1_Tick(object sender, EventArgs e)
+    private void MTimerTick(object sender, EventArgs e)
     {
-        _mPercent += 0.01;
-        if (_mPercent > 1)
+        _mPercent += 1;
+        if (_mPercent > 100)
         {
-            _mPercent = 1;
-            m_Timer1.Stop();
+            _mPercent = 100;
+            _mTimer.Stop();
             _mIsStart = false;
             StartChange(_mIsStart);
         }
 
-        CircleProgressBar.CurrentValue1 = _mPercent;
+        CircleProgressBar.CurrentValue = _mPercent;
     }
 
     /// <summary>
@@ -55,13 +55,13 @@ public partial class MainWindow : Window
     {
         if (_mIsStart)
         {
-            m_Timer1.Stop();
+            _mTimer.Stop();
             _mIsStart = false;
         }
         else
         {
             _mPercent = 0;
-            m_Timer1.Start();
+            _mTimer.Start();
             _mIsStart = true;
         }
 
@@ -71,7 +71,7 @@ public partial class MainWindow : Window
     protected override void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
-        m_Timer1.Stop();
+        _mTimer.Stop();
     }
 
     private void OnThemeButtonClick(object sender, RoutedEventArgs e)
