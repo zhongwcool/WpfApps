@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using App9.Map.Helper;
+using ModernWpf;
 
 namespace App9.Map;
 
@@ -25,5 +27,20 @@ public partial class MainWindow : Window
     private void ButtonAddPolygon_OnClick(object sender, RoutedEventArgs e)
     {
         WebBrowser.InvokeScript("setMapCenter", new object[] { 120.721603, 31.367004 });
+    }
+
+    private void OnThemeButtonClick(object sender, RoutedEventArgs e)
+    {
+        DispatcherHelper.RunOnMainThread(() =>
+        {
+            if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark)
+            {
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+            }
+            else
+            {
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+            }
+        });
     }
 }

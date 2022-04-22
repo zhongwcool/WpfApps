@@ -2,9 +2,10 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
-        <Nullable>enable</Nullable>
+        <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+        <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +13,10 @@
         <None Include="gd.htm">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ModernWpfUI" Version="0.9.4"/>
     </ItemGroup>
 
 </Project>
