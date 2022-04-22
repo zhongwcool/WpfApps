@@ -2,12 +2,13 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ModernWpf;
 
 namespace App10.Demo.Control;
 
-public partial class CycleProcessBar : UserControl
+public partial class CircularProcessBar : UserControl
 {
-    public CycleProcessBar()
+    public CircularProcessBar()
     {
         InitializeComponent();
     }
@@ -16,6 +17,22 @@ public partial class CycleProcessBar : UserControl
     {
         set => SetValue(value);
     }
+
+    #region MagicStroke
+
+    public Brush MagicStroke
+    {
+        get => (Brush)GetValue(MagicStrokeProperty);
+        set => SetValue(MagicStrokeProperty, value);
+    }
+
+    public static readonly DependencyProperty MagicStrokeProperty = DependencyProperty.Register(
+        nameof(MagicStroke),
+        typeof(Brush),
+        typeof(CircularProcessBar),
+        new PropertyMetadata(new SolidColorBrush(ThemeManager.Current.ActualAccentColor)));
+
+    #endregion
 
     /// <summary>
     /// 设置百分百，输入整数，自动除100
@@ -75,7 +92,6 @@ public partial class CycleProcessBar : UserControl
                       *  *
                       *   *
             ******************/
-
             var ra = (angel - 90) * Math.PI / 180; //弧度
             endLeft = leftStart + Math.Cos(ra) * radius; //余弦横坐标
             endTop = topStart + radius + Math.Sin(ra) * radius; //正弦纵坐标
@@ -146,6 +162,7 @@ public partial class CycleProcessBar : UserControl
 
         //Data赋值
         PART_Bar.Data = pathGeometry;
+        //Debug.WriteLine($"看这里: {PART_Bar.Data.ToString() + " z"}");
         //达到100%则闭合整个
         if (angel == 360)
             PART_Bar.Data = Geometry.Parse(PART_Bar.Data.ToString() + " z");

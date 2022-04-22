@@ -36,7 +36,7 @@ public partial class MainWindow : Window
             StartChange(_mIsStart);
         }
 
-        CircleProgressBar.CurrentValue = _mPercent;
+        MyProgressBar.CurrentValue = _mPercent;
     }
 
     /// <summary>

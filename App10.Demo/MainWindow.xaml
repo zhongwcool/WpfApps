@@ -43,8 +43,8 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <control:CycleProcessBar 
-                x:Name="CircleProgressBar" CurrentValue="89"
+            <control:CircularProcessBar
+                x:Name="MyProgressBar" CurrentValue="89"
                 Grid.Row="0"/>
             <Button 
                 x:Name="BtnStart" Content="开始" 
