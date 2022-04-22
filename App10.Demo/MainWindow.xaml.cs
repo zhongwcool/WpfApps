@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Threading;
 using App10.Demo.Helper;
@@ -67,8 +68,9 @@ public partial class MainWindow : Window
         StartChange(_mIsStart);
     }
 
-    private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    protected override void OnClosing(CancelEventArgs e)
     {
+        base.OnClosing(e);
         m_Timer1.Stop();
     }
 

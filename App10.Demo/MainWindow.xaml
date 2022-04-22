@@ -5,46 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:control="clr-namespace:App10.Demo.Control"
-        xmlns:sc="clr-namespace:App10.Demo.Common"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         ui:WindowHelper.UseModernWindowStyle="True">
-    <Window.Resources>
-        <sc:EqualsConverter x:Key="IsDefaultConverter" Value="{x:Null}" />
-        <sc:EqualsConverter x:Key="IsLightConverter" Value="{x:Static ui:ApplicationTheme.Light}" />
-        <sc:EqualsConverter x:Key="IsDarkConverter" Value="{x:Static ui:ApplicationTheme.Dark}" />
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+        <!-- 命令栏 -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Menu>
+            <Menu Grid.Column="0">
                 <MenuItem Header="Theme" />
             </Menu>
 
             <ui:CommandBar
-                Grid.Column="1"
                 Margin="0,0,12,0"
                 Background="Transparent"
-                DefaultLabelPosition="Right">
-                <ui:AppBarButton x:Name="ThemeButton" Click="OnThemeButtonClick" Label="Toggle Theme">
+                DefaultLabelPosition="Right"
+                Grid.Column="1">
+                <ui:AppBarButton Click="OnThemeButtonClick" Label="Toggle Theme">
                     <ui:AppBarButton.Icon>
-                        <ui:FontIcon
-                            Glyph="&#xE771;"
-                            Margin="0,-2,0,0" />
+                        <ui:FontIcon Glyph="&#xE790;" Margin="0,-2,0,0" />
                     </ui:AppBarButton.Icon>
                 </ui:AppBarButton>
             </ui:CommandBar>
         </Grid>
         
+        <!-- Content -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
