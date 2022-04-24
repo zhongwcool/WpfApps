@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:control="clr-namespace:App10.Demo.Control"
+        xmlns:vm="clr-namespace:App10.Demo.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
+        Title="MainWindow" Height="450" Width="450"
         ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
         <Grid.RowDefinitions>
@@ -43,13 +45,16 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <control:CircularProcessBar
-                x:Name="MyProgressBar" CurrentValue="89"
-                Grid.Row="0"/>
+            <UniformGrid Columns="2" Grid.Row="0">
+                <control:CircularProcessBar Value="{Binding Percent}"/>
+                <control:CircularProcessBar Value="{Binding Percent}"/>
+                <control:CircularProcessBar Value="{Binding Percent}" />
+                <control:CircularProcessBar Value="{Binding Percent}" />
+            </UniformGrid>
             <Button 
                 x:Name="BtnStart" Content="开始" 
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                Click="Button_Click"
+                Command="{Binding CommandStart}"
                 Grid.Row="1"/>
         </Grid>
 

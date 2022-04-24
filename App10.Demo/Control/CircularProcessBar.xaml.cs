@@ -48,16 +48,39 @@ public partial class CircularProcessBar
 
     #region CurrentValue
 
-    public double CurrentValue
+    public int Value
     {
-        set => SetValue(value);
+        get => (int)GetValue(ValueProperty);
+        set
+        {
+            SetValue(ValueProperty, value);
+            DrawValue(value);
+        }
+    }
+
+    public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+        nameof(Value),
+        typeof(int),
+        typeof(CircularProcessBar),
+        new PropertyMetadata(-1, OnPropertyChanged));
+
+    private static void OnPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+    {
+        if (args.Property == ValueProperty)
+        {
+            var bar = obj as CircularProcessBar;
+            if (bar?.Value != null)
+            {
+                bar.DrawValue(bar.Value);
+            }
+        }
     }
 
     /// <summary>
     /// 设置百分百，输入整数，自动除100
     /// </summary>
     /// <param name="percentValue"></param>
-    private void SetValue(double percentValue)
+    private void DrawValue(double percentValue)
     {
         /*****************************************
           方形矩阵边长为34，半长为17
