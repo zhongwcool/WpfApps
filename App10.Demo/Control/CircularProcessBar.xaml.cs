@@ -1,22 +1,34 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using ModernWpf;
 
 namespace App10.Demo.Control;
 
-public partial class CircularProcessBar : UserControl
+public partial class CircularProcessBar
 {
+    private readonly Color _initBrush;
+
     public CircularProcessBar()
     {
         InitializeComponent();
+
+        DependencyPropertyDescriptor.FromProperty(ThemeManager.ActualAccentColorProperty, typeof(ThemeManager))
+            .AddValueChanged(ThemeManager.Current, delegate { UpdateActualAccentColor(); });
+
+        _initBrush = ThemeManager.Current.ActualAccentColor;
     }
 
-    public double CurrentValue
+    #region UpdateActualAccentColor
+
+    private void UpdateActualAccentColor()
     {
-        set => SetValue(value);
+        if (_initBrush != ((SolidColorBrush)MagicStroke).Color) return;
+        PART_Bar.Stroke = new SolidColorBrush(ThemeManager.Current.ActualAccentColor);
     }
+
+    #endregion
 
     #region MagicStroke
 
@@ -33,6 +45,13 @@ public partial class CircularProcessBar : UserControl
         new PropertyMetadata(new SolidColorBrush(ThemeManager.Current.ActualAccentColor)));
 
     #endregion
+
+    #region CurrentValue
+
+    public double CurrentValue
+    {
+        set => SetValue(value);
+    }
 
     /// <summary>
     /// 设置百分百，输入整数，自动除100
@@ -167,4 +186,6 @@ public partial class CircularProcessBar : UserControl
         if (angel == 360)
             PART_Bar.Data = Geometry.Parse(PART_Bar.Data.ToString() + " z");
     }
+
+    #endregion
 }
