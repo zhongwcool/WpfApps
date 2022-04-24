@@ -8,7 +8,7 @@ namespace App10.Demo.ViewModels;
 public class MainViewModel : ObservableObject
 {
     private int _mPercent = 0;
-    private readonly DispatcherTimer _mTimer = new();
+    private DispatcherTimer _mTimer = new();
 
     private static MainViewModel _instance;
 
@@ -25,6 +25,7 @@ public class MainViewModel : ObservableObject
 
         CommandStart = new RelayCommand(() =>
         {
+            _mPercent = 0;
             if (IsBusy)
             {
                 _mTimer.Stop();
@@ -47,6 +48,8 @@ public class MainViewModel : ObservableObject
             _mPercent = 100;
             _mTimer.Stop();
             IsBusy = false;
+            // reset dispatcher timer
+            _mTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
         }
 
         Percent = _mPercent;
