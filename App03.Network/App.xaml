@@ -1,0 +1,15 @@
+﻿<Application x:Class="App03.Network.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/SlashWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/Colors.xaml" />
+                <ResourceDictionary Source="Style/SimpleTextBox.xaml" />
+                <ResourceDictionary Source="Style/FunctionButton.xaml" />
+                <ResourceDictionary Source="Style/SimpleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
