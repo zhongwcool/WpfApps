@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using App05.TaskAndCancel.ViewModels;
 
-namespace App05.Task;
+namespace App05.TaskAndCancel.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
@@ -14,13 +16,15 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        System.Threading.Tasks.Task.Factory.StartNew(Test);
+        DataContext = MainViewModel.CreateInstance();
+
+        Task.Factory.StartNew(Test);
     }
 
     private void Test()
     {
         Dispatcher.Invoke(() => { Info.AppendText($"开始: {DateTime.Now}\n"); });
-        System.Threading.Tasks.Task.WaitAny(new[] { System.Threading.Tasks.Task.Delay(10000, _tokenSource.Token) },
+        Task.WaitAny(new[] { Task.Delay(10000, _tokenSource.Token) },
             _tokenSource.Token);
         Dispatcher.Invoke(() => { Info.AppendText($"结束: {DateTime.Now}\n"); });
     }
@@ -35,6 +39,6 @@ public partial class MainWindow : Window
     {
         _tokenSource.Dispose();
         _tokenSource = new CancellationTokenSource();
-        System.Threading.Tasks.Task.Factory.StartNew(Test);
+        Task.Factory.StartNew(Test);
     }
 }

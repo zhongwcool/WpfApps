@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:viewModels="clr-namespace:App08.Metro.ViewModels"
+             xmlns:vm="clr-namespace:App08.Metro.ViewModels"
              xmlns:control1="clr-namespace:App08.Metro.Control"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}">
+             d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}">
     <!-- win10's background of side panel: SystemControlBackgroundAltMediumHighBrush -->
     <!-- Width60*4 + Margin4*4 + 边12*2 -->
     <Grid Background="{DynamicResource SystemControlBackgroundAltMediumHighBrush}">

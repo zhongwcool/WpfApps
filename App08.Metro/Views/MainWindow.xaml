@@ -6,10 +6,10 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
         xmlns:views="clr-namespace:App08.Metro.Views"
-        xmlns:viewModels="clr-namespace:App08.Metro.ViewModels"
+        xmlns:vm="clr-namespace:App08.Metro.ViewModels"
         xmlns:control1="clr-namespace:App08.Metro.Control"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
         Title="App08.Metro" Height="720" Width="1080">
     <Window.Resources>

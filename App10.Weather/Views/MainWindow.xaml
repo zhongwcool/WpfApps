@@ -1,0 +1,25 @@
+﻿<Window x:Class="App10.Weather.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:vm="clr-namespace:App10.Weather.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Title="App10.Weather" Height="450" Width="800">
+    <Grid>
+        <StackPanel
+            HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock Text="{Binding WeatherModel.now.text}" />
+            <TextBlock Text="{Binding WeatherModel.location.path}" />
+            <TextBlock Text="{Binding WeatherModel.now.temperature}" />
+            <TextBlock Text="{Binding WeatherModel.last_update}" />
+        </StackPanel>
+        <Button 
+            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Command="{Binding CommandRenew}" 
+            Content="刷新" />
+    </Grid>
+</Window>
