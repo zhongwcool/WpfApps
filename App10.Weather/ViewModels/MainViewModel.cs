@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using App10.Weather.Models;
@@ -78,14 +79,22 @@ public class MainViewModel : ObservableObject
     /// <returns>json string</returns>
     private void LoadDataFromJson()
     {
-        using Stream s = File.OpenRead("data.Json");
-        using var sr = new StreamReader(s);
-        var json = sr.ReadToEnd();
+        try
+        {
+            using Stream s = File.OpenRead("data.Json");
+            using var sr = new StreamReader(s);
+            var json = sr.ReadToEnd();
 
-        var jObject = JObject.Parse(json);
-        var result0 = jObject["results"];
-        var result1 = result0?.ToList().FirstOrDefault();
-        if (result1 == null) return;
-        WeatherModel = JsonConvert.DeserializeObject<WeatherModel>(result1.ToString());
+            var jObject = JObject.Parse(json);
+            var result0 = jObject["results"];
+            var result1 = result0?.ToList().FirstOrDefault();
+            if (result1 == null) return;
+            WeatherModel = JsonConvert.DeserializeObject<WeatherModel>(result1.ToString());
+        }
+        catch (Exception e)
+        {
+            var fs = File.Create("data.Json");
+            fs.Close();
+        }
     }
 }
