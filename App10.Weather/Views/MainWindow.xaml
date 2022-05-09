@@ -5,11 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:vm="clr-namespace:App10.Weather.ViewModels"
+        xmlns:wpf="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
         Title="App10.Weather" Height="450" Width="800">
     <Grid>
+        <wpf:Chart BottomTitle="Argument" LeftTitle="Function" Visibility="Collapsed">
+            <wpf:LineGraph x:Name="linegraph" Description="Simple linegraph" Stroke="Blue" StrokeThickness="3"/>
+        </wpf:Chart>
+        
+        <wpf:Figure>
+            <wpf:PlotAxis AxisOrientation="Right"  wpf:Figure.Placement="Right" Visibility="Collapsed"/>
+            <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed"/>
+            <wpf:LineGraph x:Name="linegraph1"/>
+            <wpf:MouseNavigation/>
+            <Border BorderThickness="0.5" BorderBrush="Black"/>
+        </wpf:Figure>
+        
         <StackPanel
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="{Binding WeatherModel.now.text}" />
