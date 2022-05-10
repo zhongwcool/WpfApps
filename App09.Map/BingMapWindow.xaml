@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Bing Map" Height="450" Width="800">
     <Grid>
-        <wpf:Map Name="MyMap" ZoomLevel="14"
-                 CredentialsProvider="AqxjOUrwp3UGMfyr6UIdxw3fmstN-s4-DYopYkDL0mx5Yj2daOmHxWJosBfKQ7aW"/>
+        <wpf:Map ZoomLevel="14" Mode="Aerial" Center="31.401973,120.736730"
+                 CredentialsProvider="AqxjOUrwp3UGMfyr6UIdxw3fmstN-s4-DYopYkDL0mx5Yj2daOmHxWJosBfKQ7aW" />
     </Grid>
 </Window>
