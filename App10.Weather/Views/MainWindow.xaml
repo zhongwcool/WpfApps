@@ -25,14 +25,14 @@
         
         <StackPanel
             HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock Text="{Binding WeatherModel.now.text}" />
-            <TextBlock Text="{Binding WeatherModel.location.path}" />
-            <TextBlock Text="{Binding WeatherModel.now.temperature}" />
-            <TextBlock Text="{Binding WeatherModel.last_update}" />
+            <TextBlock Text="{Binding NowModel.Now.Text}" />
+            <TextBlock Text="{Binding NowModel.Location.Path}" />
+            <TextBlock Text="{Binding NowModel.Now.Temperature}" />
+            <TextBlock Text="{Binding NowModel.Last_Update}" />
         </StackPanel>
         <Button 
             HorizontalAlignment="Right" VerticalAlignment="Bottom"
-            Command="{Binding CommandRenew}" 
-            Content="刷新" />
+            Command="{Binding CommandRenewNow}" 
+            Content="实时天气" />
     </Grid>
 </Window>

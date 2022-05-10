@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -13,12 +14,13 @@ namespace App10.Weather.ViewModels;
 public class MainViewModel : ObservableObject
 {
     private static MainViewModel _instance;
+    private readonly HttpClient _httpClient = new();
 
     private MainViewModel()
     {
-        CommandRenew = new RelayCommand(() => { RequestWeatherData("29.5617:120.0962"); });
+        CommandRenewNow = new RelayCommand(() => { RequestNow("31.401973:120.736730"); });
 
-        LoadDataFromJson();
+        LoadDataNow();
     }
 
     public static MainViewModel CreateInstance()
@@ -27,25 +29,17 @@ public class MainViewModel : ObservableObject
         return _instance;
     }
 
-    public IRelayCommand CommandRenew { get; }
+    #region 实时天气 Now
 
-    private readonly HttpClient _httpClient = new();
+    public IRelayCommand CommandRenewNow { get; }
 
-    private async void RequestWeatherData(string location)
+    private async void RequestNow(string location)
     {
         var url =
             $"https://api.seniverse.com/v3/weather/now.json?key=SonT2HaJQRjGe-C_E&location={location}&language=zh-Hans&unit=c";
         var data = await _httpClient.GetStringAsync(url);
-        ParseDataFromJson(data);
-        SaveDataToJson(data);
-    }
-
-    private WeatherModel _weatherModel;
-
-    public WeatherModel WeatherModel
-    {
-        get => _weatherModel;
-        set => SetProperty(ref _weatherModel, value);
+        ParseJsonDataNow(data);
+        SaveDataNow(data);
     }
 
     /// <summary>
@@ -53,48 +47,76 @@ public class MainViewModel : ObservableObject
     /// </summary>
     /// <param name="json"></param>
     /// <returns>weather object</returns>
-    private void ParseDataFromJson(string json)
+    private void ParseJsonDataNow(string json)
     {
         var jObject = JObject.Parse(json);
         var result0 = jObject["results"];
         var result1 = result0?.ToList().FirstOrDefault();
         if (result1 == null) return;
-        WeatherModel = JsonConvert.DeserializeObject<WeatherModel>(result1.ToString());
+        NowModel = JsonConvert.DeserializeObject<NowModel>(result1.ToString());
     }
+
+    private const string FileNow = "now.json";
+
+    private static void SaveDataNow(string data)
+    {
+        SaveDataToJson(FileNow, data);
+    }
+
+    private NowModel _nowModel;
+
+    public NowModel NowModel
+    {
+        get => _nowModel;
+        private set => SetProperty(ref _nowModel, value);
+    }
+
+    private void LoadDataNow()
+    {
+        var data = LoadDataFromJson(FileNow);
+        if (string.IsNullOrEmpty(data)) return;
+        NowModel = JsonConvert.DeserializeObject<NowModel>(data);
+    }
+
+    #endregion
+
+    #region 基础方法
 
     /// <summary>
     /// save data to json file
     /// </summary>
-    /// <param name="data"></param>
-    private static void SaveDataToJson(string data)
+    /// <param name="filename">target file</param>
+    /// <param name="jsondata">json data</param>
+    private static void SaveDataToJson(string filename, string jsondata)
     {
-        using Stream s = File.Open("data.Json", FileMode.Create);
-        using var sw = new StreamWriter(s);
-        sw.WriteLine(data);
+        using Stream stream = File.Open(filename, FileMode.Create);
+        using var sw = new StreamWriter(stream);
+        sw.WriteLine(jsondata);
     }
 
     /// <summary>
     /// Load data from json
     /// </summary>
-    /// <returns>json string</returns>
-    private void LoadDataFromJson()
+    private static string LoadDataFromJson(string filename)
     {
+        if (!File.Exists(filename)) return null;
         try
         {
-            using Stream s = File.OpenRead("data.Json");
-            using var sr = new StreamReader(s);
+            using Stream stream = File.OpenRead(filename);
+            using var sr = new StreamReader(stream);
             var json = sr.ReadToEnd();
 
             var jObject = JObject.Parse(json);
             var result0 = jObject["results"];
             var result1 = result0?.ToList().FirstOrDefault();
-            if (result1 == null) return;
-            WeatherModel = JsonConvert.DeserializeObject<WeatherModel>(result1.ToString());
+            return result1?.ToString();
         }
         catch (Exception e)
         {
-            var fs = File.Create("data.Json");
-            fs.Close();
+            Debug.WriteLine(e);
+            return null;
         }
     }
+
+    #endregion
 }
