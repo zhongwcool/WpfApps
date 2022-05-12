@@ -9,30 +9,66 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="App10.Weather" Height="450" Width="800">
+        Title="App10.Weather" d:DesignHeight="600" d:DesignWidth="800" Width="800">
     <Grid>
-        <wpf:Chart BottomTitle="Argument" LeftTitle="Function" Visibility="Collapsed">
-            <wpf:LineGraph x:Name="linegraph" Description="Simple linegraph" Stroke="Blue" StrokeThickness="3"/>
-        </wpf:Chart>
+        <Grid.Resources>
+            <vm:HourlyModelToPointsConverter x:Key="HourlyModelToPointsConverter"/>
+        </Grid.Resources>
         
-        <wpf:Figure>
-            <wpf:PlotAxis AxisOrientation="Right"  wpf:Figure.Placement="Right" Visibility="Collapsed"/>
-            <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed"/>
-            <wpf:LineGraph x:Name="linegraph1"/>
-            <wpf:MouseNavigation/>
-            <Border BorderThickness="0.5" BorderBrush="Black"/>
-        </wpf:Figure>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <wpf:Chart BottomTitle="Argument" LeftTitle="Function" Margin="20,20,10,20" Grid.Row="0">
+                <wpf:LineGraph x:Name="linegraph0" 
+                               Description="演示" 
+                               Stroke="Blue" StrokeThickness="3"
+                               Points="{Binding HourlyModel, Converter={StaticResource HourlyModelToPointsConverter}}"/>
+            </wpf:Chart>
         
-        <StackPanel
-            HorizontalAlignment="Left" VerticalAlignment="Top">
+            <wpf:Figure Margin="20,20,10,20" Grid.Row="1">
+                <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right"/>
+                <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top"/>
+                <wpf:LineGraph x:Name="linegraph1" Stroke="Blue" StrokeThickness="3"/>
+                <wpf:MouseNavigation/>
+                <Border BorderThickness="0.5" BorderBrush="Black"/>
+            </wpf:Figure>
+            
+            <wpf:Chart Name="Plotter" Grid.Row="2">
+                <wpf:Chart.Title>
+                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">逐日天气</TextBlock>
+                </wpf:Chart.Title>
+                <wpf:Chart.LegendContent>
+                    <wpf:LegendItemsPanel>
+                        <wpf:LegendItemsPanel.Resources>
+                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
+                                <StackPanel Orientation="Horizontal">
+                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </wpf:LegendItemsPanel.Resources>
+                    </wpf:LegendItemsPanel>
+                </wpf:Chart.LegendContent>
+                <Grid Name="lines"/>
+            </wpf:Chart>
+            
+            <WrapPanel HorizontalAlignment="Right" Grid.Row="3">
+                <Button Command="{Binding CommandRenewDaily}" Content="逐日天气" />
+                <Button Command="{Binding CommandRenewHourly}" Content="逐时天气" />
+                <Button Command="{Binding CommandRenewNow}" Content="实时天气" />
+            </WrapPanel>
+        </Grid>
+        
+        <StackPanel>
             <TextBlock Text="{Binding NowModel.Now.Text}" />
             <TextBlock Text="{Binding NowModel.Location.Path}" />
             <TextBlock Text="{Binding NowModel.Now.Temperature}" />
             <TextBlock Text="{Binding NowModel.Last_Update}" />
         </StackPanel>
-        <Button 
-            HorizontalAlignment="Right" VerticalAlignment="Bottom"
-            Command="{Binding CommandRenewNow}" 
-            Content="实时天气" />
     </Grid>
 </Window>

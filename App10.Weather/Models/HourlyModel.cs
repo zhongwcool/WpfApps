@@ -1,4 +1,6 @@
-﻿namespace App10.Weather.Models;
+﻿using System.Collections.Generic;
+
+namespace App10.Weather.Models;
 
 /// <summary>
 /// 24小时逐小时天气预报
@@ -6,7 +8,6 @@
 /// </summary>
 public class HourlyModel
 {
-    public LocationInfo LocationInfo { set; get; }
-    public HourlyInfo Hourly { set; get; }
-    public string Last_Update { set; get; }
+    public LocationInfo Location { set; get; }
+    public List<HourlyInfo> Hourly { set; get; }
 }

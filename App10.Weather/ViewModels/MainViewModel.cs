@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
 using App10.Weather.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -19,8 +24,12 @@ public class MainViewModel : ObservableObject
     private MainViewModel()
     {
         CommandRenewNow = new RelayCommand(() => { RequestNow("31.401973:120.736730"); });
+        CommandRenewHourly = new RelayCommand(() => { RequestHourly("31.401973:120.736730"); });
+        CommandRenewDaily = new RelayCommand(() => { RequestDaily("31.401973:120.736730"); });
 
         LoadDataNow();
+        LoadDataHourly();
+        LoadDataDaily();
     }
 
     public static MainViewModel CreateInstance()
@@ -28,6 +37,111 @@ public class MainViewModel : ObservableObject
         _instance ??= new MainViewModel();
         return _instance;
     }
+
+    #region 逐日天气
+
+    public IRelayCommand CommandRenewDaily { get; }
+
+    private async void RequestDaily(string location)
+    {
+        var url =
+            $"https://api.seniverse.com/v3/weather/daily.json?key=SXq-OhxhzFn3WqkKq&location={location}&language=zh-Hans&unit=c&start=0&days=5";
+        var data = await _httpClient.GetStringAsync(url);
+        ParseDataDaily(data);
+        SaveDataDaily(data);
+    }
+
+    private DailyModel _dailyModel;
+
+    public DailyModel DailyModel
+    {
+        get => _dailyModel;
+        set => SetProperty(ref _dailyModel, value);
+    }
+
+    /// <summary>
+    /// parse the data we want form the json
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns>weather object</returns>
+    private void ParseDataDaily(string json)
+    {
+        var jObject = JObject.Parse(json);
+        var result0 = jObject["results"];
+        var result1 = result0?.ToList().FirstOrDefault();
+        if (result1 == null) return;
+        DailyModel = JsonConvert.DeserializeObject<DailyModel>(result1.ToString());
+
+        WeakReferenceMessenger.Default.Send(new Message { Key = 102, Obj = DailyModel });
+    }
+
+    private const string FileDaily = "daily.json";
+
+    private static void SaveDataDaily(string data)
+    {
+        SaveDataToJson(FileDaily, data);
+    }
+
+    private void LoadDataDaily()
+    {
+        var data = LoadDataFromJson(FileDaily);
+        if (string.IsNullOrEmpty(data)) return;
+        DailyModel = JsonConvert.DeserializeObject<DailyModel>(data);
+    }
+
+    #endregion
+
+    #region 逐时天气 Hourly
+
+    public IRelayCommand CommandRenewHourly { get; }
+
+    private async void RequestHourly(string location)
+    {
+        var url =
+            $"https://api.seniverse.com/v3/weather/hourly.json?key=SXq-OhxhzFn3WqkKq&location={location}&language=zh-Hans&unit=c&start=0&hours=24";
+        var data = await _httpClient.GetStringAsync(url);
+        ParseDataHourly(data);
+        SaveDataHourly(data);
+    }
+
+    private HourlyModel _hourlyModel;
+
+    public HourlyModel HourlyModel
+    {
+        get => _hourlyModel;
+        set => SetProperty(ref _hourlyModel, value);
+    }
+
+    /// <summary>
+    /// parse the data we want form the json
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns>weather object</returns>
+    private void ParseDataHourly(string json)
+    {
+        var jObject = JObject.Parse(json);
+        var result0 = jObject["results"];
+        var result1 = result0?.ToList().FirstOrDefault();
+        if (result1 == null) return;
+        HourlyModel = JsonConvert.DeserializeObject<HourlyModel>(result1.ToString());
+        WeakReferenceMessenger.Default.Send(new Message { Key = 101, Obj = HourlyModel });
+    }
+
+    private const string FileHourly = "hourly.json";
+
+    private static void SaveDataHourly(string data)
+    {
+        SaveDataToJson(FileHourly, data);
+    }
+
+    private void LoadDataHourly()
+    {
+        var data = LoadDataFromJson(FileHourly);
+        if (string.IsNullOrEmpty(data)) return;
+        HourlyModel = JsonConvert.DeserializeObject<HourlyModel>(data);
+    }
+
+    #endregion
 
     #region 实时天气 Now
 
@@ -38,7 +152,7 @@ public class MainViewModel : ObservableObject
         var url =
             $"https://api.seniverse.com/v3/weather/now.json?key=SonT2HaJQRjGe-C_E&location={location}&language=zh-Hans&unit=c";
         var data = await _httpClient.GetStringAsync(url);
-        ParseJsonDataNow(data);
+        ParseDataNow(data);
         SaveDataNow(data);
     }
 
@@ -47,7 +161,7 @@ public class MainViewModel : ObservableObject
     /// </summary>
     /// <param name="json"></param>
     /// <returns>weather object</returns>
-    private void ParseJsonDataNow(string json)
+    private void ParseDataNow(string json)
     {
         var jObject = JObject.Parse(json);
         var result0 = jObject["results"];
@@ -119,4 +233,45 @@ public class MainViewModel : ObservableObject
     }
 
     #endregion
+}
+
+public class HourlyModelToPointsConverter : IValueConverter
+{
+    /// <summary>
+    /// Constructs a <see cref="PointCollection"/> with triangle vertexes from a given height.
+    /// </summary>
+    /// <param name="value">A height of triangle.</param>
+    /// <param name="targetType"></param>
+    /// <param name="parameter"></param>
+    /// <param name="culture"></param>
+    /// <returns>A collection of triangle vertexes.</returns>
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var pc = new PointCollection();
+        var models = (HourlyModel)value;
+        if (null == models) return pc;
+        foreach (var model in models.Hourly)
+        {
+            var dto = DateTimeOffset.Parse(model.Time);
+            //Get the date object from the string. 
+            var dt = dto.DateTime;
+            pc.Add(new Point((double)dt.Hour, double.Parse(model.Temperature)));
+            break;
+        }
+
+        return pc;
+    }
+
+    /// <summary>
+    /// This method is not supported.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="targetType"></param>
+    /// <param name="parameter"></param>
+    /// <param name="culture"></param>
+    /// <returns></returns>
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException("Cannot convert point collection to double");
+    }
 }
