@@ -23,8 +23,7 @@ public partial class MainWindow : Window
 
         var x = Enumerable.Range(0, 1001).Select(i => i / 10.0).ToArray();
         var y = x.Select(v => Math.Abs(v) < 1e-10 ? 1 : Math.Sin(v) / v).ToArray();
-        linegraph0.Plot(x, y); // x and y are IEnumerable<double>
-        linegraph1.Plot(x, y); // x and y are IEnumerable<double>
+        linegraph.Plot(x, y); // x and y are IEnumerable<double>
     }
 
     private void OnReceive(object recipient, Message message)
@@ -41,7 +40,7 @@ public partial class MainWindow : Window
             case 102:
                 var dm = (DailyModel)message.Obj;
             {
-                Dispatcher.Invoke(() => { GetDataDaily(dm); });
+                Dispatcher.Invoke(() => { DrawDataDaily(dm); });
             }
                 break;
         }
@@ -59,10 +58,16 @@ public partial class MainWindow : Window
             y[i] = double.Parse(hm.Hourly[i].Temperature);
         }
 
-        linegraph1.Plot(x, y);
+        lines.Children.Clear();
+        var line1 = new LineGraph();
+        lines.Children.Add(line1);
+        line1.Stroke = new SolidColorBrush(Colors.Red);
+        line1.Description = "最高温";
+        line1.StrokeThickness = 3;
+        line1.Plot(x, y);
     }
 
-    private void GetDataDaily(DailyModel dm)
+    private void DrawDataDaily(DailyModel dm)
     {
         if (null == dm) return;
         var count = dm.Daily.Count;
@@ -75,6 +80,8 @@ public partial class MainWindow : Window
             y[i] = double.Parse(dm.Daily[i].High);
             z[i] = double.Parse(dm.Daily[i].Low);
         }
+
+        lines.Children.Clear();
 
         var line1 = new LineGraph();
         lines.Children.Add(line1);
