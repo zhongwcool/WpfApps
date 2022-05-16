@@ -16,29 +16,16 @@ public class AppConfig
         return _instance;
     }
 
-    private const string SectionTheme = "App Theme";
-    private const string SectionOther = "Other";
-
     private static readonly string IniFile = Path.Combine(System.Environment.CurrentDirectory, @"App.ini");
 
-    public string GetValue4Theme(string key)
+    public string GetValue(string section, string key)
     {
-        return IniFileHelper.GetValue(SectionTheme, key, IniFile);
+        return IniFileHelper.GetValue(section, key, IniFile);
     }
 
-    public bool SetValue4Theme(string key, string value)
+    public bool SetValue(string section, string key, string value)
     {
-        return IniFileHelper.SetValue(SectionTheme, key, value, IniFile);
-    }
-
-    public string GetValue4Other(string key)
-    {
-        return IniFileHelper.GetValue(SectionOther, key, IniFile);
-    }
-
-    public bool SetValue4Other(string key, string value)
-    {
-        return IniFileHelper.SetValue(SectionOther, key, value, IniFile);
+        return IniFileHelper.SetValue(section, key, value, IniFile);
     }
 
     public static byte[] ToBytes()
@@ -47,7 +34,7 @@ public class AppConfig
 
         var myApp = new MyApp
         {
-            AppTheme = _instance.GetValue4Theme("AppTheme"),
+            AppTheme = _instance.GetValue(Section.Theme, "AppTheme"),
         };
 
         //序列化
@@ -55,4 +42,10 @@ public class AppConfig
 
         return Encoding.UTF8.GetBytes(json);
     }
+}
+
+public class Section
+{
+    public const string Theme = "App Theme";
+    public const string Other = "Other";
 }

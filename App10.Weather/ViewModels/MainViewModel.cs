@@ -17,12 +17,12 @@ public class MainViewModel : ObservableObject
 {
     private static MainViewModel _instance;
     private readonly HttpClient _httpClient = new();
-    private static readonly AppConfig Config = AppConfig.CreateInstance();
+    private readonly AppConfig _config = AppConfig.CreateInstance();
 
     private MainViewModel()
     {
-        var location = Config.GetValue4Other("Location");
-        var apikey = Config.GetValue4Other("SenKey");
+        var location = _config.GetValue(Section.Other, "Location");
+        var apikey = _config.GetValue(Section.Other, "SenKey");
 
         CommandRenewNow = new RelayCommand(() => RequestNow(apikey, location));
         CommandRenewHourly = new RelayCommand(() => { RequestHourly(apikey, location); });
