@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using App10.Weather.Helper;
 using App10.Weather.Models;
 using App10.Weather.ViewModels;
 using InteractiveDataDisplay.WPF;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using ModernWpf;
 
 namespace App10.Weather.Views;
 
@@ -96,5 +98,20 @@ public partial class MainWindow : Window
         line2.Description = "最低温";
         line2.StrokeThickness = 3;
         line2.Plot(x, z);
+    }
+
+    private void ButtonTheme_OnClick(object sender, RoutedEventArgs e)
+    {
+        DispatcherHelper.RunOnMainThread(() =>
+        {
+            if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark)
+            {
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+            }
+            else
+            {
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+            }
+        });
     }
 }

@@ -110,6 +110,7 @@
                 <Button Command="{Binding CommandRenewDaily}" Margin="5" Content="逐日天气" />
                 <Button Command="{Binding CommandRenewHourly}" Margin="5" Content="逐时天气" />
                 <Button Command="{Binding CommandRenewNow}" Margin="5" Content="实时天气" />
+                <Button Click="ButtonTheme_OnClick" Margin="5" Content="主题"/>
             </WrapPanel>
         </Grid>
 
