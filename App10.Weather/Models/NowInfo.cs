@@ -2,9 +2,9 @@
 
 public class NowInfo
 {
-    public string Text { set; get; }
-    public string Code { set; get; }
-    public string Temperature { set; get; }
+    public string Text { set; get; } = "N/A";
+    public string Code { set; get; } = "0";
+    public string Temperature { set; get; } = "0";
     public string Feels_Like { set; get; }
     public string Pressure { set; get; }
     public string Humidity { set; get; }

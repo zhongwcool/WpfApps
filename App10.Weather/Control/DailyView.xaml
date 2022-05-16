@@ -1,21 +1,37 @@
 ﻿<UserControl x:Class="App10.Weather.Control.DailyView"
+             x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converter="clr-namespace:App10.Weather.Converter"
              mc:Ignorable="d"
              d:DesignHeight="120" d:DesignWidth="50">
+    <UserControl.Resources>
+        <converter:IndexToImageSourceConverter x:Key="IndexToImageSourceConverter" />
+        <converter:StringToWeekConverter x:Key="StringToWeekConverter" />
+    </UserControl.Resources>
     <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock FontSize="16" HorizontalAlignment="Center" Text="周四" Grid.Row="0" />
-        <Image Source="../Resources/Dark/0@1x.png" Margin="10" Grid.Row="1" />
+        <TextBlock FontSize="16"
+                   HorizontalAlignment="Center"
+                   Text="{Binding ElementName=Root, Path=ShortDate, Converter={StaticResource StringToWeekConverter}}"
+                   Grid.Row="0" />
+        <Image Margin="10"
+               Source="{Binding ElementName=Root, Path=SourceIndex, Converter={StaticResource IndexToImageSourceConverter}}"
+               Grid.Row="1" />
         <StackPanel Grid.Row="2">
-            <TextBlock FontSize="16" HorizontalAlignment="Center" Text="21" />
-            <TextBlock FontSize="16" HorizontalAlignment="Center" Opacity="0.6" Text="19" />
+            <TextBlock FontSize="16" 
+                       HorizontalAlignment="Center" 
+                       Text="{Binding ElementName=Root, Path=High}" />
+            <TextBlock FontSize="16" 
+                       HorizontalAlignment="Center" 
+                       Opacity="0.6" 
+                       Text="{Binding ElementName=Root, Path=Low}" />
         </StackPanel>
     </Grid>
 </UserControl>

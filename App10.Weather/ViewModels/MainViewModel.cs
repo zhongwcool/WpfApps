@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
 using App10.Weather.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -233,45 +229,4 @@ public class MainViewModel : ObservableObject
     }
 
     #endregion
-}
-
-public class HourlyModelToPointsConverter : IValueConverter
-{
-    /// <summary>
-    /// Constructs a <see cref="PointCollection"/> with triangle vertexes from a given height.
-    /// </summary>
-    /// <param name="value">A height of triangle.</param>
-    /// <param name="targetType"></param>
-    /// <param name="parameter"></param>
-    /// <param name="culture"></param>
-    /// <returns>A collection of triangle vertexes.</returns>
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        var pc = new PointCollection();
-        var models = (HourlyModel)value;
-        if (null == models) return pc;
-        foreach (var model in models.Hourly)
-        {
-            var dto = DateTimeOffset.Parse(model.Time);
-            //Get the date object from the string. 
-            var dt = dto.DateTime;
-            pc.Add(new Point((double)dt.Hour, double.Parse(model.Temperature)));
-            break;
-        }
-
-        return pc;
-    }
-
-    /// <summary>
-    /// This method is not supported.
-    /// </summary>
-    /// <param name="value"></param>
-    /// <param name="targetType"></param>
-    /// <param name="parameter"></param>
-    /// <param name="culture"></param>
-    /// <returns></returns>
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotSupportedException("Cannot convert point collection to double");
-    }
 }
