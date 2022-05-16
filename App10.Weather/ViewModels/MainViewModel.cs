@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using App10.Weather.Data;
 using App10.Weather.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -16,12 +17,16 @@ public class MainViewModel : ObservableObject
 {
     private static MainViewModel _instance;
     private readonly HttpClient _httpClient = new();
+    private static readonly AppConfig Config = AppConfig.CreateInstance();
 
     private MainViewModel()
     {
-        CommandRenewNow = new RelayCommand(() => { RequestNow("31.401973:120.736730"); });
-        CommandRenewHourly = new RelayCommand(() => { RequestHourly("31.401973:120.736730"); });
-        CommandRenewDaily = new RelayCommand(() => { RequestDaily("31.401973:120.736730"); });
+        var location = Config.GetValue4Other("Location");
+        var apikey = Config.GetValue4Other("SenKey");
+
+        CommandRenewNow = new RelayCommand(() => RequestNow(apikey, location));
+        CommandRenewHourly = new RelayCommand(() => { RequestHourly(apikey, location); });
+        CommandRenewDaily = new RelayCommand(() => { RequestDaily(apikey, location); });
 
         LoadDataNow();
         LoadDataHourly();
@@ -38,10 +43,12 @@ public class MainViewModel : ObservableObject
 
     public IRelayCommand CommandRenewDaily { get; }
 
-    private async void RequestDaily(string location)
+    private async void RequestDaily(string apikey, string location)
     {
+        if (string.IsNullOrEmpty(location)) return;
+        if (string.IsNullOrEmpty(apikey)) return;
         var url =
-            $"https://api.seniverse.com/v3/weather/daily.json?key=SXq-OhxhzFn3WqkKq&location={location}&language=zh-Hans&unit=c&start=0&days=5";
+            $"https://api.seniverse.com/v3/weather/daily.json?key={apikey}&location={location}&language=zh-Hans&unit=c&start=0&days=5";
         var data = await _httpClient.GetStringAsync(url);
         ParseDataDaily(data);
         SaveDataDaily(data);
@@ -91,10 +98,10 @@ public class MainViewModel : ObservableObject
 
     public IRelayCommand CommandRenewHourly { get; }
 
-    private async void RequestHourly(string location)
+    private async void RequestHourly(string apikey, string location)
     {
         var url =
-            $"https://api.seniverse.com/v3/weather/hourly.json?key=SXq-OhxhzFn3WqkKq&location={location}&language=zh-Hans&unit=c&start=0&hours=24";
+            $"https://api.seniverse.com/v3/weather/hourly.json?key={apikey}&location={location}&language=zh-Hans&unit=c&start=0&hours=24";
         var data = await _httpClient.GetStringAsync(url);
         ParseDataHourly(data);
         SaveDataHourly(data);
@@ -143,10 +150,10 @@ public class MainViewModel : ObservableObject
 
     public IRelayCommand CommandRenewNow { get; }
 
-    private async void RequestNow(string location)
+    private async void RequestNow(string apikey, string location)
     {
         var url =
-            $"https://api.seniverse.com/v3/weather/now.json?key=SonT2HaJQRjGe-C_E&location={location}&language=zh-Hans&unit=c";
+            $"https://api.seniverse.com/v3/weather/now.json?key={apikey}&location={location}&language=zh-Hans&unit=c";
         var data = await _httpClient.GetStringAsync(url);
         ParseDataNow(data);
         SaveDataNow(data);

@@ -16,10 +16,9 @@ public class IndexToImageSourceConverter : IValueConverter
             return new BitmapImage(new Uri($"pack://application:,,,/Resources/Dark/{index}@1x.png"));
         }
 
-        // if 0 will return false..
-        if (int.Parse((string)value) == 0)
+        if (value is string index0)
         {
-            return new BitmapImage(new Uri($"pack://application:,,,/Resources/Dark/0@1x.png"));
+            return new BitmapImage(new Uri($"pack://application:,,,/Resources/Dark/{index0}@1x.png"));
         }
 
         return new BitmapImage(new Uri($"pack://application:,,,/Resources/Dark/99@1x.png"));

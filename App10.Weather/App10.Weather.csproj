@@ -57,4 +57,11 @@
         <Resource Include="Resources\Dark\99@1x.png"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <None Remove="App.ini"/>
+        <Content Include="App.ini">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
 </Project>

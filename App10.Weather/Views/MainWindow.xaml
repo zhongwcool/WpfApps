@@ -15,122 +15,120 @@
     <Window.Resources>
         <converter:IndexToImageSourceConverter x:Key="IndexToImageSourceConverter" />
     </Window.Resources>
-    <Grid>
-        <wpf:Figure Opacity="0.5">
-            <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" Visibility="Collapsed" />
-            <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed" />
-            <wpf:LineGraph x:Name="linegraph" />
-            <!-- wpf:MouseNavigation/ -->
-            <Border BorderThickness="0.5" BorderBrush="Black" />
-        </wpf:Figure>
+    <UniformGrid Columns="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <UniformGrid Columns="2">
-            <Grid>
+            <Grid Margin="0,30,0,30" Grid.Row="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                
-                <Grid Margin="0,30,0,30" Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding NowModel.Now.Code, Converter={StaticResource IndexToImageSourceConverter}}"
+                           VerticalAlignment="Bottom" Margin="20,0,10,0"
+                           Grid.Column="0" />
+                    <TextBlock Text="{Binding NowModel.Now.Temperature}"
+                               FontWeight="Heavy" FontSize="28" VerticalAlignment="Bottom"
+                               Margin="0,0,0,0"
+                               Grid.Column="1" />
+                    <TextBlock Text="℃" FontWeight="Heavy" FontSize="22" VerticalAlignment="Bottom"
+                               Margin="0,0,0,8"
+                               Grid.Column="2" />
+                    <TextBlock Text="{Binding NowModel.Now.Text}"
+                               FontWeight="Heavy" FontSize="28" VerticalAlignment="Bottom"
+                               Grid.Column="3" />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <wpf:Figure Margin="30,40,30,40" Opacity="0.8">
+                        <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" Visibility="Collapsed" />
+                        <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed" />
+                        <Grid Name="lines" />
+                        <!-- wpf:MouseNavigation/ -->
+                    </wpf:Figure>
+                    <Grid Margin="0,30,0,20">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding NowModel.Now.Code, Converter={StaticResource IndexToImageSourceConverter}}"
-                               VerticalAlignment="Bottom" Margin="20,0,10,0"
-                               Grid.Column="0" />
-                        <TextBlock Text="{Binding NowModel.Now.Temperature}" 
-                                   FontWeight="Heavy" FontSize="28" VerticalAlignment="Bottom"
-                                   Margin="0,0,0,0" 
-                                   Grid.Column="1" />
-                        <TextBlock Text="℃" FontWeight="Heavy" FontSize="22" VerticalAlignment="Bottom"
-                                   Margin="0,0,0,8" 
-                                   Grid.Column="2" />
-                        <TextBlock Text="{Binding NowModel.Now.Text}"
-                                   FontWeight="Heavy" FontSize="28" VerticalAlignment="Bottom" 
-                                   Grid.Column="3" />
-                    </Grid>
-                    
-                    <Grid Grid.Row="1">
-                        <wpf:Figure Margin="30,40,30,40">
-                            <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" Visibility="Collapsed" />
-                            <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed" />
-                            <Grid Name="lines" />
-                            <!-- wpf:MouseNavigation/ -->
-                        </wpf:Figure>
-                        <Grid Margin="0,30,0,20" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <control:DailyView
-                                SourceIndex="{Binding DailyModel.Daily[0].Code_Day}"
-                                ShortDate="{Binding DailyModel.Daily[0].Date}"
-                                High="{Binding DailyModel.Daily[0].High}"
-                                Low="{Binding DailyModel.Daily[0].Low}"
-                                Grid.Column="0" />
-                            <control:DailyView
-                                SourceIndex="{Binding DailyModel.Daily[1].Code_Day}"
-                                ShortDate="{Binding DailyModel.Daily[1].Date}"
-                                High="{Binding DailyModel.Daily[1].High}"
-                                Low="{Binding DailyModel.Daily[1].Low}"
-                                Grid.Column="1" />
-                            <control:DailyView
-                                SourceIndex="{Binding DailyModel.Daily[2].Code_Day}"
-                                ShortDate="{Binding DailyModel.Daily[2].Date}"
-                                High="{Binding DailyModel.Daily[2].High}"
-                                Low="{Binding DailyModel.Daily[2].Low}"
-                                Grid.Column="2" />
-                            <control:DailyView
-                                SourceIndex="{Binding DailyModel.Daily[3].Code_Day}"
-                                ShortDate="{Binding DailyModel.Daily[3].Date}"
-                                High="{Binding DailyModel.Daily[3].High}"
-                                Low="{Binding DailyModel.Daily[3].Low}"
-                                Grid.Column="3" />
-                            <control:DailyView
-                                SourceIndex="{Binding DailyModel.Daily[4].Code_Day}"
-                                ShortDate="{Binding DailyModel.Daily[4].Date}"
-                                High="{Binding DailyModel.Daily[4].High}"
-                                Low="{Binding DailyModel.Daily[4].Low}"
-                                Grid.Column="4" />
-                        </Grid>
-                    </Grid>
-                    
-                    <Grid Grid.Row="2">
-                        <TextBlock FontWeight="Heavy" FontSize="20" VerticalAlignment="Bottom" Margin="20,0,10,0"
-                                   Text="{Binding DailyModel.Location.Name}" />
+                        <control:DailyView
+                            SourceIndex="{Binding DailyModel.Daily[0].Code_Day}"
+                            ShortDate="{Binding DailyModel.Daily[0].Date}"
+                            High="{Binding DailyModel.Daily[0].High}"
+                            Low="{Binding DailyModel.Daily[0].Low}"
+                            Grid.Column="0" />
+                        <control:DailyView
+                            SourceIndex="{Binding DailyModel.Daily[1].Code_Day}"
+                            ShortDate="{Binding DailyModel.Daily[1].Date}"
+                            High="{Binding DailyModel.Daily[1].High}"
+                            Low="{Binding DailyModel.Daily[1].Low}"
+                            Grid.Column="1" />
+                        <control:DailyView
+                            SourceIndex="{Binding DailyModel.Daily[2].Code_Day}"
+                            ShortDate="{Binding DailyModel.Daily[2].Date}"
+                            High="{Binding DailyModel.Daily[2].High}"
+                            Low="{Binding DailyModel.Daily[2].Low}"
+                            Grid.Column="2" />
+                        <control:DailyView
+                            SourceIndex="{Binding DailyModel.Daily[3].Code_Day}"
+                            ShortDate="{Binding DailyModel.Daily[3].Date}"
+                            High="{Binding DailyModel.Daily[3].High}"
+                            Low="{Binding DailyModel.Daily[3].Low}"
+                            Grid.Column="3" />
+                        <control:DailyView
+                            SourceIndex="{Binding DailyModel.Daily[4].Code_Day}"
+                            ShortDate="{Binding DailyModel.Daily[4].Date}"
+                            High="{Binding DailyModel.Daily[4].High}"
+                            Low="{Binding DailyModel.Daily[4].Low}"
+                            Grid.Column="4" />
                     </Grid>
                 </Grid>
 
-                <WrapPanel HorizontalAlignment="Right" Grid.Row="1">
-                    <Button Command="{Binding CommandRenewDaily}" Margin="5" Content="逐日天气" />
-                    <Button Command="{Binding CommandRenewHourly}" Margin="5" Content="逐时天气" />
-                    <Button Command="{Binding CommandRenewNow}" Margin="5" Content="实时天气" />
-                </WrapPanel>
+                <Grid Grid.Row="2">
+                    <TextBlock FontWeight="Heavy" FontSize="20" VerticalAlignment="Bottom" Margin="20,0,10,0"
+                               Text="{Binding DailyModel.Location.Name}" />
+                </Grid>
             </Grid>
 
-            <StackPanel>
-                <TextBlock Text="{Binding NowModel.Now.Text}" />
-                <TextBlock Text="{Binding NowModel.Location.Path}" />
-                <TextBlock Text="{Binding NowModel.Now.Temperature}" />
-                <TextBlock Text="{Binding NowModel.Last_Update}" />
-            </StackPanel>
-            
-            <Viewbox />
-            <Viewbox />
-        </UniformGrid>
-    </Grid>
+            <WrapPanel HorizontalAlignment="Right" Grid.Row="1">
+                <Button Command="{Binding CommandRenewDaily}" Margin="5" Content="逐日天气" />
+                <Button Command="{Binding CommandRenewHourly}" Margin="5" Content="逐时天气" />
+                <Button Command="{Binding CommandRenewNow}" Margin="5" Content="实时天气" />
+            </WrapPanel>
+        </Grid>
+
+        <StackPanel Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
+            <TextBlock Text="{Binding NowModel.Now.Text}" />
+            <TextBlock Text="{Binding NowModel.Location.Path}" />
+            <TextBlock Text="{Binding NowModel.Now.Temperature}" />
+            <TextBlock Text="{Binding NowModel.Last_Update}" />
+        </StackPanel>
+
+        <Grid Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" />
+        <Grid>
+            <wpf:Figure>
+                <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" Visibility="Collapsed" />
+                <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed" />
+                <wpf:LineGraph x:Name="linegraph" />
+                <!-- wpf:MouseNavigation/ -->
+                <Border BorderThickness="0.5" BorderBrush="Black" />
+            </wpf:Figure>
+        </Grid>
+    </UniformGrid>
 </Window>
