@@ -53,7 +53,7 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <wpf:Figure Margin="30,40,30,40" Opacity="0.8">
+                    <wpf:Figure Margin="30,40,30,40" Opacity="0.7">
                         <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" Visibility="Collapsed" />
                         <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" Visibility="Collapsed" />
                         <Grid Name="lines" />

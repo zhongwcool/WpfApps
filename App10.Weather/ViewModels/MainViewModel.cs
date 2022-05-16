@@ -28,9 +28,7 @@ public class MainViewModel : ObservableObject
         CommandRenewHourly = new RelayCommand(() => { RequestHourly(apikey, location); });
         CommandRenewDaily = new RelayCommand(() => { RequestDaily(apikey, location); });
 
-        LoadDataNow();
-        LoadDataHourly();
-        LoadDataDaily();
+        LoadSavedData();
     }
 
     public static MainViewModel CreateInstance()
@@ -78,7 +76,7 @@ public class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new Message { Key = 102, Obj = DailyModel });
     }
 
-    private const string FileDaily = "daily.json";
+    private const string FileDaily = "data_daily.json";
 
     private static void SaveDataDaily(string data)
     {
@@ -130,7 +128,7 @@ public class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new Message { Key = 101, Obj = HourlyModel });
     }
 
-    private const string FileHourly = "hourly.json";
+    private const string FileHourly = "data_hourly.json";
 
     private static void SaveDataHourly(string data)
     {
@@ -173,7 +171,7 @@ public class MainViewModel : ObservableObject
         NowModel = JsonConvert.DeserializeObject<NowModel>(result1.ToString());
     }
 
-    private const string FileNow = "now.json";
+    private const string FileNow = "data_now.json";
 
     private static void SaveDataNow(string data)
     {
@@ -198,6 +196,13 @@ public class MainViewModel : ObservableObject
     #endregion
 
     #region 基础方法
+
+    private void LoadSavedData()
+    {
+        LoadDataNow();
+        LoadDataHourly();
+        LoadDataDaily();
+    }
 
     /// <summary>
     /// save data to json file
