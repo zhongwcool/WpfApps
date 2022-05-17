@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using App10.Weather.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using ModernWpf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -29,6 +31,9 @@ public class MainViewModel : ObservableObject
         CommandRenewDaily = new RelayCommand(() => { RequestDaily(apikey, location); });
 
         LoadSavedData();
+
+        DependencyPropertyDescriptor.FromProperty(ThemeManager.ApplicationThemeProperty, typeof(ThemeManager))
+            .AddValueChanged(ThemeManager.Current, delegate { UpdateApplicationTheme(); });
     }
 
     public static MainViewModel CreateInstance()
@@ -238,6 +243,16 @@ public class MainViewModel : ObservableObject
             Debug.WriteLine(e);
             return null;
         }
+    }
+
+    #endregion
+
+    #region ApplicationTheme
+
+    private void UpdateApplicationTheme()
+    {
+        // 通过刷新 *Model 触发主题资源更新
+        LoadSavedData();
     }
 
     #endregion

@@ -47,18 +47,61 @@
         <Resource Include="Resources\Dark\29@1x.png" />
         <Resource Include="Resources\Dark\30@1x.png" />
         <Resource Include="Resources\Dark\31@1x.png" />
-        <Resource Include="Resources\Dark\32@1x.png" />
-        <Resource Include="Resources\Dark\33@1x.png" />
-        <Resource Include="Resources\Dark\34@1x.png" />
-        <Resource Include="Resources\Dark\35@1x.png" />
-        <Resource Include="Resources\Dark\36@1x.png" />
-        <Resource Include="Resources\Dark\37@1x.png" />
-        <Resource Include="Resources\Dark\38@1x.png" />
-        <Resource Include="Resources\Dark\99@1x.png" />
+        <Resource Include="Resources\Dark\32@1x.png"/>
+        <Resource Include="Resources\Dark\33@1x.png"/>
+        <Resource Include="Resources\Dark\34@1x.png"/>
+        <Resource Include="Resources\Dark\35@1x.png"/>
+        <Resource Include="Resources\Dark\36@1x.png"/>
+        <Resource Include="Resources\Dark\37@1x.png"/>
+        <Resource Include="Resources\Dark\38@1x.png"/>
+        <Resource Include="Resources\Dark\99@1x.png"/>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="App.ini" />
+        <Resource Include="Resources\Light\0@1x.png"/>
+        <Resource Include="Resources\Light\10@1x.png"/>
+        <Resource Include="Resources\Light\11@1x.png"/>
+        <Resource Include="Resources\Light\12@1x.png"/>
+        <Resource Include="Resources\Light\13@1x.png"/>
+        <Resource Include="Resources\Light\14@1x.png"/>
+        <Resource Include="Resources\Light\15@1x.png"/>
+        <Resource Include="Resources\Light\16@1x.png"/>
+        <Resource Include="Resources\Light\17@1x.png"/>
+        <Resource Include="Resources\Light\18@1x.png"/>
+        <Resource Include="Resources\Light\19@1x.png"/>
+        <Resource Include="Resources\Light\1@1x.png"/>
+        <Resource Include="Resources\Light\20@1x.png"/>
+        <Resource Include="Resources\Light\21@1x.png"/>
+        <Resource Include="Resources\Light\22@1x.png"/>
+        <Resource Include="Resources\Light\23@1x.png"/>
+        <Resource Include="Resources\Light\24@1x.png"/>
+        <Resource Include="Resources\Light\25@1x.png"/>
+        <Resource Include="Resources\Light\26@1x.png"/>
+        <Resource Include="Resources\Light\27@1x.png"/>
+        <Resource Include="Resources\Light\28@1x.png"/>
+        <Resource Include="Resources\Light\29@1x.png"/>
+        <Resource Include="Resources\Light\2@1x.png"/>
+        <Resource Include="Resources\Light\30@1x.png"/>
+        <Resource Include="Resources\Light\31@1x.png"/>
+        <Resource Include="Resources\Light\32@1x.png"/>
+        <Resource Include="Resources\Light\33@1x.png"/>
+        <Resource Include="Resources\Light\34@1x.png"/>
+        <Resource Include="Resources\Light\35@1x.png"/>
+        <Resource Include="Resources\Light\36@1x.png"/>
+        <Resource Include="Resources\Light\37@1x.png"/>
+        <Resource Include="Resources\Light\38@1x.png"/>
+        <Resource Include="Resources\Light\3@1x.png"/>
+        <Resource Include="Resources\Light\4@1x.png"/>
+        <Resource Include="Resources\Light\5@1x.png"/>
+        <Resource Include="Resources\Light\6@1x.png"/>
+        <Resource Include="Resources\Light\7@1x.png"/>
+        <Resource Include="Resources\Light\8@1x.png"/>
+        <Resource Include="Resources\Light\99@1x.png"/>
+        <Resource Include="Resources\Light\9@1x.png"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="App.ini"/>
         <Content Include="App.ini">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
