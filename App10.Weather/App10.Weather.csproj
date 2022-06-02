@@ -2,51 +2,52 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+        <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
         <Nullable>disable</Nullable>
-      <UseWPF>true</UseWPF>
+        <UseWPF>true</UseWPF>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
-  <ItemGroup>
-      <PackageReference Include="InteractiveDataDisplay.WPF" Version="1.0.0" />
-      <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-      <PackageReference Include="ModernWpfUI" Version="0.9.4" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="InteractiveDataDisplay.WPF" Version="1.0.0"/>
+        <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.5"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\Dark\0@1x.png" />
-        <Resource Include="Resources\Dark\1@1x.png" />
-        <Resource Include="Resources\Dark\2@1x.png" />
-        <Resource Include="Resources\Dark\3@1x.png" />
-        <Resource Include="Resources\Dark\4@1x.png" />
-        <Resource Include="Resources\Dark\5@1x.png" />
-        <Resource Include="Resources\Dark\6@1x.png" />
-        <Resource Include="Resources\Dark\7@1x.png" />
-        <Resource Include="Resources\Dark\8@1x.png" />
-        <Resource Include="Resources\Dark\9@1x.png" />
-        <Resource Include="Resources\Dark\10@1x.png" />
-        <Resource Include="Resources\Dark\11@1x.png" />
-        <Resource Include="Resources\Dark\12@1x.png" />
-        <Resource Include="Resources\Dark\13@1x.png" />
-        <Resource Include="Resources\Dark\14@1x.png" />
-        <Resource Include="Resources\Dark\15@1x.png" />
-        <Resource Include="Resources\Dark\16@1x.png" />
-        <Resource Include="Resources\Dark\17@1x.png" />
-        <Resource Include="Resources\Dark\18@1x.png" />
-        <Resource Include="Resources\Dark\19@1x.png" />
-        <Resource Include="Resources\Dark\20@1x.png" />
-        <Resource Include="Resources\Dark\21@1x.png" />
-        <Resource Include="Resources\Dark\22@1x.png" />
-        <Resource Include="Resources\Dark\23@1x.png" />
-        <Resource Include="Resources\Dark\24@1x.png" />
-        <Resource Include="Resources\Dark\25@1x.png" />
-        <Resource Include="Resources\Dark\26@1x.png" />
-        <Resource Include="Resources\Dark\27@1x.png" />
-        <Resource Include="Resources\Dark\28@1x.png" />
-        <Resource Include="Resources\Dark\29@1x.png" />
-        <Resource Include="Resources\Dark\30@1x.png" />
-        <Resource Include="Resources\Dark\31@1x.png" />
+        <Resource Include="Resources\Dark\0@1x.png"/>
+        <Resource Include="Resources\Dark\1@1x.png"/>
+        <Resource Include="Resources\Dark\2@1x.png"/>
+        <Resource Include="Resources\Dark\3@1x.png"/>
+        <Resource Include="Resources\Dark\4@1x.png"/>
+        <Resource Include="Resources\Dark\5@1x.png"/>
+        <Resource Include="Resources\Dark\6@1x.png"/>
+        <Resource Include="Resources\Dark\7@1x.png"/>
+        <Resource Include="Resources\Dark\8@1x.png"/>
+        <Resource Include="Resources\Dark\9@1x.png"/>
+        <Resource Include="Resources\Dark\10@1x.png"/>
+        <Resource Include="Resources\Dark\11@1x.png"/>
+        <Resource Include="Resources\Dark\12@1x.png"/>
+        <Resource Include="Resources\Dark\13@1x.png"/>
+        <Resource Include="Resources\Dark\14@1x.png"/>
+        <Resource Include="Resources\Dark\15@1x.png"/>
+        <Resource Include="Resources\Dark\16@1x.png"/>
+        <Resource Include="Resources\Dark\17@1x.png"/>
+        <Resource Include="Resources\Dark\18@1x.png"/>
+        <Resource Include="Resources\Dark\19@1x.png"/>
+        <Resource Include="Resources\Dark\20@1x.png"/>
+        <Resource Include="Resources\Dark\21@1x.png"/>
+        <Resource Include="Resources\Dark\22@1x.png"/>
+        <Resource Include="Resources\Dark\23@1x.png"/>
+        <Resource Include="Resources\Dark\24@1x.png"/>
+        <Resource Include="Resources\Dark\25@1x.png"/>
+        <Resource Include="Resources\Dark\26@1x.png"/>
+        <Resource Include="Resources\Dark\27@1x.png"/>
+        <Resource Include="Resources\Dark\28@1x.png"/>
+        <Resource Include="Resources\Dark\29@1x.png"/>
+        <Resource Include="Resources\Dark\30@1x.png"/>
+        <Resource Include="Resources\Dark\31@1x.png"/>
         <Resource Include="Resources\Dark\32@1x.png"/>
         <Resource Include="Resources\Dark\33@1x.png"/>
         <Resource Include="Resources\Dark\34@1x.png"/>
@@ -105,6 +106,10 @@
         <Content Include="App.ini">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net48'"/>
     </ItemGroup>
 
 </Project>

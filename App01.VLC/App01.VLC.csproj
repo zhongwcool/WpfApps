@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <LangVersion>10</LangVersion>
@@ -12,7 +12,7 @@
         <PackageReference Include="LibVLCSharp" Version="3.6.5"/>
         <PackageReference Include="LibVLCSharp.WPF" Version="3.6.5"/>
         <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
-        <PackageReference Include="ModernWpfUI" Version="0.9.4"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.5"/>
         <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16"/>
     </ItemGroup>
 
