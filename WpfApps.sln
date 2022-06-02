@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App09.Map", "App09.Map\App0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App10.Weather", "App10.Weather\App10.Weather.csproj", "{39553363-B0A8-4529-9934-CA2CC3E64156}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App11.Databases", "App11.Databases\App11.Databases.csproj", "{8E2F652E-D7F5-43B2-81BD-0FC17D8228B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +68,9 @@ Global
 		{39553363-B0A8-4529-9934-CA2CC3E64156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39553363-B0A8-4529-9934-CA2CC3E64156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39553363-B0A8-4529-9934-CA2CC3E64156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2F652E-D7F5-43B2-81BD-0FC17D8228B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2F652E-D7F5-43B2-81BD-0FC17D8228B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2F652E-D7F5-43B2-81BD-0FC17D8228B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2F652E-D7F5-43B2-81BD-0FC17D8228B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

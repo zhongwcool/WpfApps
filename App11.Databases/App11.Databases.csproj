@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ModernWpfUI" Version="0.9.5"/>
+        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="tt2.db"/>
+        <Content Include="tt2.db">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="ViewModels"/>
+    </ItemGroup>
+
+</Project>
