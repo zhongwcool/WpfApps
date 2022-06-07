@@ -4,8 +4,322 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:vm="clr-namespace:App11.Databases.ViewModels"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:mi="clr-namespace:App11.Databases.Miscellaneous"
         mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="MainWindow" Height="450" Width="800">
-    <DataGrid x:Name="DataGrid" />
+        Title="Hotel System" Height="700" Width="1200">
+    <Window.Resources>
+        <mi:RoomTypeConverter x:Key="RoomTypeConverter"/>
+        <mi:ResetFilterClientParametersConverter x:Key="ResetFilterClientConverter"/>
+        <mi:ResetFilterRoomParametersConverter x:Key="ResetFilterRoomConverter"/>
+        <Style TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+        </Style>
+    </Window.Resources>
+    
+    <TabControl>
+        <!-- < Clients TAB > -->
+        <TabItem x:Name="ClientsTab" Header="Clients" d:DataContext="{d:DesignInstance d:Type=vm:ClientsTabViewModel, IsDesignTimeCreatable=True}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Grid.Column="0" x:Name="ClientsGrid" ItemsSource="{Binding Context.Clients.Local}" SelectedItem="{Binding SelectedClient, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="Last name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Birthdate" Binding="{Binding Path=Birthdate, StringFormat={}{0:dd, MMMM, yyyy}}"/>
+                        <DataGridTextColumn Header="Account" Binding="{Binding Account}"/>
+                        <DataGridTextColumn Header="Room number" Binding="{Binding Room.Number}"/>
+                    </DataGrid.Columns>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding ClientsGridSelectionChangedCommand}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </DataGrid>
+                
+                <!-- < Clients CRUD > -->
+                <Border Grid.Column="1" BorderThickness="1" Margin="50" CornerRadius="10" BorderBrush="LightBlue">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[0].Header, StringFormat={}{0}:}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[1].Header, StringFormat={}{0}:}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[2].Header, StringFormat={}{0}:}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[3].Header, StringFormat={}{0}:}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[4].Header, StringFormat={}{0}:}"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding ClientInfo.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding ClientInfo.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DatePicker Grid.Row="2" Grid.Column="1" Margin="3" SelectedDate="{Binding ClientInfo.Birthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding ClientInfo.Account, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox Grid.Row="4" Grid.Column="1" Margin="3" ItemsSource="{Binding Context.Rooms.Local}" SelectedItem="{Binding ClientInfo.Room, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="Number"/>
+                                                <Binding Path="Type"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=ActualWidth}">
+                            <Button Margin="5" Padding="10,0,10,0" Content="Add" Command="{Binding AddClientCommand}"/>
+                            <Button Margin="5" Padding="10,0,10,0" Content="Update" Command="{Binding UpdateClientCommand}"/>
+                            <Button Margin="5" Padding="10,0,10,0" Content="Delete" Command="{Binding DeleteClientCommand}"/>
+                            <Button Margin="5" Padding="10,0,10,0" HorizontalAlignment="Right" Content="Export" Command="{Binding ExportClientsCommand}"/>
+                        </DockPanel>
+
+                        <!-- < Clients Filter > -->
+                        <Expander Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Header="Filters">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[0].Header, StringFormat={}{0}:}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[1].Header, StringFormat={}{0}:}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[2].Header, StringFormat={}{0}:}"/>
+                                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[3].Header, StringFormat={}{0}:}"/>
+                                <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="{Binding ElementName=ClientsGrid, Path=Columns[4].Header, StringFormat={}{0}:}"/>
+
+                                <TextBox x:Name="FnTbFilter" Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding ClientFilter.FirstName, UpdateSourceTrigger=PropertyChanged}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="TextChanged">
+                                            <b:InvokeCommandAction Command="{Binding ClientsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </TextBox>
+                                <TextBox x:Name="LnTbFilter" Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding ClientFilter.LastName, UpdateSourceTrigger=PropertyChanged}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="TextChanged">
+                                            <b:InvokeCommandAction Command="{Binding ClientsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </TextBox>
+                                <DatePicker x:Name="BdDpFilter" Grid.Row="2" Grid.Column="1" Margin="3" SelectedDate="{Binding ClientFilter.Birthdate}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="SelectedDateChanged">
+                                            <b:InvokeCommandAction Command="{Binding ClientsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </DatePicker>
+                                <TextBox x:Name="AccTbFilter" Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding ClientFilter.Account, UpdateSourceTrigger=PropertyChanged}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="TextChanged">
+                                            <b:InvokeCommandAction Command="{Binding ClientsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </TextBox>
+                                <ComboBox x:Name="RnCbFilter" Grid.Row="4" Grid.Column="1" Margin="3" ItemsSource="{Binding Context.Rooms.Local}" SelectedItem="{Binding ClientFilter.Room}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Path="Number"/>
+                                                        <Binding Path="Type"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="SelectionChanged">
+                                            <b:InvokeCommandAction Command="{Binding ClientsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </ComboBox>
+                                <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="4,5,4,5" Content="Reset filter" Command="{Binding ResetFilterClientCommand}">
+                                    <Button.CommandParameter>
+                                        <MultiBinding Converter="{StaticResource ResetFilterClientConverter}">
+                                            <Binding ElementName="FnTbFilter"/>
+                                            <Binding ElementName="LnTbFilter"/>
+                                            <Binding ElementName="BdDpFilter"/>
+                                            <Binding ElementName="AccTbFilter"/>
+                                            <Binding ElementName="RnCbFilter"/>
+                                        </MultiBinding>
+                                    </Button.CommandParameter>
+                                </Button>
+
+                                <DataGrid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FilteredClientList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"/>
+                                        <DataGridTextColumn Header="Last name" Binding="{Binding LastName}"/>
+                                        <DataGridTextColumn Header="Birthdate" Binding="{Binding Path=Birthdate, StringFormat={}{0:dd, MMMM, yyyy}}"/>
+                                        <DataGridTextColumn Header="Account" Binding="{Binding Account}"/>
+                                        <DataGridTextColumn Header="Room number" Binding="{Binding Room.Number}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Expander>
+                        <!-- </ Clients Filter > -->
+                    </Grid>
+                </Border>
+                <!-- </ Clients CRUD > -->
+            </Grid>
+        </TabItem>
+        <!-- </ Clients TAB > -->
+
+        <!-- < Hotel room TAB > -->
+        <TabItem x:Name="RoomsTab" Header="Hotel rooms" d:DataContext="{d:DesignInstance d:Type=vm:RoomsTabViewModel, IsDesignTimeCreatable=True}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Grid.Column="0" x:Name="RoomsGrid" ItemsSource="{Binding Context.Rooms.Local}" SelectedItem="{Binding SelectedRoom, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Room number" Binding="{Binding Number}"/>
+                        <DataGridTextColumn Header="Room type" Binding="{Binding Type}"/>
+                    </DataGrid.Columns>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding RoomsGridSelectionChangedCommand}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </DataGrid>
+
+                <!-- < Hotel rooms CRUD > -->
+                <Border Grid.Column="1" BorderThickness="1" Margin="50" CornerRadius="10" BorderBrush="LightBlue">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding ElementName=RoomsGrid, Path=Columns[0].Header, StringFormat={}{0}:}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding ElementName=RoomsGrid, Path=Columns[1].Header, StringFormat={}{0}:}"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding RoomInfo.Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="RoomTypeCb" Grid.Row="1" Grid.Column="1" Margin="3" SelectedIndex="{Binding RoomInfo.Type, Mode=TwoWay, Converter={StaticResource RoomTypeConverter}}"/>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Margin="5" Padding="10,0,10,0" Content="Add" Command="{Binding AddRoomCommand}"/>
+                            <Button Margin="5" Padding="10,0,10,0" Content="Update" Command="{Binding UpdateRoomCommand}"/>
+                            <Button Margin="5" Padding="10,0,10,0" Content="Delete" Command="{Binding DeleteRoomCommand}"/>
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedRoom.Clients}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"/>
+                                <DataGridTextColumn Header="Last name" Binding="{Binding LastName}"/>
+                                <DataGridTextColumn Header="Birthdate" Binding="{Binding Path=Birthdate, StringFormat={}{0:dd, MMMM, yyyy}}"/>
+                                <DataGridTextColumn Header="Account" Binding="{Binding Account}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- < Rooms Filter > -->
+                        <Expander Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Header="Filters">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding ElementName=RoomsGrid, Path=Columns[0].Header, StringFormat={}{0}:}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding ElementName=RoomsGrid, Path=Columns[1].Header, StringFormat={}{0}:}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Room freedom:"/>
+
+                                <TextBox x:Name="RnTbFilter" Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding RoomFilter.Number, UpdateSourceTrigger=PropertyChanged}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="TextChanged">
+                                            <b:InvokeCommandAction Command="{Binding RoomsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </TextBox>
+                                <ComboBox x:Name="RtCbFilter" Grid.Row="1" Grid.Column="1" Margin="3" SelectedItem="{Binding RoomFilter.Type}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="SelectionChanged">
+                                            <b:InvokeCommandAction Command="{Binding RoomsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </ComboBox>
+                                <ComboBox x:Name="RfCbFilter" Grid.Row="2" Grid.Column="1" Margin="3" SelectedIndex="{Binding RoomFreedomFilterIndex, Mode=TwoWay}">
+                                    <ComboBox.Items>
+                                        <TextBlock Text="None"/>
+                                        <TextBlock Text="Free"/>
+                                        <TextBlock Text="Not free"/>
+                                    </ComboBox.Items>
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="SelectionChanged">
+                                            <b:InvokeCommandAction Command="{Binding RoomsFilterChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </ComboBox>
+                                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="4,5,4,5" Content="Reset filter" Command="{Binding ResetFilterRoomCommand}">
+                                    <Button.CommandParameter>
+                                        <MultiBinding Converter="{StaticResource ResetFilterRoomConverter}">
+                                            <Binding ElementName="RnTbFilter"/>
+                                            <Binding ElementName="RtCbFilter"/>
+                                            <Binding ElementName="RfCbFilter"/>
+                                        </MultiBinding>
+                                    </Button.CommandParameter>
+                                </Button>
+
+                                <DataGrid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FilteredRoomList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Room number" Binding="{Binding Number}"/>
+                                        <DataGridTextColumn Header="Room type" Binding="{Binding Type}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Expander>
+                        <!-- </ Rooms Filter > -->
+                    </Grid>
+                </Border>
+                <!-- </ Hotel rooms CRUD > -->
+            </Grid>
+        </TabItem>
+        <!-- </ Hotel room TAB > -->
+    </TabControl>
 </Window>

@@ -3,11 +3,15 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="EntityFramework" Version="6.4.4"/>
+        <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.5"/>
         <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116"/>
     </ItemGroup>
@@ -17,10 +21,6 @@
         <Content Include="tt2.db">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="ViewModels"/>
     </ItemGroup>
 
 </Project>
