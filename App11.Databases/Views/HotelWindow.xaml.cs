@@ -7,11 +7,19 @@ using App11.Databases.ViewModels;
 
 namespace App11.Databases.Views;
 
-public partial class MainWindow : Window
+public partial class HotelWindow : Window
 {
+    private static HotelWindow _instance;
+
+    public static HotelWindow GetInstance()
+    {
+        _instance ??= new HotelWindow();
+        return _instance;
+    }
+
     private HotelContext Context { get; }
 
-    public MainWindow()
+    public HotelWindow()
     {
         InitializeComponent();
 
@@ -29,13 +37,13 @@ public partial class MainWindow : Window
     {
         var rooms = new[]
         {
-            new Room { Number = "1", Type = RoomTypes.StandardRoom },
-            new Room { Number = "2", Type = RoomTypes.JuniorSuite },
-            new Room { Number = "3", Type = RoomTypes.StandardRoom },
-            new Room { Number = "4", Type = RoomTypes.PresidentialSuite },
-            new Room { Number = "5", Type = RoomTypes.JuniorSuite },
-            new Room { Number = "6", Type = RoomTypes.StandardRoom },
-            new Room { Number = "7", Type = RoomTypes.PresidentialSuite }
+            new Room { Number = "1001", Type = RoomTypes.StandardRoom },
+            new Room { Number = "1101", Type = RoomTypes.JuniorSuite },
+            new Room { Number = "1003", Type = RoomTypes.StandardRoom },
+            new Room { Number = "1201", Type = RoomTypes.PresidentialSuite },
+            new Room { Number = "1102", Type = RoomTypes.JuniorSuite },
+            new Room { Number = "1006", Type = RoomTypes.StandardRoom },
+            new Room { Number = "1202", Type = RoomTypes.PresidentialSuite }
         };
 
         var clients = new[]

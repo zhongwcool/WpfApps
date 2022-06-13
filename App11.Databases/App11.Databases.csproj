@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <LangVersion>10</LangVersion>
@@ -21,6 +21,10 @@
         <Content Include="tt2.db">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Assets"/>
     </ItemGroup>
 
 </Project>

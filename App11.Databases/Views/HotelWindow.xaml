@@ -1,4 +1,4 @@
-﻿<Window x:Class="App11.Databases.Views.MainWindow"
+﻿<Window x:Class="App11.Databases.Views.HotelWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
         xmlns:mi="clr-namespace:App11.Databases.Miscellaneous"
         mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="Hotel System" Height="700" Width="1200">
+        Title="Hotel System" Height="800" Width="1200">
     <Window.Resources>
         <mi:RoomTypeConverter x:Key="RoomTypeConverter"/>
         <mi:ResetFilterClientParametersConverter x:Key="ResetFilterClientConverter"/>
@@ -46,7 +46,7 @@
                 </DataGrid>
                 
                 <!-- < Clients CRUD > -->
-                <Border Grid.Column="1" BorderThickness="1" Margin="50" CornerRadius="10" BorderBrush="LightBlue">
+                <Border Grid.Column="1" BorderThickness="1" Margin="5" CornerRadius="5" BorderBrush="LightBlue">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -216,7 +216,7 @@
                 </DataGrid>
 
                 <!-- < Hotel rooms CRUD > -->
-                <Border Grid.Column="1" BorderThickness="1" Margin="50" CornerRadius="10" BorderBrush="LightBlue">
+                <Border Grid.Column="1" BorderThickness="1" Margin="5" CornerRadius="5" BorderBrush="LightBlue">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>

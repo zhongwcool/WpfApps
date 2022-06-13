@@ -49,6 +49,8 @@ public class ClientsTabViewModel : ObservableObject
     private void ClientInfo_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         AddClientCommand.NotifyCanExecuteChanged();
+        UpdateClientCommand.NotifyCanExecuteChanged();
+        DeleteClientCommand.NotifyCanExecuteChanged();
     }
 
     #region Commands

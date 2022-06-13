@@ -52,6 +52,8 @@ public class RoomsTabViewModel : ObservableObject
     private void RoomInfo_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         AddRoomCommand.NotifyCanExecuteChanged();
+        UpdateRoomCommand.NotifyCanExecuteChanged();
+        DeleteRoomCommand.NotifyCanExecuteChanged();
     }
 
     #region Commands
