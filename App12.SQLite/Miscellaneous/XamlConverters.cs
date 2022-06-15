@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
-using App11.Databases.Models;
+using App12.SQLite.Models;
 
-namespace App11.Databases.Miscellaneous;
+namespace App12.SQLite.Miscellaneous;
 
 public class RoomTypeConverter : IValueConverter
 {

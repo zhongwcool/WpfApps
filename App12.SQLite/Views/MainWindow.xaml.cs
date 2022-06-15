@@ -1,36 +1,43 @@
 ﻿using System;
-using System.Data.Entity;
+using System.ComponentModel;
 using System.Windows;
-using App11.Databases.HotelDbContext;
-using App11.Databases.Models;
-using App11.Databases.ViewModels;
+using App12.SQLite.HotelDbContext;
+using App12.SQLite.Models;
+using App12.SQLite.ViewModels;
 
-namespace App11.Databases.Views;
+namespace App12.SQLite.Views;
 
-public partial class HotelWindow : Window
+public partial class MainWindow : Window
 {
-    private static HotelWindow _instance;
-
-    public static HotelWindow GetInstance()
-    {
-        _instance ??= new HotelWindow();
-        return _instance;
-    }
-
     private HotelContext Context { get; }
 
-    public HotelWindow()
+    public MainWindow()
     {
         InitializeComponent();
 
         RoomTypeCb.ItemsSource = RtCbFilter.ItemsSource = Enum.GetNames(typeof(RoomTypes));
 
-        Database.SetInitializer(new DropCreateDatabaseIfModelChanges<HotelContext>());
-        //Database.SetInitializer(new DropCreateDatabaseAlways<HotelContext>()); // set it if you want to recreate database
         Context = new HotelContext();
-        //Fill(); // uncomment if you want to fill database with default values
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        // this is for demo purposes only, to make it easier
+        // to get up and running
+        Context.Database.EnsureCreated();
+        // uncomment if you want to fill database with default values
+        //Fill();
+
+        // bind to the source
         ClientsTab.DataContext = new ClientsTabViewModel(Context);
         RoomsTab.DataContext = new RoomsTabViewModel(Context);
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        // clean up database connections
+        Context.Dispose();
+        base.OnClosing(e);
     }
 
     private void Fill()

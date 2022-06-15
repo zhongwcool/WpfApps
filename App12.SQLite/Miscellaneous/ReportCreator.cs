@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 
-namespace App11.Databases.Miscellaneous;
+namespace App12.SQLite.Miscellaneous;
 
 public class ReportCreator
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace App11.Databases.Models;
+namespace App12.SQLite.Models;
 
 public enum RoomTypes
 {
@@ -14,10 +14,12 @@ public enum RoomTypes
 
 public class Room : ObservableObject
 {
-    private RoomTypes _type;
-    private string _number;
+    public Room()
+    {
+        _clients = new List<Client>();
+    }
+
     private int _roomId;
-    private IList<Client> _clients;
 
     public int RoomId
     {
@@ -25,11 +27,15 @@ public class Room : ObservableObject
         set => SetProperty(ref _roomId, value);
     }
 
+    private string _number;
+
     public string Number
     {
         get => _number;
         set => SetProperty(ref _number, value);
     }
+
+    private RoomTypes _type;
 
     public RoomTypes Type
     {
@@ -37,14 +43,11 @@ public class Room : ObservableObject
         set => SetProperty(ref _type, value);
     }
 
+    private IList<Client> _clients;
+
     public virtual IList<Client> Clients
     {
         get => _clients;
         set => SetProperty(ref _clients, value);
-    }
-
-    public Room()
-    {
-        _clients = new List<Client>();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace App11.Databases.Models;
+﻿namespace App12.SQLite.Models;
 
 public class Client : Person
 {

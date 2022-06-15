@@ -1,6 +1,8 @@
-# App11.Databases
+# App12.SQLite
 
-## Hotel System (base on MySQL)
+You don't need to install any database software. You can use SQLite.
+
+## [Hotel System](https://github.com/mentapro/HotelSystem)
 
 This is a hotel system that can be used to book a room for a certain period of time.
 
@@ -8,7 +10,7 @@ This is a hotel system that can be used to book a room for a certain period of t
 - Entity Framework Example
 - WPF
 
-This application (WPF) works with database Microsoft SQL Server through Entity Framework.
+This application (WPF) works with database SQLite through Entity Framework.
 I tried to write clean code. I used MVVM pattern and followed SOLID principles.
 
 Current application represents database for hotel. There are rooms and clients. Each room can contain many clients but
@@ -22,7 +24,3 @@ User interface is written in XAML. XAML elements use binding to show data.
 #### Rooms tab:
 
 ![HotelSystem_RoomsTab](https://farm5.staticflickr.com/4223/34890145765_b72db14657_b.jpg)
-
-## Unnamed System (base on SQLite)
-
-You don't need to install any database software. You can use SQLite.

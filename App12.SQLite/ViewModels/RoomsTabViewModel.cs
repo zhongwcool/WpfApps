@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows.Controls;
-using App11.Databases.HotelDbContext;
-using App11.Databases.Models;
+using App12.SQLite.HotelDbContext;
+using App12.SQLite.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace App11.Databases.ViewModels;
+namespace App12.SQLite.ViewModels;
 
 public class RoomsTabViewModel : ObservableObject
 {
     private Room _selectedRoom;
     private IList<Room> _filteredRoomList;
+    public ObservableCollection<Room> RoomsCollection { get; set; }
 
-    public HotelContext Context { get; }
+    private HotelContext Context { get; }
     public Room RoomInfo { get; set; } = new Room();
     public Room RoomFilter { get; set; } = new Room();
     public int RoomFreedomFilterIndex { get; set; }
@@ -36,7 +38,10 @@ public class RoomsTabViewModel : ObservableObject
     public RoomsTabViewModel(HotelContext context)
     {
         Context = context;
+        // load the entities into EF Core
         Context.Rooms.Load();
+        // bind to the source
+        RoomsCollection = Context.Rooms.Local.ToObservableCollection();
 
         AddRoomCommand = new RelayCommand(AddRoom, CanExecuteAddRoom);
         UpdateRoomCommand = new RelayCommand(UpdateRoom, CanExecuteUpdateRoom);

@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Windows.Controls;
-using App11.Databases.HotelDbContext;
-using App11.Databases.Miscellaneous;
-using App11.Databases.Models;
+using App12.SQLite.HotelDbContext;
+using App12.SQLite.Miscellaneous;
+using App12.SQLite.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Win32;
 
-namespace App11.Databases.ViewModels;
+namespace App12.SQLite.ViewModels;
 
 public class ClientsTabViewModel : ObservableObject
 {
     private IList<Client> _filteredClientList;
+    public ObservableCollection<Client> ClientsCollection { get; set; }
+    public ObservableCollection<Room> RoomsCollection { get; set; }
 
-    public HotelContext Context { get; }
+    private HotelContext Context { get; }
     public Client ClientInfo { get; set; } = new Client();
     public Client ClientFilter { get; set; } = new Client();
     public Client SelectedClient { get; set; }
@@ -32,7 +35,11 @@ public class ClientsTabViewModel : ObservableObject
     public ClientsTabViewModel(HotelContext context)
     {
         Context = context;
+        // load the entities into EF Core
         Context.Clients.Load();
+        // bind to the source
+        ClientsCollection = Context.Clients.Local.ToObservableCollection();
+        RoomsCollection = Context.Rooms.Local.ToObservableCollection();
 
         AddClientCommand = new RelayCommand(AddClient, CanExecuteAddClient);
         UpdateClientCommand = new RelayCommand(UpdateClient, CanExecuteUpdateClient);

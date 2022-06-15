@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace App11.Databases.Models;
+namespace App12.SQLite.Models;
 
 public class Person : ObservableObject
 {
