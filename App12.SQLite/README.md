@@ -2,6 +2,8 @@
 
 You don't need to install any database software. You can use SQLite.
 
+你不必像MySQl或SQL Server一样先安装数据库软件才能使用数据库，你可以使用SQLite。
+
 ## [Hotel System](https://github.com/mentapro/HotelSystem)
 
 This is a hotel system that can be used to book a room for a certain period of time.

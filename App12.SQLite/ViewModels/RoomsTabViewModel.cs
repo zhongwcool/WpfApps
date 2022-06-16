@@ -52,6 +52,7 @@ public class RoomsTabViewModel : ObservableObject
         RoomsFilterChangedCommand = new RelayCommand(RoomsFilterChanged);
 
         RoomInfo.PropertyChanged += RoomInfo_PropertyChanged;
+        RoomFilter.PropertyChanged += RoomFilter_PropertyChanged;
     }
 
     private void RoomInfo_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -59,6 +60,11 @@ public class RoomsTabViewModel : ObservableObject
         AddRoomCommand.NotifyCanExecuteChanged();
         UpdateRoomCommand.NotifyCanExecuteChanged();
         DeleteRoomCommand.NotifyCanExecuteChanged();
+    }
+
+    private void RoomFilter_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        ResetFilterRoomCommand.NotifyCanExecuteChanged();
     }
 
     #region Commands
@@ -132,7 +138,6 @@ public class RoomsTabViewModel : ObservableObject
 
     private bool CanExecuteResetFilterRoom(object parameters)
     {
-        if (parameters == null) return false;
         if (parameters is Tuple<TextBox, ComboBox, ComboBox> tuple)
         {
             if (string.IsNullOrEmpty(tuple.Item1.Text)

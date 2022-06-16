@@ -51,6 +51,7 @@ public class ClientsTabViewModel : ObservableObject
         ClientsFilterChangedCommand = new RelayCommand(ClientsFilterChanged);
 
         ClientInfo.PropertyChanged += ClientInfo_PropertyChanged;
+        ClientFilter.PropertyChanged += ClientFilter_PropertyChanged;
     }
 
     private void ClientInfo_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -58,6 +59,11 @@ public class ClientsTabViewModel : ObservableObject
         AddClientCommand.NotifyCanExecuteChanged();
         UpdateClientCommand.NotifyCanExecuteChanged();
         DeleteClientCommand.NotifyCanExecuteChanged();
+    }
+
+    private void ClientFilter_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        ResetFilterClientCommand.NotifyCanExecuteChanged();
     }
 
     #region Commands
@@ -145,15 +151,11 @@ public class ClientsTabViewModel : ObservableObject
             Filter = "Excel table (.xls)|*.xls"
         };
         var result = saveDialog.ShowDialog();
-        if (result == true)
-        {
-            using (TextWriter sw = new StreamWriter(saveDialog.FileName))
-            {
-                var reportCreator = new ReportCreator();
-                reportCreator.WriteTsv(clientsExport, sw);
-                sw.Close();
-            }
-        }
+        if (result != true) return;
+        using TextWriter sw = new StreamWriter(saveDialog.FileName);
+        var reportCreator = new ReportCreator();
+        reportCreator.WriteTsv(clientsExport, sw);
+        sw.Close();
     }
 
     private bool CanExecuteExportClients()
