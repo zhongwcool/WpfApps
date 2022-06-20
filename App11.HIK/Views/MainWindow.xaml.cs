@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using App11.HIK.Sdk;
+using App11.HIK.Camera;
 
 namespace App11.HIK.Views;
 

@@ -17,13 +17,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ModernWpfUI" Version="0.9.5"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.5" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="System.Windows.Forms"/>
-        <Reference Include="WindowsFormsIntegration"/>
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsFormsIntegration" />
     </ItemGroup>
 
     <ItemGroup>
@@ -38,7 +38,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Models"/>
+        <Folder Include="Dll" />
+        <Folder Include="Models" />
     </ItemGroup>
 
 </Project>
