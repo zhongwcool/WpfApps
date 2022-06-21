@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace App11.HIK.Camera;
+namespace App11.HIK.HikSdk;
 
 /// <summary>
 /// CHCNetSDK 的摘要说明。
@@ -1229,7 +1229,7 @@ public class CHCNetSDK
     public static extern int NET_DVR_SendWithRecvRemoteConfig(int lHandle, ref CHCNetSDK.NET_DVR_FACE_RECORD lpInBuff,
         int dwInBuffSize, ref CHCNetSDK.NET_DVR_FACE_STATUS lpOutBuff, int dwOutBuffSize, IntPtr dwOutDataLen);
 
-    [DllImport(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+    [DllImport(@"HCNetSDK.dll")]
     public static extern int NET_DVR_SendWithRecvRemoteConfig(int lHandle,
         ref CHCNetSDK.NET_DVR_FINGERPRINT_RECORD lpInBuff, int dwInBuffSize,
         ref CHCNetSDK.NET_DVR_FINGERPRINT_STATUS lpOutBuff, int dwOutBuffSize, IntPtr dwOutDataLen);
@@ -1456,7 +1456,7 @@ public class CHCNetSDK
     public static extern int NET_DVR_GetNextRemoteConfig(int lHandle, ref CHCNetSDK.NET_DVR_ACS_EVENT_CFG lpOutBuff,
         int dwOutBuffSize);
 
-    [DllImport(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+    [DllImport(@"HCNetSDK.dll")]
     public static extern int NET_DVR_GetNextRemoteConfig(int lHandle,
         ref CHCNetSDK.NET_DVR_FINGERPRINT_RECORD lpOutBuff, int dwOutBuffSize);
 

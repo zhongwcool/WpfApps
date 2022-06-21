@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace App11.HIK.Camera;
+namespace App11.HIK.HikSdk;
 
 class PlayCtrl
 {
@@ -278,12 +278,12 @@ class PlayCtrl
 
     //自己定义的函数接口
     /*************************************************
-Function:	 ConverUiTimeToDateTime
-Description: 把用uint表示的时间转换成DateTime表示的时间
-Input:		 void
-Output:      void
-Return:		 void
-*************************************************/
+    Function:	 ConverUiTimeToDateTime
+    Description: 把用uint表示的时间转换成DateTime表示的时间
+    Input:		 void
+    Output:      void
+    Return:		 void
+    *************************************************/
     public static DateTime ConverUiTimeToDateTime(uint uiTime)
     {
         int iYear = (int)((uiTime >> 26) + 2000);
@@ -297,12 +297,12 @@ Return:		 void
     }
 
     /*************************************************
-Function:	 GetTimeFromUiTime
-Description:  从uint表示的时间获取时间
-Input:		  void
-Output:       void
-Return:		  void
-*************************************************/
+    Function:	 GetTimeFromUiTime
+    Description:  从uint表示的时间获取时间
+    Input:		  void
+    Output:       void
+    Return:		  void
+    *************************************************/
     public static void GetTimeFromUiTime(uint uiTime, ref uint uiHour, ref uint uiMinute, ref uint uiSecond)
     {
         uiHour = ((uiTime >> 12) & 31);

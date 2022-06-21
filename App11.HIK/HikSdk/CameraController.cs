@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 using App11.HIK.Data;
 using App11.HIK.Utils;
 
-namespace App11.HIK.Camera;
+namespace App11.HIK.HikSdk;
 
 public class CameraController
 {
