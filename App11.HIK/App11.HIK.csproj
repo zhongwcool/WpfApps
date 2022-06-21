@@ -6,6 +6,7 @@
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <LangVersion>10</LangVersion>
+        <NeutralLanguage>zh-CN</NeutralLanguage>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -38,8 +39,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Dll" />
-        <Folder Include="Models" />
+        <Folder Include="Dll"/>
+        <Folder Include="Models"/>
     </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Dll\ $(ProjectDir)$(OutDir)\"/>
+    </Target>
 
 </Project>
