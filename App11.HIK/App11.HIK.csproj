@@ -28,8 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Resources\ForbidenSign.png" />
-        <Resource Include="Resources\ForbidenSign.png" />
+        <Resource Include="Resources\ForbiddenSign.png" />
     </ItemGroup>
 
     <ItemGroup>

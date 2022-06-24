@@ -23591,8 +23591,7 @@ public class CHCNetSDK
     public static extern bool CLIENT_SDK_MakeKeyFrame(int iRealHandle);
 
     #endregion
-
-
+    
     #region VOD点播放库
 
     public const int WM_NETERROR = 0x0400 + 102; //网络异常消息
@@ -23735,8 +23734,7 @@ public class CHCNetSDK
     public static extern bool VODGetStreamCurrentTime(IntPtr hStream, ref BLOCKTIME pCurrentTime);
 
     #endregion
-
-
+    
     #region 帧分析库
 
     [StructLayout(LayoutKind.Sequential)]
@@ -23839,8 +23837,7 @@ public class CHCNetSDK
     public static extern uint AnalyzeDataGetLastError(int iHandle);
 
     #endregion
-
-
+    
     #region 录像库
 
     public const int DATASTREAM_HEAD = 0; //数据头

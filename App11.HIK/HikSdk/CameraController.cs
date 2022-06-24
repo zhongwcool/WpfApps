@@ -62,7 +62,7 @@ public class CameraController
 
         if (CHCNetSDK.NET_DVR_Init())
         {
-            CHCNetSDK.NET_DVR_SetLogToFile(3, ".\\SdkLog\\", true);
+            CHCNetSDK.NET_DVR_SetLogToFile(3, ".\\02-SdkLog\\", true);
             ret = true;
         }
         else
@@ -80,28 +80,20 @@ public class CameraController
         bool ret = false;
         if (m_lUserID < 0)
         {
-            //TODO:需要改为自己的网络摄像头配置
-            string DVRIPAddress = _config.IPAddress; //设备IP地址或者域名
-            Int16 DVRPortNumber = _config.Port; // 设备服务端口号
-            string DVRUserName = _config.UserName; //设备登录用户名
-            string DVRPassword = _config.Password; //设备登录密码
-
-            CHCNetSDK.NET_DVR_DEVICEINFO_V30 DeviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
+            var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
             for (int i = 1; i < 4; i++)
             {
-                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(DVRIPAddress, DVRPortNumber, DVRUserName, DVRPassword,
-                    ref DeviceInfo);
+                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName, _config.Password,
+                    ref deviceInfo);
                 if (m_lUserID < 0)
                 {
-                    uint iLastErr = CHCNetSDK.NET_DVR_GetLastError();
-                    string str = "实时影像第" + i + "次登录失败，输出错误号, error code= " + iLastErr;
-                    Log.D(str);
+                    uint lastErr = CHCNetSDK.NET_DVR_GetLastError();
+                    Log.D("实时影像第" + i + "次登录失败，输出错误号, error code= " + lastErr);
                 }
                 else
                 {
                     CameraPreview();
-                    string str = "实时影像登录成功！ ";
-                    Log.D(str);
+                    Log.D("实时影像登录成功！");
                     ret = true;
                     break;
                 }
@@ -145,8 +137,8 @@ public class CameraController
             m_lRealHandle = CHCNetSDK.NET_DVR_RealPlay_V40(m_lUserID, ref lpPreviewInfo, RealData, pUser);
             if (m_lRealHandle < 0)
             {
-                uint iLastErr = CHCNetSDK.NET_DVR_GetLastError();
-                string str = "NET_DVR_RealPlay_V40 failed, error code= " + iLastErr; //预览失败，输出错误号
+                uint lastErr = CHCNetSDK.NET_DVR_GetLastError();
+                string str = "NET_DVR_RealPlay_V40 failed, error code= " + lastErr; //预览失败，输出错误号
                 //MessageBox.Show(str);
                 Log.D(str);
                 return;
@@ -164,8 +156,8 @@ public class CameraController
         {
             if (!CHCNetSDK.NET_DVR_StopRealPlay(m_lRealHandle))
             {
-                uint iLastErr = CHCNetSDK.NET_DVR_GetLastError();
-                string str = "NET_DVR_StopRealPlay failed, error code= " + iLastErr;
+                uint lastErr = CHCNetSDK.NET_DVR_GetLastError();
+                string str = "NET_DVR_StopRealPlay failed, error code= " + lastErr;
                 Log.D(str);
                 return;
             }
@@ -175,22 +167,22 @@ public class CameraController
         {
             if (!PlayCtrl.PlayM4_Stop(m_lPort))
             {
-                uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                string str = "PlayM4_Stop failed, error code= " + iLastErr;
+                uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                string str = "PlayM4_Stop failed, error code= " + lastErr;
                 Log.D(str);
             }
 
             if (!PlayCtrl.PlayM4_CloseStream(m_lPort))
             {
-                uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                string str = "PlayM4_CloseStream failed, error code= " + iLastErr;
+                uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                string str = "PlayM4_CloseStream failed, error code= " + lastErr;
                 Log.D(str);
             }
 
             if (!PlayCtrl.PlayM4_FreePort(m_lPort))
             {
-                uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                string str = "PlayM4_FreePort failed, error code= " + iLastErr;
+                uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                string str = "PlayM4_FreePort failed, error code= " + lastErr;
                 Log.D(str);
             }
 
@@ -215,8 +207,8 @@ public class CameraController
                     //获取播放句柄 Get the port to play
                     if (!PlayCtrl.PlayM4_GetPort(ref m_lPort))
                     {
-                        uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                        string str = "PlayM4_GetPort failed, error code= " + iLastErr;
+                        uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        string str = "PlayM4_GetPort failed, error code= " + lastErr;
                         Log.D(str);
                         break;
                     }
@@ -224,16 +216,16 @@ public class CameraController
                     //设置流播放模式 Set the stream mode: real-time stream mode
                     if (!PlayCtrl.PlayM4_SetStreamOpenMode(m_lPort, PlayCtrl.STREAME_REALTIME))
                     {
-                        uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                        string str = "Set STREAME_REALTIME mode failed, error code= " + iLastErr;
+                        uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        string str = "Set STREAME_REALTIME mode failed, error code= " + lastErr;
                         Log.D(str);
                     }
 
                     //打开码流，送入头数据 Open stream
                     if (!PlayCtrl.PlayM4_OpenStream(m_lPort, pBuffer, dwBufSize, 2 * 1024 * 1024))
                     {
-                        uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                        string str = "PlayM4_OpenStream failed, error code= " + iLastErr;
+                        uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        string str = "PlayM4_OpenStream failed, error code= " + lastErr;
                         Log.D(str);
                         break;
                     }
@@ -241,16 +233,16 @@ public class CameraController
                     //设置显示缓冲区个数 Set the display buffer number
                     if (!PlayCtrl.PlayM4_SetDisplayBuf(m_lPort, 15))
                     {
-                        uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                        string str = "PlayM4_SetDisplayBuf failed, error code= " + iLastErr;
+                        uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        string str = "PlayM4_SetDisplayBuf failed, error code= " + lastErr;
                         Log.D(str);
                     }
 
                     //设置显示模式 Set the display mode
                     if (!PlayCtrl.PlayM4_SetOverlayMode(m_lPort, 0, 0 /* COLORREF(0)*/)) //play off screen 
                     {
-                        uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                        string str = "PlayM4_SetOverlayMode failed, error code= " + iLastErr;
+                        uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        string str = "PlayM4_SetOverlayMode failed, error code= " + lastErr;
                         Log.D(str);
                     }
 
@@ -263,8 +255,8 @@ public class CameraController
                     //开始解码 Start to play                       
                     if (!PlayCtrl.PlayM4_Play(m_lPort, m_ptrRealHandle))
                     {
-                        uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                        string str = "PlayM4_Play failed, error code= " + iLastErr;
+                        uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        string str = "PlayM4_Play failed, error code= " + lastErr;
                         Log.D(str);
                         break;
                     }
@@ -279,8 +271,8 @@ public class CameraController
                         //送入码流数据进行解码 Input the stream data to decode
                         if (!PlayCtrl.PlayM4_InputData(m_lPort, pBuffer, dwBufSize))
                         {
-                            uint iLastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
-                            string str = "PlayM4_InputData failed, error code= " + iLastErr;
+                            uint lastErr = PlayCtrl.PlayM4_GetLastError(m_lPort);
+                            string str = "PlayM4_InputData failed, error code= " + lastErr;
                             Log.D(str);
                         }
                         else
@@ -359,7 +351,7 @@ public class CameraController
     private PlayCtrl.DECCBFUN m_fDisplayFun = null;
     private System.Timers.Timer m_HideRealPlayTimer = null;
     private CHCNetSDK.REALDATACALLBACK RealData = null;
-    private Bitmap m_Icon = BitmapImage2Bitmap($"pack://application:,,,/Resources/ForbidenSign.png");
+    private Bitmap m_Icon = BitmapImage2Bitmap($"pack://application:,,,/Resources/ForbiddenSign.png");
     
     private static volatile CameraController instance;
     private static readonly object syncRoot = new object();

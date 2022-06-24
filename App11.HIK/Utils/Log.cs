@@ -30,7 +30,7 @@ public class Log
     private static int _maxMilliseconds = 10; //最大相隔时间，不管缓存区中的日志大小到不到_maxByteSize都写入硬盘
     private const int MaxWriteErrorTime = 10; //最大连续写入错误次数
     private int _currentWriteErrorTime; //当前连续写入错误次数
-    private string _savePath = Environment.CurrentDirectory + "\\Log\\";
+    private string _savePath = Environment.CurrentDirectory + "\\00-Log\\";
     private LogModel _tmpLog;
 
     private readonly ConcurrentQueue<LogModel> _logModelQueue = new(); //日志队列      
