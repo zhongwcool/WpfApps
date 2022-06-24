@@ -83,7 +83,8 @@ public class CameraController
             var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
             for (int i = 1; i < 4; i++)
             {
-                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName, _config.Password,
+                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName,
+                    _config.Password,
                     ref deviceInfo);
                 if (m_lUserID < 0)
                 {
@@ -102,7 +103,7 @@ public class CameraController
 
         return ret;
     }
-    
+
     public void CameraLogout()
     {
         //停止预览
@@ -152,7 +153,7 @@ public class CameraController
 
     private void ClosePreview()
     {
-        if (m_lRealHandle > 0)
+        if (m_lRealHandle >= 0)
         {
             if (!CHCNetSDK.NET_DVR_StopRealPlay(m_lRealHandle))
             {
@@ -191,7 +192,7 @@ public class CameraController
 
         m_lRealHandle = -1;
     }
-    
+
     private void RealDataCallBack(Int32 lRealHandle, UInt32 dwDataType, IntPtr pBuffer, UInt32 dwBufSize, IntPtr pUser)
     {
         switch (dwDataType)
@@ -229,7 +230,7 @@ public class CameraController
                         Log.D(str);
                         break;
                     }
-                    
+
                     //设置显示缓冲区个数 Set the display buffer number
                     if (!PlayCtrl.PlayM4_SetDisplayBuf(m_lPort, 15))
                     {
@@ -310,7 +311,7 @@ public class CameraController
             Log.E(" callback error:" + ex.Message);
         }
     }
-    
+
     void InitTimer()
     {
         m_HideRealPlayTimer = new System.Timers.Timer();
@@ -352,7 +353,7 @@ public class CameraController
     private System.Timers.Timer m_HideRealPlayTimer = null;
     private CHCNetSDK.REALDATACALLBACK RealData = null;
     private Bitmap m_Icon = BitmapImage2Bitmap($"pack://application:,,,/Resources/ForbiddenSign.png");
-    
+
     private static volatile CameraController instance;
     private static readonly object syncRoot = new object();
 }

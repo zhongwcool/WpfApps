@@ -23,8 +23,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="System.Windows.Forms" />
-        <Reference Include="WindowsFormsIntegration" />
+        <Reference Include="System.Windows.Forms"/>
+        <Reference Include="WindowsFormsIntegration"/>
+        <Reference Include="Microsoft.DwayneNeed, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>libs\Microsoft.DwayneNeed.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.DwayneNeed.Win32, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>libs\Microsoft.DwayneNeed.Win32.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup>

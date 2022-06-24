@@ -10,7 +10,7 @@ namespace App11.HIK.Views;
 public partial class HikWindow
 {
     private readonly IntPtr _mControlHandle; //播放控件句柄
-    
+
     public HikWindow()
     {
         InitializeComponent();
@@ -22,9 +22,10 @@ public partial class HikWindow
             MessageBox.Show("摄像头初始化失败！");
             return;
         }
+
         InitTimer();
     }
-    
+
     private Int32 _mUserId = -1; //登录使用
     private Int32 _mStreamHandle = -1; //是否已经开始实时播放
     private Int32 _mStreamPort = -1; //摄像头播放句柄
@@ -63,7 +64,7 @@ public partial class HikWindow
 
         CHCNetSDK.NET_DVR_Cleanup();
     }
-    
+
     private CHCNetSDK.REALDATACALLBACK _realDataCallback;
 
     private void RealDataCallBack(int lRealHandle, uint dwDataType, IntPtr pBuffer, uint dwBufSize, IntPtr pUser)
@@ -97,7 +98,7 @@ public partial class HikWindow
                         Log.D("PlayM4_OpenStream failed, error code= " + lastErr);
                         break;
                     }
-                    
+
                     //设置显示缓冲区个数 Set the display buffer number
                     if (!PlayCtrl.PlayM4_SetDisplayBuf(_mStreamPort, 15))
                     {
@@ -151,7 +152,7 @@ public partial class HikWindow
         //每次收到LIVEVIEW数据时重新开始定时器，当达到规定时间后显示对应的提示图片，表示liveview已经无法获取实时影像
         StartHideTimer();
     }
-    
+
     private void StartHideTimer()
     {
         try
@@ -166,7 +167,7 @@ public partial class HikWindow
             Log.E("callback error:" + ex.Message);
         }
     }
-    
+
     private void InitTimer()
     {
         _mHideRealPlayTimer = new System.Timers.Timer();
@@ -181,19 +182,32 @@ public partial class HikWindow
     {
         PanelBack.Visibility = Visibility.Visible;
     }
-    
+
     private System.Timers.Timer _mHideRealPlayTimer;
 
     private void BtnPreview_OnClick(object sender, RoutedEventArgs e)
     {
-        if(_mUserId < 0)
+        if (_mUserId < 0)
         {
-            var suc = CameraLogin();
-            if(suc) BtnPreview.Content = "停止";
+            _ = CameraLogin();
+        }
+
+        if (_mStreamHandle < 0)
+        {
+            var ret = CameraPreview();
+            if (!ret)
+            {
+                Log.E("预览失败");
+                return;
+            }
+
+            BtnPreview.Content = "停止";
+            PanelBack.Visibility = Visibility.Collapsed;
         }
         else
         {
-            CameraLogout();
+            //停止预览
+            StopPreview();
             BtnPreview.Content = "预览";
         }
     }
@@ -238,8 +252,9 @@ public partial class HikWindow
         Log.I("and the saved file is " + filename);
         return 0;
     }
-    
+
     private bool _mRecording;
+
     private void ButtonRecord_OnClick(object sender, RoutedEventArgs e)
     {
         if (_mRecording == false)
@@ -258,7 +273,7 @@ public partial class HikWindow
         else
         {
             var ret = StopRecord();
-            if(ret) BtnRecord.Content = "录像";
+            if (ret) BtnRecord.Content = "录像";
         }
     }
 
@@ -299,6 +314,7 @@ public partial class HikWindow
     }
 
     private readonly AppConfig _config = AppConfig.CreateInstance();
+
     private bool CameraLogin()
     {
         if (_mUserId >= 0) return false;
@@ -315,17 +331,14 @@ public partial class HikWindow
             else
             {
                 BtnPreview.Content = "已登录";
-                var pre = CameraPreview();
-                if (!pre) return false;
-                PanelBack.Visibility = Visibility.Collapsed;
                 Log.D("实时影像登录成功！");
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
     private bool CameraPreview()
     {
         if (_mStreamHandle >= 0) return true;
@@ -356,17 +369,18 @@ public partial class HikWindow
             return true;
         }
     }
-    
+
     private void StopPreview()
     {
-        if (_mStreamHandle > 0)
+        if (_mStreamHandle >= 0)
         {
             if (!CHCNetSDK.NET_DVR_StopRealPlay(_mStreamHandle))
             {
                 var lastErr = CHCNetSDK.NET_DVR_GetLastError();
                 Log.D("NET_DVR_StopRealPlay failed, error code= " + lastErr);
-                return;
             }
+
+            _mStreamHandle = -1;
         }
 
         if (_mStreamPort >= 0)
@@ -388,8 +402,10 @@ public partial class HikWindow
                 var lastErr = PlayCtrl.PlayM4_GetLastError(_mStreamPort);
                 Log.D("PlayM4_FreePort failed, error code= " + lastErr);
             }
+
+            _mStreamPort = -1;
         }
 
-        _mStreamHandle = -1;
+        Log.D("关闭摄像头预览");
     }
 }
