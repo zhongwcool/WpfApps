@@ -7,11 +7,11 @@ using App11.HIK.Utils;
 
 namespace App11.HIK.Views;
 
-public partial class HikWindow
+public partial class XamlWindow
 {
     private readonly IntPtr _mControlHandle; //播放控件句柄
 
-    public HikWindow()
+    public XamlWindow()
     {
         InitializeComponent();
         _mControlHandle = VideoControl.Handle;

@@ -18,8 +18,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ModernWpfUI" Version="0.9.5" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -34,7 +35,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\ForbiddenSign.png" />
+        <Resource Include="Resources\ForbiddenSign.png"/>
+        <Resource Include="Resources\Device\Dark\0.png"/>
+        <Resource Include="Resources\Device\Dark\1.png"/>
+        <Resource Include="Resources\Device\Dark\2.png"/>
+        <Resource Include="Resources\Device\Dark\3.png"/>
+        <Resource Include="Resources\Device\Dark\4.png"/>
+        <Resource Include="Resources\Device\Light\0.png"/>
+        <Resource Include="Resources\Device\Light\1.png"/>
+        <Resource Include="Resources\Device\Light\2.png"/>
+        <Resource Include="Resources\Device\Light\3.png"/>
+        <Resource Include="Resources\Device\Light\4.png"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -45,7 +56,6 @@
 
     <ItemGroup>
         <Folder Include="HikSdkDll" />
-        <Folder Include="Models" />
     </ItemGroup>
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

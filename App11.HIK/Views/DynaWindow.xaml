@@ -1,0 +1,80 @@
+﻿<Window x:Class="App11.HIK.Views.DynaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:converter="clr-namespace:App11.HIK.Converter"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Window.Resources>
+        <converter:TypeToImageSourceConverter x:Key="TypeToImageSourceConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="ListViewDevice" Margin="5" SelectionChanged="MySelectionChanged" Grid.Column="0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                          Margin="0,0,0,0" Height="60"
+                          AutomationProperties.Name="{Binding NodeName, Mode=OneTime}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0">
+                            <Image Source="{Binding Type, Converter={StaticResource TypeToImageSourceConverter}}"
+                                   Stretch="Fill" Margin="5,0,5,0" Height="40" />
+                        </Border>
+
+                        <Grid Margin="0,3,3,3" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Text="{Binding NodeName, Mode=OneTime}"
+                                FontWeight="SemiBold"
+                                FontSize="12"
+                                Style="{DynamicResource BaseTextBlockStyle}"
+                                Margin="1"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap"
+                                HorizontalAlignment="Left"
+                                Grid.Row="0" />
+                            <TextBlock
+                                Text="{Binding DevIp, Mode=OneTime}"
+                                FontFamily="Segoe UI"
+                                FontWeight="Normal"
+                                FontSize="12"
+                                Style="{DynamicResource BodyTextBlockStyle}"
+                                Margin="1"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap"
+                                Grid.Row="1" />
+                            <TextBlock
+                                Text="{Binding SerialNum, Mode=OneTime}"
+                                FontSize="11"
+                                Style="{DynamicResource CaptionTextBlockStyle}"
+                                Margin="1"
+                                Grid.Row="2" />
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid x:Name="grid1" Margin="5" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">避免气氛有点尴尬</TextBlock>
+        </Grid>
+    </Grid>
+</Window>
