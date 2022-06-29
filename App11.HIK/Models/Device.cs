@@ -3,6 +3,7 @@
 public class Device
 {
     public string SN; // Serial number
+    public string IP; // Serial number
     public string NM; // Node name
     public string MC; // Mac address
     public string FV; // Firmware Version

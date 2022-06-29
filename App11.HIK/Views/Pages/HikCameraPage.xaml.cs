@@ -1,17 +1,20 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using App11.HIK.Data;
 using App11.HIK.HikSdk;
 using App11.HIK.Utils;
 
-namespace App11.HIK.Views;
+namespace App11.HIK.Views.Pages;
 
-public partial class XamlWindow
+public partial class HikCameraPage : Page
 {
-    public XamlWindow()
+    public HikCameraPage(string deviceIp)
     {
         InitializeComponent();
+        _mDeviceIp = deviceIp;
+
+        // 播放器句柄
         _mControlHandle = VideoControl.Handle;
 
         var init = CameraInit();
@@ -22,6 +25,18 @@ public partial class XamlWindow
         }
 
         InitTimer();
+    }
+
+    ~HikCameraPage()
+    {
+        if (_mHideRealPlayTimer != null)
+        {
+            _mHideRealPlayTimer.Stop();
+            _mHideRealPlayTimer.Dispose();
+            _mHideRealPlayTimer = null;
+        }
+
+        CameraLogout();
     }
 
     private readonly IntPtr _mControlHandle; //播放控件句柄
@@ -37,14 +52,9 @@ public partial class XamlWindow
             return true;
         }
 
-        Log.D("摄像头初始化失败！");
+        MessageBox.Show("SDK初始化失败！");
+        Log.D("SDK初始化失败！");
         return false;
-    }
-
-    protected override void OnClosing(CancelEventArgs e)
-    {
-        base.OnClosing(e);
-        CameraLogout();
     }
 
     private void CameraLogout()
@@ -313,6 +323,7 @@ public partial class XamlWindow
     }
 
     private readonly AppConfig _config = AppConfig.CreateInstance();
+    private string _mDeviceIp;
 
     private bool CameraLogin()
     {
@@ -320,7 +331,7 @@ public partial class XamlWindow
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_mDeviceIp, _config.Port, _config.UserName, _config.Password,
                 ref deviceInfo);
             if (_mUserId < 0)
             {
@@ -406,5 +417,11 @@ public partial class XamlWindow
         }
 
         Log.D("关闭摄像头预览");
+    }
+
+    private void Control0_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        const double ratio = 16 / 10.0;
+        Control0.Height = Control0.ActualWidth / ratio;
     }
 }

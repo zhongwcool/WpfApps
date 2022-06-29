@@ -1,13 +1,11 @@
-﻿<Window x:Class="App11.HIK.Views.DynaWindow"
+﻿<Window x:Class="App11.HIK.Views.PageInWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:converter="clr-namespace:App11.HIK.Converter"
-        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="PageInWindow" Height="450" Width="800">
     <Window.Resources>
         <converter:TypeToImageSourceConverter x:Key="TypeToImageSourceConverter" />
     </Window.Resources>
@@ -73,8 +71,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid x:Name="grid1" Margin="5" Grid.Column="1">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">避免气氛有点尴尬</TextBlock>
+        
+        <Grid Margin="5" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">避免气氛尴尬</TextBlock>
+            <Frame x:Name="HikControl" />
         </Grid>
     </Grid>
 </Window>

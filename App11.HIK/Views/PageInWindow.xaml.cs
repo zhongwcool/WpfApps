@@ -1,29 +1,22 @@
-﻿using System.ComponentModel;
-using System.Threading;
-using System.Windows;
+﻿using System.Threading;
 using System.Windows.Controls;
 using App11.HIK.Concurrent;
-using App11.HIK.HikSdk;
 using App11.HIK.Models;
+using App11.HIK.Views.Pages;
 
 namespace App11.HIK.Views;
 
-public partial class DynaWindow : Window
+public partial class PageInWindow
 {
-    public DynaWindow()
+    public PageInWindow()
     {
         InitializeComponent();
 
+        // Create dummy data
         RobotList.Insert(0, RobotModel.CreateDummy());
         Thread.Sleep(500);
         RobotList.Insert(0, RobotModel.CreateDummy());
         ListViewDevice.ItemsSource = RobotList;
-    }
-
-    protected override void OnClosing(CancelEventArgs e)
-    {
-        base.OnClosing(e);
-        CameraController.Instance.CameraLogout();
     }
 
     private MtObservableCollection<RobotModel> RobotList { get; set; } = new();
@@ -33,14 +26,15 @@ public partial class DynaWindow : Window
         if (sender is not ListView item) return;
         if (0 == item.SelectedIndex)
         {
-            ShowCamera();
+            var de = item.SelectedItem as RobotModel;
+            if (de is null) return;
+            ShowCamera2(de.DevIp);
         }
     }
 
-    private void ShowCamera()
+    private void ShowCamera2(string ip)
     {
-        CameraController.Instance.CameraInit();
-        CameraController.Instance.Display(grid1);
-        CameraController.Instance.CameraLogin();
+        var page = new HikCameraPage(ip);
+        HikControl.Content = page;
     }
 }

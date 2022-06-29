@@ -11,13 +11,19 @@ public partial class SlashWindow : Window
 
     private void ButtonDyna_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new DynaWindow();
+        var window = new CodeWindow();
         window.ShowDialog();
     }
 
     private void ButtonXaml_OnClick(object sender, RoutedEventArgs e)
     {
         var window = new XamlWindow();
+        window.ShowDialog();
+    }
+
+    private void ButtonPage_OnClick(object sender, RoutedEventArgs e)
+    {
+        var window = new PageInWindow();
         window.ShowDialog();
     }
 }

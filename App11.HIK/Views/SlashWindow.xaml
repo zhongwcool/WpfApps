@@ -6,11 +6,10 @@
         mc:Ignorable="d"
         Title="海康威视SDK" Width="300" Height="200">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Button Content="Xaml" Click="ButtonXaml_OnClick" Grid.Row="0" HorizontalAlignment="Center" />
-        <Button Content="动态装入" Click="ButtonDyna_OnClick" Grid.Row="1" HorizontalAlignment="Center" />
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+            <Button Content="布局装载" Click="ButtonXaml_OnClick" Margin="5"/>
+            <Button Content="使用Page" Click="ButtonPage_OnClick" Margin="5"/>
+            <Button Content="代码装载" Click="ButtonDyna_OnClick" Margin="5"/>
+        </WrapPanel>
     </Grid>
 </Window>
