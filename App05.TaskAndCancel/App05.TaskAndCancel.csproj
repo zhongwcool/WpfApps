@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
-        <PackageReference Include="ModernWpfUI" Version="0.9.5"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
     </ItemGroup>
 
     <ItemGroup>

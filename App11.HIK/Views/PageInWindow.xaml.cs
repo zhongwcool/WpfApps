@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using App11.HIK.Concurrent;
 using App11.HIK.Models;
@@ -24,17 +25,26 @@ public partial class PageInWindow
     private void MySelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (sender is not ListView item) return;
+        if (item.SelectedItem is not RobotModel de) return;
         if (0 == item.SelectedIndex)
         {
-            var de = item.SelectedItem as RobotModel;
-            if (de is null) return;
-            ShowCamera2(de.DevIp);
+            ShowCamera2(de);
+        }
+        else
+        {
+            HikControl.Children.Clear();
+            if (_currentPage is HikCameraPage hik)
+            {
+                hik.Dispose();
+            }
         }
     }
 
-    private void ShowCamera2(string ip)
+    private UIElement _currentPage;
+
+    private void ShowCamera2(RobotModel robot)
     {
-        var page = new HikCameraPage(ip);
-        HikControl.Content = page;
+        _currentPage = new HikCameraPage(robot);
+        HikControl.Children.Add(_currentPage);
     }
 }

@@ -5,13 +5,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:converter="clr-namespace:App11.HIK.Converter"
         mc:Ignorable="d"
-        Title="PageInWindow" Height="450" Width="800">
+        Title="PageInWindow" Height="800" Width="850">
     <Window.Resources>
         <converter:TypeToImageSourceConverter x:Key="TypeToImageSourceConverter" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="250" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ListView x:Name="ListViewDevice" Margin="5" SelectionChanged="MySelectionChanged" Grid.Column="0">
@@ -74,7 +74,7 @@
         
         <Grid Margin="5" Grid.Column="1">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">避免气氛尴尬</TextBlock>
-            <Frame x:Name="HikControl" />
+            <Grid x:Name="HikControl" />
         </Grid>
     </Grid>
 </Window>

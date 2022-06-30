@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using App11.HIK.Data;
+using App11.HIK.Helper;
 using App11.HIK.HikSdk;
+using App11.HIK.Models;
 using App11.HIK.Utils;
+using App11.HIK.ViewModels;
 
 namespace App11.HIK.Views.Pages;
 
-public partial class HikCameraPage : Page
+public partial class HikCameraPage : IDisposable
 {
-    public HikCameraPage(string deviceIp)
+    public HikCameraPage(RobotModel robot)
     {
         InitializeComponent();
-        _mDeviceIp = deviceIp;
+        if (null == robot) return;
+        CurrentRobot = robot;
 
+        DataContext = HikCameraPageViewModel.CreateInstance(robot);
         // 播放器句柄
         _mControlHandle = VideoControl.Handle;
 
@@ -27,16 +31,11 @@ public partial class HikCameraPage : Page
         InitTimer();
     }
 
+    private RobotModel CurrentRobot { get; set; }
+
     ~HikCameraPage()
     {
-        if (_mHideRealPlayTimer != null)
-        {
-            _mHideRealPlayTimer.Stop();
-            _mHideRealPlayTimer.Dispose();
-            _mHideRealPlayTimer = null;
-        }
-
-        CameraLogout();
+        Dispose(false);
     }
 
     private readonly IntPtr _mControlHandle; //播放控件句柄
@@ -189,7 +188,7 @@ public partial class HikCameraPage : Page
 
     private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-        PanelBack.Visibility = Visibility.Visible;
+        DispatcherHelper.RunOnMainThread(() => { PanelBack.Visibility = Visibility.Visible; });
     }
 
     private System.Timers.Timer _mHideRealPlayTimer;
@@ -323,7 +322,6 @@ public partial class HikCameraPage : Page
     }
 
     private readonly AppConfig _config = AppConfig.CreateInstance();
-    private string _mDeviceIp;
 
     private bool CameraLogin()
     {
@@ -331,7 +329,7 @@ public partial class HikCameraPage : Page
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_mDeviceIp, _config.Port, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(CurrentRobot.DevIp, _config.Port, _config.UserName, _config.Password,
                 ref deviceInfo);
             if (_mUserId < 0)
             {
@@ -423,5 +421,27 @@ public partial class HikCameraPage : Page
     {
         const double ratio = 16 / 10.0;
         Control0.Height = Control0.ActualWidth / ratio;
+    }
+
+    private void ReleaseUnmanagedResources()
+    {
+        // release unmanaged resources here
+        CameraLogout();
+    }
+
+    private void Dispose(bool disposing)
+    {
+        ReleaseUnmanagedResources();
+        if (disposing)
+        {
+            _mHideRealPlayTimer?.Dispose();
+            VideoControl?.Dispose();
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

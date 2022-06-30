@@ -9,7 +9,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="Vlc播放器" Height="720" Width="1080">
+        Title="Vlc播放器" Height="640" Width="1080">
     <Grid>
         <Grid.Background>
             <VisualBrush Viewbox="0.20,0.20,0.6,0.6">
@@ -25,15 +25,15 @@
         <wpf:VideoView x:Name="VideoView" Panel.ZIndex="1">
             <StackPanel Orientation="Horizontal"
                         ui:ThemeManager.RequestedTheme="Dark">
-                <Button Content="PLAY"
+                <Button Content="PLAY" Margin="5"
                         VerticalAlignment="Bottom" HorizontalAlignment="Left"
                         Command="{Binding CommandPlay}"
                         Click="PlayButton_Click" />
-                <Button Content="STOP"
+                <Button Content="STOP" Margin="5"
                         VerticalAlignment="Bottom" HorizontalAlignment="Left"
                         Command="{Binding CommandStop}"
                         Click="StopButton_Click" />
-                <Border Height="25"
+                <Border Height="25" Margin="5"
                         VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <TextBox x:Name="TextUrlInput" Width="250"
                              Style="{DynamicResource SimpleTextBox}"

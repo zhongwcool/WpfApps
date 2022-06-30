@@ -2,11 +2,11 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net48</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <LangVersion>10</LangVersion>
         <NeutralLanguage>zh-CN</NeutralLanguage>
+        <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
