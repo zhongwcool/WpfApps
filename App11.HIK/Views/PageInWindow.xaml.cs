@@ -24,20 +24,17 @@ public partial class PageInWindow
 
     private void MySelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (sender is not ListView item) return;
-        if (item.SelectedItem is not RobotModel de) return;
-        if (0 == item.SelectedIndex)
+        if (sender is not ListView { SelectedItem: RobotModel de }) return;
+
+        // Clear or remove current page
+        HikControl.Children.Clear();
+        if (_currentPage is HikCameraPage hik)
         {
-            ShowCamera2(de);
+            hik.Dispose();
         }
-        else
-        {
-            HikControl.Children.Clear();
-            if (_currentPage is HikCameraPage hik)
-            {
-                hik.Dispose();
-            }
-        }
+
+        // Add mew page
+        ShowCamera2(de);
     }
 
     private UIElement _currentPage;

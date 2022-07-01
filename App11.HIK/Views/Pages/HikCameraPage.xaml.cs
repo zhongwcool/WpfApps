@@ -17,7 +17,7 @@ public partial class HikCameraPage : IDisposable
         if (null == robot) return;
         CurrentRobot = robot;
 
-        DataContext = HikCameraPageViewModel.CreateInstance(robot);
+        DataContext = new HikCameraPageViewModel(robot);
         // 播放器句柄
         _mControlHandle = VideoControl.Handle;
 
