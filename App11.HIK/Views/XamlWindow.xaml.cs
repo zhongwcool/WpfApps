@@ -188,7 +188,13 @@ public partial class XamlWindow
     {
         if (_mUserId < 0)
         {
-            _ = CameraLogin();
+            var ret = CameraLogin();
+            if (!ret)
+            {
+                Log.E("设备登录失败");
+                MessageBox.Show("无法登录到设备");
+                return;
+            }
         }
 
         if (_mStreamHandle < 0)
