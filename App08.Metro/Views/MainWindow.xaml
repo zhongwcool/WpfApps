@@ -10,8 +10,7 @@
         xmlns:control1="clr-namespace:App08.Metro.Control"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
-        ui:WindowHelper.UseModernWindowStyle="True"
-        Title="App08.Metro" Height="720" Width="1080">
+        Title="App08.Metro" Height="640" Width="1080">
     <Window.Resources>
         <!-- Opening -->
         <Storyboard x:Key="OpenMenu">
@@ -24,8 +23,8 @@
                                 DecelerationRatio="0.9" Duration="0:0:0.5" />
         </Storyboard>
     </Window.Resources>
-    <wpf:VideoView x:Name="VideoView0" 
-                   Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}" 
+    <wpf:VideoView x:Name="VideoView" 
+                   Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}"
                    Panel.ZIndex="1">
         <Grid MouseDown="Window_MouseDown">
             <views:SidePanelRight x:Name="RightMenu" Width="280"

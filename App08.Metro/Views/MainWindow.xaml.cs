@@ -19,12 +19,12 @@ public partial class MainWindow : Window
         var libVlc = new LibVLC();
 
         // we need the VideoView to be fully loaded before setting a MediaPlayer on it.
-        VideoView0.Loaded += (_, _) =>
+        VideoView.Loaded += (_, _) =>
         {
             var mediaPlayer = new MediaPlayer(libVlc);
-            VideoView0.MediaPlayer = mediaPlayer;
+            VideoView.MediaPlayer = mediaPlayer;
             var media = new Media(libVlc, new Uri(Source0));
-            VideoView0.MediaPlayer.Play(media);
+            VideoView.MediaPlayer.Play(media);
         };
     }
 
