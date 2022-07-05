@@ -7,39 +7,31 @@
         xmlns:vm="clr-namespace:App01.VLC.ViewModel"
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="Vlc播放器" Height="640" Width="1080">
     <Grid>
-        <Grid.Background>
-            <VisualBrush Viewbox="0.20,0.20,0.6,0.6">
-                <VisualBrush.Visual>
-                    <Image x:Name="BackgroundVideo" Stretch="UniformToFill">
-                        <Image.Effect>
-                            <BlurEffect Radius="20" />
-                        </Image.Effect>
-                    </Image>
-                </VisualBrush.Visual>
-            </VisualBrush>
-        </Grid.Background>
-        <wpf:VideoView x:Name="VideoView" Panel.ZIndex="1">
-            <StackPanel Orientation="Horizontal"
-                        ui:ThemeManager.RequestedTheme="Dark">
-                <Button Content="PLAY" Margin="5"
-                        VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                        Command="{Binding CommandPlay}"
-                        Click="PlayButton_Click" />
-                <Button Content="STOP" Margin="5"
-                        VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                        Command="{Binding CommandStop}"
-                        Click="StopButton_Click" />
-                <Border Height="25" Margin="5"
-                        VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                    <TextBox x:Name="TextUrlInput" Width="250"
-                             Style="{DynamicResource SimpleTextBox}"
-                             Text="http://playtv-live.ifeng.com:80/live/06OLEGEGM4G.m3u8" />
-                </Border>
-            </StackPanel>
+        <wpf:VideoView x:Name="VideoView" 
+                       Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}"
+                       Panel.ZIndex="1">
+            <WrapPanel ui:ThemeManager.RequestedTheme="Dark"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Content="PLAY" Margin="5"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                            Command="{Binding CommandPlay}"
+                            Click="PlayButton_Click" />
+                    <Button Content="STOP" Margin="5"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                            Command="{Binding CommandStop}"
+                            Click="StopButton_Click" />
+                    <Border Height="25" Margin="5"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                        <TextBox x:Name="TextUrlInput" Width="250"
+                                 Style="{DynamicResource SimpleTextBox}"
+                                 Text="http://playtv-live.ifeng.com:80/live/06OLEGEGM4G.m3u8" />
+                    </Border>
+                </StackPanel>
+            </WrapPanel>
         </wpf:VideoView>
     </Grid>
 </Window>
