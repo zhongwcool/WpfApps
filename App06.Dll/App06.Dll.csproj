@@ -14,16 +14,29 @@
 
     <ItemGroup>
         <None Remove="libs\libDemoDll2.dll"/>
-        <Content Include="libs\libDemoDll2.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
     </ItemGroup>
 
     <ItemGroup>
         <None Remove="libs\DemoDll2.cbp"/>
-        <Content Include="libs\DemoDll2.cbp">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
     </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Views"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Page Update="MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <DependentUpon>App.xaml</DependentUpon>
+        </Page>
+    </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="xcopy /e /d /y $(ProjectDir)libs\ $(ProjectDir)$(OutDir)libs\"/>
+    </Target>
 
 </Project>

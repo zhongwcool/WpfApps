@@ -1,9 +1,11 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using App06.Dll.Models;
 
-namespace App06.Dll;
+namespace App06.Dll.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
@@ -13,6 +15,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        Loaded += Window_Loaded;
 
         var dll = new Thread(() =>
         {
@@ -22,10 +25,16 @@ public partial class MainWindow : Window
         dll.Start();
     }
 
-    [DllImport("libs/libDemoDll2.dll", EntryPoint = "hello", CallingConvention = CallingConvention.Cdecl)]
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        var list = new List<object> { "a", 1, "b", 2, new Foo() { Name = "Brian" } };
+        treeView1.DataContext = list;
+    }
+
+    [DllImport("libs/DemoDll.dll", EntryPoint = "hello", CallingConvention = CallingConvention.Cdecl)]
     private static extern int hello();
 
-    [DllImport("libs/libDemoDll2.dll", CharSet = CharSet.Unicode, EntryPoint = "SayHello",
+    [DllImport("libs/DemoDll.dll", CharSet = CharSet.Unicode, EntryPoint = "SayHello",
         CallingConvention = CallingConvention.Cdecl)]
     private static extern void SayHello(byte[] str, int length);
 
