@@ -83,7 +83,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Image Grid.Column="1" Grid.Row="1" Source="../../Resources/ForbiddenSign.png" />
+                    <Image Grid.Column="1" Grid.Row="1" Source="pack://application:,,,/Resources/ForbiddenSign.png" />
                 </Grid>
             </Grid>
 
