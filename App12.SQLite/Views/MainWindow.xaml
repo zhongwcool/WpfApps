@@ -9,6 +9,7 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="App12: Hotel System with SQLite" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
         <mi:RoomTypeConverter x:Key="RoomTypeConverter"/>
