@@ -1,0 +1,38 @@
+﻿<Window x:Class="App13.Worker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="App13.Worker" Height="300" Width="375">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="BtnSynchronous" 
+                    Click="BtnSynchronous_Click" 
+                    Margin="5,0,5,0" 
+                    Content="Synchronous (same thread)"/>
+            <Button Grid.Column="1" x:Name="BtnAsynchronous" 
+                    Click="BtnAsynchronous_Click" 
+                    Margin="5,0,5,0" 
+                    Content="Asynchronous (worker thread)"/>
+            <Button Grid.Column="2" x:Name="BtnCancel"
+                    IsEnabled="False"
+                    Click="BtnCancel_Click" 
+                    Margin="5,0,5,0" 
+                    Content="Cancel worker"/>
+        </Grid>
+        <ListView Grid.Row="1" x:Name="LvResults"/>
+        <ProgressBar Grid.Row="2" x:Name="PbCalculation"/>
+    </Grid>
+</Window>

@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App12.SQLite", "App12.SQLit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App11.HIK", "App11.HIK\App11.HIK.csproj", "{5B82B0F5-6435-4CF6-BB83-51FC6CACA1AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App13.Worker", "App13.Worker\App13.Worker.csproj", "{E2BB5063-C7C0-4BEC-A34D-0F0959F02578}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +80,9 @@ Global
 		{5B82B0F5-6435-4CF6-BB83-51FC6CACA1AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B82B0F5-6435-4CF6-BB83-51FC6CACA1AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B82B0F5-6435-4CF6-BB83-51FC6CACA1AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2BB5063-C7C0-4BEC-A34D-0F0959F02578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2BB5063-C7C0-4BEC-A34D-0F0959F02578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2BB5063-C7C0-4BEC-A34D-0F0959F02578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2BB5063-C7C0-4BEC-A34D-0F0959F02578}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
