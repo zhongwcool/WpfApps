@@ -1,10 +1,11 @@
 ﻿using System.Windows;
+using App11.HIK.Utils;
 
 namespace App11.HIK.Views;
 
-public partial class SlashWindow : Window
+public partial class SplashWindow : Window
 {
-    public SlashWindow()
+    public SplashWindow()
     {
         InitializeComponent();
     }
@@ -25,5 +26,10 @@ public partial class SlashWindow : Window
     {
         var window = new PageInWindow();
         window.ShowDialog();
+    }
+
+    private void ButtonToast_OnClick(object sender, RoutedEventArgs e)
+    {
+        AppUtil.ShowToast("我是这样的");
     }
 }
