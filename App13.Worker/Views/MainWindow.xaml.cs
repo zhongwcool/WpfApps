@@ -12,6 +12,15 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        base.OnClosing(e);
+        if (_worker is { IsBusy: true })
+        {
+            _worker.CancelAsync();
+        }
+    }
+
     private void BtnSynchronous_Click(object sender, RoutedEventArgs e)
     {
         const int max = 10000;

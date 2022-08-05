@@ -6,6 +6,20 @@
         <UseWPF>true</UseWPF>
         <LangVersion>10</LangVersion>
         <Nullable>disable</Nullable>
+        <ApplicationIcon>Resources\Image\app_logo.ico</ApplicationIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="Assets\app_logo.png"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Resources\Image\jslogo.ico"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Resources\Image\app_logo.ico"/>
+        <Resource Include="Resources\Image\app_logo.ico"/>
+    </ItemGroup>
 
 </Project>

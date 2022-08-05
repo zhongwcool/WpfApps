@@ -60,7 +60,7 @@
             </StatusBar>
         </DockPanel>
 
-        <TextBox x:Name="XuNiBox" Width="1" Height="1" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <TextBox x:Name="XuNiBox" Width="1" Height="1" Style="{x:Null}" />
 
         <Grid x:Name="MaskProgressBar" Background="#80000000" Visibility="Collapsed">
             <Grid.RowDefinitions>

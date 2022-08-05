@@ -1,6 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using App03.Network.Models;
 
 namespace App03.Network.Utils;
@@ -28,5 +35,56 @@ public static class NetworkUtil
         }
 
         return networkList.ToArray();
+    }
+
+    public static string GetLocalIp()
+    {
+        Thread.Sleep(5000);
+        var result = RunApp("route", "print");
+        var match = Regex.Match(result, @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
+        if (match.Success)
+            return match.Groups[2].Value;
+        try
+        {
+            var tcpClient = new TcpClient();
+            tcpClient.Connect("www.baidu.com", 80);
+            var ip = ((IPEndPoint)tcpClient.Client.LocalEndPoint).Address.ToString();
+            tcpClient.Close();
+            return ip;
+        }
+        catch (Exception)
+        {
+            return "127.0.0.1";
+        }
+    }
+
+    private static string RunApp(string filename, string arguments)
+    {
+        try
+        {
+            var process = new Process
+            {
+                StartInfo =
+                {
+                    FileName = filename,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    Arguments = arguments,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false
+                }
+            };
+            process.Start();
+
+            using var streamReader = new StreamReader(process.StandardOutput.BaseStream, Encoding.Default);
+            var result = streamReader.ReadToEnd();
+            process.WaitForExit();
+            streamReader.Close();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
     }
 }
