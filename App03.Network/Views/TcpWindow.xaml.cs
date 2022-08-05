@@ -19,22 +19,38 @@ namespace App03.Network.Views;
 /// </summary>
 public partial class TcpWindow
 {
-    private static TcpWindow _instance;
-
-    public static TcpWindow GetInstance()
-    {
-        _instance ??= new TcpWindow();
-        return _instance;
-    }
-
-    public TcpWindow()
+    public TcpWindow(string serverIp)
     {
         InitializeComponent();
+        TextServer.Text = serverIp;
+        MaskProgressBar.Visibility = Visibility.Visible;
 
-        var list = NetworkUtil.GetNetworkInfo();
-        if (list.Length <= 0) return;
-        NetComboBox.ItemsSource = list;
-        NetComboBox.SelectedIndex = 0;
+        var task = Task.Run(() =>
+        {
+            var list = NetworkUtil.GetNetworkInfo();
+            return list;
+        });
+
+        task.ContinueWith(_ =>
+        {
+            var index = 0;
+            foreach (var info in task.Result)
+            {
+                if (serverIp.Equals(info.Ip))
+                {
+                    break;
+                }
+
+                index++;
+            }
+
+            Dispatcher.Invoke(() =>
+            {
+                NetComboBox.ItemsSource = task.Result;
+                NetComboBox.SelectedIndex = index;
+                MaskProgressBar.Visibility = Visibility.Collapsed;
+            });
+        });
     }
 
     protected override void OnClosing(CancelEventArgs cancelEventArgs)
@@ -45,12 +61,6 @@ public partial class TcpWindow
         _tokenSourceConn?.Cancel();
         _tcpClient?.Close();
         _tcpClient = null;
-    }
-
-    protected override void OnClosed(EventArgs e)
-    {
-        base.OnClosed(e);
-        _instance = null;
     }
 
     private void NetComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
