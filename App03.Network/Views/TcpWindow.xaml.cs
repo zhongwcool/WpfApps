@@ -201,7 +201,7 @@ public partial class TcpWindow
         }
     }
 
-    private void Button_Click_Close(object sender, RoutedEventArgs e)
+    private void ButtonClose_OnClick(object sender, RoutedEventArgs e)
     {
         _worker.CancelAsync();
     }
