@@ -39,7 +39,7 @@ public static class NetworkUtil
 
     public static string GetLocalIp()
     {
-        Thread.Sleep(5000);
+        Thread.Sleep(1000);
         var result = RunApp("route", "print");
         var match = Regex.Match(result, @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
         if (match.Success)

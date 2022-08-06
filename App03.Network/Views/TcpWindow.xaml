@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="网卡切换Demo" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen"
+        Title="网卡切换-TCP" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid MouseDown="UIElement_OnMouseDown">
         <DockPanel>
             <Grid DockPanel.Dock="Top">
@@ -30,13 +31,15 @@
 
                 <GroupBox Grid.Row="1" Header="网卡切换" Width="300" Height="400" HorizontalAlignment="Left"
                           VerticalAlignment="Top">
-                    <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
                         <ComboBox x:Name="NetComboBox" DisplayMemberPath="Description"
-                                  SelectionChanged="NetComboBox_OnSelectionChanged" />
-                        <RichTextBox Name="RecvDataRichTextBox" BorderThickness="0" IsReadOnly="True" Height="350">
-                            <FlowDocument LineHeight="1.5" FontSize="12" FontFamily="Lucida Console" PageWidth="1000" />
-                        </RichTextBox>
-                    </StackPanel>
+                                  SelectionChanged="NetComboBox_OnSelectionChanged" Grid.Row="0"/>
+                        <ListView x:Name="LvReceive" Grid.Row="1"/>
+                    </Grid>
                 </GroupBox>
 
                 <Grid Grid.Row="2" Height="30">

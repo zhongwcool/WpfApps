@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -14,9 +15,6 @@ using App03.Network.Utils;
 
 namespace App03.Network.Views;
 
-/// <summary>
-///     Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class TcpWindow
 {
     public TcpWindow(string serverIp)
@@ -33,16 +31,7 @@ public partial class TcpWindow
 
         task.ContinueWith(_ =>
         {
-            var index = 0;
-            foreach (var info in task.Result)
-            {
-                if (serverIp.Equals(info.Ip))
-                {
-                    break;
-                }
-
-                index++;
-            }
+            var index = task.Result.TakeWhile(info => !serverIp.Equals(info.Ip)).Count();
 
             Dispatcher.Invoke(() =>
             {
@@ -105,10 +94,14 @@ public partial class TcpWindow
             {
                 MyStatusBar.Background = Brushes.Green;
                 StatusInfo.Text = "连接成功";
+
                 //清除旧的消息
-                RecvDataRichTextBox.Document.Blocks.Clear();
-                RecvDataRichTextBox.AppendText(GetMessage("连接成功"));
-                RecvDataRichTextBox.ScrollToEnd();
+                LvReceive.Items.Clear();
+                var item = "连接成功";
+                LvReceive.Items.Add(item);
+                LvReceive.ScrollIntoView(item);
+                LvReceive.SelectedIndex = LvReceive.Items.Count - 1;
+
                 //接收消息
                 _tokenSourceRecv ??= new CancellationTokenSource();
                 Task.Factory.StartNew(TaskRecv, _tokenSourceRecv.Token);
@@ -134,26 +127,36 @@ public partial class TcpWindow
         var recvBytes = new byte[1024];
         while (!token.IsCancellationRequested)
         {
-            var count = netStream.ReadAsync(recvBytes, 0, recvBytes.Length, token);
-            if (count.Result <= 0)
-                Task.WaitAny(new[] { Task.Delay(100, token) }, token);
-            else
+            try
+            {
+                var task = netStream.ReadAsync(recvBytes, 0, recvBytes.Length, token);
+                var cnt = task.Result;
+                if (cnt <= 0) continue;
                 Dispatcher.Invoke(() =>
                 {
-                    RecvDataRichTextBox.AppendText(GetMessage(recvBytes, count.Result));
-                    RecvDataRichTextBox.ScrollToEnd();
+                    var item = GetMessageRecv(recvBytes, cnt);
+                    LvReceive.Items.Add(item);
+                    LvReceive.ScrollIntoView(item);
+                    LvReceive.SelectedIndex = LvReceive.Items.Count - 1;
                 });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _tokenSourceRecv.Cancel();
+                return;
+            }
         }
     }
 
-    private static string GetMessage(string content)
+    private static string GetMessageSend(byte[] content, int count)
     {
-        return TimeUtil.GetTimeStamp() + " " + content + "\n" + Environment.NewLine;
+        return "sent: " + Encoding.UTF8.GetString(content, 0, count);
     }
 
-    private static string GetMessage(byte[] content, int count)
+    private static string GetMessageRecv(byte[] content, int count)
     {
-        return TimeUtil.GetTimeStamp() + " " + Encoding.UTF8.GetString(content, 0, count) + Environment.NewLine;
+        return "recv: " + Encoding.UTF8.GetString(content, 0, count);
     }
 
     private TcpClient _tcpClient;
@@ -205,8 +208,9 @@ public partial class TcpWindow
 
     private void ButtonSingle_OnClick(object sender, RoutedEventArgs e)
     {
-        var data = Encoding.UTF8.GetBytes("hello, i am: " + ((NetworkInfo)NetComboBox.SelectedItem).Ip);
-        _tcpClient?.GetStream().Write(data, 0, data.Length);
+        var message = $"hello, now is: {TimeUtil.GetTimeStamp()}";
+        var data = Encoding.UTF8.GetBytes(message);
+        SendMessage(data);
     }
 
     private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -238,8 +242,24 @@ public partial class TcpWindow
         while (!token.IsCancellationRequested)
         {
             var data = Encoding.UTF8.GetBytes("hello, Count: " + count++);
-            _tcpClient?.GetStream().WriteAsync(data, 0, data.Length, token);
+            SendMessage(data);
             Task.WaitAny(new[] { Task.Delay(500, token) }, token);
         }
+    }
+
+    private void SendMessage(byte[] data)
+    {
+        var netStream = _tcpClient.GetStream();
+        var task = netStream.WriteAsync(data, 0, data.Length);
+        task?.ContinueWith(_ =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                var item = GetMessageSend(data, data.Length);
+                LvReceive.Items.Add(item);
+                LvReceive.ScrollIntoView(item);
+                LvReceive.SelectedIndex = LvReceive.Items.Count - 1;
+            });
+        });
     }
 }

@@ -59,14 +59,14 @@ public partial class UdpWindow
         _udpClient = null;
     }
 
-    private static string GetMessage(string content)
+    private static string GetMessageSend(byte[] content, int count)
     {
-        return TimeUtil.GetTimeStamp() + " " + content + "\n" + Environment.NewLine;
+        return "sent: " + Encoding.UTF8.GetString(content, 0, count);
     }
 
-    private static string GetMessage(byte[] content, int count)
+    private static string GetMessageRecv(byte[] content, int count)
     {
-        return TimeUtil.GetTimeStamp() + " " + Encoding.UTF8.GetString(content, 0, count) + Environment.NewLine;
+        return "recv: " + Encoding.UTF8.GetString(content, 0, count);
     }
 
     private UdpClient _udpClient;
@@ -145,9 +145,11 @@ public partial class UdpWindow
                 StatusInfo.Text = "连接成功";
 
                 //清除旧的消息
-                RecvDataRichTextBox.Document.Blocks.Clear();
-                RecvDataRichTextBox.AppendText(GetMessage("连接成功"));
-                RecvDataRichTextBox.ScrollToEnd();
+                LvReceive.Items.Clear();
+                var item = "连接成功";
+                LvReceive.Items.Add(item);
+                LvReceive.ScrollIntoView(item);
+                LvReceive.SelectedIndex = LvReceive.Items.Count - 1;
 
                 //接收消息
                 _tokenSourceRecv ??= new CancellationTokenSource();
@@ -172,16 +174,23 @@ public partial class UdpWindow
         var token = (CancellationToken)obj;
         while (!token.IsCancellationRequested)
         {
-            var result = _udpClient.ReceiveAsync();
-            var recvBytes = result.Result.Buffer;
-            if (result.Result.Buffer.Length <= 0)
-                Task.WaitAny(new[] { Task.Delay(100, token) }, token);
-            else
+            try
+            {
+                var task = _udpClient.ReceiveAsync(token);
+                var recvBytes = task.Result.Buffer;
                 Dispatcher.Invoke(() =>
                 {
-                    RecvDataRichTextBox.AppendText(GetMessage(recvBytes, recvBytes.Length));
-                    RecvDataRichTextBox.ScrollToEnd();
+                    var item = GetMessageRecv(recvBytes, recvBytes.Length);
+                    LvReceive.Items.Add(item);
+                    LvReceive.ScrollIntoView(item);
+                    LvReceive.SelectedIndex = LvReceive.Items.Count - 1;
                 });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 
@@ -192,8 +201,8 @@ public partial class UdpWindow
 
     private void ButtonSingle_OnClick(object sender, RoutedEventArgs e)
     {
-        var data = Encoding.UTF8.GetBytes("hello, i am: " + ((NetworkInfo)NetComboBox.SelectedItem).Ip);
-        _udpClient?.Send(data, data.Length, _multicast);
+        var data = Encoding.UTF8.GetBytes("hello, now is: " + TimeUtil.GetTimeStamp());
+        SendMessage(data);
     }
 
     private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -223,7 +232,7 @@ public partial class UdpWindow
             _resetEvent.WaitOne();
 
             var data = Encoding.UTF8.GetBytes("hello, Count: " + count++);
-            _udpClient?.Send(data, data.Length, _multicast);
+            SendMessage(data);
             Task.WaitAny(new[] { Task.Delay(500, token) }, token);
         }
     }
@@ -232,5 +241,20 @@ public partial class UdpWindow
     {
         ButtonContinuous.IsEnabled = true;
         _resetEvent.Reset();
+    }
+
+    private void SendMessage(byte[] data)
+    {
+        var task = _udpClient.SendAsync(data, data.Length, _multicast);
+        task.ContinueWith(_ =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                var item = GetMessageSend(data, data.Length);
+                LvReceive.Items.Add(item);
+                LvReceive.ScrollIntoView(item);
+                LvReceive.SelectedIndex = LvReceive.Items.Count - 1;
+            });
+        });
     }
 }
