@@ -177,6 +177,7 @@ public partial class UdpWindow
             try
             {
                 var task = _udpClient.ReceiveAsync(token);
+                if (!task.IsCompletedSuccessfully) continue;
                 var recvBytes = task.Result.Buffer;
                 Dispatcher.Invoke(() =>
                 {

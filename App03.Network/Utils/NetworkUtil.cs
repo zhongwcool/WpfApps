@@ -7,7 +7,6 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using App03.Network.Models;
 
 namespace App03.Network.Utils;
@@ -39,7 +38,6 @@ public static class NetworkUtil
 
     public static string GetLocalIp()
     {
-        Thread.Sleep(1000);
         var result = RunApp("route", "print");
         var match = Regex.Match(result, @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
         if (match.Success)

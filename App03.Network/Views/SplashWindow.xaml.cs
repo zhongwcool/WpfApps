@@ -14,17 +14,29 @@ public partial class SplashWindow : Window
     {
         InitializeComponent();
 
+        Cook();
+    }
+
+    private async void Cook()
+    {
+        var token = _tokenSourceTaskGetIp.Token;
         // 获取Local ip数据
-        var task = Task.Run(NetworkUtil.GetLocalIp, _tokenSourceTaskGetIp.Token);
-        task.ContinueWith(_ =>
+        var task = await Task.Run(NetworkUtil.GetLocalIp, token);
+        LocalIp = task;
+        Dispatcher.Invoke(() => { Title = LocalIp; });
+
+        var task2 = await Task.Run(() =>
         {
-            LocalIp = task.Result;
-            Dispatcher.Invoke(() =>
-            {
-                var main = new MainWindow(LocalIp);
-                main.Show();
-                Close();
-            });
+            Task.WaitAny(new[] { Task.Delay(1000, token) }, token);
+            return 60;
+        }, token);
+
+        Dispatcher.Invoke(() =>
+        {
+            Title = task2.ToString();
+            var main = new MainWindow(LocalIp);
+            main.Show();
+            Close();
         });
     }
 
