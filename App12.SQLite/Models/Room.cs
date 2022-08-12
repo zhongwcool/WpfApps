@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App12.SQLite.Models;
 

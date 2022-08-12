@@ -5,15 +5,12 @@ using System.Windows.Media;
 using App10.Weather.Helper;
 using App10.Weather.Models;
 using App10.Weather.ViewModels;
+using CommunityToolkit.Mvvm.Messaging;
 using InteractiveDataDisplay.WPF;
-using Microsoft.Toolkit.Mvvm.Messaging;
 using ModernWpf;
 
 namespace App10.Weather.Views;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     public MainWindow()

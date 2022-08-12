@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using App04.MultiLang.Config;
 using App04.MultiLang.Models;
 using App04.MultiLang.ViewModels;
-using Microsoft.Toolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace App04.MultiLang.Views;
 

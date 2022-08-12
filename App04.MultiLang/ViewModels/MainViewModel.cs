@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.Windows.Input;
 using App04.MultiLang.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace App04.MultiLang.ViewModels;
 

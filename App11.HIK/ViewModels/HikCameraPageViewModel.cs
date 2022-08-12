@@ -1,5 +1,5 @@
 ﻿using App11.HIK.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App11.HIK.ViewModels;
 

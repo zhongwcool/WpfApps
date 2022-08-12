@@ -6,9 +6,9 @@ using System.Linq;
 using System.Windows.Controls;
 using App12.SQLite.HotelDbContext;
 using App12.SQLite.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace App12.SQLite.ViewModels;
 

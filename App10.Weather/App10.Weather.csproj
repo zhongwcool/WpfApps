@@ -9,8 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
         <PackageReference Include="InteractiveDataDisplay.WPF" Version="1.0.0"/>
-        <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
     </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using App08.Metro.Concurrent;
 using App08.Metro.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace App08.Metro.ViewModels;
 

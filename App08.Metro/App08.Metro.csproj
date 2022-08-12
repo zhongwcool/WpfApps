@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
         <PackageReference Include="LibVLCSharp" Version="3.6.6"/>
         <PackageReference Include="LibVLCSharp.WPF" Version="3.6.6"/>
-        <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
         <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.17.4"/>
     </ItemGroup>
