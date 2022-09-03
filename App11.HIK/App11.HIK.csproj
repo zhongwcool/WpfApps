@@ -18,7 +18,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
     </ItemGroup>
@@ -36,16 +37,16 @@
 
     <ItemGroup>
         <Resource Include="Resources\ForbiddenSign.png"/>
-        <Resource Include="Resources\Device\Dark\0.png"/>
-        <Resource Include="Resources\Device\Dark\1.png"/>
-        <Resource Include="Resources\Device\Dark\2.png"/>
-        <Resource Include="Resources\Device\Dark\3.png"/>
-        <Resource Include="Resources\Device\Dark\4.png"/>
-        <Resource Include="Resources\Device\Light\0.png"/>
-        <Resource Include="Resources\Device\Light\1.png"/>
-        <Resource Include="Resources\Device\Light\2.png"/>
-        <Resource Include="Resources\Device\Light\3.png"/>
-        <Resource Include="Resources\Device\Light\4.png"/>
+        <Resource Include="Resources\Device\Dark\A0.png"/>
+        <Resource Include="Resources\Device\Dark\A1.png"/>
+        <Resource Include="Resources\Device\Dark\A2.png"/>
+        <Resource Include="Resources\Device\Dark\A3.png"/>
+        <Resource Include="Resources\Device\Dark\A4.png"/>
+        <Resource Include="Resources\Device\Light\A0.png"/>
+        <Resource Include="Resources\Device\Light\A1.png"/>
+        <Resource Include="Resources\Device\Light\A2.png"/>
+        <Resource Include="Resources\Device\Light\A3.png"/>
+        <Resource Include="Resources\Device\Light\A4.png"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -54,12 +55,12 @@
         </Content>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Assets"/>
-    </ItemGroup>
-
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
         <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\HikSdk\ $(ProjectDir)$(OutDir)\"/>
+    </Target>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\JsonDemo\ $(ProjectDir)$(OutDir)"/>
     </Target>
 
 </Project>

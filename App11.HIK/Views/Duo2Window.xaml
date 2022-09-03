@@ -1,0 +1,25 @@
+﻿<Window x:Class="App11.HIK.Views.Duo2Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:control="clr-namespace:App11.HIK.Control"
+        mc:Ignorable="d"
+        Title="Duo2Window" Height="600" Width="800">
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <control:HikView x:Name="HikView0" Grid.Row="0" Grid.Column="0"/>
+            <control:HikView x:Name="HikView1" Grid.Row="0" Grid.Column="1"/>
+            <control:HikView x:Name="HikView2" Grid.Row="1" Grid.Column="0"/>
+            <control:HikView x:Name="HikView3" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -1,40 +1,68 @@
 ﻿using System;
-using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 using App11.HIK.Data;
-using App11.HIK.Helper;
 using App11.HIK.HikSdk;
-using App11.HIK.Models;
 using App11.HIK.Utils;
-using App11.HIK.ViewModels;
+using CommunityToolkit.Mvvm.Input;
 
-namespace App11.HIK.Views.Pages;
+namespace App11.HIK.Models;
 
-public partial class HikCameraPage : IDisposable
+public sealed class JsNodeA2 : JsNode, IDisposable
 {
-    public HikCameraPage(JsNode robot)
+    public JsNodeA2(JsNode parent)
     {
-        InitializeComponent();
-        if (null == robot) return;
-        CurrentRobot = robot;
+        NodeName = parent.NodeName;
+        ModelType = parent.ModelType;
+        ModelNum = parent.ModelNum;
+        SerialNum = parent.SerialNum;
+        Mac = parent.Mac;
+        TcpPort = parent.TcpPort;
+        DevIp = parent.DevIp;
+        Firmware = parent.Firmware;
+        Protocol = parent.Protocol;
 
-        DataContext = new HikCameraPageViewModel(robot);
-        // 播放器句柄
-        _mControlHandle = VideoControl.Handle;
-
-        InitTimer();
+        CommandShot = new RelayCommand(DoTakeShot, CommandShotCanExecute);
+        CommandRecord = new RelayCommand(DoRecord, CommandRecordCanExecute);
     }
 
-    private JsNode CurrentRobot { get; set; }
+    public RelayCommand<object> CommandLoaded => new Lazy<RelayCommand<object>>(() =>
+        new RelayCommand<object>(LoadHw)
+    ).Value;
 
-    ~HikCameraPage()
+    private void LoadHw(object o)
     {
-        Dispose(false);
+        //获取HWindowControlWPF控件对象
+        var formHost = (WindowsFormsHost)o;
+        _mControlHandle = ((PictureBox)formHost.Child).Handle;
+        StartPreview();
     }
 
-    private readonly IntPtr _mControlHandle; //播放控件句柄
+    private IntPtr _mControlHandle; //播放控件句柄
     private Int32 _mUserId = -1; //登录使用
     private Int32 _mStreamHandle = -1; //是否已经开始实时播放
     private Int32 _mStreamPort = -1; //摄像头播放句柄
+
+    private string _txtHikStatus = "设备准备中";
+
+    public string TxtHikStatus
+    {
+        get => _txtHikStatus;
+        private set => SetProperty(ref _txtHikStatus, value);
+    }
+
+    private bool CameraInit()
+    {
+        if (CHCNetSDK.NET_DVR_Init())
+        {
+            CHCNetSDK.NET_DVR_SetLogToFile(3, ".\\02-SdkLog\\", true);
+            return true;
+        }
+
+        TxtHikStatus = "摄像头初始化失败！";
+        Log.D("摄像头初始化失败！");
+        return false;
+    }
 
     private void CameraLogout()
     {
@@ -136,17 +164,17 @@ public partial class HikCameraPage : IDisposable
         }
 
         //每次收到LIVEVIEW数据时重新开始定时器，当达到规定时间后显示对应的提示图片，表示liveview已经无法获取实时影像
-        StartHideTimer();
+        AwakeWatchDog();
     }
 
-    private void StartHideTimer()
+    private void AwakeWatchDog()
     {
         try
         {
-            _mHideRealPlayTimer.Stop();
-            _mHideRealPlayTimer.Close();
+            _mWatchDogTimer.Stop();
+            _mWatchDogTimer.Close();
             InitTimer();
-            _mHideRealPlayTimer.Start();
+            _mWatchDogTimer.Start();
         }
         catch (Exception ex)
         {
@@ -156,26 +184,32 @@ public partial class HikCameraPage : IDisposable
 
     private void InitTimer()
     {
-        _mHideRealPlayTimer = new System.Timers.Timer();
-        _mHideRealPlayTimer.Elapsed += HideRealPlayTimer_Elapsed;
+        _mWatchDogTimer = new System.Timers.Timer();
+        _mWatchDogTimer.Elapsed += WatchDogTimerElapsed;
 
-        _mHideRealPlayTimer.Interval = 2000;
+        _mWatchDogTimer.Interval = 2000;
         //设置是执行一次（false）还是一直执行(true)；  
-        _mHideRealPlayTimer.AutoReset = false;
+        _mWatchDogTimer.AutoReset = false;
     }
 
-    private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void WatchDogTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-        DispatcherHelper.RunOnMainThread(() => { PanelBack.Visibility = Visibility.Visible; });
+        IsReady = false;
     }
 
-    private System.Timers.Timer _mHideRealPlayTimer;
+    private System.Timers.Timer _mWatchDogTimer;
 
-    private void BtnPreview_OnClick(object sender, RoutedEventArgs e)
+    private void StartPreview()
     {
         if (_mUserId < 0)
         {
-            _ = CameraLogin();
+            var ret = CameraLogin();
+            if (!ret)
+            {
+                TxtHikStatus = "设备登录失败";
+                Log.E("设备登录失败");
+                return;
+            }
         }
 
         if (_mStreamHandle < 0)
@@ -183,34 +217,26 @@ public partial class HikCameraPage : IDisposable
             var ret = CameraPreview();
             if (!ret)
             {
+                TxtHikStatus = "预览失败";
                 Log.E("预览失败");
                 return;
             }
 
-            BtnPreview.Content = "停止";
-            PanelBack.Visibility = Visibility.Collapsed;
+            IsReady = true;
         }
         else
         {
             //停止预览
             StopPreview();
-            BtnPreview.Content = "预览";
         }
     }
 
-    private void ButtonShotJpeg_OnClick(object sender, RoutedEventArgs e)
+    private bool _isReady = false;
+
+    public bool IsReady
     {
-        var ret = TakeShot();
-        switch (ret)
-        {
-            case -1:
-                MessageBox.Show("抓图失败，请检查日志");
-                break;
-            case -2:
-            case -3:
-                MessageBox.Show("预览时才能抓图");
-                break;
-        }
+        get => _isReady;
+        set => SetProperty(ref _isReady, value);
     }
 
     private int TakeShot()
@@ -239,29 +265,56 @@ public partial class HikCameraPage : IDisposable
         return 0;
     }
 
-    private bool _mRecording;
+    #region 截图
 
-    private void ButtonRecord_OnClick(object sender, RoutedEventArgs e)
+    public IRelayCommand CommandShot { get; }
+
+    private void DoTakeShot()
+    {
+        _ = TakeShot();
+    }
+
+    private bool CommandShotCanExecute()
+    {
+        return _mStreamHandle >= 0;
+    }
+
+    #endregion
+
+    #region 录像
+
+    private string _txtBtnRecord = "录像";
+
+    public string TxtBtnRecord
+    {
+        get => _txtBtnRecord;
+        private set => SetProperty(ref _txtBtnRecord, value);
+    }
+
+    public IRelayCommand CommandRecord { get; }
+
+    private bool CommandRecordCanExecute()
+    {
+        return !_mRecording;
+    }
+
+    private void DoRecord()
     {
         if (_mRecording == false)
         {
             var ret = StartRecord();
-            switch (ret)
-            {
-                case 0:
-                    BtnRecord.Content = "停止录像";
-                    break;
-                case -2:
-                    MessageBox.Show("预览模式下才能录制！");
-                    break;
-            }
+            if (ret == 0) TxtBtnRecord = "停止录像";
         }
         else
         {
             var ret = StopRecord();
-            if (ret) BtnRecord.Content = "录像";
+            if (ret) TxtBtnRecord = "录像";
         }
     }
+
+    private bool _mRecording;
+
+    #endregion
 
     private int StartRecord()
     {
@@ -291,7 +344,7 @@ public partial class HikCameraPage : IDisposable
         if (!CHCNetSDK.NET_DVR_StopSaveRealData(_mStreamHandle))
         {
             var lastErr = CHCNetSDK.NET_DVR_GetLastError();
-            MessageBox.Show("NET_DVR_StopSaveRealData failed, error code= " + lastErr);
+            Log.E("NET_DVR_StopSaveRealData failed, error code= " + lastErr);
             return false;
         }
 
@@ -307,7 +360,7 @@ public partial class HikCameraPage : IDisposable
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(CurrentRobot.DevIp, _config.Port, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName, _config.Password,
                 ref deviceInfo);
             if (_mUserId < 0)
             {
@@ -316,7 +369,7 @@ public partial class HikCameraPage : IDisposable
             }
             else
             {
-                BtnPreview.Content = "已登录";
+                TxtHikStatus = "实时影像登录成功！";
                 Log.D("实时影像登录成功！");
                 return true;
             }
@@ -351,6 +404,7 @@ public partial class HikCameraPage : IDisposable
         }
         else
         {
+            TxtHikStatus = "摄像头预览成功！";
             Log.D("摄像头预览成功！");
             return true;
         }
@@ -395,15 +449,8 @@ public partial class HikCameraPage : IDisposable
         Log.D("关闭摄像头预览");
     }
 
-    private void Control0_OnSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        const double ratio = 16 / 10.0;
-        Control0.Height = Control0.ActualWidth / ratio;
-    }
-
     private void ReleaseUnmanagedResources()
     {
-        // release unmanaged resources here
         CameraLogout();
     }
 
@@ -412,8 +459,7 @@ public partial class HikCameraPage : IDisposable
         ReleaseUnmanagedResources();
         if (disposing)
         {
-            _mHideRealPlayTimer?.Dispose();
-            VideoControl?.Dispose();
+            _mWatchDogTimer?.Dispose();
         }
     }
 
@@ -421,5 +467,10 @@ public partial class HikCameraPage : IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    ~JsNodeA2()
+    {
+        Dispose(false);
     }
 }

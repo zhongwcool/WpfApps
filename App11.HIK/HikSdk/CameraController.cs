@@ -12,33 +12,17 @@ namespace App11.HIK.HikSdk;
 
 public class CameraController
 {
-    private CameraController()
+    private static string _ipv4;
+
+    public CameraController(string ipv4)
     {
+        _ipv4 = ipv4;
         playFormsHost.Child = RealPlayWnd;
         playFormsHost.Visibility = Visibility.Visible;
         RealPlayWnd.Image = m_Icon;
         RealPlayWnd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
         m_ptrRealHandle = RealPlayWnd.Handle;
         InitTimer();
-    }
-
-    public static CameraController Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                lock (syncRoot)
-                {
-                    if (instance == null)
-                    {
-                        instance = new CameraController();
-                    }
-                }
-            }
-
-            return instance;
-        }
     }
 
     public void Display(Panel panel)
@@ -56,23 +40,6 @@ public class CameraController
         }
     }
 
-    public bool CameraInit()
-    {
-        bool ret = false;
-
-        if (CHCNetSDK.NET_DVR_Init())
-        {
-            CHCNetSDK.NET_DVR_SetLogToFile(3, ".\\02-SdkLog\\", true);
-            ret = true;
-        }
-        else
-        {
-            Log.D("摄像头初始化失败！");
-        }
-
-        return ret;
-    }
-
     private readonly AppConfig _config = AppConfig.CreateInstance();
 
     public bool CameraLogin()
@@ -83,8 +50,7 @@ public class CameraController
             var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
             for (int i = 1; i < 4; i++)
             {
-                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName,
-                    _config.Password,
+                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_ipv4, _config.Port, _config.UserName, _config.Password,
                     ref deviceInfo);
                 if (m_lUserID < 0)
                 {
@@ -116,7 +82,7 @@ public class CameraController
             m_lUserID = -1;
         }
 
-        CHCNetSDK.NET_DVR_Cleanup();
+        //CHCNetSDK.NET_DVR_Cleanup();
     }
 
     private void CameraPreview()

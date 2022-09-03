@@ -1,7 +1,6 @@
-﻿using System.Threading;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using App11.HIK.Concurrent;
 using App11.HIK.Models;
 using App11.HIK.Views.Pages;
 
@@ -14,17 +13,29 @@ public partial class PageInWindow
         InitializeComponent();
 
         // Create dummy data
-        RobotList.Insert(0, RobotModel.CreateDummy());
-        Thread.Sleep(500);
-        RobotList.Insert(0, RobotModel.CreateDummy());
-        ListViewDevice.ItemsSource = RobotList;
+        DoDummy();
     }
 
-    private MtObservableCollection<RobotModel> RobotList { get; set; } = new();
+    private void DoDummy()
+    {
+        var task = JsNode.CreateDummy();
+        task.ContinueWith(_ =>
+        {
+            var robots = task.Result;
+            foreach (var robot in robots)
+            {
+                RobotList.Add(robot);
+            }
+
+            Dispatcher.Invoke(() => { ListViewDevice.ItemsSource = RobotList; });
+        });
+    }
+
+    private ObservableCollection<JsNode> RobotList { get; set; } = new();
 
     private void MySelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (sender is not ListView { SelectedItem: RobotModel de }) return;
+        if (sender is not ListView { SelectedItem: JsNode de }) return;
 
         // Clear or remove current page
         HikControl.Children.Clear();
@@ -39,7 +50,7 @@ public partial class PageInWindow
 
     private UIElement _currentPage;
 
-    private void ShowCamera2(RobotModel robot)
+    private void ShowCamera2(JsNode robot)
     {
         _currentPage = new HikCameraPage(robot);
         HikControl.Children.Add(_currentPage);

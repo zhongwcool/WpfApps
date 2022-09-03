@@ -1,0 +1,35 @@
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using App11.HIK.Models;
+
+namespace App11.HIK.Views;
+
+public partial class Duo2Window : Window
+{
+    public Duo2Window()
+    {
+        InitializeComponent();
+        DoDummy();
+    }
+
+    private void DoDummy()
+    {
+        var task = JsNode.CreateDummy();
+        task.ContinueWith(_ =>
+        {
+            var robots = task.Result;
+            foreach (var robot in robots)
+            {
+                var node = new JsNodeA2(robot);
+                A2NodeList.Add(node);
+            }
+
+            HikView0.SetNode(A2NodeList[0]);
+            HikView1.SetNode(A2NodeList[1]);
+            HikView2.SetNode(A2NodeList[2]);
+            HikView3.SetNode(A2NodeList[0]);
+        });
+    }
+
+    public ObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
+}

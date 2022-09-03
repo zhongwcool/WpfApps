@@ -14,13 +14,6 @@ public partial class XamlWindow
         InitializeComponent();
         _mControlHandle = VideoControl.Handle;
 
-        var init = CameraInit();
-        if (!init)
-        {
-            MessageBox.Show("摄像头初始化失败！");
-            return;
-        }
-
         InitTimer();
     }
 
@@ -28,18 +21,6 @@ public partial class XamlWindow
     private Int32 _mUserId = -1; //登录使用
     private Int32 _mStreamHandle = -1; //是否已经开始实时播放
     private Int32 _mStreamPort = -1; //摄像头播放句柄
-
-    private bool CameraInit()
-    {
-        if (CHCNetSDK.NET_DVR_Init())
-        {
-            CHCNetSDK.NET_DVR_SetLogToFile(3, ".\\02-SdkLog\\", true);
-            return true;
-        }
-
-        Log.D("摄像头初始化失败！");
-        return false;
-    }
 
     protected override void OnClosing(CancelEventArgs e)
     {
@@ -60,8 +41,6 @@ public partial class XamlWindow
             CHCNetSDK.NET_DVR_Logout(_mUserId);
             _mUserId = -1;
         }
-
-        CHCNetSDK.NET_DVR_Cleanup();
     }
 
     private CHCNetSDK.REALDATACALLBACK _realDataCallback;

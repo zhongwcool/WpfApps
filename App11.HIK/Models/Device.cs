@@ -2,10 +2,13 @@
 
 public class Device
 {
-    public string SN; // Serial number
-    public string IP; // Serial number
-    public string NM; // Node name
-    public string MC; // Mac address
-    public string FV; // Firmware Version
-    public string PV; // Protocol Version
+    public string MN { set; get; }
+    public string SN { set; get; }
+    public string IP { set; get; }
+    public string NN { set; get; }
+    public string MC { set; get; }
+    public int TP { set; get; }
+    public string NT { set; get; }
+    public string FV { set; get; }
+    public string PV { set; get; }
 }

@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:ct="clr-namespace:App11.HIK.Control"
+             xmlns:models="clr-namespace:App11.HIK.Models"
              StartupUri="Views/SplashWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,6 +13,9 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <DataTemplate DataType="{x:Type models:JsNode}">
+                <ct:HikView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

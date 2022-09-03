@@ -52,7 +52,7 @@
                             <RowDefinition Height="30" />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="物理地址"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRobot.RemoteMac}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRobot.Mac}"/>
                         <TextBlock Grid.Row="0" Grid.Column="2" Text="IP地址"/>
                         <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding CurrentRobot.DevIp}"/>
                         <TextBlock Grid.Row="0" Grid.Column="4" Text="设备序列号"/>

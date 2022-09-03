@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Windows;
 using App11.HIK.Data;
-using App11.HIK.Helper;
 using App11.HIK.HikSdk;
 using App11.HIK.Models;
 using App11.HIK.Utils;
-using App11.HIK.ViewModels;
 
-namespace App11.HIK.Views.Pages;
+namespace App11.HIK.Control;
 
-public partial class HikCameraPage : IDisposable
+public sealed partial class HikView : IDisposable
 {
-    public HikCameraPage(JsNode robot)
+    public HikView()
     {
         InitializeComponent();
-        if (null == robot) return;
-        CurrentRobot = robot;
-
-        DataContext = new HikCameraPageViewModel(robot);
-        // 播放器句柄
         _mControlHandle = VideoControl.Handle;
 
         InitTimer();
     }
 
-    private JsNode CurrentRobot { get; set; }
+    private JsNodeA2 _body;
 
-    ~HikCameraPage()
+    public static readonly DependencyProperty TitleProperty =
+        DependencyProperty.Register(
+            nameof(Title),
+            typeof(string),
+            typeof(HikView),
+            new PropertyMetadata(string.Empty));
+
+    public string Title
     {
-        Dispose(false);
+        get => (string)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
     }
 
     private readonly IntPtr _mControlHandle; //播放控件句柄
@@ -166,7 +167,7 @@ public partial class HikCameraPage : IDisposable
 
     private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-        DispatcherHelper.RunOnMainThread(() => { PanelBack.Visibility = Visibility.Visible; });
+        PanelBack.Visibility = Visibility.Visible;
     }
 
     private System.Timers.Timer _mHideRealPlayTimer;
@@ -175,7 +176,13 @@ public partial class HikCameraPage : IDisposable
     {
         if (_mUserId < 0)
         {
-            _ = CameraLogin();
+            var ret = CameraLogin();
+            if (!ret)
+            {
+                Log.E("设备登录失败");
+                MessageBox.Show("无法登录到设备");
+                return;
+            }
         }
 
         if (_mStreamHandle < 0)
@@ -303,11 +310,12 @@ public partial class HikCameraPage : IDisposable
 
     private bool CameraLogin()
     {
+        if (null == _body) return false;
         if (_mUserId >= 0) return false;
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(CurrentRobot.DevIp, _config.Port, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_body.DevIp, _body.TcpPort, _config.UserName, _config.Password,
                 ref deviceInfo);
             if (_mUserId < 0)
             {
@@ -395,15 +403,8 @@ public partial class HikCameraPage : IDisposable
         Log.D("关闭摄像头预览");
     }
 
-    private void Control0_OnSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        const double ratio = 16 / 10.0;
-        Control0.Height = Control0.ActualWidth / ratio;
-    }
-
     private void ReleaseUnmanagedResources()
     {
-        // release unmanaged resources here
         CameraLogout();
     }
 
@@ -413,7 +414,6 @@ public partial class HikCameraPage : IDisposable
         if (disposing)
         {
             _mHideRealPlayTimer?.Dispose();
-            VideoControl?.Dispose();
         }
     }
 
@@ -421,5 +421,16 @@ public partial class HikCameraPage : IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    ~HikView()
+    {
+        Dispose(false);
+    }
+
+    public void SetNode(JsNodeA2 a2Node)
+    {
+        _body = a2Node;
+        Dispatcher.Invoke(() => { BtnPreview.IsEnabled = true; });
     }
 }

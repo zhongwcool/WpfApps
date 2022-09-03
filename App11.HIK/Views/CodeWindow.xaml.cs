@@ -5,24 +5,35 @@ namespace App11.HIK.Views;
 
 public partial class CodeWindow
 {
+    private CameraController ctrl0, ctrl1, ctrl2, ctrl3;
+
     public CodeWindow()
     {
         InitializeComponent();
 
-        SizeChanged += (sender, args) =>
-        {
-            const double ratio = 16 / 10.0;
-            Height = ActualWidth / ratio;
-        };
+        ctrl0 = new CameraController("192.168.77.105");
+        ctrl0.Display(grid0);
+        ctrl0.CameraLogin();
 
-        CameraController.Instance.CameraInit();
-        CameraController.Instance.Display(grid1);
-        CameraController.Instance.CameraLogin();
+        ctrl1 = new CameraController("192.168.77.106");
+        ctrl1.Display(grid1);
+        ctrl1.CameraLogin();
+
+        ctrl2 = new CameraController("192.168.77.105");
+        ctrl2.Display(grid2);
+        ctrl2.CameraLogin();
+
+        ctrl3 = new CameraController("192.168.77.106");
+        ctrl3.Display(grid3);
+        ctrl3.CameraLogin();
     }
 
     protected override void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
-        CameraController.Instance.CameraLogout();
+        ctrl0?.CameraLogout();
+        ctrl1?.CameraLogout();
+        ctrl2?.CameraLogout();
+        ctrl3?.CameraLogout();
     }
 }

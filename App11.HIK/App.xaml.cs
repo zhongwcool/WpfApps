@@ -28,4 +28,6 @@ public partial class App : Application
     }
 
     #endregion
+
+    public static bool IsHikSdkPrepared { get; set; } = false;
 }

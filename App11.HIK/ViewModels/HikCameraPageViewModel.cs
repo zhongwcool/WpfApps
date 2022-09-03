@@ -5,10 +5,10 @@ namespace App11.HIK.ViewModels;
 
 public class HikCameraPageViewModel : ObservableObject
 {
-    public HikCameraPageViewModel(RobotModel robot)
+    public HikCameraPageViewModel(JsNode robot)
     {
         CurrentRobot = robot;
     }
 
-    public RobotModel CurrentRobot { get; set; }
+    public JsNode CurrentRobot { get; set; }
 }

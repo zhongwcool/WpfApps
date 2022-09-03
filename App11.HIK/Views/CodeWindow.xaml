@@ -8,6 +8,17 @@
         mc:Ignorable="d"
         Title="代码添加" Height="800" Width="1000">
     <Grid>
-        <Grid x:Name="grid1"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid0" Grid.Row="0" Grid.Column="0"/>
+        <Grid x:Name="grid1" Grid.Row="0" Grid.Column="1"/>
+        <Grid x:Name="grid2" Grid.Row="1" Grid.Column="0"/>
+        <Grid x:Name="grid3" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Window>
