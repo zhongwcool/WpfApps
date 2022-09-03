@@ -1,14 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using ModernWpf;
+using Serilog;
 
 namespace App11.HIK;
 
 public partial class App : Application
 {
+    private readonly string _file = Path.Combine("00-Log", "log.txt");
+
     public App()
     {
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .WriteTo.Console()
+            .WriteTo.File(_file, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+            .CreateLogger();
+        Log.Fatal("Hello, Serilog!");
+
         DependencyPropertyDescriptor.FromProperty(ThemeManager.ApplicationThemeProperty, typeof(ThemeManager))
             .AddValueChanged(ThemeManager.Current, delegate { UpdateApplicationTheme(); });
 
@@ -28,6 +39,12 @@ public partial class App : Application
     }
 
     #endregion
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        base.OnExit(e);
+        Log.CloseAndFlush();
+    }
 
     public static bool IsHikSdkPrepared { get; set; } = false;
 }

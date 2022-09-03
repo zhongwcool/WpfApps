@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using App11.HIK.Models;
 
@@ -18,9 +19,8 @@ public partial class Duo2Window : Window
         task.ContinueWith(_ =>
         {
             var robots = task.Result;
-            foreach (var robot in robots)
+            foreach (var node in robots.Select(robot => new JsNodeA2(robot)))
             {
-                var node = new JsNodeA2(robot);
                 A2NodeList.Add(node);
             }
 
@@ -31,5 +31,5 @@ public partial class Duo2Window : Window
         });
     }
 
-    public ObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
+    private ObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
 }

@@ -19,8 +19,6 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         Mac = parent.Mac;
         TcpPort = parent.TcpPort;
         DevIp = parent.DevIp;
-        Firmware = parent.Firmware;
-        Protocol = parent.Protocol;
 
         CommandShot = new RelayCommand(DoTakeShot, CommandShotCanExecute);
         CommandRecord = new RelayCommand(DoRecord, CommandRecordCanExecute);
@@ -40,7 +38,19 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private IntPtr _mControlHandle; //播放控件句柄
     private Int32 _mUserId = -1; //登录使用
-    private Int32 _mStreamHandle = -1; //是否已经开始实时播放
+
+    private int _streamHandle = -1; //是否已经开始实时播放
+
+    private int StreamHandle
+    {
+        get => _streamHandle;
+        set
+        {
+            SetProperty(ref _streamHandle, value);
+            CommandShot.NotifyCanExecuteChanged();
+        }
+    }
+
     private Int32 _mStreamPort = -1; //摄像头播放句柄
 
     private string _txtHikStatus = "设备准备中";
@@ -49,19 +59,6 @@ public sealed class JsNodeA2 : JsNode, IDisposable
     {
         get => _txtHikStatus;
         private set => SetProperty(ref _txtHikStatus, value);
-    }
-
-    private bool CameraInit()
-    {
-        if (CHCNetSDK.NET_DVR_Init())
-        {
-            CHCNetSDK.NET_DVR_SetLogToFile(3, ".\\02-SdkLog\\", true);
-            return true;
-        }
-
-        TxtHikStatus = "摄像头初始化失败！";
-        Log.D("摄像头初始化失败！");
-        return false;
     }
 
     private void CameraLogout()
@@ -164,11 +161,12 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         }
 
         //每次收到LIVEVIEW数据时重新开始定时器，当达到规定时间后显示对应的提示图片，表示liveview已经无法获取实时影像
-        AwakeWatchDog();
+        SendWatchDog();
     }
 
-    private void AwakeWatchDog()
+    private void SendWatchDog()
     {
+        if (null == _mWatchDogTimer) return;
         try
         {
             _mWatchDogTimer.Stop();
@@ -212,7 +210,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
             }
         }
 
-        if (_mStreamHandle < 0)
+        if (StreamHandle < 0)
         {
             var ret = CameraPreview();
             if (!ret)
@@ -242,7 +240,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
     private int TakeShot()
     {
         if (_mUserId < 0) return -3;
-        if (_mStreamHandle < 0) return -2;
+        if (StreamHandle < 0) return -2;
         //图片保存路径和文件名 the path and file name to save
         var filename = FileUtil.GetShotFilename();
 
@@ -276,7 +274,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private bool CommandShotCanExecute()
     {
-        return _mStreamHandle >= 0;
+        return StreamHandle >= 0;
     }
 
     #endregion
@@ -295,12 +293,12 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private bool CommandRecordCanExecute()
     {
-        return !_mRecording;
+        return !IsRecording;
     }
 
     private void DoRecord()
     {
-        if (_mRecording == false)
+        if (IsRecording == false)
         {
             var ret = StartRecord();
             if (ret == 0) TxtBtnRecord = "停止录像";
@@ -312,43 +310,53 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         }
     }
 
-    private bool _mRecording;
+    private bool _isRecording;
+
+    private bool IsRecording
+    {
+        get => _isRecording;
+        set
+        {
+            SetProperty(ref _isRecording, value);
+            CommandRecord.NotifyCanExecuteChanged();
+        }
+    }
 
     #endregion
 
     private int StartRecord()
     {
-        if (_mRecording) return -1;
-        if (_mStreamHandle < 0) return -2;
+        if (IsRecording) return -1;
+        if (StreamHandle < 0) return -2;
         //录像保存路径和文件名 the path and file name to save
         var filename = FileUtil.GetRecordFilename();
         //强制I帧 Make a I frame
         CHCNetSDK.NET_DVR_MakeKeyFrame(_mUserId, 1);
 
         //开始录像 Start recording
-        if (!CHCNetSDK.NET_DVR_SaveRealData_V30(_mStreamHandle, 2, filename))
+        if (!CHCNetSDK.NET_DVR_SaveRealData_V30(StreamHandle, 2, filename))
         {
             var lastErr = CHCNetSDK.NET_DVR_GetLastError();
             Log.E($"NET_DVR_SaveRealData failed, error code= {lastErr}");
             return -3;
         }
 
-        _mRecording = true;
+        IsRecording = true;
         return 0;
     }
 
     private bool StopRecord()
     {
-        if (!_mRecording) return false;
+        if (!IsRecording) return false;
         //停止录像 Stop recording
-        if (!CHCNetSDK.NET_DVR_StopSaveRealData(_mStreamHandle))
+        if (!CHCNetSDK.NET_DVR_StopSaveRealData(StreamHandle))
         {
             var lastErr = CHCNetSDK.NET_DVR_GetLastError();
             Log.E("NET_DVR_StopSaveRealData failed, error code= " + lastErr);
             return false;
         }
 
-        _mRecording = false;
+        IsRecording = false;
         return true;
     }
 
@@ -360,7 +368,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(DevIp, _config.Port, _config.UserName, _config.Password,
                 ref deviceInfo);
             if (_mUserId < 0)
             {
@@ -380,7 +388,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private bool CameraPreview()
     {
-        if (_mStreamHandle >= 0) return true;
+        if (StreamHandle >= 0) return true;
         var lpPreviewInfo = new CHCNetSDK.NET_DVR_PREVIEWINFO
         {
             lChannel = 1, //预览的设备通道 the device channel number
@@ -395,8 +403,8 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         lpPreviewInfo.hPlayWnd = IntPtr.Zero; //预览窗口 live view window
 
         _realDataCallback = RealDataCallBack; //预览实时流回调函数 real-time stream callback function 
-        _mStreamHandle = CHCNetSDK.NET_DVR_RealPlay_V40(_mUserId, ref lpPreviewInfo, _realDataCallback, pUser);
-        if (_mStreamHandle < 0)
+        StreamHandle = CHCNetSDK.NET_DVR_RealPlay_V40(_mUserId, ref lpPreviewInfo, _realDataCallback, pUser);
+        if (StreamHandle < 0)
         {
             var lastErr = CHCNetSDK.NET_DVR_GetLastError();
             Log.D("NET_DVR_RealPlay_V40 failed, error code= " + lastErr); //预览失败，输出错误号
@@ -412,15 +420,15 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private void StopPreview()
     {
-        if (_mStreamHandle >= 0)
+        if (StreamHandle >= 0)
         {
-            if (!CHCNetSDK.NET_DVR_StopRealPlay(_mStreamHandle))
+            if (!CHCNetSDK.NET_DVR_StopRealPlay(StreamHandle))
             {
                 var lastErr = CHCNetSDK.NET_DVR_GetLastError();
                 Log.D("NET_DVR_StopRealPlay failed, error code= " + lastErr);
             }
 
-            _mStreamHandle = -1;
+            StreamHandle = -1;
         }
 
         if (_mStreamPort >= 0)

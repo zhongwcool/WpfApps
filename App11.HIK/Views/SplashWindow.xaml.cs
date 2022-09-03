@@ -73,4 +73,10 @@ public partial class SplashWindow : Window
         Log.D("SDK初始化失败！");
         return false;
     }
+
+    private void ButtonDuo1_OnClick(object sender, RoutedEventArgs e)
+    {
+        var window = new DuoWindow();
+        window.ShowDialog();
+    }
 }

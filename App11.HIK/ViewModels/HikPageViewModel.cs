@@ -3,9 +3,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App11.HIK.ViewModels;
 
-public class HikCameraPageViewModel : ObservableObject
+public class HikPageViewModel : ObservableObject
 {
-    public HikCameraPageViewModel(JsNode robot)
+    public HikPageViewModel(JsNode robot)
     {
         CurrentRobot = robot;
     }

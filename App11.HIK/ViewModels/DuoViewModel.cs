@@ -1,4 +1,6 @@
-﻿using App11.HIK.Concurrent;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using App11.HIK.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -17,13 +19,15 @@ public class DuoViewModel : ObservableObject
         task.ContinueWith(_ =>
         {
             var robots = task.Result;
-            foreach (var robot in robots)
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                var node = new JsNodeA2(robot);
-                A2NodeList.Add(node);
-            }
+                foreach (var node in robots.Select(robot => new JsNodeA2(robot)))
+                {
+                    A2NodeList.Add(node);
+                }
+            });
         });
     }
 
-    public MtObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
+    public ObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
 }

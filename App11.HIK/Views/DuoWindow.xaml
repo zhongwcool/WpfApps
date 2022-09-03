@@ -3,17 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
         xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:vm="clr-namespace:App11.HIK.ViewModels"
-        xmlns:cv="clr-namespace:App11.HIK.Converter"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:DuoViewModel , IsDesignTimeCreatable=True}"
-        Title="多设备" Height="450" Width="800">
-    <Window.Resources>
-        <cv:True2CollapsedConverter x:Key="TypeToImageSourceConverter" />
-    </Window.Resources>
+        Title="多设备" Height="800" Width="800">
     <ScrollViewer>
         <ItemsControl ItemsSource="{Binding A2NodeList}">
             <ItemsControl.ItemsPanel>
@@ -23,8 +18,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border x:Name="PART_Border"
-                            Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
+                    <Border x:Name="PART_Border" Width="700" Height="400">
                         <b:Interaction.Triggers>
                             <b:EventTrigger EventName="Loaded">
                                 <b:InvokeCommandAction
@@ -32,43 +26,20 @@
                                     CommandParameter="{Binding ElementName=FormsHost}" />
                             </b:EventTrigger>
                         </b:Interaction.Triggers>
-                        <Grid Width="800" Height="500">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <interop:AirspaceDecorator AirspaceMode="None"
-                                                           IsInputRedirectionEnabled="True"
-                                                           IsOutputRedirectionEnabled="True">
-                                    <WindowsFormsHost x:Name="FormsHost" HorizontalAlignment="Stretch">
-                                        <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True" />
-                                    </WindowsFormsHost>
-                                </interop:AirspaceDecorator>
-
-                                <Grid Background="#EFFF"
-                                      Visibility="{Binding IsReady, Converter={StaticResource TypeToImageSourceConverter}}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <StackPanel Grid.Column="1" Grid.Row="1">
-                                        <Image Source="pack://application:,,,/Resources/ForbiddenSign.png" />
-                                        <TextBlock Text="{Binding TxtHikStatus}" />
-                                    </StackPanel>
-                                </Grid>
+                                <WindowsFormsHost x:Name="FormsHost" HorizontalAlignment="Stretch">
+                                    <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True" />
+                                </WindowsFormsHost>
                             </Grid>
 
-                            <WrapPanel VerticalAlignment="Bottom" Grid.Row="1">
+                            <WrapPanel VerticalAlignment="Bottom" IsEnabled="{Binding IsReady}" Grid.Row="1">
                                 <Button Content="抓图" 
-                                        Command="{Binding CommandShot}"
-                                        Margin="5,0,0,0" />
+                                        Command="{Binding CommandShot}" />
                                 <Button Content="{Binding TxtBtnRecord}" 
                                         Command="{Binding CommandRecord}" 
                                         Margin="5,0,0,0" />

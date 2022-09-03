@@ -8,7 +8,7 @@
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:viewModels="clr-namespace:App11.HIK.ViewModels"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=viewModels:HikCameraPageViewModel , IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance Type=viewModels:HikPageViewModel , IsDesignTimeCreatable=True}"
              d:DesignHeight="900" d:DesignWidth="600">
     <UserControl.Resources>
         <Style TargetType="HeaderedContentControl">

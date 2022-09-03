@@ -9,6 +9,7 @@
     <Grid>
         <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" >
             <Button Content="Toast" Click="ButtonToast_OnClick" Margin="5"/>
+            <Button Content="多个海康-1" Click="ButtonDuo1_OnClick" Margin="5"/>
             <Button Content="多个海康" Click="ButtonDuo_OnClick" Margin="5"/>
             <Button Content="布局装载" Click="ButtonXaml_OnClick" Margin="5"/>
             <Button Content="使用Page" Click="ButtonPage_OnClick" Margin="5"/>

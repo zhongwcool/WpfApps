@@ -19,7 +19,7 @@ public partial class CodeWindow
         ctrl1.Display(grid1);
         ctrl1.CameraLogin();
 
-        ctrl2 = new CameraController("192.168.77.105");
+        ctrl2 = new CameraController("192.168.77.100");
         ctrl2.Display(grid2);
         ctrl2.CameraLogin();
 
