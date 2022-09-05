@@ -14,9 +14,14 @@ public partial class App : Application
     public App()
     {
         Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
-            .WriteTo.Console()
-            .WriteTo.File(_file, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+            .MinimumLevel.Debug()
+            .WriteTo.Debug(outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
+            .WriteTo.Console(outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
+            .WriteTo.File(
+                _file,
+                rollingInterval: RollingInterval.Day,
+                rollOnFileSizeLimit: true,
+                outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l} {NewLine}{Exception}")
             .CreateLogger();
         Log.Fatal("Hello, Serilog!");
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.Integration;
+using System.Threading.Tasks;
+using System.Windows;
 using App11.HIK.Data;
 using App11.HIK.HikSdk;
 using App11.HIK.Utils;
@@ -31,9 +31,24 @@ public sealed class JsNodeA2 : JsNode, IDisposable
     private void LoadHw(object o)
     {
         //获取HWindowControlWPF控件对象
-        var formHost = (WindowsFormsHost)o;
-        _mControlHandle = ((PictureBox)formHost.Child).Handle;
-        StartPreview();
+        var formHost = (System.Windows.Forms.Integration.WindowsFormsHost)o;
+        _mControlHandle = ((System.Windows.Forms.PictureBox)formHost.Child).Handle;
+        var task = CameraLogin();
+        task.ContinueWith(_ =>
+        {
+            var ret = task.Result;
+            if (!ret)
+            {
+                TxtHikStatus = "设备登录失败";
+                Log.E("设备登录失败");
+            }
+            else
+            {
+                TxtHikStatus = "设备登录成功";
+                Log.I("设备登录成功");
+                StartPreview();
+            }
+        });
     }
 
     private IntPtr _mControlHandle; //播放控件句柄
@@ -47,7 +62,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         set
         {
             SetProperty(ref _streamHandle, value);
-            CommandShot.NotifyCanExecuteChanged();
+            Application.Current?.Dispatcher?.Invoke(() => { CommandShot?.NotifyCanExecuteChanged(); });
         }
     }
 
@@ -63,11 +78,6 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private void CameraLogout()
     {
-        //停止录像
-        StopRecord();
-        //停止预览
-        StopPreview();
-
         //注销登录
         if (_mUserId >= 0)
         {
@@ -199,20 +209,9 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private void StartPreview()
     {
-        if (_mUserId < 0)
-        {
-            var ret = CameraLogin();
-            if (!ret)
-            {
-                TxtHikStatus = "设备登录失败";
-                Log.E("设备登录失败");
-                return;
-            }
-        }
-
         if (StreamHandle < 0)
         {
-            var ret = CameraPreview();
+            var ret = DoPreview();
             if (!ret)
             {
                 TxtHikStatus = "预览失败";
@@ -229,7 +228,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         }
     }
 
-    private bool _isReady = false;
+    private bool _isReady;
 
     public bool IsReady
     {
@@ -352,7 +351,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         if (!CHCNetSDK.NET_DVR_StopSaveRealData(StreamHandle))
         {
             var lastErr = CHCNetSDK.NET_DVR_GetLastError();
-            Log.E("NET_DVR_StopSaveRealData failed, error code= " + lastErr);
+            Log.W($"NET_DVR_StopSaveRealData failed, error code= {lastErr}");
             return false;
         }
 
@@ -362,31 +361,38 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private readonly AppConfig _config = AppConfig.CreateInstance();
 
-    private bool CameraLogin()
+    private async Task<bool> CameraLogin()
     {
         if (_mUserId >= 0) return false;
-        var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
-        for (var i = 1; i < 4; i++)
+        var ret = await Task.Run(() =>
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(DevIp, _config.Port, _config.UserName, _config.Password,
-                ref deviceInfo);
-            if (_mUserId < 0)
+            var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
+            for (var i = 1; i < 4; i++)
             {
-                var lastErr = CHCNetSDK.NET_DVR_GetLastError();
-                Log.D("实时影像第" + i + "次登录失败，输出错误号, error code= " + lastErr);
+                _mUserId = CHCNetSDK.NET_DVR_Login_V30(DevIp, _config.Port, _config.UserName, _config.Password,
+                    ref deviceInfo);
+                if (_mUserId < 0)
+                {
+                    var lastErr = CHCNetSDK.NET_DVR_GetLastError();
+                    Log.W(
+                        $"实时影像第{i}次登录失败，输出错误号, error code= {lastErr} ip: {DevIp} port: {_config.Port} user: {_config.UserName} pswd: {_config.Password}");
+                }
+                else
+                {
+                    TxtHikStatus = "实时影像登录成功！";
+                    Log.D(
+                        $"实时影像登录成功！ip: {DevIp} port: {_config.Port} user: {_config.UserName} pswd: {_config.Password}");
+                    return true;
+                }
             }
-            else
-            {
-                TxtHikStatus = "实时影像登录成功！";
-                Log.D("实时影像登录成功！");
-                return true;
-            }
-        }
 
-        return false;
+            return false;
+        });
+
+        return ret;
     }
 
-    private bool CameraPreview()
+    private bool DoPreview()
     {
         if (StreamHandle >= 0) return true;
         var lpPreviewInfo = new CHCNetSDK.NET_DVR_PREVIEWINFO
@@ -425,7 +431,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
             if (!CHCNetSDK.NET_DVR_StopRealPlay(StreamHandle))
             {
                 var lastErr = CHCNetSDK.NET_DVR_GetLastError();
-                Log.D("NET_DVR_StopRealPlay failed, error code= " + lastErr);
+                Log.D($"NET_DVR_StopRealPlay failed, error code= {lastErr}");
             }
 
             StreamHandle = -1;
@@ -436,19 +442,19 @@ public sealed class JsNodeA2 : JsNode, IDisposable
             if (!PlayCtrl.PlayM4_Stop(_mStreamPort))
             {
                 var lastErr = PlayCtrl.PlayM4_GetLastError(_mStreamPort);
-                Log.D("PlayM4_Stop failed, error code= " + lastErr);
+                Log.D($"PlayM4_Stop failed, error code= {lastErr}");
             }
 
             if (!PlayCtrl.PlayM4_CloseStream(_mStreamPort))
             {
                 var lastErr = PlayCtrl.PlayM4_GetLastError(_mStreamPort);
-                Log.D("PlayM4_CloseStream failed, error code= " + lastErr);
+                Log.D($"PlayM4_CloseStream failed, error code= {lastErr}");
             }
 
             if (!PlayCtrl.PlayM4_FreePort(_mStreamPort))
             {
                 var lastErr = PlayCtrl.PlayM4_GetLastError(_mStreamPort);
-                Log.D("PlayM4_FreePort failed, error code= " + lastErr);
+                Log.D($"PlayM4_FreePort failed, error code= {lastErr}");
             }
 
             _mStreamPort = -1;
@@ -459,6 +465,11 @@ public sealed class JsNodeA2 : JsNode, IDisposable
 
     private void ReleaseUnmanagedResources()
     {
+        //停止录像
+        StopRecord();
+        //停止预览
+        StopPreview();
+        //登出
         CameraLogout();
     }
 
