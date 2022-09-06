@@ -21,7 +21,7 @@ public class DuoViewModel : ObservableObject
             var robots = task.Result;
             Application.Current.Dispatcher.Invoke(() =>
             {
-                foreach (var node in robots.Select(robot => new JsNodeA2(robot)))
+                foreach (var node in robots.Select(robot => new JsNodeWc(robot)))
                 {
                     A2NodeList.Add(node);
                 }
@@ -29,5 +29,5 @@ public class DuoViewModel : ObservableObject
         });
     }
 
-    public ObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
+    public ObservableCollection<JsNodeWc> A2NodeList { get; set; } = new();
 }

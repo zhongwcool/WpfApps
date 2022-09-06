@@ -6,6 +6,7 @@
         xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:vm="clr-namespace:App11.HIK.ViewModels"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:DuoViewModel , IsDesignTimeCreatable=True}"
         Title="多设备" Height="800" Width="800">
@@ -32,16 +33,34 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <WindowsFormsHost x:Name="FormsHost" HorizontalAlignment="Stretch">
-                                    <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True" />
-                                </WindowsFormsHost>
+                                <interop:AirspaceDecorator AirspaceMode="None"
+                                                           IsInputRedirectionEnabled="True"
+                                                           IsOutputRedirectionEnabled="True">
+                                    <WindowsFormsHost x:Name="FormsHost" HorizontalAlignment="Stretch">
+                                        <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True" />
+                                    </WindowsFormsHost>
+                                </interop:AirspaceDecorator>
+                                
+                                <Grid x:Name="PanelBack" Background="#EFFF">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Column="1" Grid.Row="1" Source="pack://application:,,,/Resources/ForbiddenSign.png" />
+                                </Grid>
                             </Grid>
 
                             <WrapPanel VerticalAlignment="Bottom" IsEnabled="{Binding IsReady}" Grid.Row="1">
-                                <Button Content="抓图" 
+                                <Button Content="抓图"
                                         Command="{Binding CommandShot}" />
-                                <Button Content="{Binding TxtBtnRecord}" 
-                                        Command="{Binding CommandRecord}" 
+                                <Button Content="{Binding TxtBtnRecord}"
+                                        Command="{Binding CommandRecord}"
                                         Margin="5,0,0,0" />
                             </WrapPanel>
                         </Grid>

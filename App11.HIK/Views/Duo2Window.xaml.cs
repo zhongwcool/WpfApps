@@ -19,7 +19,7 @@ public partial class Duo2Window : Window
         task.ContinueWith(_ =>
         {
             var robots = task.Result;
-            foreach (var node in robots.Select(robot => new JsNodeA2(robot)))
+            foreach (var node in robots.Select(robot => new JsNodeWc(robot)))
             {
                 A2NodeList.Add(node);
             }
@@ -27,9 +27,9 @@ public partial class Duo2Window : Window
             HikView0.SetNode(A2NodeList[0]);
             HikView1.SetNode(A2NodeList[1]);
             HikView2.SetNode(A2NodeList[2]);
-            HikView3.SetNode(A2NodeList[0]);
+            HikView3.SetNode(A2NodeList[3]);
         });
     }
 
-    private ObservableCollection<JsNodeA2> A2NodeList { get; set; } = new();
+    private ObservableCollection<JsNodeWc> A2NodeList { get; set; } = new();
 }

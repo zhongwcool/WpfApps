@@ -8,9 +8,9 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace App11.HIK.Models;
 
-public sealed class JsNodeA2 : JsNode, IDisposable
+public sealed class JsNodeWc : JsNode, IDisposable
 {
-    public JsNodeA2(JsNode parent)
+    public JsNodeWc(JsNode parent)
     {
         NodeName = parent.NodeName;
         ModelType = parent.ModelType;
@@ -488,7 +488,7 @@ public sealed class JsNodeA2 : JsNode, IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~JsNodeA2()
+    ~JsNodeWc()
     {
         Dispose(false);
     }

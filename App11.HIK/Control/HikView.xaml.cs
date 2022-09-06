@@ -17,7 +17,7 @@ public sealed partial class HikView : IDisposable
         InitTimer();
     }
 
-    private JsNodeA2 _body;
+    private JsNodeWc _body;
 
     public static readonly DependencyProperty TitleProperty =
         DependencyProperty.Register(
@@ -428,9 +428,9 @@ public sealed partial class HikView : IDisposable
         Dispose(false);
     }
 
-    public void SetNode(JsNodeA2 a2Node)
+    public void SetNode(JsNodeWc wcNode)
     {
-        _body = a2Node;
+        _body = wcNode;
         Dispatcher.Invoke(() => { BtnPreview.IsEnabled = true; });
     }
 }

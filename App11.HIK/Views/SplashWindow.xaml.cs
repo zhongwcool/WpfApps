@@ -55,7 +55,7 @@ public partial class SplashWindow : Window
         AppUtil.ShowToast("我是这样的");
     }
 
-    private void ButtonDuo_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonDuo2_OnClick(object sender, RoutedEventArgs e)
     {
         var window = new Duo2Window();
         window.ShowDialog();
