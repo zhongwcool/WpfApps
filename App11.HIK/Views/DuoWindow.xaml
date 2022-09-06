@@ -9,9 +9,9 @@
         xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:DuoViewModel , IsDesignTimeCreatable=True}"
-        Title="多设备" Height="800" Width="800">
+        Title="多设备-1" VerticalContentAlignment="Stretch" Width="800">
     <ScrollViewer>
-        <ItemsControl ItemsSource="{Binding A2NodeList}">
+        <ItemsControl ItemsSource="{Binding NodeWcList}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" />
@@ -62,6 +62,10 @@
                                 <Button Content="{Binding TxtBtnRecord}"
                                         Command="{Binding CommandRecord}"
                                         Margin="5,0,0,0" />
+                                <TextBlock Text="{Binding TxtHikStatus}" 
+                                           Foreground="{DynamicResource SystemControlForegroundAccentBrush}"
+                                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                                           Margin="5,0,0,0"/>
                             </WrapPanel>
                         </Grid>
                     </Border>

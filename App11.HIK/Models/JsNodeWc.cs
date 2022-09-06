@@ -39,13 +39,13 @@ public sealed class JsNodeWc : JsNode, IDisposable
             var ret = task.Result;
             if (!ret)
             {
-                TxtHikStatus = "设备登录失败";
-                Log.E("设备登录失败");
+                TxtHikStatus = "登录设备失败";
+                Log.E("登录设备失败");
             }
             else
             {
-                TxtHikStatus = "设备登录成功";
-                Log.I("设备登录成功");
+                TxtHikStatus = "登录设备成功";
+                Log.I("登录设备成功");
                 StartPreview();
             }
         });
@@ -62,7 +62,11 @@ public sealed class JsNodeWc : JsNode, IDisposable
         set
         {
             SetProperty(ref _streamHandle, value);
-            Application.Current?.Dispatcher?.Invoke(() => { CommandShot?.NotifyCanExecuteChanged(); });
+            Application.Current?.Dispatcher?.Invoke(() =>
+            {
+                CommandRecord.NotifyCanExecuteChanged();
+                CommandShot?.NotifyCanExecuteChanged();
+            });
         }
     }
 
@@ -258,7 +262,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
         }
 
         Log.I("Successful to capture the JPEG file");
-        Log.I("and the saved file is " + filename);
+        Log.I("saved file:" + filename);
         return 0;
     }
 
@@ -292,7 +296,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
 
     private bool CommandRecordCanExecute()
     {
-        return !IsRecording;
+        return StreamHandle >= 0;
     }
 
     private void DoRecord()
@@ -314,11 +318,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
     private bool IsRecording
     {
         get => _isRecording;
-        set
-        {
-            SetProperty(ref _isRecording, value);
-            CommandRecord.NotifyCanExecuteChanged();
-        }
+        set => SetProperty(ref _isRecording, value);
     }
 
     #endregion
@@ -329,6 +329,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
         if (StreamHandle < 0) return -2;
         //录像保存路径和文件名 the path and file name to save
         var filename = FileUtil.GetRecordFilename();
+        Log.I("saved file:" + filename);
         //强制I帧 Make a I frame
         CHCNetSDK.NET_DVR_MakeKeyFrame(_mUserId, 1);
 
@@ -375,13 +376,12 @@ public sealed class JsNodeWc : JsNode, IDisposable
                 {
                     var lastErr = CHCNetSDK.NET_DVR_GetLastError();
                     Log.W(
-                        $"实时影像第{i}次登录失败，输出错误号, error code= {lastErr} ip: {DevIp} port: {_config.Port} user: {_config.UserName} pswd: {_config.Password}");
+                        $"实时影像第{i}次登录失败，输出错误号, error code= {lastErr} ip: {DevIp} port: {_config.Port} user: {_config.UserName} pd: {_config.Password}");
                 }
                 else
                 {
-                    TxtHikStatus = "实时影像登录成功！";
                     Log.D(
-                        $"实时影像登录成功！ip: {DevIp} port: {_config.Port} user: {_config.UserName} pswd: {_config.Password}");
+                        $"实时影像登录成功！ip: {DevIp} port: {_config.Port} user: {_config.UserName} pd: {_config.Password}");
                     return true;
                 }
             }
@@ -418,8 +418,8 @@ public sealed class JsNodeWc : JsNode, IDisposable
         }
         else
         {
-            TxtHikStatus = "摄像头预览成功！";
-            Log.D("摄像头预览成功！");
+            TxtHikStatus = "预览成功！";
+            Log.D("预览成功！");
             return true;
         }
     }
@@ -463,6 +463,8 @@ public sealed class JsNodeWc : JsNode, IDisposable
         Log.D("关闭摄像头预览");
     }
 
+    #region IDisposable
+
     private void ReleaseUnmanagedResources()
     {
         //停止录像
@@ -492,4 +494,6 @@ public sealed class JsNodeWc : JsNode, IDisposable
     {
         Dispose(false);
     }
+
+    #endregion
 }

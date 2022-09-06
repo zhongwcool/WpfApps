@@ -23,11 +23,11 @@ public class DuoViewModel : ObservableObject
             {
                 foreach (var node in robots.Select(robot => new JsNodeWc(robot)))
                 {
-                    A2NodeList.Add(node);
+                    NodeWcList.Add(node);
                 }
             });
         });
     }
 
-    public ObservableCollection<JsNodeWc> A2NodeList { get; set; } = new();
+    public ObservableCollection<JsNodeWc> NodeWcList { get; set; } = new();
 }
