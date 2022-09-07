@@ -19,8 +19,8 @@ public class RoomsTabViewModel : ObservableObject
     public ObservableCollection<Room> RoomsCollection { get; set; }
 
     private HotelContext Context { get; }
-    public Room RoomInfo { get; set; } = new Room();
-    public Room RoomFilter { get; set; } = new Room();
+    public Room RoomInfo { get; set; } = new();
+    public Room RoomFilter { get; set; } = new();
     public int RoomFreedomFilterIndex { get; set; }
 
     public Room SelectedRoom
