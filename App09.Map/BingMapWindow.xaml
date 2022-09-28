@@ -7,7 +7,18 @@
         mc:Ignorable="d"
         Title="Bing Map" Height="450" Width="800">
     <Grid>
-        <wpf:Map ZoomLevel="14" Mode="Aerial" Center="31.401973,120.736730"
-                 CredentialsProvider="AqxjOUrwp3UGMfyr6UIdxw3fmstN-s4-DYopYkDL0mx5Yj2daOmHxWJosBfKQ7aW" />
+        <UniformGrid Columns="2">
+            <wpf:Map Name="MyMap0" ZoomLevel="14" Mode="Aerial" Center="31.5068271,120.7741375"
+                     CredentialsProvider="YVUFNQV50lXzYv4H7usa~ctW1AGTwrNvrheyzhsM3Tg~AqnljHNp-bF9BLEp-6CfiXK_YKElrL5uhUWncug1aBh-Izc6Kf3Yy8vaG4jJGWVH"/>
+            
+            <wpf:Map Name="MyMap1" ZoomLevel="15" Mode="Aerial" Center="31.401973,120.736730"
+                     CredentialsProvider="bC677RrtpTP0OlE0CbPd~OiSxYHEnbU-R6wTt1aMWHQ~An1D5F2Cvpw88nTASR-CJda7YNYUuE-txLMrwBMTZ7sc0eG9mS2QuZF1WU-LNK2n"/>
+            
+            <wpf:Map Name="MyMap2" ZoomLevel="17" Mode="Aerial" Center="31.5068271,120.7741375"
+                     CredentialsProvider="AqxjOUrwp3UGMfyr6UIdxw3fmstN-s4-DYopYkDL0mx5Yj2daOmHxWJosBfKQ7aW"/>
+            
+            <wpf:Map Name="MyMap" ZoomLevel="18" Mode="Aerial" Center="31.5068271,120.7741375"
+                     CredentialsProvider="y0D8GXoeClZv186MBbiO~-mmqZflyrX163j2tEveldg~Ajf8efR1Hwg8W93FkDQ0YyxA-Tv4ddR10D9aFgieb8ZA8Rw17tjEtK6wodRCfbma"/>
+        </UniformGrid>
     </Grid>
 </Window>
