@@ -13,7 +13,6 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
-        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
     </ItemGroup>
 
 </Project>
