@@ -4,14 +4,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border x:Name="bd" Width="40" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock x:Name="bdTxt" Text="x" FontSize="16" Foreground="White" Padding="0,0,0,4"
+                    <Border x:Name="PART_Border" Width="40" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock x:Name="PART_Content" Text="x" FontSize="16" Foreground="White" Padding="0,0,0,4"
                                    VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="bd" Property="Background" Value="Red" />
-                            <Setter TargetName="bdTxt" Property="Foreground" Value="White" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="Red" />
+                            <Setter TargetName="PART_Content" Property="Foreground" Value="White" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

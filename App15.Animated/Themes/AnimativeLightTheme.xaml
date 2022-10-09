@@ -2036,7 +2036,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" TargetName="PART_Border"  Value="{StaticResource ControlDisabledBackground}"/>
-                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource ControlDisabledBackground}"/>
+                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource ControlDisabledBorderBrushColour}"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -5060,10 +5060,6 @@
                         <Trigger Property="Button.IsDefaulted" Value="true">
                             <Setter Property="BorderBrush" TargetName="PART_Border"
                                     Value="{StaticResource ControlDefaultBorderBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="PART_Border" Value="{StaticResource ControlMouseOverBackground}" />
-                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource ControlMouseOverBorderBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="PART_Border" Value="{StaticResource ControlSelectedBackground}" />

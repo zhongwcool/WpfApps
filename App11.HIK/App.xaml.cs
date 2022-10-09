@@ -7,7 +7,7 @@ using Serilog;
 
 namespace App11.HIK;
 
-public partial class App : Application
+public partial class App
 {
     private readonly string _file = Path.Combine("00-Log", "log.txt");
 
@@ -17,11 +17,10 @@ public partial class App : Application
             .MinimumLevel.Debug()
             .WriteTo.Debug(outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
             .WriteTo.Console(outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
-            .WriteTo.File(
-                _file,
+            .WriteTo.File(_file,
                 rollingInterval: RollingInterval.Day,
                 rollOnFileSizeLimit: true,
-                outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l} {NewLine}{Exception}")
+                outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
             .CreateLogger();
         Log.Fatal("Hello, Serilog!");
 
