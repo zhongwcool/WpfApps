@@ -124,19 +124,17 @@ public partial class MainWindow : Window
         BtnAsynchronous.IsEnabled = true;
 
         //计算过程中的异常会被抓住，在这里可以进行处理。
-        if (e.Error != null)
+        if (e.Error == null) return;
+        var errorType = e.Error.GetType();
+        switch (errorType.Name)
         {
-            Type errorType = e.Error.GetType();
-            switch (errorType.Name)
-            {
-                case "ArgumentNullException":
-                case "MyException":
-                    //do something.
-                    break;
-                default:
-                    //do something.
-                    break;
-            }
+            case "ArgumentNullException":
+            case "MyException":
+                //do something.
+                break;
+            default:
+                //do something.
+                break;
         }
     }
 
