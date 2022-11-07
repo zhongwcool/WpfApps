@@ -40,6 +40,7 @@
                         <DataGridTextColumn Header="Birthdate" Binding="{Binding Path=Birthdate, StringFormat={}{0:dd, MMMM, yyyy}}"/>
                         <DataGridTextColumn Header="Account" Binding="{Binding Account}"/>
                         <DataGridTextColumn Header="Room number" Binding="{Binding Room.Number}"/>
+                        <DataGridTextColumn Header="优惠券" Binding="{Binding Coupon.CouponName}"/>
                     </DataGrid.Columns>
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="SelectionChanged">

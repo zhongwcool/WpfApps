@@ -17,4 +17,12 @@ public class Client : Person
         get => _room;
         set => SetProperty(ref _room, value);
     }
+
+    private Coupon _coupon;
+
+    public virtual Coupon Coupon
+    {
+        get => _coupon;
+        set => SetProperty(ref _coupon, value);
+    }
 }

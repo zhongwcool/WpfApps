@@ -8,6 +8,7 @@ public class HotelContext : DbContext
     public DbSet<Client> Clients { get; set; }
     public DbSet<Person> Persons { get; set; }
     public DbSet<Room> Rooms { get; set; }
+    public DbSet<Coupon> Coupons { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -53,12 +53,19 @@ public partial class MainWindow : Window
             new Room { Number = "1202", Type = RoomTypes.PresidentialSuite }
         };
 
+        var coupons = new[]
+        {
+            new Coupon { CouponId = "CC20221107A", Discount = 9, CouponName = "双十一" },
+            new Coupon { CouponId = "CC20221107B", Discount = 8, CouponName = "双十二" },
+            new Coupon { CouponId = "CC20221107C", Discount = 6, CouponName = "新年大吉" },
+        };
+
         var clients = new[]
         {
             new Client
             {
                 FirstName = "Stanislav", LastName = "Herasymiuk", Birthdate = new DateTime(1995, 9, 2),
-                Account = "stas_the_best", Room = rooms[1]
+                Account = "stas_the_best", Room = rooms[1], Coupon = coupons[0]
             },
             new Client
             {
@@ -68,12 +75,12 @@ public partial class MainWindow : Window
             new Client
             {
                 FirstName = "Frank", LastName = "Sinatra", Birthdate = new DateTime(1957, 7, 3), Account = "100500",
-                Room = rooms[3]
+                Room = rooms[3], Coupon = coupons[2]
             },
             new Client
             {
                 FirstName = "Phill", LastName = "Colson", Birthdate = new DateTime(1966, 12, 6),
-                Account = "S.H.I.E.L.D.", Room = rooms[5]
+                Account = "S.H.I.E.L.D.", Room = rooms[5], Coupon = coupons[1]
             },
             new Client
             {
@@ -89,6 +96,7 @@ public partial class MainWindow : Window
 
         Context.Rooms.AddRange(rooms);
         Context.Clients.AddRange(clients);
+        Context.Coupons.AddRange(coupons);
         Context.SaveChanges();
     }
 }
