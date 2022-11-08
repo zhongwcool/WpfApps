@@ -1,4 +1,6 @@
-﻿namespace App12.SQLite.Models;
+﻿using System.Collections.Generic;
+
+namespace App12.SQLite.Models;
 
 public class Client : Person
 {
@@ -18,11 +20,11 @@ public class Client : Person
         set => SetProperty(ref _room, value);
     }
 
-    private Coupon _coupon;
+    private IList<Coupon> _coupons;
 
-    public virtual Coupon Coupon
+    public virtual IList<Coupon> Coupons
     {
-        get => _coupon;
-        set => SetProperty(ref _coupon, value);
+        get => _coupons;
+        set => SetProperty(ref _coupons, value);
     }
 }

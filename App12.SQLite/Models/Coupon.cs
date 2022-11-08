@@ -27,4 +27,12 @@ public class Coupon : ObservableObject
         get => _couponName;
         set => SetProperty(ref _couponName, value);
     }
+
+    private Client _client;
+
+    public virtual Client Client
+    {
+        get => _client;
+        set => SetProperty(ref _client, value);
+    }
 }

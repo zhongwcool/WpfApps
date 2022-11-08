@@ -26,7 +26,7 @@ public partial class MainWindow : Window
         // to get up and running
         Context.Database.EnsureCreated();
         // uncomment if you want to fill database with default values
-        //Fill();
+        // Fill();
 
         // bind to the source
         ClientsTab.DataContext = new ClientsTabViewModel(Context);
@@ -53,19 +53,12 @@ public partial class MainWindow : Window
             new Room { Number = "1202", Type = RoomTypes.PresidentialSuite }
         };
 
-        var coupons = new[]
-        {
-            new Coupon { CouponId = "CC20221107A", Discount = 9, CouponName = "双十一" },
-            new Coupon { CouponId = "CC20221107B", Discount = 8, CouponName = "双十二" },
-            new Coupon { CouponId = "CC20221107C", Discount = 6, CouponName = "新年大吉" },
-        };
-
         var clients = new[]
         {
             new Client
             {
                 FirstName = "Stanislav", LastName = "Herasymiuk", Birthdate = new DateTime(1995, 9, 2),
-                Account = "stas_the_best", Room = rooms[1], Coupon = coupons[0]
+                Account = "stas_the_best", Room = rooms[1]
             },
             new Client
             {
@@ -75,12 +68,12 @@ public partial class MainWindow : Window
             new Client
             {
                 FirstName = "Frank", LastName = "Sinatra", Birthdate = new DateTime(1957, 7, 3), Account = "100500",
-                Room = rooms[3], Coupon = coupons[2]
+                Room = rooms[3]
             },
             new Client
             {
                 FirstName = "Phill", LastName = "Colson", Birthdate = new DateTime(1966, 12, 6),
-                Account = "S.H.I.E.L.D.", Room = rooms[5], Coupon = coupons[1]
+                Account = "S.H.I.E.L.D.", Room = rooms[5]
             },
             new Client
             {
@@ -92,6 +85,18 @@ public partial class MainWindow : Window
                 FirstName = "Elvis", LastName = "Presley", Birthdate = new DateTime(1960, 2, 17),
                 Account = "YA krevedko", Room = rooms[6]
             }
+        };
+
+        var coupons = new[]
+        {
+            new Coupon { CouponId = "CC20221107A", Discount = 9, CouponName = "双十一", Client = clients[0] },
+            new Coupon { CouponId = "CC20221107B", Discount = 8, CouponName = "双十二", Client = clients[0] },
+            new Coupon { CouponId = "CC20221107C", Discount = 6, CouponName = "新年大吉", Client = clients[0] },
+            new Coupon { CouponId = "CC20221107D", Discount = 6, CouponName = "新年大吉", Client = clients[1] },
+            new Coupon { CouponId = "CC20221107E", Discount = 6, CouponName = "新年大吉", Client = clients[2] },
+            new Coupon { CouponId = "CC20221107F", Discount = 6, CouponName = "新年大吉" },
+            new Coupon { CouponId = "CC20221107G", Discount = 6, CouponName = "新年大吉" },
+            new Coupon { CouponId = "CC20221107H", Discount = 6, CouponName = "新年大吉" },
         };
 
         Context.Rooms.AddRange(rooms);
