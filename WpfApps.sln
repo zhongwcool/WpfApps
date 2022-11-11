@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App13.Worker", "App13.Worke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App15.Animated", "App15.Animated\App15.Animated.csproj", "{228396A9-3C3A-4817-BE28-4FB8B6177397}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App14.IASystem", "App14.IASystem\App14.IASystem.csproj", "{FCDF7DD1-3FE3-4A64-A7B2-57901B10A412}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +92,9 @@ Global
 		{228396A9-3C3A-4817-BE28-4FB8B6177397}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{228396A9-3C3A-4817-BE28-4FB8B6177397}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{228396A9-3C3A-4817-BE28-4FB8B6177397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCDF7DD1-3FE3-4A64-A7B2-57901B10A412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDF7DD1-3FE3-4A64-A7B2-57901B10A412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDF7DD1-3FE3-4A64-A7B2-57901B10A412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDF7DD1-3FE3-4A64-A7B2-57901B10A412}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
