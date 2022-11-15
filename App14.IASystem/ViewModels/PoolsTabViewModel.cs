@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using App14.IASystem.Context;
 using App14.IASystem.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -21,7 +21,17 @@ public class PoolsTabViewModel : ObservableObject
         set => SetProperty(ref _selectedPool, value);
     }
 
-    public Pool SelectedNode { get; set; }
+    public Pool PoolInfo { get; set; } = new Pool();
+
+    private Device _selectedNote = new();
+
+    public Device SelectedNode
+    {
+        get => _selectedNote;
+        set => SetProperty(ref _selectedNote, value);
+    }
+
+    public Device NodeInfo { get; set; } = new Device();
 
     public PoolsTabViewModel(IaContext iaContext)
     {
@@ -31,25 +41,33 @@ public class PoolsTabViewModel : ObservableObject
         // bind to the source
         PoolsCollection = Context.Pools.Local.ToObservableCollection();
 
-        NodesGridSelectionChangedCommand =
-            new RelayCommand(NodesGridSelectionChanged, CanExecuteNodesGridSelectionChanged);
-
-        SelectedPool.PropertyChanged += PoolInfoOnPropertyChanged;
+        RemoveCommand = new RelayCommand(DoRemove, CanExecute_RemoveCommand);
+        ChangeOwnerCommand = new RelayCommand(ChangeOwner, CanExecute_ChangeOwnerCommand);
     }
 
-    private void PoolInfoOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    public IRelayCommand RemoveCommand { get; }
+
+    private void DoRemove()
     {
-        //TODO active selected item's operation
+        SelectedNode.Pool = null;
+        Context.SaveChanges();
     }
 
-    public IRelayCommand NodesGridSelectionChangedCommand { get; }
-
-    private void NodesGridSelectionChanged()
+    private bool CanExecute_RemoveCommand()
     {
+        if (SelectedNode.Id == Guid.Empty) return false;
+        return true;
     }
 
-    private bool CanExecuteNodesGridSelectionChanged()
+    public IRelayCommand ChangeOwnerCommand { get; }
+
+    private bool CanExecute_ChangeOwnerCommand()
     {
-        return SelectedNode != null;
+        return true;
+    }
+
+    private void ChangeOwner()
+    {
+        SelectedNode = null;
     }
 }

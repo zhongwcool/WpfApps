@@ -19,7 +19,7 @@
                      d:DataContext="{d:DesignInstance d:Type=vm:PoolsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
@@ -46,24 +46,25 @@
                                     </Style>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30" />
-                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="鱼塘" />
-                                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SelectedPool.Name}" />
                                 <TextBlock Grid.Row="0" Grid.Column="2" Text="进度" />
-                                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding SelectedPool.Progress}" />
                                 <TextBlock Grid.Row="0" Grid.Column="4" Text="添加日期" />
-                                <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"
-                                           Text="{Binding SelectedPool.AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                
+                                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding SelectedPool.Name}" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding SelectedPool.Progress}" />
+                                <DatePicker Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Width="120"
+                                            SelectedDate="{Binding SelectedPool.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </HeaderedContentControl>
 
@@ -75,18 +76,24 @@
 
                         <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
                                                 Style="{StaticResource H3HeaderedContentControl}">
-                            <DataGrid ItemsSource="{Binding SelectedPool.Devices}"
-                                      SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
-                                    <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
-                                    <DataGridTextColumn Header="创建日期"
-                                                        Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
-                                    <DataGridTextColumn Header="类型" Binding="{Binding ModelType}" />
-                                    <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
-                                    <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
-                                </DataGrid.Columns>
-                            </DataGrid>
+                            <StackPanel>
+                                <WrapPanel HorizontalAlignment="Right">
+                                    <Button Content="移除" Command="{Binding RemoveCommand}" />
+                                    <Button Content="修改归属" Command="{Binding ChangeOwnerCommand}" />
+                                </WrapPanel>
+                                <DataGrid ItemsSource="{Binding SelectedPool.Devices}"
+                                          SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
+                                        <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
+                                        <DataGridTextColumn Header="创建日期"
+                                                            Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                        <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
+                                        <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
+                                        <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
                         </HeaderedContentControl>
                     </StackPanel>
                 </Grid>
@@ -96,7 +103,7 @@
                      d:DataContext="{d:DesignInstance d:Type=vm:DevicesTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
@@ -108,7 +115,7 @@
                             <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
                             <DataGridTextColumn Header="创建日期"
                                                 Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
-                            <DataGridTextColumn Header="类型" Binding="{Binding ModelType}" />
+                            <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
                             <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
                             <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
                         </DataGrid.Columns>
@@ -124,24 +131,28 @@
                                     </Style>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
-                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="65" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30" />
-                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="节点名" />
-                                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SelectedDevice.NodeName}" />
                                 <TextBlock Grid.Row="0" Grid.Column="2" Text="设备类型" />
-                                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding SelectedDevice.ModelNum}" />
                                 <TextBlock Grid.Row="0" Grid.Column="4" Text="添加日期" />
-                                <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"
-                                           Text="{Binding SelectedDevice.AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                <TextBlock Grid.Row="0" Grid.Column="6" Text="归属" />
+                                
+                                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding SelectedDevice.NodeName}" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding SelectedDevice.ModelNum}" />
+                                <DatePicker Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Center" Width="120" SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <ComboBox Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" Width="120" ItemsSource="{Binding OwnerList}" DisplayMemberPath="Description" SelectedIndex="{Binding SelectedIndex}"/>
                             </Grid>
                         </HeaderedContentControl>
                     </StackPanel>

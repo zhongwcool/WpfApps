@@ -15,4 +15,8 @@
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Converter"/>
+    </ItemGroup>
+
 </Project>

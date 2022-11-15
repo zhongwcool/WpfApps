@@ -4,16 +4,24 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App14.IASystem.Models;
 
+public enum ModelType
+{
+    WC,
+    WQM,
+    AFE,
+    CCB
+}
+
 public class Device : ObservableObject
 {
     [Key] public Guid Id { get; set; }
 
-    private string _modelType; // 设备类型
+    private ModelType _type; // 设备类型
 
-    public string ModelType
+    public ModelType Type
     {
-        get => _modelType;
-        set => SetProperty(ref _modelType, value);
+        get => _type;
+        set => SetProperty(ref _type, value);
     }
 
     private string _modelNum;
