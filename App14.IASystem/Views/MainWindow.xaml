@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:App14.IASystem.ViewModels"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="IASystem" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
@@ -15,7 +16,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem x:Name="PoolsTab" Header="鱼塘"
+            <TabItem x:Name="PoolsTab" Header="鱼塘" Selector.Selected="PoolsTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:PoolsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -23,7 +24,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Column="0"
+                    <DataGrid Grid.Column="0" x:Name="DataGridPools"
                               ItemsSource="{Binding PoolsCollection}"
                               SelectedItem="{Binding SelectedPool, Mode=TwoWay}">
                         <DataGrid.Columns>
@@ -76,13 +77,22 @@
 
                         <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
                                                 Style="{StaticResource H3HeaderedContentControl}">
-                            <StackPanel>
-                                <WrapPanel HorizontalAlignment="Right">
-                                    <Button Content="移除" Command="{Binding RemoveCommand}" />
-                                    <Button Content="修改归属" Command="{Binding ChangeOwnerCommand}" />
-                                </WrapPanel>
-                                <DataGrid ItemsSource="{Binding SelectedPool.Devices}"
-                                          SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" Width="160">
+                                    <TextBlock Text="{Binding DeviceInfo.NodeName}" HorizontalAlignment="Left" Margin="5,5,0,5"/>
+                                    <Button Content="移除" Command="{Binding RemoveCommand}" HorizontalAlignment="Left" Margin="5,5,0,5"/>
+                                    <ComboBox VerticalAlignment="Center" Width="120" Margin="5,5,0,5"
+                                              ItemsSource="{Binding OwnerList}"
+                                              DisplayMemberPath="Description"
+                                              SelectedIndex="{Binding SelectedIndex}"/>
+                                </StackPanel>
+                                <DataGrid x:Name="DataGridSelectedPool"
+                                          Grid.Column="0" ItemsSource="{Binding SelectedPool.Devices}"
+                                          SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
                                         <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
@@ -92,14 +102,19 @@
                                         <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
                                         <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
                                     </DataGrid.Columns>
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="SelectionChanged">
+                                            <b:InvokeCommandAction Command="{Binding DevicesGridSelectionChangedCommand}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
                                 </DataGrid>
-                            </StackPanel>
+                            </Grid>
                         </HeaderedContentControl>
                     </StackPanel>
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="DevicesTab" Header="设备"
+            <TabItem x:Name="DevicesTab" Header="设备" Selector.Selected="DevicesTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:DevicesTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -107,12 +122,13 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Column="0"
+                    <DataGrid Grid.Column="0" x:Name="DataGridDevices"
                               ItemsSource="{Binding NodesCollection}"
                               SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
                             <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
+                            <DataGridTextColumn Header="归属鱼塘" Binding="{Binding Pool.Name}" />
                             <DataGridTextColumn Header="创建日期"
                                                 Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
                             <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
