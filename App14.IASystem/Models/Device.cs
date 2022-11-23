@@ -6,15 +6,22 @@ namespace App14.IASystem.Models;
 
 public enum ModelType
 {
-    WC,
-    WQM,
-    AFE,
-    CCB
+    Wc,
+    Wqm,
+    Afe,
+    Ccb
 }
 
 public class Device : ObservableObject
 {
-    [Key] public Guid Id { get; set; }
+    private string _serialNum;
+
+    [Key]
+    public string SerialNum
+    {
+        get => _serialNum;
+        set => SetProperty(ref _serialNum, value);
+    }
 
     private ModelType _type; // 设备类型
 
@@ -30,14 +37,6 @@ public class Device : ObservableObject
     {
         get => _modelNum;
         set => SetProperty(ref _modelNum, value);
-    }
-
-    private string _serialNum;
-
-    public string SerialNum
-    {
-        get => _serialNum;
-        set => SetProperty(ref _serialNum, value);
     }
 
     private string _nodeName; // 用户标注

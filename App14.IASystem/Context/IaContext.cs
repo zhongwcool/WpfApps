@@ -7,6 +7,7 @@ public class IaContext : DbContext
 {
     public DbSet<Farm> Farms { get; set; }
     public DbSet<Device> Devices { get; set; }
+    public DbSet<RecWqm> RecWqms { get; set; }
     public DbSet<Pool> Pools { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

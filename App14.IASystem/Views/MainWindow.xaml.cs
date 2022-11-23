@@ -29,6 +29,7 @@ public partial class MainWindow : Window
         // bind to the source
         PoolsTab.DataContext = new PoolsTabViewModel(Context);
         DevicesTab.DataContext = new DevicesTabViewModel(Context);
+        RecWqmTab.DataContext = new RecsTabViewModel(Context);
     }
 
     protected override void OnClosing(CancelEventArgs e)
@@ -88,159 +89,169 @@ public partial class MainWindow : Window
         {
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 1, 1), SerialNum = "F0000001", Type = ModelType.WC,
+                SerialNum = "F0000001", AddDate = new DateTime(2022, 1, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "HIK-015", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "0.1", Pool = pools[0]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 1, 1), SerialNum = "F0000002", Type = ModelType.WC,
+                SerialNum = "F0000002", AddDate = new DateTime(2022, 1, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "HIK-016", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[0]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 1, 1), SerialNum = "F0000003", Type = ModelType.WC,
+                SerialNum = "F0000003", AddDate = new DateTime(2022, 1, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "HIK-017", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[0]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 1, 1), SerialNum = "F0000004", Type = ModelType.WC,
+                SerialNum = "F0000004", AddDate = new DateTime(2022, 1, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "HIK-018", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[0]
             },
 
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "J65430443", Type = ModelType.WC,
+                SerialNum = "J65430443", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@2号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "J90556302", Type = ModelType.WC,
+                SerialNum = "J90556302", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@2号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "00000014", Type = ModelType.AFE,
+                SerialNum = "00000014", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Afe,
                 ModelNum = "IAS-AFE-A1", NodeName = "投喂@2号塘", Mac = "44:17:93:d4:49:c8", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "00000017", Type = ModelType.CCB,
+                SerialNum = "00000017", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Ccb,
                 ModelNum = "IAS-CCB-A1", NodeName = "控制器-2@2号塘", Mac = "44:17:93:d4:1c:90", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "00000018", Type = ModelType.CCB,
+                SerialNum = "00000018", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Ccb,
                 ModelNum = "IAS-CCB-A1", NodeName = "控制器-1@2号塘", Mac = "44:17:93:d4:2e:84", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "0000001B", Type = ModelType.WQM,
+                SerialNum = "0000001B", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Wqm,
                 ModelNum = "IAS-WQM-A1", NodeName = "水质@2号塘", Mac = "44:17:93:d4:4a:ec", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
             },
 
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "J65429053", Type = ModelType.WC,
+                SerialNum = "J65429053", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@5号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "J90556327", Type = ModelType.WC,
+                SerialNum = "J90556327", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@5号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "00000015", Type = ModelType.AFE,
+                SerialNum = "00000015", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Afe,
                 ModelNum = "IAS-AFE-A1", NodeName = "投喂@5号塘", Mac = "44:17:93:d4:4b:d8", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 4, 1), SerialNum = "00000019", Type = ModelType.CCB,
+                SerialNum = "00000019", AddDate = new DateTime(2022, 4, 1), Type = ModelType.Ccb,
                 ModelNum = "IAS-CCB-A1", NodeName = "控制器-2@5号塘", Mac = "90:38:0c:3c:7f:8c", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 5, 1), SerialNum = "0000001A", Type = ModelType.CCB,
+                SerialNum = "0000001A", AddDate = new DateTime(2022, 5, 1), Type = ModelType.Ccb,
                 ModelNum = "IAS-CCB-A1", NodeName = "控制器-1@5号塘", Mac = "90:38:0c:3c:ea:c8", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 5, 1), SerialNum = "0000001C", Type = ModelType.WQM,
+                SerialNum = "0000001C", AddDate = new DateTime(2022, 5, 1), Type = ModelType.Wqm,
                 ModelNum = "IAS-WQM-A1", NodeName = "水质@5号塘", Mac = "90:38:0c:3e:c4:e4", TcpPort = 3333,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
             },
 
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 10, 1), SerialNum = "J65430447", Type = ModelType.WC,
+                SerialNum = "J65430447", AddDate = new DateTime(2022, 10, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@9号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[3]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 10, 1), SerialNum = "J52537315", Type = ModelType.WC,
+                SerialNum = "J52537315", AddDate = new DateTime(2022, 10, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@9号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[3]
             },
 
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 8, 1), SerialNum = "J90869122", Type = ModelType.WC,
+                SerialNum = "J90869122", AddDate = new DateTime(2022, 8, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@10号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[4]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 8, 1), SerialNum = "J65430117", Type = ModelType.WC,
+                SerialNum = "J65430117", AddDate = new DateTime(2022, 8, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@10号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[4]
             },
 
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 9, 1), SerialNum = "J99855527", Type = ModelType.WC,
+                SerialNum = "J99855527", AddDate = new DateTime(2022, 9, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@11号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[5]
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = new DateTime(2022, 9, 1), SerialNum = "J65425377", Type = ModelType.WC,
+                SerialNum = "J65425377", AddDate = new DateTime(2022, 9, 1), Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@11号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0", Pool = pools[5]
             },
 
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = DateTime.Now, SerialNum = "F0000005", Type = ModelType.WC,
+                SerialNum = "F0000005", AddDate = DateTime.Now, Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "Demo05", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0"
             },
             new Device
             {
-                Id = Guid.NewGuid(), AddDate = DateTime.Now, SerialNum = "F0000006", Type = ModelType.WC,
+                SerialNum = "F0000006", AddDate = DateTime.Now, Type = ModelType.Wc,
                 ModelNum = "IAS-WC-A2", NodeName = "Demo06", Mac = "00:00:00:00:00:00", TcpPort = 8000,
                 Firmware = "1.0", Protocol = "1.0"
+            },
+        };
+
+        var wqms = new[]
+        {
+            new RecWqm
+            {
+                Id = Guid.NewGuid(), HtTemp = 25.3f, HtPh = 8.1f, HtDosat = 100.2f, HtDor = 95.0f, Pool = pools[0],
+                Device = devices[9], TimeStamp = DateTime.Now
             },
         };
 
         Context.Farms.AddRange(farms);
         Context.Pools.AddRange(pools);
         Context.Devices.AddRange(devices);
+        Context.RecWqms.AddRange(wqms);
         Context.SaveChanges();
     }
 
@@ -255,6 +266,11 @@ public partial class MainWindow : Window
     private void DevicesTab_OnSelected(object sender, RoutedEventArgs e)
     {
         DataGridDevices.Items.Refresh();
+    }
+
+    private void RecsTab_OnSelected(object sender, RoutedEventArgs e)
+    {
+        DataGridRecs.Items.Refresh();
     }
     // }
 }
