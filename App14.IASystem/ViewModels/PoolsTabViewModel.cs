@@ -23,8 +23,6 @@ public class PoolsTabViewModel : ObservableObject
         set => SetProperty(ref _selectedPool, value);
     }
 
-    public Pool PoolInfo { get; set; } = new Pool();
-
     private Device _selectedDevice;
 
     public Device SelectedDevice
@@ -60,7 +58,7 @@ public class PoolsTabViewModel : ObservableObject
         Context.Pools.Load();
         // bind to the source
         PoolsCollection = Context.Pools.Local.ToObservableCollection();
-        OwnerList = PoolsCollection.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
+        OwnerList = Context.Pools.Local.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
         OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
 
         RemoveCommand = new RelayCommand(DoRemove, CanExecute_RemoveCommand);
