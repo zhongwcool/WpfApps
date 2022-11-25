@@ -212,9 +212,10 @@
                                               DisplayMemberPath="NodeName"
                                               SelectedIndex="{Binding SelectedDeviceIndex}"
                                               SelectedItem="{Binding SelectedDevice, Mode=TwoWay}"/>
-                                    <CheckBox Content="产生模拟数据" Margin="5,5,0,5"
-                                              Command="{Binding GenerateDataCommand}"
-                                              CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}, Mode=OneWay}" />
+                                    <Button Content="产生模拟数据" Margin="5,5,0,5"
+                                              Command="{Binding DataCommand}" />
+                                    <Button Content="停止" Margin="5,5,0,5"
+                                            Command="{Binding StopCommand}" />
                                 </WrapPanel>
                             
                                 <ProgressBar Value="{Binding CurrentProgress}" Maximum="100" Minimum="0"/>

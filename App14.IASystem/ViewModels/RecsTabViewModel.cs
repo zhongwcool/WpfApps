@@ -31,7 +31,7 @@ public class RecsTabViewModel : ObservableObject
         }
     }
 
-    private Device _selectedDevice;
+    private Device _selectedDevice = new();
 
     public Device SelectedDevice
     {
@@ -72,7 +72,21 @@ public class RecsTabViewModel : ObservableObject
 
         Task.Delay(2000).ContinueWith(_ => { SelectedPoolIndex = 0; });
 
-        GenerateDataCommand = new RelayCommand<bool>(DoGenerateData, CanExecute_GenerateDataCommand);
+        DataCommand = new RelayCommand(DoGentData, CanExecute_DataCommand);
+        StopCommand = new RelayCommand(DoStopData, CanExecute_StopCommand);
+    }
+
+    private bool _isBusy;
+
+    private bool IsBusy
+    {
+        get => _isBusy;
+        set
+        {
+            SetProperty(ref _isBusy, value);
+            DataCommand.NotifyCanExecuteChanged();
+            StopCommand.NotifyCanExecuteChanged();
+        }
     }
 
     private Device _selectedRecWqm = new();
@@ -85,28 +99,19 @@ public class RecsTabViewModel : ObservableObject
 
     private BackgroundWorker _worker;
 
-    public IRelayCommand<bool> GenerateDataCommand { get; }
+    public IRelayCommand DataCommand { get; }
 
-    private void DoGenerateData(bool isChecked)
+    private void DoGentData()
     {
-        if (isChecked)
-        {
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true; //允许取消
-            _worker.DoWork += Worker_DoWork;
-            _worker.ProgressChanged += Worker_ProgressChanged;
-            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            _worker.RunWorkerAsync(100);
-        }
-        else
-        {
-            if (_worker.IsBusy)
-            {
-                _worker.CancelAsync();
-                _worker.Dispose();
-            }
-        }
+        _worker = new BackgroundWorker();
+        _worker.WorkerReportsProgress = true;
+        _worker.WorkerSupportsCancellation = true; //允许取消
+        _worker.DoWork += Worker_DoWork;
+        _worker.ProgressChanged += Worker_ProgressChanged;
+        _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+        _worker.RunWorkerAsync(100);
+
+        IsBusy = true;
     }
 
     private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -115,11 +120,11 @@ public class RecsTabViewModel : ObservableObject
         if (!e.Cancelled)
         {
             //计算结果信息：e.Result
-            MessageBox.Show("用户取消:" + e.Result);
+            MessageBox.Show($"生产结束:{e.Result}%");
         }
 
         //计算已经结束，需要禁用取消按钮。
-        //TODO DO SOMETHING
+        IsBusy = false;
 
         //计算过程中的异常会被抓住，在这里可以进行处理。
         if (e.Error == null) return;
@@ -150,10 +155,11 @@ public class RecsTabViewModel : ObservableObject
             max = (int)e.Argument;
         }
 
-        var result = 0;
-        for (var i = 0; i < max; i++)
+        var progressPercentage = 0;
+
+        for (var i = 1; i <= max; i++)
         {
-            var progressPercentage = Convert.ToInt32((double)i / max * 100);
+            progressPercentage = Convert.ToInt32((double)i / max * 100);
 
             var rand = new Random();
             var t = rand.NextSingle() + rand.Next(0, 30);
@@ -165,8 +171,11 @@ public class RecsTabViewModel : ObservableObject
                 Id = Guid.NewGuid(), HtTemp = t, HtPh = p, HtDosat = ds, HtDor = dr, Pool = SelectedPool,
                 Device = SelectedDevice, TimeStamp = DateTime.Now
             };
-            Context.Add(rec);
-            Context.SaveChanges();
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Context.Add(rec);
+                Context.SaveChanges();
+            });
 
             bgWorker?.ReportProgress(progressPercentage);
 
@@ -180,7 +189,7 @@ public class RecsTabViewModel : ObservableObject
             Thread.Sleep(100);
         }
 
-        e.Result = result;
+        e.Result = progressPercentage;
     }
 
     private double _currentProgress;
@@ -191,8 +200,22 @@ public class RecsTabViewModel : ObservableObject
         set => SetProperty(ref _currentProgress, value);
     }
 
-    private bool CanExecute_GenerateDataCommand(bool isChecked)
+    private bool CanExecute_DataCommand()
     {
-        return _worker is not { IsBusy: true };
+        return IsBusy is not true;
+    }
+
+    public IRelayCommand StopCommand { get; }
+
+    private void DoStopData()
+    {
+        _worker.CancelAsync();
+        _worker.Dispose();
+        IsBusy = false;
+    }
+
+    private bool CanExecute_StopCommand()
+    {
+        return IsBusy;
     }
 }
