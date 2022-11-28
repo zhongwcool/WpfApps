@@ -216,6 +216,8 @@
                                               Command="{Binding DataCommand}" />
                                     <Button Content="停止" Margin="5,5,0,5"
                                             Command="{Binding StopCommand}" />
+                                    <Button Content="清理数据" Margin="5,5,0,5"
+                                            Command="{Binding ClearCommand}" />
                                 </WrapPanel>
                             
                                 <ProgressBar Value="{Binding CurrentProgress}" Maximum="100" Minimum="0"/>

@@ -74,6 +74,9 @@ public class RecsTabViewModel : ObservableObject
 
         DataCommand = new RelayCommand(DoGentData, CanExecute_DataCommand);
         StopCommand = new RelayCommand(DoStopData, CanExecute_StopCommand);
+        ClearCommand = new RelayCommand(DoClearData, CanExecute_ClearCommand);
+
+        WqmsCollection.CollectionChanged += (_, _) => { ClearCommand.NotifyCanExecuteChanged(); };
     }
 
     private bool _isBusy;
@@ -217,5 +220,21 @@ public class RecsTabViewModel : ObservableObject
     private bool CanExecute_StopCommand()
     {
         return IsBusy;
+    }
+
+    public IRelayCommand ClearCommand { get; }
+
+    private void DoClearData()
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            Context.RecWqms.Local.Clear();
+            Context.SaveChanges();
+        });
+    }
+
+    private bool CanExecute_ClearCommand()
+    {
+        return Context.RecWqms.Local.Count > 0;
     }
 }

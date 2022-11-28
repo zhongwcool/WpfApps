@@ -20,7 +20,7 @@ public class RecWqm : ObservableObject
 
     private float _htPh;
 
-    [Precision(5)]
+    [Precision(5, 2)]
     public float HtPh
     {
         get => _htPh;
