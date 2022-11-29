@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using App14.IASystem.Context;
+using App14.IASystem.Enums;
 using App14.IASystem.Models;
 using App14.IASystem.ViewModels;
 

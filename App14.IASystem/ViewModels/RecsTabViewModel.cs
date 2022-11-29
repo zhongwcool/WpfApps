@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using App14.IASystem.Context;
+using App14.IASystem.Enums;
 using App14.IASystem.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -59,6 +61,30 @@ public class RecsTabViewModel : ObservableObject
         set => SetProperty(ref _selectedDeviceIndex, value);
     }
 
+    public List<Tuple<string, DivideMode>> Fonts { get; } = new()
+    {
+        new Tuple<string, DivideMode>("秒", DivideMode.Second),
+        new Tuple<string, DivideMode>("分钟", DivideMode.Minute),
+        new Tuple<string, DivideMode>("小时", DivideMode.Hour),
+        new Tuple<string, DivideMode>("天", DivideMode.Day)
+    };
+
+    private int _selectedFontIndex = 0;
+
+    public int SelectedFontIndex
+    {
+        get => _selectedFontIndex;
+        set => SetProperty(ref _selectedFontIndex, value);
+    }
+
+    private Tuple<string, DivideMode> _selectedFont;
+
+    public Tuple<string, DivideMode> SelectedFont
+    {
+        get => _selectedFont;
+        set => SetProperty(ref _selectedFont, value);
+    }
+
     public RecsTabViewModel(IaContext iaContext)
     {
         Context = iaContext;
@@ -70,7 +96,12 @@ public class RecsTabViewModel : ObservableObject
         WqmsCollection = Context.RecWqms.Local.ToObservableCollection();
         PoolList = Context.Pools.Local.ToObservableCollection();
 
-        Task.Delay(2000).ContinueWith(_ => { SelectedPoolIndex = 0; });
+        Task.Delay(1500).ContinueWith(_ =>
+            {
+                SelectedPoolIndex = 0;
+                SelectedFontIndex = 0;
+            }
+        );
 
         DataCommand = new RelayCommand(DoGentData, CanExecute_DataCommand);
         StopCommand = new RelayCommand(DoStopData, CanExecute_StopCommand);
@@ -169,10 +200,11 @@ public class RecsTabViewModel : ObservableObject
             var p = rand.NextSingle() + rand.Next(5, 9);
             var ds = rand.NextSingle() + rand.Next(95, 101);
             var dr = rand.NextSingle() + rand.Next(90, 105);
+
             var rec = new RecWqm
             {
                 Id = Guid.NewGuid(), HtTemp = t, HtPh = p, HtDosat = ds, HtDor = dr, Pool = SelectedPool,
-                Device = SelectedDevice, TimeStamp = DateTime.Now
+                Device = SelectedDevice, TimeStamp = GetDateTime(i)
             };
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -192,7 +224,40 @@ public class RecsTabViewModel : ObservableObject
             Thread.Sleep(100);
         }
 
+        _adt = DateTime.Now;
+
         e.Result = progressPercentage;
+    }
+
+    private DateTime _adt = DateTime.Now;
+
+    private DateTime GetDateTime(int seed)
+    {
+        switch (SelectedFont.Item2)
+        {
+            case DivideMode.Second:
+            {
+                var dt = _adt.AddSeconds(seed);
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            }
+            case DivideMode.Minute:
+            {
+                var dt = _adt.AddMinutes(seed);
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            }
+            case DivideMode.Hour:
+            {
+                var dt = _adt.AddHours(seed);
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            }
+            case DivideMode.Day:
+            {
+                var dt = _adt.AddDays(seed);
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            }
+        }
+
+        return DateTime.Now;
     }
 
     private double _currentProgress;

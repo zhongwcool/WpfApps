@@ -124,6 +124,7 @@
         </StackPanel>
 
         <Grid Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" />
+        
         <Grid>
             <wpf:Figure>
                 <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" Visibility="Collapsed" />

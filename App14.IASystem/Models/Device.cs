@@ -1,16 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using App14.IASystem.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App14.IASystem.Models;
-
-public enum ModelType
-{
-    Wc,
-    Wqm,
-    Afe,
-    Ccb
-}
 
 public class Device : ObservableObject
 {

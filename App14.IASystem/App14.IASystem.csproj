@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
+        <PackageReference Include="InteractiveDataDisplay.WPF" Version="1.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0"/>
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
@@ -17,6 +18,12 @@
 
     <ItemGroup>
         <Folder Include="Converter"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="ModernWpf">
+            <HintPath>C:\Users\alex\.nuget\packages\modernwpfui\0.9.6\lib\net462\ModernWpf.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>
