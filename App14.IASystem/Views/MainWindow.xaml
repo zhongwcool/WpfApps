@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:App14.IASystem.ViewModels"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:wpf="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
         Title="IASystem" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
@@ -105,6 +104,7 @@
                                         <DataGridTextColumn Header="创建日期"
                                                             Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
                                         <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
+                                        <DataGridTextColumn Header="Hik" Binding="{Binding HikIp}" />
                                         <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
                                         <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
                                     </DataGrid.Columns>
@@ -139,6 +139,7 @@
                             <DataGridTextColumn Header="创建日期"
                                                 Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
                             <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
+                            <DataGridTextColumn Header="Hik" Binding="{Binding HikIp}" />
                             <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
                             <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
                         </DataGrid.Columns>
@@ -217,7 +218,7 @@
                                 <WrapPanel>
                                     <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
                                               ItemsSource="{Binding PoolList}"
-                                              DisplayMemberPath="Name"
+                                              DisplayMemberPath="HikIp"
                                               SelectedIndex="{Binding SelectedPoolIndex}"
                                               SelectedItem="{Binding SelectedPool, Mode=TwoWay}" />
                                     <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
@@ -259,45 +260,6 @@
                                     <RowDefinition Height="250" />
                                     <RowDefinition Height="250" />
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Grid.Column="0" Margin="5">
-                                    <wpf:Figure>
-                                        <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" />
-                                        <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" />
-                                        <wpf:LineGraph x:Name="linegraph0" />
-                                        <!-- wpf:MouseNavigation/ -->
-                                        <Border BorderThickness="0.5" BorderBrush="Black" />
-                                    </wpf:Figure>
-                                </Grid>
-
-                                <Grid Grid.Row="0" Grid.Column="1" Margin="5">
-                                    <wpf:Figure>
-                                        <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" />
-                                        <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" />
-                                        <wpf:LineGraph x:Name="linegraph1" />
-                                        <!-- wpf:MouseNavigation/ -->
-                                        <Border BorderThickness="0.5" BorderBrush="Black" />
-                                    </wpf:Figure>
-                                </Grid>
-
-                                <Grid Grid.Row="1" Grid.Column="0" Margin="5">
-                                    <wpf:Figure>
-                                        <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" />
-                                        <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" />
-                                        <wpf:LineGraph x:Name="linegraph2" />
-                                        <!-- wpf:MouseNavigation/ -->
-                                        <Border BorderThickness="0.5" BorderBrush="Black" />
-                                    </wpf:Figure>
-                                </Grid>
-
-                                <Grid Grid.Row="1" Grid.Column="1" Margin="5" Background="Coral">
-                                    <wpf:Figure>
-                                        <wpf:PlotAxis AxisOrientation="Right" wpf:Figure.Placement="Right" />
-                                        <wpf:PlotAxis AxisOrientation="Top" wpf:Figure.Placement="Top" />
-                                        <wpf:LineGraph x:Name="linegraph3" />
-                                        <!-- wpf:MouseNavigation/ -->
-                                        <Border BorderThickness="0.5" BorderBrush="Black" />
-                                    </wpf:Figure>
-                                </Grid>
                             </Grid>
                         </HeaderedContentControl>
                     </StackPanel>

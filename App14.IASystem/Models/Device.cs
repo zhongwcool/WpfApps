@@ -48,6 +48,14 @@ public class Device : ObservableObject
         set => SetProperty(ref _mac, value);
     }
 
+    private string _hikIp;
+
+    public string HikIp
+    {
+        get => _hikIp;
+        set => SetProperty(ref _hikIp, value);
+    }
+
     private int _tcpPort; // 设备类型
 
     public int TcpPort

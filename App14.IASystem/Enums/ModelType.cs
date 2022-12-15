@@ -2,8 +2,8 @@
 
 public enum ModelType
 {
-    Wc,
-    Wqm,
-    Afe,
-    Ccb
+    WC,
+    WQM,
+    AFE,
+    CCB
 }
