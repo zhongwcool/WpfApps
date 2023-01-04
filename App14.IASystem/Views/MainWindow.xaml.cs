@@ -90,44 +90,44 @@ public partial class MainWindow : Window
         {
             new Device
             {
-                SerialNum = "F0000001", AddDate = new DateTime(2022, 1, 1), Type = ModelType.WC,
+                SerialNum = "F0000001", AddDate = new DateTime(2023, 1, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "HIK-015", HikIp = "192.168.77.101", Mac = "00:00:00:00:00:00",
                 TcpPort = 8000,
-                Firmware = "1.0", Protocol = "0.1", Pool = pools[0]
+                Firmware = "0", Protocol = "0", Pool = pools[0]
             },
             new Device
             {
-                SerialNum = "F0000002", AddDate = new DateTime(2022, 1, 1), Type = ModelType.WC,
+                SerialNum = "F0000002", AddDate = new DateTime(2023, 1, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "HIK-016", HikIp = "192.168.77.106", Mac = "00:00:00:00:00:00",
                 TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[0]
+                Firmware = "0", Protocol = "0", Pool = pools[0]
             },
             new Device
             {
-                SerialNum = "F0000003", AddDate = new DateTime(2022, 1, 1), Type = ModelType.WC,
-                ModelNum = "IAS-WC-A2", NodeName = "HIK-017", HikIp = "192.168.77.105", Mac = "00:00:00:00:00:00",
+                SerialNum = "F0000003", AddDate = new DateTime(2023, 1, 1), Type = ModelType.WC,
+                ModelNum = "IAS-WC-A2", NodeName = "HIK-017", HikIp = "192.168.77.107", Mac = "00:00:00:00:00:00",
                 TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[0]
+                Firmware = "0", Protocol = "0", Pool = pools[0]
             },
             new Device
             {
-                SerialNum = "F0000004", AddDate = new DateTime(2022, 1, 1), Type = ModelType.WC,
-                ModelNum = "IAS-WC-A2", NodeName = "HIK-018", HikIp = "192.168.77.108", Mac = "00:00:00:00:00:00",
+                SerialNum = "F0000004", AddDate = new DateTime(2023, 1, 1), Type = ModelType.WC,
+                ModelNum = "IAS-WC-A2", NodeName = "HIK-018", HikIp = "192.168.77.102", Mac = "00:00:00:00:00:00",
                 TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[0]
+                Firmware = "0", Protocol = "0", Pool = pools[0]
             },
 
             new Device
             {
                 SerialNum = "J65430443", AddDate = new DateTime(2022, 4, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@2号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
+                Firmware = "0", Protocol = "0", Pool = pools[1]
             },
             new Device
             {
                 SerialNum = "J90556302", AddDate = new DateTime(2022, 4, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@2号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[1]
+                Firmware = "0", Protocol = "0", Pool = pools[1]
             },
             new Device
             {
@@ -158,13 +158,13 @@ public partial class MainWindow : Window
             {
                 SerialNum = "J65429053", AddDate = new DateTime(2022, 4, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@5号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
+                Firmware = "0", Protocol = "0", Pool = pools[2]
             },
             new Device
             {
                 SerialNum = "J90556327", AddDate = new DateTime(2022, 4, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@5号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[2]
+                Firmware = "0", Protocol = "0", Pool = pools[2]
             },
             new Device
             {
@@ -195,52 +195,52 @@ public partial class MainWindow : Window
             {
                 SerialNum = "J65430447", AddDate = new DateTime(2022, 10, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@9号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[3]
+                Firmware = "0", Protocol = "0", Pool = pools[3]
             },
             new Device
             {
                 SerialNum = "J52537315", AddDate = new DateTime(2022, 10, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@9号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[3]
+                Firmware = "0", Protocol = "0", Pool = pools[3]
             },
 
             new Device
             {
                 SerialNum = "J90869122", AddDate = new DateTime(2022, 8, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@10号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[4]
+                Firmware = "0", Protocol = "0", Pool = pools[4]
             },
             new Device
             {
                 SerialNum = "J65430117", AddDate = new DateTime(2022, 8, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@10号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[4]
+                Firmware = "0", Protocol = "0", Pool = pools[4]
             },
 
             new Device
             {
                 SerialNum = "J99855527", AddDate = new DateTime(2022, 9, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "水槽@11号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[5]
+                Firmware = "0", Protocol = "0", Pool = pools[5]
             },
             new Device
             {
                 SerialNum = "J65425377", AddDate = new DateTime(2022, 9, 1), Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "全景@11号塘", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0", Pool = pools[5]
+                Firmware = "0", Protocol = "0", Pool = pools[5]
             },
 
             new Device
             {
                 SerialNum = "F0000005", AddDate = DateTime.Now, Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "Demo05", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0"
+                Firmware = "0", Protocol = "0"
             },
             new Device
             {
                 SerialNum = "F0000006", AddDate = DateTime.Now, Type = ModelType.WC,
                 ModelNum = "IAS-WC-A2", NodeName = "Demo06", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                Firmware = "1.0", Protocol = "1.0"
+                Firmware = "0", Protocol = "0"
             },
         };
 

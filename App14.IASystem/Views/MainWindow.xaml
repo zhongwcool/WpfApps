@@ -218,7 +218,7 @@
                                 <WrapPanel>
                                     <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
                                               ItemsSource="{Binding PoolList}"
-                                              DisplayMemberPath="HikIp"
+                                              DisplayMemberPath="Name"
                                               SelectedIndex="{Binding SelectedPoolIndex}"
                                               SelectedItem="{Binding SelectedPool, Mode=TwoWay}" />
                                     <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"

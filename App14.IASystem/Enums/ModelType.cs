@@ -2,6 +2,7 @@
 
 public enum ModelType
 {
+    UNKNOWN,
     WC,
     WQM,
     AFE,
