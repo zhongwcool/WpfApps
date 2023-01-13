@@ -13,7 +13,7 @@
         <PackageReference Include="LibVLCSharp" Version="3.6.7"/>
         <PackageReference Include="LibVLCSharp.WPF" Version="3.6.7"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
-        <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.17.4"/>
+        <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18"/>
     </ItemGroup>
 
 </Project>
