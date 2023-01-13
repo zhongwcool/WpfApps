@@ -10,6 +10,8 @@ using App14.IASystem.Enums;
 using App14.IASystem.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using Microsoft.EntityFrameworkCore;
 
 namespace App14.IASystem.ViewModels;
@@ -17,6 +19,16 @@ namespace App14.IASystem.ViewModels;
 public class RecsTabViewModel : ObservableObject
 {
     private IaContext Context { get; }
+
+    public ISeries[] Series { get; set; }
+        = new ISeries[]
+        {
+            new LineSeries<double>
+            {
+                Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
+                Fill = null
+            }
+        };
 
     public ObservableCollection<RecWqm> WqmsCollection { get; set; }
     public ObservableCollection<Pool> PoolList { get; }
