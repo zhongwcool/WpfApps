@@ -12,7 +12,7 @@ public class DevicesTabViewModel : ObservableObject
 {
     private IaContext Context { get; }
 
-    public ObservableCollection<Device> NodesCollection { get; set; }
+    public ObservableCollection<Device> DevicesCollection { get; set; }
 
     private Device _selectedDevice = new();
 
@@ -59,7 +59,7 @@ public class DevicesTabViewModel : ObservableObject
         // load the entities into EF Core
         Context.Devices.Load();
         // bind to the source
-        NodesCollection = Context.Devices.Local.ToObservableCollection();
+        DevicesCollection = Context.Devices.Local.ToObservableCollection();
 
         OwnerList = Context.Pools.Local.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
         OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });

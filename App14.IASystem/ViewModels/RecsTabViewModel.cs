@@ -303,11 +303,8 @@ public class RecsTabViewModel : ObservableObject
 
     private void DoClearData()
     {
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            Context.RecWqms.Local.Clear();
-            Context.SaveChanges();
-        });
+        Context.RecWqms.Local.Clear();
+        Context.SaveChanges();
     }
 
     private bool CanExecute_ClearCommand()

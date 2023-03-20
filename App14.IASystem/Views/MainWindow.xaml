@@ -131,7 +131,7 @@
                     </Grid.ColumnDefinitions>
 
                     <DataGrid Grid.Column="0" x:Name="DataGridDevices"
-                              ItemsSource="{Binding NodesCollection}"
+                              ItemsSource="{Binding DevicesCollection}"
                               SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
