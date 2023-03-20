@@ -158,7 +158,7 @@ public partial class XamlWindow
 
     private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-        PanelBack.Visibility = Visibility.Visible;
+        Application.Current.Dispatcher.Invoke(() => { PanelBack.Visibility = Visibility.Visible; });
     }
 
     private System.Timers.Timer _mHideRealPlayTimer;

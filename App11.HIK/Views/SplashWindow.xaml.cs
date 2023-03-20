@@ -46,7 +46,7 @@ public partial class SplashWindow : Window
 
     private void ButtonPage_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new PageInWindow();
+        var window = new InPageWindow();
         window.ShowDialog();
     }
 

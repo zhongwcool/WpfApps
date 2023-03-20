@@ -1,37 +1,18 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using App11.HIK.Models;
+using App11.HIK.ViewModels;
 using App11.HIK.Views.Pages;
 
 namespace App11.HIK.Views;
 
-public partial class PageInWindow
+public partial class InPageWindow
 {
-    public PageInWindow()
+    public InPageWindow()
     {
         InitializeComponent();
-
-        // Create dummy data
-        DoDummy();
+        DataContext = new InPageViewModel();
     }
-
-    private void DoDummy()
-    {
-        var task = JsNode.CreateDummy();
-        task.ContinueWith(_ =>
-        {
-            var robots = task.Result;
-            foreach (var robot in robots)
-            {
-                RobotList.Add(robot);
-            }
-
-            Dispatcher.Invoke(() => { ListViewDevice.ItemsSource = RobotList; });
-        });
-    }
-
-    private ObservableCollection<JsNode> RobotList { get; set; } = new();
 
     private void MySelectionChanged(object sender, SelectionChangedEventArgs e)
     {
