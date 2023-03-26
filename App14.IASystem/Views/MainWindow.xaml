@@ -47,10 +47,10 @@
                                          VerticalAlignment="Center" HorizontalAlignment="Left"
                                          Text="{Binding SelectedPool.Name}" />
                                 <Slider ui:ControlHelper.Header="进度:" Margin="5,0,0,0" Width="160"
-                                         VerticalAlignment="Center" HorizontalAlignment="Left"
+                                        VerticalAlignment="Center" HorizontalAlignment="Left"
                                         Minimum="0" Maximum="100"
-                                         Value="{Binding SelectedPool.Progress}" />
-                                <DatePicker ui:ControlHelper.Header="创建日期:" Margin="5,0,0,0" Width="120"
+                                        Value="{Binding SelectedPool.Progress}" />
+                                <DatePicker ui:ControlHelper.Header="创建日期:" Margin="5,0,0,0" Width="160"
                                             SelectedDate="{Binding SelectedPool.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBox ui:ControlHelper.Header="鱼塘说明:" Margin="5,0,0,0" Width="600"
                                          HorizontalAlignment="Left"
@@ -62,22 +62,26 @@
                         <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
                                                 Style="{StaticResource H3HeaderedContentControl}">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="1" Orientation="Vertical" Width="160">
-                                    <TextBlock Text="{Binding DeviceInfo.NodeName}" HorizontalAlignment="Left"
-                                               Margin="5,5,0,5" />
-                                    <Button Content="移除" Command="{Binding RemoveCommand}" HorizontalAlignment="Left"
-                                            Margin="5,5,0,5" />
-                                    <ComboBox VerticalAlignment="Center" Width="120" Margin="5,5,0,5"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                             Text="{Binding DeviceInfo.NodeName}" />
+                                    <ComboBox Width="160" Margin="5,0,0,0"
+                                              VerticalAlignment="Center" 
                                               ItemsSource="{Binding OwnerList}"
                                               DisplayMemberPath="Description"
                                               SelectedIndex="{Binding SelectedIndex}" />
                                 </StackPanel>
-                                <DataGrid x:Name="DataGridSelectedPool"
-                                          Grid.Column="0" ItemsSource="{Binding SelectedPool.Devices}"
+                                
+                                <DataGrid Grid.Row="0" Width="600"
+                                          x:Name="DataGridSelectedPool"
+                                          Margin="5,5,0,5"
+                                          HorizontalAlignment="Left"
+                                          ItemsSource="{Binding SelectedPool.Devices}"
                                           SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
