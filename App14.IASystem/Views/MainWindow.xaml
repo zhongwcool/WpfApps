@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:App14.IASystem.ViewModels"
-        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
@@ -24,17 +23,16 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <DataGrid Grid.Row="0" x:Name="DataGridPools"
-                                   ItemsSource="{Binding PoolsCollection}"
-                                   SelectedItem="{Binding SelectedPool, Mode=TwoWay}">
+                                  ItemsSource="{Binding PoolsCollection}"
+                                  SelectedItem="{Binding SelectedPool, Mode=TwoWay}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="鱼塘名" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="基地" Binding="{Binding Farm.Name}" />
@@ -44,80 +42,87 @@
                                 <DataGridTextColumn Header="设备数" Binding="{Binding Devices.Count}" />
                             </DataGrid.Columns>
                         </DataGrid>
-                    
+
                         <Button Grid.Row="1" Content="删除鱼塘" Margin="5,5,5,5" Command="{Binding RemoveCommand}" />
                     </Grid>
 
-                    <StackPanel Grid.Column="1">
-                        <HeaderedContentControl Header="鱼塘信息" Margin="0,5,0,0"
-                                                Style="{StaticResource H3HeaderedContentControl}">
-                            <ui:SimpleStackPanel Spacing="5">
-                                <TextBox ui:ControlHelper.Header="鱼塘名:" Margin="5,0,0,0" Width="160"
-                                         VerticalAlignment="Center" HorizontalAlignment="Left"
-                                         Text="{Binding SelectedPool.Name}" />
-                                <Slider ui:ControlHelper.Header="进度:" Margin="5,0,0,0" Width="160"
-                                        VerticalAlignment="Center" HorizontalAlignment="Left"
-                                        Minimum="0" Maximum="100"
-                                        Value="{Binding SelectedPool.Progress}" />
-                                <DatePicker ui:ControlHelper.Header="创建日期:" Margin="5,0,0,0" Width="160"
-                                            SelectedDate="{Binding SelectedPool.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBox ui:ControlHelper.Header="鱼塘说明:" Margin="5,0,0,0" Width="600"
-                                         HorizontalAlignment="Left"
-                                         Text="{Binding SelectedPool.Note}"
-                                         TextWrapping="Wrap" />
-                            </ui:SimpleStackPanel>
-                        </HeaderedContentControl>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <HeaderedContentControl Header="鱼塘信息" Margin="0,5,0,0"
+                                                        Style="{StaticResource H3HeaderedContentControl}">
+                                    <ui:SimpleStackPanel Spacing="5">
+                                        <TextBox ui:ControlHelper.Header="鱼塘名:" Margin="5,0,0,0" Width="160"
+                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 Text="{Binding SelectedPool.Name}" />
+                                        <Slider ui:ControlHelper.Header="进度:" Margin="5,0,0,0" Width="160"
+                                                VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                Minimum="0" Maximum="100"
+                                                Value="{Binding SelectedPool.Progress}" />
+                                        <DatePicker ui:ControlHelper.Header="创建日期:" Margin="5,0,0,0" Width="160"
+                                                    SelectedDate="{Binding SelectedPool.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBox ui:ControlHelper.Header="鱼塘说明:" Margin="5,0,0,0" Width="600"
+                                                 HorizontalAlignment="Left"
+                                                 Text="{Binding SelectedPool.Note}"
+                                                 TextWrapping="Wrap" />
+                                    </ui:SimpleStackPanel>
+                                </HeaderedContentControl>
 
-                        <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
-                                                Style="{StaticResource H3HeaderedContentControl}">
-                            <DataGrid Grid.Row="0" Width="600"
-                                      x:Name="DataGridSelectedPool"
-                                      Margin="5,5,0,5"
-                                      HorizontalAlignment="Left"
-                                      ItemsSource="{Binding SelectedPool.Devices}"
-                                      SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
-                                    <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
-                                    <DataGridTextColumn Header="创建日期"
-                                                        Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
-                                    <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
-                                    <DataGridTextColumn Header="Hik" Binding="{Binding HikIp}" />
-                                    <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
-                                    <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
-                                </DataGrid.Columns>
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="SelectionChanged">
-                                        <b:InvokeCommandAction
-                                            Command="{Binding DevicesGridSelectionChangedCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </DataGrid>
-                        </HeaderedContentControl>
-                        
-                        <Button Content="保存" Margin="5,0,0,0" Command="{Binding SaveCommand}" />
-                    </StackPanel>
+                                <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
+                                                        Style="{StaticResource H3HeaderedContentControl}">
+                                    <DataGrid Grid.Row="0" Width="600"
+                                              x:Name="DataGridSelectedPool"
+                                              Margin="5,5,0,5"
+                                              HorizontalAlignment="Left"
+                                              ItemsSource="{Binding SelectedPool.Devices}"
+                                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
+                                            <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
+                                            <DataGridTextColumn Header="创建日期"
+                                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                            <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
+                                            <DataGridTextColumn Header="Hik" Binding="{Binding HikIp}" />
+                                            <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
+                                            <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </HeaderedContentControl>
+                            </StackPanel>
 
-                    <Grid Grid.Column="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
-                        <HeaderedContentControl  Header="设备信息" Margin="0,5,0,0"
-                                                Style="{StaticResource H3HeaderedContentControl}">
-                            <ui:SimpleStackPanel Spacing="5">
-                                <TextBox ui:ControlHelper.Header="设备名:" Margin="5,0,0,0" Width="160"
-                                         VerticalAlignment="Center" HorizontalAlignment="Left"
-                                         Text="{Binding SelectedDevice.NodeName}" />
-                                <DatePicker ui:ControlHelper.Header="添加日期:" Margin="5,0,0,0" Width="160"
-                                            VerticalAlignment="Center" HorizontalAlignment="Left"
-                                            SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBox ui:ControlHelper.Header="HIK IP:" Margin="5,0,0,0" Width="160"
-                                         VerticalAlignment="Center" HorizontalAlignment="Left"
-                                         Text="{Binding SelectedDevice.HikIp}" />
-                                <ComboBox ui:ControlHelper.Header="归属:" Margin="5,15,0,0" Width="160"
-                                          VerticalAlignment="Center" HorizontalAlignment="Left"
-                                          ItemsSource="{Binding OwnerList}"
-                                          DisplayMemberPath="Description"
-                                          SelectedIndex="{Binding SelectedPoolIndex}" />
-                            </ui:SimpleStackPanel>
-                        </HeaderedContentControl>
+                            <Grid Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
+                                <HeaderedContentControl Header="设备信息" Margin="0,5,0,0"
+                                                        Style="{StaticResource H3HeaderedContentControl}">
+                                    <ui:SimpleStackPanel Spacing="5">
+                                        <TextBox ui:ControlHelper.Header="设备名:" Margin="5,0,0,0" Width="160"
+                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 Text="{Binding SelectedDevice.NodeName}" />
+                                        <DatePicker ui:ControlHelper.Header="添加日期:" Margin="5,0,0,0" Width="160"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                    SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBox ui:ControlHelper.Header="HIK IP:" Margin="5,0,0,0" Width="160"
+                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 Text="{Binding SelectedDevice.HikIp}" />
+                                        <ComboBox ui:ControlHelper.Header="归属:" Margin="5,15,0,0" Width="160"
+                                                  VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                  ItemsSource="{Binding OwnerList}"
+                                                  DisplayMemberPath="Description"
+                                                  SelectedIndex="{Binding SelectedPoolIndex}" />
+                                    </ui:SimpleStackPanel>
+                                </HeaderedContentControl>
+                            </Grid>
+                        </Grid>
+                        <Button Grid.Row="1" Content="保存" Margin="5,5,5,5"
+                                Style="{DynamicResource AccentButtonStyle}"
+                                Command="{Binding SaveCommand}" />
                     </Grid>
                 </Grid>
             </TabItem>
