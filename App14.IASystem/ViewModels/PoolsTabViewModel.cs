@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using App14.IASystem.Context;
 using App14.IASystem.Models;
@@ -20,7 +20,11 @@ public class PoolsTabViewModel : ObservableObject
     public Pool SelectedPool
     {
         get => _selectedPool;
-        set => SetProperty(ref _selectedPool, value);
+        set
+        {
+            SetProperty(ref _selectedPool, value);
+            RemoveCommand.NotifyCanExecuteChanged();
+        }
     }
 
     private Device _selectedDevice;
@@ -34,22 +38,20 @@ public class PoolsTabViewModel : ObservableObject
 
             if (null == _selectedDevice?.Pool)
             {
-                _selectedIndex = 0;
-                OnPropertyChanged(nameof(SelectedIndex));
+                _selectedPoolIndex = 0;
+                OnPropertyChanged(nameof(SelectedPoolIndex));
                 return;
             }
 
             for (var j = 0; j < OwnerList.Count; j++)
             {
                 if (null == OwnerList[j].Pool || OwnerList[j].Pool.PoolId != _selectedDevice.Pool.PoolId) continue;
-                _selectedIndex = j;
-                OnPropertyChanged(nameof(SelectedIndex));
+                _selectedPoolIndex = j;
+                OnPropertyChanged(nameof(SelectedPoolIndex));
                 break;
             }
         }
     }
-
-    public Device DeviceInfo { get; set; } = new();
 
     public PoolsTabViewModel(IaContext iaContext)
     {
@@ -62,51 +64,38 @@ public class PoolsTabViewModel : ObservableObject
         OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
 
         RemoveCommand = new RelayCommand(DoRemove, CanExecute_RemoveCommand);
-
-        DevicesGridSelectionChangedCommand =
-            new RelayCommand(DevicesGridSelectionChanged, CanExecuteDevicesGridSelectionChanged);
-        DeviceInfo.PropertyChanged += NodeInfo_PropertyChanged;
-    }
-
-    private void NodeInfo_PropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        RemoveCommand.NotifyCanExecuteChanged();
-    }
-
-    public IRelayCommand DevicesGridSelectionChangedCommand { get; }
-
-    private void DevicesGridSelectionChanged()
-    {
-        DeviceInfo.NodeName = SelectedDevice.NodeName;
-    }
-
-    private bool CanExecuteDevicesGridSelectionChanged()
-    {
-        return SelectedDevice != null;
+        SaveCommand = new RelayCommand(DoSave);
     }
 
     public IRelayCommand RemoveCommand { get; }
 
     private void DoRemove()
     {
-        SelectedDevice.Pool = null;
+        Context.Remove(SelectedPool);
+        Context.SaveChanges();
+    }
+
+    public IRelayCommand SaveCommand { get; }
+
+    private void DoSave()
+    {
         Context.SaveChanges();
     }
 
     private bool CanExecute_RemoveCommand()
     {
-        return SelectedDevice != null;
+        return SelectedPool != null && 0 != SelectedPool.PoolId.CompareTo(Guid.Empty);
     }
 
-    private int _selectedIndex = 0;
+    private int _selectedPoolIndex = 0;
 
-    public int SelectedIndex
+    public int SelectedPoolIndex
     {
-        get => _selectedIndex;
+        get => _selectedPoolIndex;
         set
         {
-            SetProperty(ref _selectedIndex, value);
-            SelectedDevice.Pool = OwnerList[_selectedIndex].Pool;
+            SetProperty(ref _selectedPoolIndex, value);
+            SelectedDevice.Pool = OwnerList[_selectedPoolIndex].Pool;
             Context.SaveChanges();
         }
     }

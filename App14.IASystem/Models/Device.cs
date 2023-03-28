@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App14.IASystem.Models;
 
-public class Device : ObservableObject
+public class Device : ObservableValidator
 {
     private string _serialNum;
 
@@ -50,6 +50,8 @@ public class Device : ObservableObject
 
     private string _hikIp;
 
+    [RegularExpression("((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))",
+        ErrorMessage = "注意符合IP地址")]
     public string HikIp
     {
         get => _hikIp;
