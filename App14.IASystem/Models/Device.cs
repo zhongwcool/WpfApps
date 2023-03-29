@@ -50,8 +50,6 @@ public class Device : ObservableValidator
 
     private string _hikIp;
 
-    [RegularExpression("((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))",
-        ErrorMessage = "注意符合IP地址")]
     public string HikIp
     {
         get => _hikIp;

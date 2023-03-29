@@ -37,26 +37,27 @@
                                 <DataGridTextColumn Header="鱼塘名" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="基地" Binding="{Binding Farm.Name}" />
                                 <DataGridTextColumn Header="创建日期"
-                                                    Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                                    Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
+                                                    IsReadOnly="True" />
                                 <DataGridTextColumn Header="进度" Binding="{Binding Progress}" />
                                 <DataGridTextColumn Header="设备数" Binding="{Binding Devices.Count}" />
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <Button Grid.Row="1" Content="删除鱼塘" Margin="5,5,5,5" Command="{Binding RemoveCommand}" />
+                        <Button Grid.Row="1" Content="删除鱼塘" Margin="5,5,5,5" Command="{Binding RemovePoolCommand}" />
                     </Grid>
 
                     <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="200" />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0">
                                 <HeaderedContentControl Header="鱼塘信息" Margin="0,5,0,0"
                                                         Style="{StaticResource H3HeaderedContentControl}">
                                     <ui:SimpleStackPanel Spacing="5">
@@ -83,46 +84,56 @@
                                               Margin="5,5,0,5"
                                               HorizontalAlignment="Left"
                                               ItemsSource="{Binding SelectedPool.Devices}"
-                                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
+                                              SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
                                             <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
                                             <DataGridTextColumn Header="创建日期"
-                                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
+                                                                IsReadOnly="True" />
                                             <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
-                                            <DataGridTextColumn Header="Hik" Binding="{Binding HikIp}" />
-                                            <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
-                                            <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
+                                            <DataGridTextColumn Header="Hik IP" Binding="{Binding HikIp}" />
+                                            <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}"
+                                                                IsReadOnly="True" />
+                                            <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}"
+                                                                IsReadOnly="True" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </HeaderedContentControl>
+
+                                <Button Content="删除设备" Margin="5,5,5,5" 
+                                        Command="{Binding RemoveNodeCommand}"
+                                        Visibility="Collapsed"/>
                             </StackPanel>
 
-                            <Grid Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
-                                <HeaderedContentControl Header="设备信息" Margin="0,5,0,0"
-                                                        Style="{StaticResource H3HeaderedContentControl}">
-                                    <ui:SimpleStackPanel Spacing="5">
-                                        <TextBox ui:ControlHelper.Header="设备名:" Margin="5,0,0,0" Width="160"
-                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                 Text="{Binding SelectedDevice.NodeName}" />
-                                        <DatePicker ui:ControlHelper.Header="添加日期:" Margin="5,0,0,0" Width="160"
-                                                    VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                    SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBox ui:ControlHelper.Header="HIK IP:" Margin="5,0,0,0" Width="160"
-                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                 Text="{Binding SelectedDevice.HikIp}" />
-                                        <ComboBox ui:ControlHelper.Header="归属:" Margin="5,15,0,0" Width="160"
-                                                  VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                  ItemsSource="{Binding OwnerList}"
-                                                  DisplayMemberPath="Description"
-                                                  SelectedIndex="{Binding SelectedPoolIndex}" />
-                                    </ui:SimpleStackPanel>
-                                </HeaderedContentControl>
-                            </Grid>
+                            <StackPanel Grid.Row="1">
+                                <Button Content="保存" Margin="5,5,5,5"
+                                        Style="{DynamicResource AccentButtonStyle}"
+                                        Command="{Binding SaveCommand}" />
+
+                            </StackPanel>
                         </Grid>
-                        <Button Grid.Row="1" Content="保存" Margin="5,5,5,5"
-                                Style="{DynamicResource AccentButtonStyle}"
-                                Command="{Binding SaveCommand}" />
+
+                        <Grid Grid.Column="1"
+                              Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                              IsEnabled="{Binding IsNodeSelected}">
+                            <ui:SimpleStackPanel Spacing="5">
+                                <TextBox ui:ControlHelper.Header="设备:" Margin="5,0,0,0" Width="160"
+                                         VerticalAlignment="Center" HorizontalAlignment="Left"
+                                         Text="{Binding SelectedNode.NodeName}" />
+                                <DatePicker ui:ControlHelper.Header="添加日期:" Margin="5,0,0,0" Width="160"
+                                            VerticalAlignment="Center" HorizontalAlignment="Left"
+                                            SelectedDate="{Binding SelectedNode.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox ui:ControlHelper.Header="HIK IP:" Margin="5,0,0,0" Width="160"
+                                         VerticalAlignment="Center" HorizontalAlignment="Left"
+                                         Text="{Binding SelectedNode.HikIp}" />
+                                <ComboBox ui:ControlHelper.Header="归属:" Margin="5,15,0,0" Width="160"
+                                          VerticalAlignment="Center" HorizontalAlignment="Left"
+                                          ItemsSource="{Binding OwnerList}"
+                                          DisplayMemberPath="Description"
+                                          SelectedIndex="{Binding SelectedPoolIndex}" />
+                            </ui:SimpleStackPanel>
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -143,9 +154,10 @@
                             <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
                             <DataGridTextColumn Header="归属鱼塘" Binding="{Binding Pool.Name}" />
                             <DataGridTextColumn Header="创建日期"
-                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}" />
+                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
+                                                IsReadOnly="True" />
                             <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
-                            <DataGridTextColumn Header="Hik" Binding="{Binding HikIp}" />
+                            <DataGridTextColumn Header="Hik IP" Binding="{Binding HikIp}" />
                             <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
                             <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
                         </DataGrid.Columns>

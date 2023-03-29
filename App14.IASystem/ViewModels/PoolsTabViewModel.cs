@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App14.IASystem.ViewModels;
 
-public class PoolsTabViewModel : ObservableObject
+public class PoolsTabViewModel : ObservableValidator
 {
     private IaContext Context { get; }
     public ObservableCollection<Pool> PoolsCollection { get; set; }
@@ -23,20 +23,23 @@ public class PoolsTabViewModel : ObservableObject
         set
         {
             SetProperty(ref _selectedPool, value);
-            RemoveCommand.NotifyCanExecuteChanged();
+            RemovePoolCommand.NotifyCanExecuteChanged();
+            RemoveNodeCommand.NotifyCanExecuteChanged();
         }
     }
 
-    private Device _selectedDevice;
+    private Device _selectedNode;
 
-    public Device SelectedDevice
+    public Device SelectedNode
     {
-        get => _selectedDevice;
+        get => _selectedNode;
         set
         {
-            SetProperty(ref _selectedDevice, value);
+            SetProperty(ref _selectedNode, value);
 
-            if (null == _selectedDevice?.Pool)
+            IsNodeSelected = (null != _selectedNode);
+
+            if (null == _selectedNode?.Pool)
             {
                 _selectedPoolIndex = 0;
                 OnPropertyChanged(nameof(SelectedPoolIndex));
@@ -45,11 +48,13 @@ public class PoolsTabViewModel : ObservableObject
 
             for (var j = 0; j < OwnerList.Count; j++)
             {
-                if (null == OwnerList[j].Pool || OwnerList[j].Pool.PoolId != _selectedDevice.Pool.PoolId) continue;
+                if (null == OwnerList[j].Pool || OwnerList[j].Pool.PoolId != _selectedNode.Pool.PoolId) continue;
                 _selectedPoolIndex = j;
                 OnPropertyChanged(nameof(SelectedPoolIndex));
                 break;
             }
+
+            RemoveNodeCommand.NotifyCanExecuteChanged();
         }
     }
 
@@ -63,28 +68,55 @@ public class PoolsTabViewModel : ObservableObject
         OwnerList = Context.Pools.Local.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
         OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
 
-        RemoveCommand = new RelayCommand(DoRemove, CanExecute_RemoveCommand);
+        RemovePoolCommand = new RelayCommand(DoRemoveSelectedPool, CanExecute_RemoveSelectedPoolCommand);
+        RemoveNodeCommand = new RelayCommand(DoRemoveSelectedNode, CanExecute_RemoveSelectedNodeCommand);
         SaveCommand = new RelayCommand(DoSave);
     }
 
-    public IRelayCommand RemoveCommand { get; }
+    private bool _isNodeSelected = false;
 
-    private void DoRemove()
+    public bool IsNodeSelected
+    {
+        get => _isNodeSelected;
+        set => SetProperty(ref _isNodeSelected, value);
+    }
+
+    public IRelayCommand RemovePoolCommand { get; }
+
+    private void DoRemoveSelectedPool()
     {
         Context.Remove(SelectedPool);
         Context.SaveChanges();
+    }
+
+    private bool CanExecute_RemoveSelectedPoolCommand()
+    {
+        return SelectedPool != null && 0 != SelectedPool.PoolId.CompareTo(Guid.Empty);
+    }
+
+    public IRelayCommand RemoveNodeCommand { get; }
+
+    private void DoRemoveSelectedNode()
+    {
+        SelectedPool.Devices.Remove(SelectedNode);
+        Context.Remove(SelectedNode);
+        Context.SaveChanges();
+    }
+
+    private bool CanExecute_RemoveSelectedNodeCommand()
+    {
+        return SelectedPool != null && SelectedNode != null;
     }
 
     public IRelayCommand SaveCommand { get; }
 
     private void DoSave()
     {
-        Context.SaveChanges();
-    }
-
-    private bool CanExecute_RemoveCommand()
-    {
-        return SelectedPool != null && 0 != SelectedPool.PoolId.CompareTo(Guid.Empty);
+        ValidateAllProperties();
+        if (!HasErrors)
+        {
+            Context.SaveChanges();
+        }
     }
 
     private int _selectedPoolIndex = 0;
@@ -95,7 +127,7 @@ public class PoolsTabViewModel : ObservableObject
         set
         {
             SetProperty(ref _selectedPoolIndex, value);
-            SelectedDevice.Pool = OwnerList[_selectedPoolIndex].Pool;
+            SelectedNode.Pool = OwnerList[_selectedPoolIndex].Pool;
             Context.SaveChanges();
         }
     }
