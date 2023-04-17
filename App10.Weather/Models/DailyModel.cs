@@ -8,7 +8,7 @@ namespace App10.Weather.Models;
 /// </summary>
 public class DailyModel
 {
-    public LocationInfo Location { set; get; }
-    public List<DailyInfo> Daily { set; get; }
+    public Location Location { set; get; }
+    public List<Daily> Daily { set; get; }
     public string Last_Update { set; get; }
 }

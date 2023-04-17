@@ -8,6 +8,6 @@ namespace App10.Weather.Models;
 /// </summary>
 public class HourlyModel
 {
-    public LocationInfo Location { set; get; }
-    public List<HourlyInfo> Hourly { set; get; }
+    public Location Location { set; get; }
+    public List<Hourly> Hourly { set; get; }
 }

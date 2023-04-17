@@ -6,7 +6,7 @@
 /// </summary>
 public class NowModel
 {
-    public LocationInfo Location { set; get; }
-    public NowInfo Now { set; get; }
+    public Location Location { set; get; }
+    public Now Now { set; get; }
     public string Last_Update { set; get; }
 }

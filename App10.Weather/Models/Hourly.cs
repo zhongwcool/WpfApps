@@ -1,6 +1,6 @@
 ﻿namespace App10.Weather.Models;
 
-public class HourlyInfo
+public class Hourly
 {
     public string Time { set; get; }
     public string Text { set; get; }

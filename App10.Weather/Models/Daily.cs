@@ -1,6 +1,6 @@
 ﻿namespace App10.Weather.Models;
 
-public class DailyInfo
+public class Daily
 {
     public string Date { set; get; }
     public string Text_Day { set; get; }

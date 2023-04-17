@@ -1,6 +1,6 @@
 ﻿namespace App10.Weather.Models;
 
-public class LocationInfo
+public class Location
 {
     public string Id { set; get; }
     public string Name { set; get; }

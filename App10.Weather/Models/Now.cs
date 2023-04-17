@@ -1,6 +1,6 @@
 ﻿namespace App10.Weather.Models;
 
-public class NowInfo
+public class Now
 {
     public string Text { set; get; } = "N/A";
     public string Code { set; get; } = "0";
