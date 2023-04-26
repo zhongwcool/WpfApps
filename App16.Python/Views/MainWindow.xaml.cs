@@ -13,6 +13,42 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Prepare();
+        CheckVenv();
+    }
+
+    private void CheckVenv()
+    {
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = "venv/Scripts/python.exe", // Python解释器路径
+            Arguments = "-V", // script 和 参数
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true, // 设置不创建进程窗口
+            WindowStyle = ProcessWindowStyle.Hidden // 隐藏进程窗口
+        };
+        try
+        {
+            using var process = Process.Start(startInfo);
+            using var reader = process?.StandardOutput;
+            var result = reader?.ReadToEnd();
+            if (string.IsNullOrEmpty(result))
+            {
+                PanelOp.IsEnabled = false;
+                Block.Text = "未配置Python虚拟机";
+            }
+            else
+            {
+                PanelOp.IsEnabled = true;
+                Block.Text = "Python虚拟机已就绪";
+            }
+        }
+        catch (Exception e)
+        {
+            PanelOp.IsEnabled = false;
+            Block.Text = "未配置Python虚拟机";
+        }
     }
 
     private void Test(string arguments)
@@ -49,12 +85,12 @@ public partial class MainWindow : Window
 
     private void ButtonCheck_OnClick(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("Hello World");
+        CheckVenv();
     }
 
     private void ButtonRun_OnClick(object sender, RoutedEventArgs e)
     {
-        Task.Factory.StartNew(() => Test(""));
+        Task.Factory.StartNew(() => Test("晴天娃娃"));
     }
 
     private void Prepare()

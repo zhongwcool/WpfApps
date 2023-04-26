@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\venv\ $(ProjectDir)$(OutDir)venv\&#xA;xcopy /e /d /y $(ProjectDir)Assets\main.py $(ProjectDir)$(OutDir)"/>
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\main.py $(ProjectDir)$(OutDir)"/>
     </Target>
 
 </Project>

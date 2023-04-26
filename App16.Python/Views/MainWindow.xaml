@@ -22,13 +22,13 @@
             <Button Click="ButtonSelect_OnClick" Content="选择" Margin="5,5,5,5" Grid.Column="2"/>
         </Grid>
         
-        <TextBlock x:Name="Block" Grid.Row="1"/>
+        <TextBlock x:Name="Block" Margin="5" Grid.Row="1"/>
         
         <WrapPanel Grid.Row="2">
-            <Button Click="ButtonCheck_OnClick" Margin="5">点击</Button>
-            <Button Click="ButtonRun_OnClick" Margin="5">运行Python脚本</Button>
+            <Button Click="ButtonCheck_OnClick" Margin="5">检查venv环境</Button>
+            <Button Click="ButtonRun_OnClick" Margin="5" x:Name="PanelOp">运行Python脚本</Button>
             
-            <TextBlock x:Name="TxtCost" Text="计算中.." VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="TxtCost" Text=".." VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </WrapPanel>
         
         

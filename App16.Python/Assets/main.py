@@ -1,5 +1,6 @@
 # This is a sample Python script.
 import random
+import sys
 import time
 
 
@@ -8,18 +9,26 @@ import time
 
 
 def print_hi(name):
-    # 在这里等待10s
-    num = random.randint(0, 9)
-    print("开始等待{}s...".format(num))
+    num = random.randint(1, 9)
+    print(f"开始等待{num}s...")
     time.sleep(num)
-    print('等待结束！')
-
+    print("等待结束")
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # 输出脚本文件名称
+    print("脚本名称：", sys.argv[0])
+
+    # 输出传递的参数
+    for i in range(1, len(sys.argv)):
+        print("参数 %d: %s" % (i, sys.argv[i]))
+
+    if len(sys.argv) > 1:
+        print_hi(sys.argv[1])
+    else:
+        print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
