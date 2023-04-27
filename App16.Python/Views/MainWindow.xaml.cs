@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows;
+using App16.Python.Control;
 using Microsoft.Win32;
 
 namespace App16.Python.Views;
@@ -15,6 +15,8 @@ public partial class MainWindow : Window
         Prepare();
         CheckVenv();
     }
+
+    private readonly TaskExecutor _taskExecutor = new();
 
     private void CheckVenv()
     {
@@ -36,24 +38,24 @@ public partial class MainWindow : Window
             if (string.IsNullOrEmpty(result))
             {
                 PanelOp.IsEnabled = false;
-                Block.Text = "未配置Python虚拟机";
+                TxtCost.Text = "未配置Python虚拟机";
             }
             else
             {
                 PanelOp.IsEnabled = true;
-                Block.Text = "Python虚拟机已就绪";
+                TxtCost.Text = "Python虚拟机已就绪";
             }
         }
         catch (Exception e)
         {
             PanelOp.IsEnabled = false;
-            Block.Text = "未配置Python虚拟机";
+            TxtCost.Text = "未配置Python虚拟机";
         }
     }
 
     private void Test(string arguments)
     {
-        if (string.IsNullOrEmpty(_lastFilePath))
+        if (string.IsNullOrEmpty(_lastRelativePath))
         {
             Dispatcher.Invoke(() => { Block.Text = "未指定python文件"; });
             return;
@@ -64,12 +66,17 @@ public partial class MainWindow : Window
         var startInfo = new ProcessStartInfo
         {
             FileName = "venv/Scripts/python.exe", // Python解释器路径
-            Arguments = $"{_lastFilePath} {arguments}", // script 和 参数
+            Arguments = $"{_lastRelativePath} {arguments}", // script 和 参数
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true, // 设置不创建进程窗口
             WindowStyle = ProcessWindowStyle.Hidden // 隐藏进程窗口
         };
+        Dispatcher.Invoke(() =>
+        {
+            Block.Text = "正在执行...";
+            Title = $"{startInfo.FileName} {startInfo.Arguments}";
+        });
         using var process = Process.Start(startInfo);
         using var reader = process?.StandardOutput;
         var result = reader?.ReadToEnd();
@@ -90,7 +97,8 @@ public partial class MainWindow : Window
 
     private void ButtonRun_OnClick(object sender, RoutedEventArgs e)
     {
-        Task.Factory.StartNew(() => Test("晴天娃娃"));
+        var ts = DateTime.Now.ToLongTimeString();
+        _taskExecutor.AddTask(() => Test(ts));
     }
 
     private void Prepare()
@@ -100,8 +108,8 @@ public partial class MainWindow : Window
         if (configuration.AppSettings.Settings["LastFilePath"] != null)
         {
             _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
-            _lastFilePath = System.IO.Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath);
-            TxtPath.Text = _lastFilePath;
+            _lastRelativePath = System.IO.Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
+            TxtPath.Text = _lastRelativePath;
             return;
         }
 
@@ -111,6 +119,7 @@ public partial class MainWindow : Window
     }
 
     private string _lastFilePath = "";
+    private string _lastRelativePath = "";
 
     private void ButtonSelect_OnClick(object sender, RoutedEventArgs e)
     {
@@ -123,13 +132,13 @@ public partial class MainWindow : Window
         };
         if (openFileDialog.ShowDialog() != true) return;
         // 用户点击了“打开”按钮
-        var filePath = openFileDialog.FileName;
-        _lastFilePath = System.IO.Path.GetRelativePath(Environment.CurrentDirectory, filePath);
-        TxtPath.Text = _lastFilePath;
+        _lastFilePath = openFileDialog.FileName;
+        _lastRelativePath = System.IO.Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
+        TxtPath.Text = _lastRelativePath;
 
         // 记录选择的文件路径到配置文件中
         var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        config.AppSettings.Settings["LastFilePath"].Value = filePath;
+        config.AppSettings.Settings["LastFilePath"].Value = _lastFilePath;
         config.Save();
     }
 }

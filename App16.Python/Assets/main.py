@@ -9,7 +9,7 @@ import time
 
 
 def print_hi(name):
-    num = random.randint(1, 9)
+    num = random.randint(1, 99)
     print(f"开始等待{num}s...")
     time.sleep(num)
     print("等待结束")
