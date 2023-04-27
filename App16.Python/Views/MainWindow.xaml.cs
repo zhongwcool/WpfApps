@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using App16.Python.Control;
 using Microsoft.Win32;
@@ -15,8 +16,6 @@ public partial class MainWindow : Window
         Prepare();
         CheckVenv();
     }
-
-    private readonly TaskExecutor _taskExecutor = new();
 
     private void CheckVenv()
     {
@@ -95,10 +94,20 @@ public partial class MainWindow : Window
         CheckVenv();
     }
 
+    private readonly SerialTaskExecutor _serialTaskExecutor = new();
+
     private void ButtonRun_OnClick(object sender, RoutedEventArgs e)
     {
         var ts = DateTime.Now.ToLongTimeString();
-        _taskExecutor.AddTask(() => Test(ts));
+        _serialTaskExecutor.AddTask(() => Test(ts));
+    }
+
+    private readonly ParallelTaskExecutor _parallelTaskExecutor = new();
+
+    private void ButtonParallel_OnClick(object sender, RoutedEventArgs e)
+    {
+        var ts = DateTime.Now.ToLongTimeString();
+        _parallelTaskExecutor.AddTask(Task.Run(() => Test(ts)));
     }
 
     private void Prepare()

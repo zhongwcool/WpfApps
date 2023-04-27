@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace App16.Python.Control;
 
-public class TaskExecutor
+public class SerialTaskExecutor
 {
     private readonly ConcurrentQueue<Action> _taskQueue = new();
 
