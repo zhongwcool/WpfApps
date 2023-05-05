@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace App16.Python.Control;
 
-public class ParallelTaskExecutor
+public class ParallelTaskExecutor : ITaskExecutor
 {
     private readonly Queue<Task> _taskQueue = new();
     // private readonly TaskCompletionSource<object> _tcs = new();
 
-    public void AddTask(Task newTask)
+    public void AddTask(Action action)
     {
+        var newTask = Task.Run(action);
         lock (_taskQueue) // 队列需要进行同步操作
         {
             _taskQueue.Enqueue(newTask);

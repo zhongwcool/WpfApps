@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace App16.Python.Control;
 
-public class Serial2TaskExecutor
+public class Serial2TaskExecutor : ITaskExecutor
 {
     private readonly Queue<Task> _taskQueue = new();
 
-    public void AddTask(Task newTask)
+    public void AddTask(Action action)
     {
+        var newTask = new Task(action);
         lock (_taskQueue) // 队列需要进行同步操作
         {
             _taskQueue.Enqueue(newTask);

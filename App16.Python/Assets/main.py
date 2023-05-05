@@ -7,9 +7,9 @@ import time
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-def print_hi(name):
+def print_hi(name, time0, title):
     # num = random.randint(1, 99)
-    num = 10
+    num = time0 if isinstance(time0, int) and time0 is not None else 10
     print(f"开始等待{num}s...")
     time.sleep(num)
     print("等待结束")
@@ -26,8 +26,8 @@ if __name__ == '__main__':
     for i in range(1, len(sys.argv)):
         print("参数 %d: %s" % (i, sys.argv[i]))
 
-    if len(sys.argv) > 1:
-        print_hi(sys.argv[1])
+    if len(sys.argv) > 3:
+        print_hi(sys.argv[1], int(sys.argv[2]), sys.argv[3])
     else:
         print_hi('PyCharm')
 

@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using App16.Python.Control;
+using App16.Python.Models;
+using App16.Python.Utils;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace App16.Python.Views;
 
@@ -52,7 +55,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Test(string arguments)
+    private void Test(RenWu renWu)
     {
         if (string.IsNullOrEmpty(_lastRelativePath))
         {
@@ -65,21 +68,17 @@ public partial class MainWindow : Window
         var startInfo = new ProcessStartInfo
         {
             FileName = "venv/Scripts/python.exe", // Python解释器路径
-            Arguments = $"{_lastRelativePath} {arguments}", // script 和 参数
+            Arguments = $"{_lastRelativePath} {renWu.Id} {renWu.Time} {renWu.Title}", // script 和 参数
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true, // 设置不创建进程窗口
             WindowStyle = ProcessWindowStyle.Hidden // 隐藏进程窗口
         };
-        Dispatcher.Invoke(() =>
-        {
-            Block.Text = "正在执行...";
-            Title = $"{startInfo.FileName} {startInfo.Arguments}";
-        });
+        Dispatcher.Invoke(() => { Block.Text += $"正在执行...{startInfo.FileName} {startInfo.Arguments}\n"; });
         using var process = Process.Start(startInfo);
         using var reader = process?.StandardOutput;
         var result = reader?.ReadToEnd();
-        Dispatcher.Invoke(() => { Block.Text = result; });
+        Dispatcher.Invoke(() => { Block.Text += result; });
 
         var tspan = DateTime.Now - start; //求时间差
         Dispatcher.Invoke(() =>
@@ -98,24 +97,24 @@ public partial class MainWindow : Window
 
     private void ButtonRun_OnClick(object sender, RoutedEventArgs e)
     {
-        var ts = DateTime.Now.ToLongTimeString();
-        _serialTaskExecutor.AddTask(() => Test(ts));
+        Block.Text = "";
+        DoDemo(_serialTaskExecutor);
     }
 
     private readonly Serial2TaskExecutor _serial2TaskExecutor = new();
 
     private void ButtonRun02_OnClick(object sender, RoutedEventArgs e)
     {
-        var ts = DateTime.Now.ToLongTimeString();
-        _serial2TaskExecutor.AddTask(new Task(() => Test(ts)));
+        Block.Text = "";
+        DoDemo(_serial2TaskExecutor);
     }
 
     private readonly ParallelTaskExecutor _parallelTaskExecutor = new();
 
     private void ButtonParallel_OnClick(object sender, RoutedEventArgs e)
     {
-        var ts = DateTime.Now.ToLongTimeString();
-        _parallelTaskExecutor.AddTask(Task.Run(() => Test(ts)));
+        Block.Text = "";
+        DoDemo(_parallelTaskExecutor);
     }
 
     private void Prepare()
@@ -158,4 +157,26 @@ public partial class MainWindow : Window
         config.AppSettings.Settings["LastFilePath"].Value = _lastFilePath;
         config.Save();
     }
+
+    #region Dummy
+
+    private async Task DoDemo(ITaskExecutor executor)
+    {
+        await Task.Run(() =>
+        {
+            var data = JsonUtil.LoadDataFromJson(JsonFile);
+            if (string.IsNullOrEmpty(data)) return;
+            var model = JsonConvert.DeserializeObject<RenWuModel>(data);
+            if (null == model) return;
+
+            foreach (var soul in model.Tasks)
+            {
+                executor.AddTask(() => Test(soul));
+            }
+        });
+    }
+
+    private const string JsonFile = "tasks.json";
+
+    #endregion
 }

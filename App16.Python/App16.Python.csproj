@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +21,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\main.py $(ProjectDir)$(OutDir)"/>
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\main.py $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\tasks.json $(ProjectDir)$(OutDir)"/>
     </Target>
 
 </Project>
