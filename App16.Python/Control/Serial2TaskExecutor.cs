@@ -3,10 +3,9 @@ using System.Threading.Tasks;
 
 namespace App16.Python.Control;
 
-public class ParallelTaskExecutor
+public class Serial2TaskExecutor
 {
     private readonly Queue<Task> _taskQueue = new();
-    // private readonly TaskCompletionSource<object> _tcs = new();
 
     public void AddTask(Task newTask)
     {
@@ -29,16 +28,13 @@ public class ParallelTaskExecutor
             {
                 if (_taskQueue.Count == 0) break;
                 task = _taskQueue.Peek();
+                task.Start();
             }
 
             await task;
             lock (_taskQueue) // 队列需要进行同步操作
             {
                 _taskQueue.Dequeue();
-                // if (_taskQueue.Count > 0)
-                // {
-                //     _tcs.SetResult(null); // 更新 _tcs 对象
-                // }
             }
         }
     }

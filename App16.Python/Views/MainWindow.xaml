@@ -26,8 +26,12 @@
         
         <WrapPanel Grid.Row="2">
             <Button Click="ButtonCheck_OnClick" Margin="5">检查venv</Button>
-            <Button Click="ButtonRun_OnClick" Margin="5" x:Name="PanelOp">执行Python脚本-增加(串行)</Button>
-            <Button Click="ButtonParallel_OnClick" Margin="5">增加(并行)</Button>
+            <WrapPanel x:Name="PanelOp">
+                <TextBlock Text="执行Python脚本: " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button Click="ButtonRun_OnClick" Margin="5">增加(串行1)</Button>
+                <Button Click="ButtonRun02_OnClick" Margin="5">增加(串行2)</Button>
+                <Button Click="ButtonParallel_OnClick" Margin="5">增加(并行)</Button>
+            </WrapPanel>
             
             <TextBlock x:Name="TxtCost" Text=".." VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </WrapPanel>

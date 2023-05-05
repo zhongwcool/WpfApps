@@ -102,6 +102,14 @@ public partial class MainWindow : Window
         _serialTaskExecutor.AddTask(() => Test(ts));
     }
 
+    private readonly Serial2TaskExecutor _serial2TaskExecutor = new();
+
+    private void ButtonRun02_OnClick(object sender, RoutedEventArgs e)
+    {
+        var ts = DateTime.Now.ToLongTimeString();
+        _serial2TaskExecutor.AddTask(new Task(() => Test(ts)));
+    }
+
     private readonly ParallelTaskExecutor _parallelTaskExecutor = new();
 
     private void ButtonParallel_OnClick(object sender, RoutedEventArgs e)
