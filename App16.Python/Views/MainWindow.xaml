@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:App16.Python.ViewModels"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         Title="Python示例" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,6 +23,21 @@
             <TextBlock Text="Python文件:" FontWeight="Heavy" VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="0"/>
             <TextBlock x:Name="TxtPath" Text="" VerticalAlignment="Center" Grid.Column="1"/>
             <Button Click="ButtonSelect_OnClick" Content="选择文件" Margin="5,5,5,5" Grid.Column="2"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <lvc:CartesianChart Series="{Binding LineSeriesCollection}" LegendLocation="Right">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Time" Labels="{Binding Labels}" MaxValue="{Binding AxisXMax}" MinValue="{Binding AxisXMin}">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1" />
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis LabelFormatter="{Binding CustomFormatterY}" MaxValue="{Binding AxisYMax}" MinValue="{Binding AxisYMin}"/>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
         </Grid>
         
         <TextBlock x:Name="Block" Margin="5" Grid.Row="1"/>

@@ -29,6 +29,6 @@ if __name__ == '__main__':
     if len(sys.argv) > 3:
         print_hi(sys.argv[1], int(sys.argv[2]), sys.argv[3])
     else:
-        print_hi('PyCharm')
+        print_hi('のはらしんのすけ')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

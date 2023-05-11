@@ -3,9 +3,11 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using App16.Python.Control;
 using App16.Python.Models;
 using App16.Python.Utils;
+using App16.Python.ViewModels;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -13,11 +15,27 @@ namespace App16.Python.Views;
 
 public partial class MainWindow : Window
 {
+    private readonly MainViewModel _vm;
+
     public MainWindow()
     {
         InitializeComponent();
+        _vm = new MainViewModel();
+        DataContext = _vm;
+
         Prepare();
         CheckVenv();
+        SendTimer();
+    }
+
+    private void SendTimer()
+    {
+        var timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(1000)
+        };
+        timer.Tick += _vm.Timer_Tick;
+        timer.Start();
     }
 
     private void CheckVenv()
@@ -74,7 +92,7 @@ public partial class MainWindow : Window
             CreateNoWindow = true, // 设置不创建进程窗口
             WindowStyle = ProcessWindowStyle.Hidden // 隐藏进程窗口
         };
-        Dispatcher.Invoke(() => { Block.Text += $"正在执行...{startInfo.FileName} {startInfo.Arguments}\n"; });
+        Dispatcher.Invoke(() => { Block.Text += $"正在执行: {startInfo.FileName} {startInfo.Arguments}\n"; });
         using var process = Process.Start(startInfo);
         using var reader = process?.StandardOutput;
         var result = reader?.ReadToEnd();

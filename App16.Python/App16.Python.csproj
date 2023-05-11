@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0"/>
+        <PackageReference Include="LiveCharts.Wpf" Version="0.9.7"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
     </ItemGroup>
