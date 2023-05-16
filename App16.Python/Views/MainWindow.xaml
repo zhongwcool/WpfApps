@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:App16.Python.ViewModels"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        xmlns:vm="clr-namespace:App16.Python.ViewModels"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}"
-        Title="Python示例" Height="450" Width="800">
+        d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
+        Title="Call Python Script" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,18 +26,7 @@
         </Grid>
         
         <Grid Grid.Row="1">
-            <lvc:CartesianChart Series="{Binding LineSeriesCollection}" LegendLocation="Right">
-                <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Time" Labels="{Binding Labels}" MaxValue="{Binding AxisXMax}" MinValue="{Binding AxisXMin}">
-                        <lvc:Axis.Separator>
-                            <lvc:Separator Step="1" />
-                        </lvc:Axis.Separator>
-                    </lvc:Axis>
-                </lvc:CartesianChart.AxisX>
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis LabelFormatter="{Binding CustomFormatterY}" MaxValue="{Binding AxisYMax}" MinValue="{Binding AxisYMin}"/>
-                </lvc:CartesianChart.AxisY>
-            </lvc:CartesianChart>
+            <wpf:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" />
         </Grid>
         
         <TextBlock x:Name="Block" Margin="5" Grid.Row="1"/>
