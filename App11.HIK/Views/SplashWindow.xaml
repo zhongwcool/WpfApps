@@ -5,15 +5,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="海康威视SDK" Width="300" Height="200">
+        Title="海康威视SDK" Width="350" Height="200">
     <Grid>
-        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+        <WrapPanel VerticalAlignment="Bottom">
             <Button Content="Toast" Click="ButtonToast_OnClick" Margin="5"/>
-            <Button Content="多个海康-1" Click="ButtonDuo1_OnClick" Margin="5"/>
-            <Button Content="多个海康-2" Click="ButtonDuo2_OnClick" Margin="5"/>
-            <Button Content="布局实现" Click="ButtonXaml_OnClick" Margin="5"/>
-            <Button Content="使用Page" Click="ButtonPage_OnClick" Margin="5"/>
-            <Button Content="代码实现" Click="ButtonDyna_OnClick" Margin="5"/>
+            <Button Content="多个设备" Click="MultiHik_OnClick" Margin="5" />
+            <Button Content="HikView" Click="HikView_OnClick" Margin="5" />
+            <Button Content="使用Page" Click="ByPage_OnClick" Margin="5" />
+            <Button Content="How to Use Hik(WinForms)" Click="HowToUseHik_OnClick" Margin="5" />
+            <Button Content="How to Use Hik(No Xaml)" Click="CodeOnly_OnClick" Margin="5" />
         </WrapPanel>
     </Grid>
 </Window>

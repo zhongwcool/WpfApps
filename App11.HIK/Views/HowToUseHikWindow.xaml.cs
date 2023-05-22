@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Timers;
 using System.Windows;
 using App11.HIK.Data;
 using App11.HIK.HikSdk;
@@ -7,9 +8,9 @@ using App11.HIK.Utils;
 
 namespace App11.HIK.Views;
 
-public partial class XamlWindow
+public partial class HowToUseHikWindow
 {
-    public XamlWindow()
+    public HowToUseHikWindow()
     {
         InitializeComponent();
         _mControlHandle = VideoControl.Handle;
@@ -148,7 +149,7 @@ public partial class XamlWindow
 
     private void InitTimer()
     {
-        _mHideRealPlayTimer = new System.Timers.Timer();
+        _mHideRealPlayTimer = new Timer();
         _mHideRealPlayTimer.Elapsed += HideRealPlayTimer_Elapsed;
 
         _mHideRealPlayTimer.Interval = 2000;
@@ -156,12 +157,12 @@ public partial class XamlWindow
         _mHideRealPlayTimer.AutoReset = false;
     }
 
-    private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void HideRealPlayTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         Application.Current.Dispatcher.Invoke(() => { PanelBack.Visibility = Visibility.Visible; });
     }
 
-    private System.Timers.Timer _mHideRealPlayTimer;
+    private Timer _mHideRealPlayTimer;
 
     private void BtnPreview_OnClick(object sender, RoutedEventArgs e)
     {

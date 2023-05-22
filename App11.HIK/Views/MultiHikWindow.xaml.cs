@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Windows;
 using App11.HIK.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace App11.HIK.ViewModels;
+namespace App11.HIK.Views;
 
-public class DuoViewModel : ObservableObject
+public partial class MultiHikWindow : Window
 {
-    public DuoViewModel()
+    public MultiHikWindow()
     {
+        InitializeComponent();
         DoDummy();
     }
 
@@ -21,10 +21,7 @@ public class DuoViewModel : ObservableObject
             var robots = task.Result;
             Application.Current.Dispatcher.Invoke(() =>
             {
-                foreach (var node in robots.Select(robot => new JsNodeWc(robot)))
-                {
-                    NodeWcList.Add(node);
-                }
+                foreach (var node in robots.Select(robot => new JsNodeWc(robot))) NodeWcList.Add(node);
             });
         });
     }

@@ -6,12 +6,12 @@ using App11.HIK.Views.Pages;
 
 namespace App11.HIK.Views;
 
-public partial class InPageWindow
+public partial class ByPageWindow
 {
-    public InPageWindow()
+    public ByPageWindow()
     {
         InitializeComponent();
-        DataContext = new InPageViewModel();
+        DataContext = new ByPageViewModel();
     }
 
     private void MySelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -60,8 +60,8 @@
                     </Grid>
                 </HeaderedContentControl>
             </Grid>
-            
-            <Grid>
+
+            <Grid Loaded="FrameworkElement_OnLoaded">
                 <interop:AirspaceDecorator x:Name="Control0" 
                                            AirspaceMode="None"
                                            SizeChanged="Control0_OnSizeChanged"
@@ -88,8 +88,7 @@
             </Grid>
 
             <WrapPanel>
-                <Button x:Name="BtnPreview" Content="预览" Click="BtnPreview_OnClick" Margin="5,0,0,0" />
-                <Button x:Name="BtnShotJpeg" Content="抓图" Click="ButtonShotJpeg_OnClick" Margin="5,0,0,0" />
+                <Button x:Name="BtnShotJpeg" Content="抓图" Click="ButtonShotJpeg_OnClick" Margin="0,0,0,0" />
                 <Button x:Name="BtnRecord" Content="开始录像" Click="ButtonRecord_OnClick" Margin="5,0,0,0" />
             </WrapPanel>
         </StackPanel>

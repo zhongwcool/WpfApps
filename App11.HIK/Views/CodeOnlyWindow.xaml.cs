@@ -3,11 +3,11 @@ using App11.HIK.HikSdk;
 
 namespace App11.HIK.Views;
 
-public partial class CodeWindow
+public partial class CodeOnlyWindow
 {
     private CameraController ctrl0, ctrl1, ctrl2, ctrl3;
 
-    public CodeWindow()
+    public CodeOnlyWindow()
     {
         InitializeComponent();
 

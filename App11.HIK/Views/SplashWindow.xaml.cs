@@ -32,21 +32,21 @@ public partial class SplashWindow : Window
         CHCNetSDK.NET_DVR_Cleanup();
     }
 
-    private void ButtonDyna_OnClick(object sender, RoutedEventArgs e)
+    private void CodeOnly_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new CodeWindow();
+        var window = new CodeOnlyWindow();
         window.ShowDialog();
     }
 
-    private void ButtonXaml_OnClick(object sender, RoutedEventArgs e)
+    private void HowToUseHik_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new XamlWindow();
+        var window = new HowToUseHikWindow();
         window.ShowDialog();
     }
 
-    private void ButtonPage_OnClick(object sender, RoutedEventArgs e)
+    private void ByPage_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new InPageWindow();
+        var window = new ByPageWindow();
         window.ShowDialog();
     }
 
@@ -55,9 +55,9 @@ public partial class SplashWindow : Window
         AppUtil.ShowToast("我是这样的");
     }
 
-    private void ButtonDuo2_OnClick(object sender, RoutedEventArgs e)
+    private void HikView_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new Duo2Window();
+        var window = new HikViewWindow();
         window.ShowDialog();
     }
 
@@ -74,9 +74,9 @@ public partial class SplashWindow : Window
         return false;
     }
 
-    private void ButtonDuo1_OnClick(object sender, RoutedEventArgs e)
+    private void MultiHik_OnClick(object sender, RoutedEventArgs e)
     {
-        var window = new DuoWindow();
+        var window = new MultiHikWindow();
         window.ShowDialog();
     }
 }

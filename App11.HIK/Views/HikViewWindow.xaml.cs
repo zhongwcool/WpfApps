@@ -5,9 +5,9 @@ using App11.HIK.Models;
 
 namespace App11.HIK.Views;
 
-public partial class Duo2Window : Window
+public partial class HikViewWindow : Window
 {
-    public Duo2Window()
+    public HikViewWindow()
     {
         InitializeComponent();
         DoDummy();

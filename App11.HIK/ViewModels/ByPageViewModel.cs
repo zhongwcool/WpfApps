@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using App11.HIK.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -7,9 +6,9 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace App11.HIK.ViewModels;
 
-public class InPageViewModel : ObservableObject
+public class ByPageViewModel : ObservableObject
 {
-    public InPageViewModel()
+    public ByPageViewModel()
     {
         DeleteCommand = new RelayCommand<JsNode>(DoDelete);
 
@@ -22,14 +21,14 @@ public class InPageViewModel : ObservableObject
         var task = JsNode.CreateDummy();
         task.ContinueWith(_ =>
         {
-            Application.Current.Dispatcher.Invoke((Action)(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 var robots = task.Result;
                 foreach (var robot in robots)
                 {
                     RobotList.Add(robot);
                 }
-            }));
+            });
         });
     }
 

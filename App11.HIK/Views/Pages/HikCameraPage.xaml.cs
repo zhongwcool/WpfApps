@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Windows;
 using App11.HIK.Data;
 using App11.HIK.Helper;
@@ -156,7 +157,7 @@ public partial class HikCameraPage : IDisposable
 
     private void InitTimer()
     {
-        _mHideRealPlayTimer = new System.Timers.Timer();
+        _mHideRealPlayTimer = new Timer();
         _mHideRealPlayTimer.Elapsed += HideRealPlayTimer_Elapsed;
 
         _mHideRealPlayTimer.Interval = 2000;
@@ -164,14 +165,15 @@ public partial class HikCameraPage : IDisposable
         _mHideRealPlayTimer.AutoReset = false;
     }
 
-    private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void HideRealPlayTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         DispatcherHelper.RunOnMainThread(() => { PanelBack.Visibility = Visibility.Visible; });
     }
 
-    private System.Timers.Timer _mHideRealPlayTimer;
+    private Timer _mHideRealPlayTimer;
 
-    private void BtnPreview_OnClick(object sender, RoutedEventArgs e)
+    //TODO 异步等待
+    private void DoPreview()
     {
         if (_mUserId < 0)
         {
@@ -187,14 +189,14 @@ public partial class HikCameraPage : IDisposable
                 return;
             }
 
-            BtnPreview.Content = "停止";
+            // TxtHikStatus.Content = "停止";
             PanelBack.Visibility = Visibility.Collapsed;
         }
         else
         {
             //停止预览
             StopPreview();
-            BtnPreview.Content = "预览";
+            // TxtHikStatus.Content = "预览";
         }
     }
 
@@ -316,7 +318,7 @@ public partial class HikCameraPage : IDisposable
             }
             else
             {
-                BtnPreview.Content = "已登录";
+                // TxtHikStatus.Content = "已登录";
                 Log.D("实时影像登录成功！");
                 return true;
             }
@@ -421,5 +423,10 @@ public partial class HikCameraPage : IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        DoPreview();
     }
 }
