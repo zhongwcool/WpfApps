@@ -6,44 +6,44 @@ namespace App11.HIK.Data;
 
 public class AppConfig
 {
-    public string UserName
+    public string HikUserName
     {
         get
         {
-            var port = _instance.GetValue(Section.HikVision, "UserName");
+            var port = _instance.GetValue(Section.HikVision, "HikUserName");
             return port;
         }
-        set => _instance.SetValue(Section.HikVision, "UserName", value);
+        set => _instance.SetValue(Section.HikVision, "HikUserName", value);
     }
 
-    public string Password
+    public string HikPassword
     {
         get
         {
-            var port = _instance.GetValue(Section.HikVision, "Password");
+            var port = _instance.GetValue(Section.HikVision, "HikPassword");
             return port;
         }
-        set => _instance.SetValue(Section.HikVision, "Password", value);
+        set => _instance.SetValue(Section.HikVision, "HikPassword", value);
     }
 
-    public short Port
+    public short HikPort
     {
         get
         {
-            var port = _instance.GetValue(Section.HikVision, "Port");
+            var port = _instance.GetValue(Section.HikVision, "HikPort");
             return string.IsNullOrEmpty(port) ? Convert.ToInt16(8000) : short.Parse(port);
         }
-        set => _instance.SetValue(Section.HikVision, "Port", value.ToString());
+        set => _instance.SetValue(Section.HikVision, "HikPort", value.ToString());
     }
 
-    public string IPAddress
+    public string HikDemoIp
     {
         get
         {
-            var port = _instance.GetValue(Section.HikVision, "IPAddress");
+            var port = _instance.GetValue(Section.HikVision, "HikDemoIp");
             return port;
         }
-        set => _instance.SetValue(Section.HikVision, "IPAddress", value);
+        set => _instance.SetValue(Section.HikVision, "HikDemoIp", value);
     }
 
     private static AppConfig _instance;

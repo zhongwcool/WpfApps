@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using App11.HIK.Data;
 using App11.HIK.Utils;
+using Panel = System.Windows.Controls.Panel;
+using Timer = System.Timers.Timer;
 
 namespace App11.HIK.HikSdk;
 
@@ -20,7 +24,7 @@ public class CameraController
         playFormsHost.Child = RealPlayWnd;
         playFormsHost.Visibility = Visibility.Visible;
         RealPlayWnd.Image = m_Icon;
-        RealPlayWnd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+        RealPlayWnd.SizeMode = PictureBoxSizeMode.CenterImage;
         m_ptrRealHandle = RealPlayWnd.Handle;
         InitTimer();
     }
@@ -50,7 +54,8 @@ public class CameraController
             var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
             for (int i = 1; i < 4; i++)
             {
-                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_ipv4, _config.Port, _config.UserName, _config.Password,
+                m_lUserID = CHCNetSDK.NET_DVR_Login_V30(_ipv4, _config.HikPort, _config.HikUserName,
+                    _config.HikPassword,
                     ref deviceInfo);
                 if (m_lUserID < 0)
                 {
@@ -280,7 +285,7 @@ public class CameraController
 
     void InitTimer()
     {
-        m_HideRealPlayTimer = new System.Timers.Timer();
+        m_HideRealPlayTimer = new Timer();
         m_HideRealPlayTimer.Elapsed += HideRealPlayTimer_Elapsed;
 
         m_HideRealPlayTimer.Interval = 2000;
@@ -288,7 +293,7 @@ public class CameraController
         m_HideRealPlayTimer.AutoReset = false;
     }
 
-    private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void HideRealPlayTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         RealPlayWnd.Image = m_Icon;
     }
@@ -311,12 +316,12 @@ public class CameraController
     private Int32 m_lUserID = -1; //登录使用
     private Int32 m_lRealHandle = -1; //是否已经开始实时播放
     private Int32 m_lPort = -1; //摄像头播放句柄
-    private System.Windows.Forms.PictureBox RealPlayWnd = new();
-    private System.Windows.Forms.Integration.WindowsFormsHost playFormsHost = new();
+    private PictureBox RealPlayWnd = new();
+    private WindowsFormsHost playFormsHost = new();
 
     private IntPtr m_ptrRealHandle; //播放控件句柄
     private PlayCtrl.DECCBFUN m_fDisplayFun = null;
-    private System.Timers.Timer m_HideRealPlayTimer = null;
+    private Timer m_HideRealPlayTimer = null;
     private CHCNetSDK.REALDATACALLBACK RealData = null;
     private Bitmap m_Icon = BitmapImage2Bitmap($"pack://application:,,,/Resources/ForbiddenSign.png");
 

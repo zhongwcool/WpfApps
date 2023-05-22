@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Timers;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 using App11.HIK.Data;
 using App11.HIK.HikSdk;
 using App11.HIK.Utils;
 using CommunityToolkit.Mvvm.Input;
+using Application = System.Windows.Application;
+using Timer = System.Timers.Timer;
 
 namespace App11.HIK.Models;
 
@@ -31,8 +35,8 @@ public sealed class JsNodeWc : JsNode, IDisposable
     private void LoadHw(object o)
     {
         //获取HWindowControlWPF控件对象
-        var formHost = (System.Windows.Forms.Integration.WindowsFormsHost)o;
-        _mControlHandle = ((System.Windows.Forms.PictureBox)formHost.Child).Handle;
+        var formHost = (WindowsFormsHost)o;
+        _mControlHandle = ((PictureBox)formHost.Child).Handle;
         var task = CameraLogin();
         task.ContinueWith(_ =>
         {
@@ -196,7 +200,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
 
     private void InitTimer()
     {
-        _mWatchDogTimer = new System.Timers.Timer();
+        _mWatchDogTimer = new Timer();
         _mWatchDogTimer.Elapsed += WatchDogTimerElapsed;
 
         _mWatchDogTimer.Interval = 2000;
@@ -204,18 +208,18 @@ public sealed class JsNodeWc : JsNode, IDisposable
         _mWatchDogTimer.AutoReset = false;
     }
 
-    private void WatchDogTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void WatchDogTimerElapsed(object sender, ElapsedEventArgs e)
     {
         IsReady = false;
     }
 
-    private System.Timers.Timer _mWatchDogTimer;
+    private Timer _mWatchDogTimer;
 
     private void StartPreview()
     {
         if (StreamHandle < 0)
         {
-            var ret = DoPreview();
+            var ret = CameraPreview();
             if (!ret)
             {
                 TxtHikStatus = "预览失败";
@@ -370,18 +374,18 @@ public sealed class JsNodeWc : JsNode, IDisposable
             var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
             for (var i = 1; i < 4; i++)
             {
-                _mUserId = CHCNetSDK.NET_DVR_Login_V30(DevIp, _config.Port, _config.UserName, _config.Password,
+                _mUserId = CHCNetSDK.NET_DVR_Login_V30(DevIp, _config.HikPort, _config.HikUserName, _config.HikPassword,
                     ref deviceInfo);
                 if (_mUserId < 0)
                 {
                     var lastErr = CHCNetSDK.NET_DVR_GetLastError();
                     Log.W(
-                        $"实时影像第{i}次登录失败，输出错误号, error code= {lastErr} ip: {DevIp} port: {_config.Port} user: {_config.UserName} pd: {_config.Password}");
+                        $"实时影像第{i}次登录失败，输出错误号, error code= {lastErr} ip: {DevIp} port: {_config.HikPort} user: {_config.HikUserName} pd: {_config.HikPassword}");
                 }
                 else
                 {
                     Log.D(
-                        $"实时影像登录成功！ip: {DevIp} port: {_config.Port} user: {_config.UserName} pd: {_config.Password}");
+                        $"实时影像登录成功！ip: {DevIp} port: {_config.HikPort} user: {_config.HikUserName} pd: {_config.HikPassword}");
                     return true;
                 }
             }
@@ -392,7 +396,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
         return ret;
     }
 
-    private bool DoPreview()
+    private bool CameraPreview()
     {
         if (StreamHandle >= 0) return true;
         var lpPreviewInfo = new CHCNetSDK.NET_DVR_PREVIEWINFO
@@ -416,12 +420,10 @@ public sealed class JsNodeWc : JsNode, IDisposable
             Log.D("NET_DVR_RealPlay_V40 failed, error code= " + lastErr); //预览失败，输出错误号
             return false;
         }
-        else
-        {
-            TxtHikStatus = "预览成功！";
-            Log.D("预览成功！");
-            return true;
-        }
+
+        TxtHikStatus = "预览成功！";
+        Log.D("预览成功！");
+        return true;
     }
 
     private void StopPreview()

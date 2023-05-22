@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Windows;
 using App11.HIK.Data;
 using App11.HIK.HikSdk;
@@ -157,7 +158,7 @@ public sealed partial class HikView : IDisposable
 
     private void InitTimer()
     {
-        _mHideRealPlayTimer = new System.Timers.Timer();
+        _mHideRealPlayTimer = new Timer();
         _mHideRealPlayTimer.Elapsed += HideRealPlayTimer_Elapsed;
 
         _mHideRealPlayTimer.Interval = 2000;
@@ -165,12 +166,12 @@ public sealed partial class HikView : IDisposable
         _mHideRealPlayTimer.AutoReset = false;
     }
 
-    private void HideRealPlayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void HideRealPlayTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         PanelBack.Visibility = Visibility.Visible;
     }
 
-    private System.Timers.Timer _mHideRealPlayTimer;
+    private Timer _mHideRealPlayTimer;
 
     private void BtnPreview_OnClick(object sender, RoutedEventArgs e)
     {
@@ -315,7 +316,7 @@ public sealed partial class HikView : IDisposable
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_body.DevIp, _body.TcpPort, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_body.DevIp, _body.TcpPort, _config.HikUserName, _config.HikPassword,
                 ref deviceInfo);
             if (_mUserId < 0)
             {

@@ -6,9 +6,9 @@
              xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
              xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:viewModels="clr-namespace:App11.HIK.ViewModels"
+             xmlns:vm="clr-namespace:App11.HIK.ViewModels"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=viewModels:HikPageViewModel , IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance Type=vm:HikPageViewModel , IsDesignTimeCreatable=True}"
              d:DesignHeight="900" d:DesignWidth="600">
     <UserControl.Resources>
         <Style TargetType="HeaderedContentControl">
@@ -17,10 +17,9 @@
             <Setter Property="HeaderTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <TextBlock
-                            Text="{Binding}"
-                            Style="{DynamicResource BaseTextBlockStyle}"
-                            Margin="0,0,0,6" />
+                        <TextBlock Text="{Binding}"
+                                   Style="{DynamicResource BaseTextBlockStyle}"
+                                   Margin="0,0,0,6" />
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
@@ -51,18 +50,18 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="物理地址"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRobot.Mac}"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="IP地址"/>
-                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding CurrentRobot.DevIp}"/>
-                        <TextBlock Grid.Row="0" Grid.Column="4" Text="设备序列号"/>
-                        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding CurrentRobot.SerialNum}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="物理地址" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRobot.Mac}" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="IP地址" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding CurrentRobot.DevIp}" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="设备序列号" />
+                        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding CurrentRobot.SerialNum}" />
                     </Grid>
                 </HeaderedContentControl>
             </Grid>
 
-            <Grid Loaded="FrameworkElement_OnLoaded">
-                <interop:AirspaceDecorator x:Name="Control0" 
+            <Grid Loaded="Control0_OnLoaded">
+                <interop:AirspaceDecorator x:Name="Control0"
                                            AirspaceMode="None"
                                            SizeChanged="Control0_OnSizeChanged"
                                            IsInputRedirectionEnabled="True"
@@ -90,6 +89,10 @@
             <WrapPanel>
                 <Button x:Name="BtnShotJpeg" Content="抓图" Click="ButtonShotJpeg_OnClick" Margin="0,0,0,0" />
                 <Button x:Name="BtnRecord" Content="开始录像" Click="ButtonRecord_OnClick" Margin="5,0,0,0" />
+                <TextBlock x:Name="TxtHikStatus" Text="未连接"
+                           Foreground="{DynamicResource SystemControlForegroundAccentBrush}"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Margin="5,0,0,0" />
             </WrapPanel>
         </StackPanel>
     </Grid>

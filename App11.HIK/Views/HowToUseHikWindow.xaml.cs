@@ -306,7 +306,8 @@ public partial class HowToUseHikWindow
         var deviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
         for (var i = 1; i < 4; i++)
         {
-            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_config.IPAddress, _config.Port, _config.UserName, _config.Password,
+            _mUserId = CHCNetSDK.NET_DVR_Login_V30(_config.HikDemoIp, _config.HikPort, _config.HikUserName,
+                _config.HikPassword,
                 ref deviceInfo);
             if (_mUserId < 0)
             {
