@@ -8,12 +8,93 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="异步任务与取消" Height="450" Width="800">
+        Background="{DynamicResource AppBackgroundBrush}"
+        Title="异步任务与取消" Height="450" Width="340">
     <Grid>
-        <RichTextBox x:Name="Info"/>
-        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Click="ButtonRenew_OnClick" Margin="5,0,5,5">Renew</Button>
-            <Button Click="ButtonStop_OnClick" Margin="5,0,5,5">Cancel</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Devices}" Margin="15,0,15,0" Grid.Row="0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Border x:Name="PART_Border">
+                                    <Grid Width="280" Background="{DynamicResource AppContentBackgroundBrush}"
+                                          Margin="0,2,0,10"
+                                          HorizontalAlignment="Left">
+                                        <Grid.Effect>
+                                            <DropShadowEffect x:Name="PART_Shadow" Color="#AA444444" BlurRadius="5"
+                                                              ShadowDepth="4" Opacity="0.5" />
+                                        </Grid.Effect>
+                                        <Grid.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.2" To="#40444444"
+                                                                        Storyboard.TargetName="PART_Shadow"
+                                                                        Storyboard.TargetProperty="Color" />
+                                                        <DoubleAnimation Duration="0:0:0.2" To="5"
+                                                                         Storyboard.TargetName="PART_Shadow"
+                                                                         Storyboard.TargetProperty="BlurRadius" />
+                                                        <DoubleAnimation Duration="0:0:0.2" To="10"
+                                                                         Storyboard.TargetName="PART_Shadow"
+                                                                         Storyboard.TargetProperty="ShadowDepth" />
+                                                        <DoubleAnimation Duration="0:0:0.2" To="0.9"
+                                                                         Storyboard.TargetName="PART_Shadow"
+                                                                         Storyboard.TargetProperty="Opacity" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0:0:0.5" To="#AA444444"
+                                                                        Storyboard.TargetName="PART_Shadow"
+                                                                        Storyboard.TargetProperty="Color" />
+                                                        <DoubleAnimation Duration="0:0:0.5" To="5"
+                                                                         Storyboard.TargetName="PART_Shadow"
+                                                                         Storyboard.TargetProperty="BlurRadius" />
+                                                        <DoubleAnimation Duration="0:0:0.5" To="4"
+                                                                         Storyboard.TargetName="PART_Shadow"
+                                                                         Storyboard.TargetProperty="ShadowDepth" />
+                                                        <DoubleAnimation Duration="0:0:0.5" To="0.5"
+                                                                         Storyboard.TargetName="PART_Shadow"
+                                                                         Storyboard.TargetProperty="Opacity" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Grid.Triggers>
+                                        <WrapPanel>
+                                            <TextBlock Margin="5,15,0,15" Text="{Binding}" />
+                                        </WrapPanel>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <!-- <Setter Property="Margin" Value="-3,-3,0,0"/> -->
+                                        <!-- <Setter Property="Padding" Value="3,3,3,3"/> -->
+                                        <Setter Property="RenderTransform">
+                                            <Setter.Value>
+                                                <ScaleTransform ScaleX="1.05" ScaleY="1.05" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1">
+            <Button Command="{Binding CommandRenew}" Margin="5,0,5,5">Renew</Button>
+            <Button Command="{Binding CommandCancel}" Margin="5,0,5,5">Cancel</Button>
         </WrapPanel>
     </Grid>
 </Window>
