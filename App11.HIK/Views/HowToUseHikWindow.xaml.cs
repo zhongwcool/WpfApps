@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Timers;
 using System.Windows;
 using App11.HIK.Data;
+using App11.HIK.Helper;
 using App11.HIK.HikSdk;
 using App11.HIK.Utils;
 
@@ -393,5 +394,11 @@ public partial class HowToUseHikWindow
         }
 
         Log.D("关闭摄像头预览");
+    }
+
+    private void ButtonFull_OnClick(object sender, RoutedEventArgs e)
+    {
+        var fullScreenHelper = new FullScreenHelper(VideoControl, PART_PlayerHost);
+        fullScreenHelper.FullScreen(true);
     }
 }
