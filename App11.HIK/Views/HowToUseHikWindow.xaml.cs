@@ -2,10 +2,14 @@
 using System.ComponentModel;
 using System.Timers;
 using System.Windows;
+using System.Windows.Forms;
 using App11.HIK.Data;
 using App11.HIK.Helper;
 using App11.HIK.HikSdk;
 using App11.HIK.Utils;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
+using Timer = System.Timers.Timer;
 
 namespace App11.HIK.Views;
 
@@ -396,9 +400,21 @@ public partial class HowToUseHikWindow
         Log.D("关闭摄像头预览");
     }
 
-    private void ButtonFull_OnClick(object sender, RoutedEventArgs e)
+    private FullScreenHelper _fullScreenHelper;
+
+    private void VideoControl_OnDoubleClick(object sender, EventArgs e)
     {
-        var fullScreenHelper = new FullScreenHelper(VideoControl, PART_PlayerHost);
-        fullScreenHelper.FullScreen(true);
+        _fullScreenHelper = new FullScreenHelper(VideoControl, PART_PlayerHost);
+        _fullScreenHelper.FullScreen(true);
+    }
+
+    private void VideoControl_OnKeyUp(object sender, KeyEventArgs e)
+    {
+        // ESC 退出全屏
+        if (e.KeyCode == Keys.Escape && _fullScreenHelper != null)
+        {
+            _fullScreenHelper.FullScreen(false);
+            _fullScreenHelper = null;
+        }
     }
 }

@@ -18,7 +18,9 @@
                                            IsInputRedirectionEnabled="True"
                                            IsOutputRedirectionEnabled="True">
                     <WindowsFormsHost HorizontalAlignment="Stretch" x:Name="PART_PlayerHost">
-                        <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True" />
+                        <forms:PictureBox x:Name="VideoControl" BackColor="Black"
+                                          DoubleClick="VideoControl_OnDoubleClick" KeyUp="VideoControl_OnKeyUp"
+                                          AutoSize="True" />
                     </WindowsFormsHost>
                 </interop:AirspaceDecorator>
                 
@@ -41,7 +43,6 @@
                 <Button x:Name="BtnPreview" Content="预览" Click="BtnPreview_OnClick" />
                 <Button x:Name="BtnShotJpeg" Content="抓图" Click="ButtonShotJpeg_OnClick" Margin="5,0,0,0" />
                 <Button x:Name="BtnRecord" Content="开始录像" Click="ButtonRecord_OnClick" Margin="5,0,0,0" />
-                <Button x:Name="BtnFull" Content="全屏" Click="ButtonFull_OnClick" Margin="5,0,0,0" />
             </WrapPanel>
         </Grid>
     </Grid>
