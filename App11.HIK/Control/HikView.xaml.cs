@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Timers;
 using System.Windows;
+using System.Windows.Forms;
 using App11.HIK.Data;
+using App11.HIK.Helper;
 using App11.HIK.HikSdk;
 using App11.HIK.Models;
 using App11.HIK.Utils;
+using MessageBox = System.Windows.MessageBox;
+using Timer = System.Timers.Timer;
 
 namespace App11.HIK.Control;
 
@@ -433,5 +437,29 @@ public sealed partial class HikView : IDisposable
     {
         _body = wcNode;
         Dispatcher.Invoke(() => { BtnPreview.IsEnabled = true; });
+    }
+
+    private FullScreenHelper _fullScreenHelper;
+
+    private void VideoControl_OnDoubleClick(object sender, EventArgs e)
+    {
+        _fullScreenHelper = new FullScreenHelper(VideoControl, PART_PlayerHost);
+        _fullScreenHelper.FullScreen(true);
+    }
+
+    private void VideoControl_OnKeyUp(object sender, KeyEventArgs e)
+    {
+        // ESC 退出全屏
+        if (e.KeyCode == Keys.Escape && _fullScreenHelper != null)
+        {
+            _fullScreenHelper.FullScreen(false);
+            _fullScreenHelper = null;
+        }
+    }
+
+    private void Control0_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        const double ratio = 16 / 10.0;
+        Control0.Height = Control0.ActualWidth / ratio;
     }
 }

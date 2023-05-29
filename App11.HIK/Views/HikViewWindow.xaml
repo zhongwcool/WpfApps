@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:control="clr-namespace:App11.HIK.Control"
         mc:Ignorable="d"
-        Title="Control实现" VerticalContentAlignment="Stretch" Width="800">
+        Title="View实现" VerticalContentAlignment="Stretch" Width="800">
     <ScrollViewer>
         <Grid>
             <Grid.ColumnDefinitions>

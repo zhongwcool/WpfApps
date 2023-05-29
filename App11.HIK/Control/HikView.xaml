@@ -15,11 +15,15 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <interop:AirspaceDecorator AirspaceMode="None"
+            <interop:AirspaceDecorator x:Name="Control0"
+                                       AirspaceMode="None"
+                                       SizeChanged="Control0_OnSizeChanged"
                                        IsInputRedirectionEnabled="True"
                                        IsOutputRedirectionEnabled="True">
-                <WindowsFormsHost HorizontalAlignment="Stretch">
-                    <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True" />
+                <WindowsFormsHost HorizontalAlignment="Stretch" x:Name="PART_PlayerHost">
+                    <forms:PictureBox x:Name="VideoControl" BackColor="Black"
+                                      DoubleClick="VideoControl_OnDoubleClick" KeyUp="VideoControl_OnKeyUp"
+                                      AutoSize="True" />
                 </WindowsFormsHost>
             </interop:AirspaceDecorator>
 
