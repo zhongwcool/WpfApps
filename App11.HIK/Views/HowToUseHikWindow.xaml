@@ -17,10 +17,9 @@
                 <interop:AirspaceDecorator AirspaceMode="None" 
                                            IsInputRedirectionEnabled="True"
                                            IsOutputRedirectionEnabled="True">
-                    <WindowsFormsHost HorizontalAlignment="Stretch" x:Name="PART_PlayerHost">
-                        <forms:PictureBox x:Name="VideoControl" BackColor="Black"
-                                          DoubleClick="VideoControl_OnDoubleClick" KeyUp="VideoControl_OnKeyUp"
-                                          AutoSize="True" />
+                    <WindowsFormsHost x:Name="FormsHost" HorizontalAlignment="Stretch">
+                        <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True"
+                                          DoubleClick="VideoControl_OnDoubleClick" KeyUp="VideoControl_OnKeyUp" />
                     </WindowsFormsHost>
                 </interop:AirspaceDecorator>
                 

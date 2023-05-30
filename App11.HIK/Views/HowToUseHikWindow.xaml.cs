@@ -404,7 +404,7 @@ public partial class HowToUseHikWindow
 
     private void VideoControl_OnDoubleClick(object sender, EventArgs e)
     {
-        _fullScreenHelper = new FullScreenHelper(VideoControl, PART_PlayerHost);
+        _fullScreenHelper = new FullScreenHelper(VideoControl, FormsHost);
         _fullScreenHelper.FullScreen(true);
     }
 

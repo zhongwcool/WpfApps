@@ -28,10 +28,6 @@ public partial class HikCameraPage : IDisposable
 
     private JsNode NodeHik { get; }
 
-    ~HikCameraPage()
-    {
-        Dispose(false);
-    }
 
     private readonly IntPtr _mControlHandle; //播放控件句柄
     private int _mUserId = -1; //登录使用
@@ -406,12 +402,6 @@ public partial class HikCameraPage : IDisposable
         Log.D("关闭摄像头预览");
     }
 
-    private void Control0_OnSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        const double ratio = 16 / 10.0;
-        Control0.Height = Control0.ActualWidth / ratio;
-    }
-
     private void ReleaseUnmanagedResources()
     {
         // release unmanaged resources here
@@ -432,6 +422,17 @@ public partial class HikCameraPage : IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    ~HikCameraPage()
+    {
+        Dispose(false);
+    }
+
+    private void Control0_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        const double ratio = 16 / 10.0;
+        Control0.Height = Control0.ActualWidth / ratio;
     }
 
     private void Control0_OnLoaded(object sender, RoutedEventArgs e)

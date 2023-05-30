@@ -21,15 +21,10 @@ public partial class HikViewWindow : Window
             var robots = task.Result;
             foreach (var node in robots.Select(robot => new JsNodeWc(robot)))
             {
-                A2NodeList.Add(node);
+                Application.Current.Dispatcher.Invoke(() => { HikList.Add(node); });
             }
-
-            HikView0.SetNode(A2NodeList[0]);
-            HikView1.SetNode(A2NodeList[1]);
-            HikView2.SetNode(A2NodeList[2]);
-            HikView3.SetNode(A2NodeList[3]);
         });
     }
 
-    private ObservableCollection<JsNodeWc> A2NodeList { get; set; } = new();
+    public ObservableCollection<JsNodeWc> HikList { get; set; } = new();
 }
