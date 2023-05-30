@@ -12,9 +12,9 @@ using Timer = System.Timers.Timer;
 
 namespace App11.HIK.Models;
 
-public sealed class JsNodeWc : JsNode, IDisposable
+public sealed class JsNodeHik : JsNode, IDisposable
 {
-    public JsNodeWc(JsNode parent)
+    public JsNodeHik(JsNode parent)
     {
         NodeName = parent.NodeName;
         ModelType = parent.ModelType;
@@ -492,7 +492,7 @@ public sealed class JsNodeWc : JsNode, IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~JsNodeWc()
+    ~JsNodeHik()
     {
         Dispose(false);
     }

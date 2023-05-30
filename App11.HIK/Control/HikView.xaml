@@ -8,7 +8,7 @@
              xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
              Background="{DynamicResource AppContentBackgroundBrush}"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=models:JsNodeWc , IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance Type=models:JsNodeHik , IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
                                        SizeChanged="Control0_OnSizeChanged"
                                        IsInputRedirectionEnabled="True"
                                        IsOutputRedirectionEnabled="True">
-                <WindowsFormsHost HorizontalAlignment="Stretch" x:Name="PART_PlayerHost">
+                <WindowsFormsHost HorizontalAlignment="Stretch" x:Name="FormsHost">
                     <forms:PictureBox x:Name="VideoControl" BackColor="Black" AutoSize="True"
                                       DoubleClick="VideoControl_OnDoubleClick" KeyUp="VideoControl_OnKeyUp" />
                 </WindowsFormsHost>

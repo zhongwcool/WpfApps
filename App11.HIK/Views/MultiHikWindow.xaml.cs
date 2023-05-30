@@ -21,10 +21,10 @@ public partial class MultiHikWindow : Window
             var robots = task.Result;
             Application.Current.Dispatcher.Invoke(() =>
             {
-                foreach (var node in robots.Select(robot => new JsNodeWc(robot))) NodeWcList.Add(node);
+                foreach (var node in robots.Select(robot => new JsNodeHik(robot))) NodeWcList.Add(node);
             });
         });
     }
 
-    public ObservableCollection<JsNodeWc> NodeWcList { get; set; } = new();
+    public ObservableCollection<JsNodeHik> NodeWcList { get; set; } = new();
 }

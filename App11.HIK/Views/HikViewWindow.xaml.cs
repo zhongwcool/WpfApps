@@ -19,12 +19,12 @@ public partial class HikViewWindow : Window
         task.ContinueWith(_ =>
         {
             var robots = task.Result;
-            foreach (var node in robots.Select(robot => new JsNodeWc(robot)))
+            foreach (var node in robots.Select(robot => new JsNodeHik(robot)))
             {
                 Application.Current.Dispatcher.Invoke(() => { HikList.Add(node); });
             }
         });
     }
 
-    public ObservableCollection<JsNodeWc> HikList { get; set; } = new();
+    public ObservableCollection<JsNodeHik> HikList { get; set; } = new();
 }

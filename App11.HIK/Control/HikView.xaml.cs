@@ -24,11 +24,11 @@ public sealed partial class HikView : IDisposable
     }
 
     public static readonly DependencyProperty NodeHikProperty =
-        DependencyProperty.Register(nameof(NodeHik), typeof(JsNodeWc), typeof(HikView), new PropertyMetadata());
+        DependencyProperty.Register(nameof(NodeHik), typeof(JsNodeHik), typeof(HikView), new PropertyMetadata());
 
-    public JsNodeWc NodeHik
+    public JsNodeHik NodeHik
     {
-        get => (JsNodeWc)GetValue(NodeHikProperty);
+        get => (JsNodeHik)GetValue(NodeHikProperty);
         set => SetValue(NodeHikProperty, value);
     }
 
@@ -437,7 +437,7 @@ public sealed partial class HikView : IDisposable
 
     private void VideoControl_OnDoubleClick(object sender, EventArgs e)
     {
-        _fullScreenHelper = new FullScreenHelper(VideoControl, PART_PlayerHost);
+        _fullScreenHelper = new FullScreenHelper(VideoControl, FormsHost);
         _fullScreenHelper.FullScreen(true);
     }
 
