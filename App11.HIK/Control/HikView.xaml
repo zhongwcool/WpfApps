@@ -6,6 +6,7 @@
              xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              xmlns:models="clr-namespace:App11.HIK.Models"
              xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
+             Background="{DynamicResource AppContentBackgroundBrush}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=models:JsNodeWc , IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -42,7 +43,7 @@
         </Grid>
 
         <WrapPanel VerticalAlignment="Bottom" Grid.Row="1">
-            <Button x:Name="BtnShotJpeg" Content="抓图" Click="ButtonShotJpeg_OnClick" Margin="5,0,0,0" />
+            <Button x:Name="BtnShotJpeg" Content="抓图" Click="ButtonShotJpeg_OnClick" Margin="0,0,0,0" />
             <Button x:Name="BtnRecord" Content="开始录像" Click="ButtonRecord_OnClick" Margin="5,0,0,0" />
             <TextBlock Text="{Binding NodeName}" />
             <TextBlock x:Name="TxtHikStatus" Text="未连接"

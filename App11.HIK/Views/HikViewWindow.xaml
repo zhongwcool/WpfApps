@@ -6,9 +6,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:control="clr-namespace:App11.HIK.Control"
         mc:Ignorable="d"
-        Title="View实现" VerticalContentAlignment="Stretch" Width="420">
+        Background="{DynamicResource AppBackgroundBrush}"
+        Title="View实现" VerticalContentAlignment="Stretch" Width="440">
     <Grid>
-        <ListView ItemsSource="{Binding ElementName=Root, Path=HikList}">
+        <ListView ItemsSource="{Binding ElementName=Root, Path=HikList}" Width="420" HorizontalAlignment="Center">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
