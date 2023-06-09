@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="Vlc播放器" Height="640" Width="1080">
+        Title="App01: Vlc播放" Height="640" Width="1080">
     <Grid>
         <wpf:VideoView x:Name="VideoView" 
                        Background="{DynamicResource SystemControlBackgroundChromeBlackHighBrush}"
@@ -28,7 +28,7 @@
                             VerticalAlignment="Bottom" HorizontalAlignment="Left">
                         <TextBox x:Name="TextUrlInput" Width="250"
                                  Style="{DynamicResource SimpleTextBox}"
-                                 Text="http://playtv-live.ifeng.com:80/live/06OLEGEGM4G.m3u8" />
+                                 Text="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" />
                     </Border>
                 </StackPanel>
             </WrapPanel>

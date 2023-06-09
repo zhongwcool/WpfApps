@@ -6,7 +6,25 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources />
+                <ui:ThemeResources>
+                    <ui:ThemeResources.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light" ui:ThemeDictionary.Key="Light">
+                            <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FFF0F0F0" />
+                            <SolidColorBrush x:Key="AppContentBackgroundBrush"
+                                             Color="{ui:StaticColor SystemAltHighColor}" />
+                            <Color x:Key="AppExpandedPaneBackground">#FFF9F9F9</Color>
+                            <SolidColorBrush x:Key="CustomThemeBrush" Color="Red" />
+                        </ResourceDictionary>
+
+                        <ResourceDictionary x:Key="Dark" ui:ThemeDictionary.Key="Dark">
+                            <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FF232323" />
+                            <SolidColorBrush x:Key="AppContentBackgroundBrush"
+                                             Color="{ui:StaticColor SystemAltHighColor}" />
+                            <Color x:Key="AppExpandedPaneBackground">#FF2C2C2C</Color>
+                            <SolidColorBrush x:Key="CustomThemeBrush" Color="Yellow" />
+                        </ResourceDictionary>
+                    </ui:ThemeResources.ThemeDictionaries>
+                </ui:ThemeResources>
                 <ui:XamlControlsResources />
                 <!-- Other merged dictionaries here -->
                 <ResourceDictionary Source="Style/TextBox.xaml" />
