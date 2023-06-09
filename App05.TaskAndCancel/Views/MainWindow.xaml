@@ -7,7 +7,6 @@
         xmlns:vm="clr-namespace:App05.TaskAndCancel.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
-        ui:WindowHelper.UseModernWindowStyle="True"
         Background="{DynamicResource AppBackgroundBrush}"
         Title="异步任务与取消" Height="450" Width="340">
     <Grid>
@@ -16,7 +15,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Devices}" Margin="15,0,15,0" Grid.Row="0">
+        <ListView ItemsSource="{Binding Devices}" Margin="15,0,15,0"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ui:ScrollViewerHelper.AutoHideScrollBars="True"
+                  Grid.Row="0">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
@@ -52,16 +55,16 @@
                                             <EventTrigger RoutedEvent="MouseLeave">
                                                 <BeginStoryboard>
                                                     <Storyboard>
-                                                        <ColorAnimation Duration="0:0:0.5" To="#AA444444"
+                                                        <ColorAnimation Duration="0:0:0.2" To="#AA444444"
                                                                         Storyboard.TargetName="PART_Shadow"
                                                                         Storyboard.TargetProperty="Color" />
-                                                        <DoubleAnimation Duration="0:0:0.5" To="5"
+                                                        <DoubleAnimation Duration="0:0:0.2" To="5"
                                                                          Storyboard.TargetName="PART_Shadow"
                                                                          Storyboard.TargetProperty="BlurRadius" />
-                                                        <DoubleAnimation Duration="0:0:0.5" To="4"
+                                                        <DoubleAnimation Duration="0:0:0.2" To="4"
                                                                          Storyboard.TargetName="PART_Shadow"
                                                                          Storyboard.TargetProperty="ShadowDepth" />
-                                                        <DoubleAnimation Duration="0:0:0.5" To="0.5"
+                                                        <DoubleAnimation Duration="0:0:0.2" To="0.5"
                                                                          Storyboard.TargetName="PART_Shadow"
                                                                          Storyboard.TargetProperty="Opacity" />
                                                     </Storyboard>
@@ -79,7 +82,7 @@
                                         <!-- <Setter Property="Padding" Value="3,3,3,3"/> -->
                                         <Setter Property="RenderTransform">
                                             <Setter.Value>
-                                                <ScaleTransform ScaleX="1.05" ScaleY="1.05" />
+                                                <ScaleTransform ScaleX="1.02" ScaleY="1.02" />
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
