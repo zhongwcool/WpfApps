@@ -7,6 +7,8 @@ using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace App16.Python.ViewModels;
 
@@ -31,6 +33,12 @@ public partial class MainViewModel : ObservableObject
         _observableValues.RemoveAt(0);
     }
 
+    public void AddData(int ret)
+    {
+        _observableValues.Add(new DateTimePoint(DateTime.Now, ret));
+        RemoveItem();
+    }
+
     public MainViewModel()
     {
         // Use ObservableCollections to let the chart listen for changes (or any INotifyCollectionChanged). // mark
@@ -40,8 +48,8 @@ public partial class MainViewModel : ObservableObject
             // new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(11000)), 0),
             // new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(10000)), 0),
             // new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(9000)), 0),
-            // new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(8000)), 0),
-            // new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(7000)), 0),
+            new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(8000)), 0),
+            new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(7000)), 0),
             new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(6000)), 0),
             new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(5000)), 0),
             new(DateTime.Now.Subtract(TimeSpan.FromMilliseconds(4000)), 0),
@@ -65,23 +73,15 @@ public partial class MainViewModel : ObservableObject
     {
         new Axis
         {
-            Labeler = value => new DateTime((long)value).ToString("mm:ss.fff"),
+            Labeler = value => new DateTime((long)value).ToString("HH:mm:ss.fff"),
             LabelsRotation = 15,
             TextSize = 12,
+            SeparatorsPaint = new SolidColorPaint(SKColors.LightGray, 1),
 
             // when using a date time type, let the library know your unit // mark
             UnitWidth = TimeSpan.FromMilliseconds(1000).Ticks,
-
-            // if the difference between our points is in hours then we would:
-            // UnitWidth = TimeSpan.FromHours(1).Ticks,
-
-            // since all the months and years have a different number of days
-            // we can use the average, it would not cause any visible error in the user interface
-            // Months: TimeSpan.FromDays(30.4375).Ticks
-            // Years: TimeSpan.FromDays(365.25).Ticks
-
             // The MinStep property forces the separator to be greater than 1 day.
-            MinStep = TimeSpan.FromMilliseconds(10).Ticks // mark
+            MinStep = TimeSpan.FromMilliseconds(50).Ticks // mark
         }
     };
 

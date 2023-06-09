@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using App16.Python.Control;
 using App16.Python.Models;
 using App16.Python.Utils;
 using App16.Python.ViewModels;
 using Microsoft.Win32;
-using Newtonsoft.Json;
 
 namespace App16.Python.Views;
 
@@ -28,14 +28,12 @@ public partial class MainWindow : Window
         SendTimer();
     }
 
+    private readonly DispatcherTimer _dispatcherTimer = new();
+
     private void SendTimer()
     {
-        var timer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromMilliseconds(1000)
-        };
-        timer.Tick += _vm.Timer_Tick;
-        timer.Start();
+        _dispatcherTimer.Interval = TimeSpan.FromMilliseconds(500);
+        _dispatcherTimer.Start();
     }
 
     private void CheckVenv()
@@ -96,7 +94,13 @@ public partial class MainWindow : Window
         using var process = Process.Start(startInfo);
         using var reader = process?.StandardOutput;
         var result = reader?.ReadToEnd();
-        Dispatcher.Invoke(() => { Block.Text += result; });
+        Dispatcher.Invoke(() =>
+        {
+            Block.Text += result;
+            Random random = new();
+            var randomValue = random.Next(1, 100);
+            _vm.AddData(randomValue);
+        });
 
         var tspan = DateTime.Now - start; //求时间差
         Dispatcher.Invoke(() =>
@@ -142,7 +146,7 @@ public partial class MainWindow : Window
         if (configuration.AppSettings.Settings["LastFilePath"] != null)
         {
             _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
-            _lastRelativePath = System.IO.Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
+            _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
             TxtPath.Text = _lastRelativePath;
             return;
         }
@@ -160,14 +164,14 @@ public partial class MainWindow : Window
         // 弹出选择文件对话框，设置初始目录为上次选择的文件所在目录
         var openFileDialog = new OpenFileDialog()
         {
-            InitialDirectory = System.IO.Path.GetDirectoryName(_lastFilePath),
+            InitialDirectory = Path.GetDirectoryName(_lastFilePath),
             Title = "选择Python文件",
             Filter = "Python文件|*.py"
         };
         if (openFileDialog.ShowDialog() != true) return;
         // 用户点击了“打开”按钮
         _lastFilePath = openFileDialog.FileName;
-        _lastRelativePath = System.IO.Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
+        _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
         TxtPath.Text = _lastRelativePath;
 
         // 记录选择的文件路径到配置文件中
@@ -178,23 +182,25 @@ public partial class MainWindow : Window
 
     #region Dummy
 
-    private async Task DoDemo(ITaskExecutor executor)
+    private void DoDemo(ITaskExecutor executor)
     {
-        await Task.Run(() =>
-        {
-            var data = JsonUtil.LoadDataFromJson(JsonFile);
-            if (string.IsNullOrEmpty(data)) return;
-            var model = JsonConvert.DeserializeObject<RenWuModel>(data);
-            if (null == model) return;
+        var model = JsonUtil.Load<RenWuModel>(JSON_FILE);
+        if (null == model) return;
 
-            foreach (var soul in model.Tasks)
-            {
-                executor.AddTask(() => Test(soul));
-            }
-        });
+        foreach (var soul in model.Tasks) executor.AddTask(() => Test(soul));
     }
 
-    private const string JsonFile = "tasks.json";
+    private const string JSON_FILE = "tasks.json";
 
     #endregion
+
+    private void UIElement_OnMouseLeave(object sender, MouseEventArgs e)
+    {
+        _dispatcherTimer.Tick -= _vm.Timer_Tick;
+    }
+
+    private void UIElement_OnMouseEnter(object sender, MouseEventArgs e)
+    {
+        _dispatcherTimer.Tick += _vm.Timer_Tick;
+    }
 }
