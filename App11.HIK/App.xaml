@@ -31,7 +31,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
-            <DataTemplate DataType="{x:Type models:JsNode}">
+            <DataTemplate DataType="{x:Type models:JsNodeHik}">
                 <ct:HikView />
             </DataTemplate>
         </ResourceDictionary>
