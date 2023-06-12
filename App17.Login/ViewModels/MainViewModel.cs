@@ -32,6 +32,14 @@ public class MainViewModel : ObservableObject
 
         var response = await client.PostAsync(_session.WaterApi, content);
 
+        //返回302代表session失效
+        if (response.StatusCode == HttpStatusCode.Found)
+        {
+            LoginCompleted = RequestWater;
+            Login2();
+            return;
+        }
+
         response.EnsureSuccessStatusCode();
         var result = await response.Content.ReadAsStringAsync();
         Water = JsonConvert.DeserializeObject<ZyWater>(result) ?? new ZyWater();
@@ -80,6 +88,7 @@ public class MainViewModel : ObservableObject
             response2.EnsureSuccessStatusCode();
             var result2 = await response2.Content.ReadAsStringAsync();
             TxtRepo = result2; // 处理数据
+            LoginCompleted?.Invoke();
             return;
         }
 
@@ -87,7 +96,12 @@ public class MainViewModel : ObservableObject
 
         var result = await response.Content.ReadAsStringAsync();
         TxtRepo = result; // 处理数据
+        LoginCompleted?.Invoke();
     }
+
+    private delegate void OnLoginCompleted();
+
+    private event OnLoginCompleted LoginCompleted;
 
     private string _txtRepo = "Hello World";
 
