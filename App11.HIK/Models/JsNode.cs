@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using App11.HIK.Utils;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Newtonsoft.Json;
+using Mar.Console;
 
 namespace App11.HIK.Models;
 
@@ -87,9 +86,7 @@ public class JsNode : ObservableObject
         var robots = new List<JsNode>();
         await Task.Run(() =>
         {
-            var data = JsonUtil.LoadDataFromJson(JsonFile);
-            if (string.IsNullOrEmpty(data)) return;
-            var model = JsonConvert.DeserializeObject<DeviceModel>(data);
+            var model = JsonUtil.Load<DeviceModel>(JsonFile);
             if (null == model) return;
 
             foreach (var soul in model.Devices)
