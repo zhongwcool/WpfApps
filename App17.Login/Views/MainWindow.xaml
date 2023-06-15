@@ -12,10 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0">
-            <Button Click="ButtonBase_OnClick" Margin="5">Login</Button>
-            <Button Click="ButtonData_OnClick" Margin="5">数据</Button>
-        </WrapPanel>
+        <WrapPanel Grid.Row="0" />
         <ScrollViewer Grid.Row="1">
             <StackPanel>
                 <Grid>

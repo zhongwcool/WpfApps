@@ -9,9 +9,10 @@ public static class JsonUtil
     ///     save data to json file
     /// </summary>
     /// <param name="filename">target file</param>
-    /// <param name="json">json data</param>
-    public static void Save(string filename, string json)
+    /// <param name="model">json model</param>
+    public static void Save<T>(string filename, T model)
     {
+        var json = JsonConvert.SerializeObject(model);
         using var fs = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
         using var sw = new StreamWriter(fs);
         sw.WriteLine(json);

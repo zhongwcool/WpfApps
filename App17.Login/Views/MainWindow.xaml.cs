@@ -13,14 +13,4 @@ public partial class MainWindow : Window
         _vm = new MainViewModel();
         DataContext = _vm;
     }
-
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-    {
-        _vm.Login2();
-    }
-
-    private void ButtonData_OnClick(object sender, RoutedEventArgs e)
-    {
-        _vm.RequestWater();
-    }
 }

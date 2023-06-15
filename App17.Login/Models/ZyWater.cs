@@ -7,4 +7,5 @@ public class ZyWater
     public string OxygenVal { set; get; }
     public string PhVal { set; get; }
     public string TemperatureVal { set; get; }
+    public string Html { set; get; }
 }

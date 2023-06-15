@@ -1,14 +1,14 @@
 {
-  "sessions": [
+  "Sessions": [
     {
-      "Cookie": "",
-      "UserPhone": "",
-      "UserPwd": "",
+      "Cookie": "SESSION=2afd481e-80f3-4ea7-89ff-619188e23a0a",
+      "UserPhone": "15151406638",
+      "UserPwd": "12345678",
       "DeviceId": "2001219",
       "LoginApi": "https://webapp2.zytdwl.cn/customer/login",
       "RedirApi": "https://webapp2.zytdwl.cn/customer/welcome",
       "WaterApi": "https://webapp2.zytdwl.cn/customer/currentwater"
     }
   ],
-  "last_update": "2023-06-07T08:00:00+08:00"
+  "Last_Update": "2023-06-09 11:35:56"
 }
