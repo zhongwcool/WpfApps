@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App16.Python", "App16.Pytho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App17.Login", "App17.Login\App17.Login.csproj", "{9F00008F-F188-4C64-B89B-3105A44DD465}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App18.Material", "App18.Material\App18.Material.csproj", "{C17F14FA-C2B5-49C9-8968-B9741D4E03B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,5 +110,9 @@ Global
 		{9F00008F-F188-4C64-B89B-3105A44DD465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F00008F-F188-4C64-B89B-3105A44DD465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F00008F-F188-4C64-B89B-3105A44DD465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C17F14FA-C2B5-49C9-8968-B9741D4E03B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C17F14FA-C2B5-49C9-8968-B9741D4E03B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C17F14FA-C2B5-49C9-8968-B9741D4E03B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C17F14FA-C2B5-49C9-8968-B9741D4E03B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

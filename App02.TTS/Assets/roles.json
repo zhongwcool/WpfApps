@@ -1,0 +1,26 @@
+{
+  "Roles": [
+    {
+      "Name": "晓晓",
+      "VoiceKey": "zh-CN-XiaoxiaoNeural",
+      "VoiceName": "中文(普通话，简体)",
+      "Gender": "女",
+      "Description": "活泼、温暖的声音，具有多种场景风格和情感。"
+    },
+    {
+      "Name": "云希",
+      "VoiceKey": "zh-CN-YunxiNeural",
+      "VoiceName": "中文(普通话，简体)",
+      "Gender": "男",
+      "Description": "活泼、阳光的声音，具有丰富的情感，可用于许多对话场景。"
+    },
+    {
+      "Name": "云扬",
+      "VoiceKey": "zh-CN-YunyangNeural",
+      "VoiceName": "中文(普通话，简体)",
+      "Gender": "男",
+      "Description": "专业、流利的声音，具有多种场景风格。"
+    }
+  ],
+  "Last_Update": "2023-06-09 11:35:56"
+}

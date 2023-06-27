@@ -1,12 +1,6 @@
 # App02.TTS
 
-## [Text-To-Speech Synthesis in .NET](https://docs.microsoft.com/en-us/archive/msdn-magazine/2019/june/speech-text-to-speech-synthesis-in-net)
+## [Azure AI | Text-To-Speech](https://azure.microsoft.com/zh-cn/products/cognitive-services/text-to-speech)
 
-> 微软官方的System.Speech目前还无法在.net5以上的目标框架使用。
+> 构建自然说话的应用和服务，从 147 种语言和变体中选择 456 种语音。借助高表现力和类似人类的神经语音，让你的方案生动起来。
 
-![演示效果](./Assets/vs_reference_menu.png)
-![演示效果](./Assets/vs_reference_dialog.png)
-
-### 演示效果
-
-![演示效果](./Assets/150519.png)

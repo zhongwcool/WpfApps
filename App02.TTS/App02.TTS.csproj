@@ -2,14 +2,20 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net48</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <ApplicationIcon>Image\voice_32.ico</ApplicationIcon>
-        <LangVersion>10</LangVersion>
+        <LangVersion>11</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System.Speech"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0"/>
+        <PackageReference Include="Mar.Console" Version="0.3.0"/>
+        <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.29.0"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
     </ItemGroup>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\roles.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\azure.json $(ProjectDir)$(OutDir)"/>
+    </Target>
 
 </Project>
