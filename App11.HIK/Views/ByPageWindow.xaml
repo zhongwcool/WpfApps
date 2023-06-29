@@ -16,80 +16,87 @@
             <ColumnDefinition Width="250" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding RobotList}"
-                  Margin="5" SelectionChanged="MySelectionChanged" Grid.Column="0">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    
-                    <Setter
-                        Property="Tag"
-                        Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ListView}}" />
+        <StackPanel Grid.Column="0">
+            <TextBox Margin="5" Width="220"
+                     Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <Setter Property="ContextMenu">
-                        <Setter.Value>
-                            <ContextMenu DataContext="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
-                                <MenuItem
-                                    Header="Delete"
-                                    Command="{Binding DeleteCommand}"
-                                    CommandParameter="{Binding PlacementTarget.Content, RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
-                            </ContextMenu>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
-                          Margin="0,0,0,0" Height="60"
-                          AutomationProperties.Name="{Binding NodeName, Mode=OneTime}" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0">
-                            <Image Source="{Binding ModelType, Converter={StaticResource TypeToImageSourceConverter}}"
-                                   Stretch="Fill" Margin="5,0,5,0" Height="40" />
-                        </Border> 
+            <ListView ItemsSource="{Binding RobotList}"
+                      Margin="5" SelectionChanged="MySelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
-                        <Grid Margin="0,3,3,3" Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <TextBlock
-                                Text="{Binding NodeName, Mode=OneTime}"
-                                FontWeight="SemiBold"
-                                FontSize="12"
-                                Style="{DynamicResource BaseTextBlockStyle}"
-                                Margin="1"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="NoWrap"
-                                HorizontalAlignment="Left"
-                                Grid.Row="0" />
-                            <TextBlock
-                                Text="{Binding DevIp, Mode=OneTime}"
-                                FontFamily="Segoe UI"
-                                FontWeight="Normal"
-                                FontSize="12"
-                                Style="{DynamicResource BodyTextBlockStyle}"
-                                Margin="1"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="Wrap"
-                                Grid.Row="1" />
-                            <TextBlock
-                                Text="{Binding SerialNum, Mode=OneTime}"
-                                FontSize="11"
-                                Style="{DynamicResource CaptionTextBlockStyle}"
-                                Margin="1"
-                                Grid.Row="2" />
+                        <Setter
+                            Property="Tag"
+                            Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ListView}}" />
+
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <ContextMenu
+                                    DataContext="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                                    <MenuItem
+                                        Header="Delete"
+                                        Command="{Binding DeleteCommand}"
+                                        CommandParameter="{Binding PlacementTarget.Content, RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+                                </ContextMenu>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                              Margin="0,0,0,0" Height="60"
+                              AutomationProperties.Name="{Binding NodeName, Mode=OneTime}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <Image
+                                    Source="{Binding ModelType, Converter={StaticResource TypeToImageSourceConverter}}"
+                                    Stretch="Fill" Margin="5,0,5,0" Height="40" />
+                            </Border>
+
+                            <Grid Margin="0,3,3,3" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Text="{Binding NodeName, Mode=OneTime}"
+                                    FontWeight="SemiBold"
+                                    FontSize="12"
+                                    Style="{DynamicResource BaseTextBlockStyle}"
+                                    Margin="1"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="NoWrap"
+                                    HorizontalAlignment="Left"
+                                    Grid.Row="0" />
+                                <TextBlock
+                                    Text="{Binding DevIp, Mode=OneTime}"
+                                    FontFamily="Segoe UI"
+                                    FontWeight="Normal"
+                                    FontSize="12"
+                                    Style="{DynamicResource BodyTextBlockStyle}"
+                                    Margin="1"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="Wrap"
+                                    Grid.Row="1" />
+                                <TextBlock
+                                    Text="{Binding SerialNum, Mode=OneTime}"
+                                    FontSize="11"
+                                    Style="{DynamicResource CaptionTextBlockStyle}"
+                                    Margin="1"
+                                    Grid.Row="2" />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
         <Grid Margin="5" Grid.Column="1">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">避免气氛尴尬</TextBlock>
             <Grid x:Name="HikControl" />

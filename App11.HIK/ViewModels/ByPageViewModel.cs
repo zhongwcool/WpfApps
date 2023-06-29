@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 using App11.HIK.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -28,8 +30,34 @@ public class ByPageViewModel : ObservableObject
                 {
                     RobotList.Add(robot);
                 }
+
+                _demoItemsView = CollectionViewSource.GetDefaultView(RobotList);
+                _demoItemsView.Filter = DemoItemsFilter;
             });
         });
+    }
+
+    private bool DemoItemsFilter(object obj)
+    {
+        if (string.IsNullOrWhiteSpace(_searchKeyword)) return true;
+
+        return obj is JsNode item
+               && (item.NodeName.ToLower().Contains(_searchKeyword!.ToLower())
+                   || item.DevIp.ToLower().Contains(_searchKeyword!.ToLower())
+                   || item.SerialNum.ToLower().Contains(_searchKeyword!.ToLower()));
+    }
+
+    private ICollectionView _demoItemsView;
+
+    private string? _searchKeyword;
+
+    public string? SearchKeyword
+    {
+        get => _searchKeyword;
+        set
+        {
+            if (SetProperty(ref _searchKeyword, value)) _demoItemsView.Refresh();
+        }
     }
 
     public ObservableCollection<JsNode> RobotList { get; set; } = new();
