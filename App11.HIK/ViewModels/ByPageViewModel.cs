@@ -32,12 +32,12 @@ public class ByPageViewModel : ObservableObject
                 }
 
                 _demoItemsView = CollectionViewSource.GetDefaultView(RobotList);
-                _demoItemsView.Filter = DemoItemsFilter;
+                _demoItemsView.Filter = CollectionFilter;
             });
         });
     }
 
-    private bool DemoItemsFilter(object obj)
+    private bool CollectionFilter(object obj)
     {
         if (string.IsNullOrWhiteSpace(_searchKeyword)) return true;
 

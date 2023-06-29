@@ -1,4 +1,6 @@
-﻿namespace App11.HIK.Models;
+﻿using System.Collections.Generic;
+
+namespace App11.HIK.Models;
 
 public class Device
 {
@@ -11,4 +13,10 @@ public class Device
     public string NT { set; get; }
     public string FV { set; get; }
     public string PV { set; get; }
+}
+
+public class DeviceModel
+{
+    public List<Device> Devices { set; get; }
+    public string Last_Update { set; get; }
 }
