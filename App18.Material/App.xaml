@@ -10,6 +10,9 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Other app resources here -->
+            <Thickness x:Key="ControlPageContentMargin">24,20,24,20</Thickness>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

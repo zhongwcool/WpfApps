@@ -50,36 +50,46 @@
                                Text="Material Design In XAML Toolkit" />
                 </StackPanel>
 
-                <!-- 弹出菜单 -->
-                <materialDesign:PopupBox Grid.Column="2"
-                                         Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                                         PlacementMode="BottomAndAlignRightEdges"
-                                         StaysOpen="False">
-                    <StackPanel>
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <TextBlock Margin="0,0,10,0" Text="Light"
-                                       Grid.Row="0" Grid.Column="0" />
-                            <ToggleButton x:Name="DarkModeToggleButton"
-                                          Click="MenuDarkModeButton_Click"
-                                          Grid.Row="0" Grid.Column="1" />
-                            <TextBlock Margin="10,0,0,0" Text="Dark"
-                                       Grid.Row="0" Grid.Column="2" />
-                        </Grid>
+                <DockPanel Grid.Column="2">
+                    <TextBlock x:Name="BlockPrefix" Margin="5,0,0,0"
+                               FontSize="32" FontWeight="Black"
+                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                               VerticalAlignment="Center" />
 
-                        <Separator />
+                    <TextBlock x:Name="BlockSecond" Margin="0,0,5,0" Width="40"
+                               FontSize="32" FontWeight="Black"
+                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                               VerticalAlignment="Center" />
+                    <!-- 弹出菜单 -->
+                    <materialDesign:PopupBox StaysOpen="False"
+                                             Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                             PlacementMode="BottomAndAlignRightEdges">
+                        <StackPanel>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="0,0,10,0" Text="Light"
+                                           Grid.Row="0" Grid.Column="0" />
+                                <ToggleButton x:Name="DarkModeToggleButton"
+                                              Click="MenuDarkModeButton_Click"
+                                              Grid.Row="0" Grid.Column="1" />
+                                <TextBlock Margin="10,0,0,0" Text="Dark"
+                                           Grid.Row="0" Grid.Column="2" />
+                            </Grid>
 
-                        <Button Click="ButtonClose_OnClick" Content="退出程序" />
-                    </StackPanel>
-                </materialDesign:PopupBox>
+                            <Separator />
+
+                            <Button Click="ButtonClose_OnClick" Content="退出程序" />
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </DockPanel>
             </Grid>
         </materialDesign:ColorZone>
 

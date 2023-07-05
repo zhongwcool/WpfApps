@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using App18.Material.Dialogs;
 using App18.Material.ViewModels;
 using MaterialDesignThemes.Wpf;
@@ -17,8 +20,16 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        //开机全屏
+        DataContext = new MainViewModel(MainSnackbar.MessageQueue!);
+
+        //开启全屏
         EntryMaximizedWindow();
+
+        var dispatcherTimer = new DispatcherTimer();
+        // 当间隔时间过去时发生的事件
+        dispatcherTimer.Tick += TickShowTime;
+        dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
+        dispatcherTimer.Start();
 
         Task.Delay(2500).ContinueWith(_ =>
         {
@@ -29,8 +40,6 @@ public partial class MainWindow : Window
                 MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
             });
         });
-
-        DataContext = new MainViewModel(MainSnackbar.MessageQueue!);
     }
 
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -113,5 +122,13 @@ public partial class MainWindow : Window
     {
         WindowState = WindowState.Maximized;
         Topmost = false;
+    }
+
+    private void TickShowTime(object? sender, EventArgs e)
+    {
+        var week = CultureInfo.GetCultureInfo("zh-CN").DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+        //获得时分秒
+        BlockPrefix.Text = DateTime.Now.ToString($"MM月dd日 {week} HH:mm:");
+        BlockSecond.Text = DateTime.Now.ToString("ss");
     }
 }
