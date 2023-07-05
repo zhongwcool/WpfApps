@@ -1,0 +1,117 @@
+﻿using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
+using System.Windows.Media;
+using App18.Material.Dialogs;
+using App18.Material.ViewModels;
+using MaterialDesignThemes.Wpf;
+
+namespace App18.Material.Views;
+
+/// <summary>
+///     Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        //开机全屏
+        EntryMaximizedWindow();
+
+        Task.Delay(2500).ContinueWith(_ =>
+        {
+            //note you can use the message queue from any thread, but just for the demo here we 
+            //need to get the message queue from the snackbar, so need to be on the dispatcher
+            Dispatcher.Invoke(() =>
+            {
+                MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
+            });
+        });
+
+        DataContext = new MainViewModel(MainSnackbar.MessageQueue!);
+    }
+
+    private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        MainScrollViewer.ScrollToHome();
+    }
+
+    private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+    {
+        if (NavDrawer.OpenMode is not DrawerHostOpenMode.Standard)
+        {
+            //until we had a StaysOpen flag to Drawer, this will help with scroll bars
+            var dependencyObject = Mouse.Captured as DependencyObject;
+
+            while (dependencyObject != null)
+            {
+                if (dependencyObject is ScrollBar) return;
+                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+            }
+        }
+    }
+
+    private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
+    {
+        ModifyTheme(DarkModeToggleButton.IsChecked == true);
+    }
+
+    private static void ModifyTheme(bool isDarkTheme)
+    {
+        var paletteHelper = new PaletteHelper();
+        var theme = paletteHelper.GetTheme();
+
+        theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
+
+        if (theme is Theme internalTheme && internalTheme.ColorAdjustment == null)
+            internalTheme.ColorAdjustment = new ColorAdjustment
+            {
+                DesiredContrastRatio = 4.5f,
+                Contrast = Contrast.Medium,
+                Colors = ColorSelection.All
+            };
+
+        paletteHelper.SetTheme(theme);
+    }
+
+    private async void ButtonClose_OnClick(object sender, RoutedEventArgs e)
+    {
+        var content = new SingleTextDialog
+        {
+            Message = { Text = ((ButtonBase)sender).Content.ToString() }
+        };
+
+        await DialogHost.Show(content, "RootDialog", null, (o, args) =>
+        {
+            var ret = args.Parameter is true;
+            if (ret) Close();
+        });
+    }
+
+    private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (ActualWidth <= 700)
+        {
+            NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
+            NavDrawer.IsLeftDrawerOpen = false;
+        }
+        else if (ActualWidth is > 700 and <= 1600)
+        {
+            NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
+            NavDrawer.IsLeftDrawerOpen = false;
+        }
+        else if (ActualWidth > 1600)
+        {
+            NavDrawer.OpenMode = DrawerHostOpenMode.Standard;
+            NavDrawer.IsLeftDrawerOpen = true;
+        }
+    }
+
+    private void EntryMaximizedWindow()
+    {
+        WindowState = WindowState.Maximized;
+        Topmost = false;
+    }
+}

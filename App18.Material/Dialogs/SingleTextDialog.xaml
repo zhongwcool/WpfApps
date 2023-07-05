@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="App18.Material.Dialogs.SingleTextDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             mc:Ignorable="d"
+             MaxWidth="400" d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="Message" Margin="0,6,0,0" FontSize="18"
+                   Grid.Row="0" />
+
+        <StackPanel Margin="16,16,0,0"
+                    HorizontalAlignment="Right" Orientation="Horizontal"
+                    Grid.Row="1">
+            <Button Margin="8,0,0,0"
+                    Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                    IsCancel="True"
+                    Style="{StaticResource MaterialDesignFlatButton}">
+                <Button.CommandParameter>
+                    <system:Boolean>False</system:Boolean>
+                </Button.CommandParameter>
+                CANCEL
+            </Button>
+
+            <Button Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                    IsDefault="True"
+                    Style="{StaticResource MaterialDesignFlatButton}">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+                ACCEPT
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
