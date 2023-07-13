@@ -62,7 +62,22 @@ public class AudioAnalyzerViewModel : ObservableObject
         {
             SetProperty(ref _selectedDeviceId, value);
             HandleInputDeviceChange(value);
+            for (var index = 0; index < AvailableDevices.Count; index++)
+            {
+                var device = AvailableDevices[index];
+                if (device.ID != value) continue;
+                SelectedIndex = index;
+                break;
+            }
         }
+    }
+
+    private int _selectedIndex;
+
+    public int SelectedIndex
+    {
+        get => _selectedIndex;
+        set => SetProperty(ref _selectedIndex, value);
     }
 
     private string FindDefaultDevice()
@@ -119,7 +134,6 @@ public class AudioAnalyzerViewModel : ObservableObject
         get => _frequencyDataSeries;
         set => SetProperty(ref _frequencyDataSeries, value);
     }
-
 
     private void Update(AudioDataAnalyzer analyzer)
     {

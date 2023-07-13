@@ -9,12 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
-
                 <!-- Other merged dictionaries here -->
-                <ResourceDictionary
-                    Source="/SciChart.Examples.ExternalDependencies;component/Resources/Styles/SciChartExampleToolbar.xaml" />
-                <ResourceDictionary
-                    Source="/SciChart.Examples.ExternalDependencies;component/Resources/Styles/MergedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!-- Other merged dictionaries here -->
 

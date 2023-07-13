@@ -14,12 +14,12 @@
 // expressed or implied. 
 // *************************************************************************************
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using NAudio.CoreAudioApi;
-using SciChart.Examples.ExternalDependencies.Common;
 
 namespace App19.SciChart.Audio;
 
-public class AudioDeviceInfo : BaseViewModel
+public class AudioDeviceInfo : ObservableObject
 {
     private string _displayName;
     private string _id;

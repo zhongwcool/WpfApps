@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Threading;
+using App19.SciChart.Controls;
 using SciChart.Charting.Visuals;
-using SciChart.Examples.ExternalDependencies.Controls.ExceptionView;
 
 namespace App19.SciChart;
 

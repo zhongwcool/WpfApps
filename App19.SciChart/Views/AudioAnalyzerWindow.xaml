@@ -56,5 +56,12 @@
             </s:SciChartSurface.YAxis>
 
         </s:SciChartSurface>
+
+        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+            <ComboBox ItemsSource="{Binding AvailableDevices}"
+                      SelectedIndex="{Binding SelectedIndex}"
+                      DisplayMemberPath="DisplayName"
+                      Width="200" />
+        </WrapPanel>
     </Grid>
 </Window>
