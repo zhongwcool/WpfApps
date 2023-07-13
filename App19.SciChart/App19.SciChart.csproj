@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\main.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="NAudio" Version="2.1.0"/>
+        <PackageReference Include="SciChart" Version="6.6.0.26505"/>
+        <PackageReference Include="SciChart.DirectX" Version="6.6.0.26505"/>
+        <PackageReference Include="SciChart.DrawingTools" Version="6.6.0.26505"/>
+        <PackageReference Include="SciChart.ExternalDependencies" Version="6.6.0.26505"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Page Update="Views\MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Assets\"/>
+        <Folder Include="Resources\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Resources\main.ico"/>
+        <Resource Include="Resources\main.ico"/>
+    </ItemGroup>
+
+</Project>

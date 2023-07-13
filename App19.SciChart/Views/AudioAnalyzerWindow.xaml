@@ -1,0 +1,60 @@
+﻿<Window x:Class="App19.SciChart.Views.AudioAnalyzerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:App19.SciChart.ViewModels"
+        xmlns:audio="clr-namespace:App19.SciChart.Audio"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:AudioAnalyzerViewModel , IsDesignTimeCreatable=True}"
+        Title="Audio Analyzer" Height="450" Width="800">
+    <!-- Note Visual Xccelerator Engine (DirectX is enabled in App.Xaml). You have to do this explicitly in your applications -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/SciChart.Examples.ExternalDependencies;component/Resources/Styles/ToolbarButtonsCommon.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding StartCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="Unloaded">
+            <b:InvokeCommandAction Command="{Binding StopCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Grid>
+        <!--  Create the chart surface  -->
+        <s:SciChartSurface Grid.Row="0" Grid.ColumnSpan="3">
+            <s:SciChartSurface.ViewportManager>
+                <audio:YPeakViewportManager />
+            </s:SciChartSurface.ViewportManager>
+
+            <!--  Declare RenderableSeries  -->
+            <s:SciChartSurface.RenderableSeries>
+                <s:FastLineRenderableSeries DataSeries="{Binding DataSeries}"
+                                            Stroke="#FF99EE99"
+                                            StrokeThickness="2" />
+            </s:SciChartSurface.RenderableSeries>
+
+            <!--  Create an X Axis  -->
+            <s:SciChartSurface.XAxis>
+                <s:NumericAxis AutoRange="Always" Visibility="Collapsed" DrawMajorGridLines="False"
+                               DrawMinorGridLines="False" DrawMajorBands="False" />
+            </s:SciChartSurface.XAxis>
+
+            <!--  Create a Y Axis  -->
+            <s:SciChartSurface.YAxis>
+                <s:NumericAxis AutoRange="Always" DrawMajorGridLines="False" DrawMinorGridLines="False"
+                               DrawMajorBands="False" />
+            </s:SciChartSurface.YAxis>
+
+        </s:SciChartSurface>
+    </Grid>
+</Window>
