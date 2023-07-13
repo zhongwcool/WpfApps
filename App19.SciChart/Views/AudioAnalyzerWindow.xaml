@@ -11,15 +11,6 @@
         d:DataContext="{d:DesignInstance vm:AudioAnalyzerViewModel , IsDesignTimeCreatable=True}"
         Title="Audio Analyzer" Height="450" Width="800">
     <!-- Note Visual Xccelerator Engine (DirectX is enabled in App.Xaml). You have to do this explicitly in your applications -->
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="/SciChart.Examples.ExternalDependencies;component/Resources/Styles/ToolbarButtonsCommon.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </Window.Resources>
 
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">

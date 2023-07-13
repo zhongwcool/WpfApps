@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="LibVLCSharp" Version="3.7.0"/>
         <PackageReference Include="LibVLCSharp.WPF" Version="3.7.0"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>

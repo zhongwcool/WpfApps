@@ -9,9 +9,9 @@
         <LangVersion>11</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="Mar.Console" Version="0.3.0"/>
-        <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.29.0"/>
+        <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.30.0"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

@@ -18,7 +18,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="Mar.Console" Version="0.3.0"/>
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
