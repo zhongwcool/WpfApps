@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using SciChart.Charting.Visuals;
 
-namespace App19.SciChart.Controls;
+namespace App19.SciChart00.Controls;
 
 public partial class ExceptionView : Window
 {

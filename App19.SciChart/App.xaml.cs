@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using App19.SciChart.Controls;
-using App19.SciChart.Models;
+using App19.SciChart00.Controls;
+using App19.SciChart00.Models;
 using Mar.Console;
 using SciChart.Charting.Visuals;
 
-namespace App19.SciChart;
+namespace App19.SciChart00;
 
 public partial class App : Application
 {

@@ -18,7 +18,7 @@ using System;
 using System.Diagnostics;
 using NAudio.Wave;
 
-namespace App19.SciChart.Audio;
+namespace App19.SciChart00.Audio;
 
 internal class SampleReader
 {

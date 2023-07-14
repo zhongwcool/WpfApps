@@ -4,13 +4,13 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using App19.SciChart.Audio;
+using App19.SciChart00.Audio;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Xaml.Behaviors.Core;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Charting.Model.DataSeries.Heatmap2DArrayDataSeries;
 
-namespace App19.SciChart.ViewModels;
+namespace App19.SciChart00.ViewModels;
 
 public class AudioAnalyzerViewModel : ObservableObject
 {

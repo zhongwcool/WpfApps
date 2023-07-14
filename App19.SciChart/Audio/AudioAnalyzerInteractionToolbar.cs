@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using SciChart.Charting.Visuals;
 using SciChart.Examples.ExternalDependencies.Controls.Toolbar2D;
 
-namespace App19.SciChart.Audio;
+namespace App19.SciChart00.Audio;
 
 public class AudioAnalyzerInteractionToolbar : SciChartInteractionToolbar
 {

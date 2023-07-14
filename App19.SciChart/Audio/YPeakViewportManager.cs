@@ -21,7 +21,7 @@ using SciChart.Charting.ViewportManagers;
 using SciChart.Charting.Visuals.Axes;
 using SciChart.Data.Model;
 
-namespace App19.SciChart.Audio;
+namespace App19.SciChart00.Audio;
 
 public class YPeakViewportManager : DefaultViewportManager
 {

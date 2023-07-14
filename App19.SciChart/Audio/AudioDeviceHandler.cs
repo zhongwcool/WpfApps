@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
-namespace App19.SciChart.Audio;
+namespace App19.SciChart00.Audio;
 
 internal class AudioDeviceHandler : IDisposable
 {

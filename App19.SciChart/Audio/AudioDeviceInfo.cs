@@ -17,7 +17,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using NAudio.CoreAudioApi;
 
-namespace App19.SciChart.Audio;
+namespace App19.SciChart00.Audio;
 
 public class AudioDeviceInfo : ObservableObject
 {

@@ -1,4 +1,4 @@
-﻿<Window x:Class="App19.SciChart.Controls.ExceptionView"
+﻿<Window x:Class="App19.SciChart00.Controls.ExceptionView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="未处理的异常"
