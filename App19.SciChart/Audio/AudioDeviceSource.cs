@@ -41,7 +41,7 @@ internal class AudioDeviceSource : IDisposable, IMMNotificationClient
         RefreshDevices();
     }
 
-    public AudioDeviceHandler CreateHandlder(string id)
+    public AudioDeviceHandler CreateHandler(string id)
     {
         var device = _enumerator.GetDevice(id);
         return new AudioDeviceHandler(device);

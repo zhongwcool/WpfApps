@@ -120,7 +120,7 @@ public class AudioAnalyzerViewModel : ObservableObject
             return;
         }
 
-        _audioDeviceHandler = _audioDeviceSource.CreateHandlder(newId);
+        _audioDeviceHandler = _audioDeviceSource.CreateHandler(newId);
         _audioDataAnalyzer = new AudioDataAnalyzer(_audioDeviceHandler);
         _audioDataAnalyzer.Update += Update;
         InitDataStorage(_audioDataAnalyzer, _audioDeviceHandler);

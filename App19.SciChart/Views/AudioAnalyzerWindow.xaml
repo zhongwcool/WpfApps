@@ -55,13 +55,7 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <Grid>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="1">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -189,5 +183,12 @@
 
             </s:SciChartSurface>
         </Grid>
+
+        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+            <ComboBox ItemsSource="{Binding AvailableDevices}"
+                      SelectedIndex="{Binding SelectedIndex}"
+                      DisplayMemberPath="DisplayName"
+                      Width="200" />
+        </WrapPanel>
     </Grid>
 </Window>
