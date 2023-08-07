@@ -60,7 +60,7 @@ public class NavigationItem : ObservableObject
         set => SetProperty(ref _verticalScrollBarVisibilityRequirement, value);
     }
 
-    private Thickness _marginRequirement = new(16);
+    private Thickness _marginRequirement = new(0);
 
     public Thickness MarginRequirement
     {

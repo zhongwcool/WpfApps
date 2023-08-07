@@ -31,6 +31,17 @@
         <Resource Include="Resources\ic_main.ico"/>
         <None Remove="Resources\girl-cleaning-dishes.png"/>
         <Resource Include="Resources\girl-cleaning-dishes.png"/>
+        <None Remove="Resources\illustrations\IMG_0641.jpg"/>
+        <Resource Include="Resources\illustrations\IMG_0641.jpg"/>
+        <None Remove="Resources\illustrations\IMG_0642.jpg"/>
+        <None Remove="Resources\illustrations\IMG_0643.jpg"/>
+        <None Remove="Resources\illustrations\IMG_0644.jpg"/>
+        <None Remove="Resources\illustrations\IMG_0642.png"/>
+        <Resource Include="Resources\illustrations\IMG_0642.png"/>
+        <None Remove="Resources\illustrations\IMG_0643.png"/>
+        <Resource Include="Resources\illustrations\IMG_0643.png"/>
+        <None Remove="Resources\illustrations\IMG_0644.png"/>
+        <Resource Include="Resources\illustrations\IMG_0644.png"/>
     </ItemGroup>
 
 </Project>

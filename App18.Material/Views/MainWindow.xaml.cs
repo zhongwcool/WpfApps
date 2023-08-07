@@ -39,11 +39,6 @@ public partial class MainWindow : Window
         });
     }
 
-    private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
-    {
-        MainScrollViewer.ScrollToHome();
-    }
-
     private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
         if (NavDrawer.OpenMode is not DrawerHostOpenMode.Standard)

@@ -6,6 +6,8 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock FontSize="32">Page Demo 2</TextBlock>
+        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0641.jpg" Stretch="Fill"
+               HorizontalAlignment="Left" />
+        <TextBlock FontSize="32" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="16">Page Demo 2</TextBlock>
     </Grid>
 </UserControl>

@@ -10,7 +10,7 @@
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         SizeChanged="Window_SizeChanged"
         Style="{StaticResource MaterialDesignWindow}"
-        Title="Material 3" Height="720" Width="1000">
+        Title="Material 3" Height="720" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -179,15 +179,9 @@
                     </Grid>
 
                     <Grid Grid.Column="1">
-                        <ScrollViewer x:Name="MainScrollViewer"
-                                      materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
-                                      HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
-                                      VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}">
-                            <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
-                                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
-                                            DataContext="{Binding SelectedItem}"
-                                            DataContextChanged="OnSelectedItemChanged" />
-                        </ScrollViewer>
+                        <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
+                                        Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
+                                        DataContext="{Binding SelectedItem}" />
 
                         <materialDesign:Snackbar x:Name="MainSnackbar"
                                                  MessageQueue="{materialDesign:MessageQueue}" />
