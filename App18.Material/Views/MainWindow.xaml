@@ -4,26 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:App18.Material.ViewModels"
         xmlns:md="clr-namespace:App18.Material.Models"
-        d:DataContext="{d:DesignInstance vm:MainViewModel}"
+        d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         SizeChanged="Window_SizeChanged"
         Style="{StaticResource MaterialDesignWindow}"
-        Title="Material 3" Height="450" Width="800">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+        Title="Material 3" Height="720" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -135,33 +122,90 @@
                     </DockPanel>
                 </materialDesign:DrawerHost.LeftDrawerContent>
 
+                <!-- 内容 -->
                 <Grid>
-                    <ScrollViewer x:Name="MainScrollViewer"
-                                  materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
-                                  HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
-                                  VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}">
-                        <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
-                                        Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
-                                        DataContext="{Binding SelectedItem}"
-                                        DataContextChanged="OnSelectedItemChanged" />
-                    </ScrollViewer>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <materialDesign:Snackbar x:Name="MainSnackbar"
-                                             MessageQueue="{materialDesign:MessageQueue}" />
+                    <!-- 抽屉-Bar -->
+                    <Grid x:Name="NavRail" Width="80" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <!-- 抽屉-Bar-固定项 -->
+                        <Viewbox VerticalAlignment="Top" Stretch="Uniform" Grid.Row="0">
+                            <ListBox VerticalAlignment="Top"
+                                     ItemsSource="{Binding NavigationItems}"
+                                     SelectedValue="{Binding SelectedItem}">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem"
+                                           BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
+                                        <Setter Property="materialDesign:BadgedAssist.Badge"
+                                                Value="{Binding Notifications}" />
+                                        <Setter Property="materialDesign:BadgedAssist.BadgeBackground"
+                                                Value="#930006" />
+                                        <Setter Property="materialDesign:BadgedAssist.BadgeForeground"
+                                                Value="#FFDAD4" />
+                                        <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible"
+                                                Value="True" />
+                                        <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon"
+                                                Value="{Binding SelectedIcon}" />
+                                        <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon"
+                                                Value="{Binding UnselectedIcon}" />
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.Resources>
+                                    <DataTemplate DataType="{x:Type md:NavigationItem}">
+                                        <TextBlock Text="{Binding Name}"
+                                                   TextAlignment="Center"
+                                                   TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ListBox.Resources>
+                            </ListBox>
+                        </Viewbox>
 
-                    <materialDesign:Badged Badge="{Binding Notifications}"
-                                           Margin="0,0,28,28"
-                                           HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                           BadgeColorZoneMode="PrimaryDark">
-                        <Button Width="56" Height="56"
-                                materialDesign:ButtonAssist.CornerRadius="28"
-                                Background="{DynamicResource SecondaryHueMidBrush}"
-                                BorderThickness="0"
-                                Command="{Binding AddNewNotiCommand}"
-                                Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
-                            <materialDesign:PackIcon Width="26" Height="26" Kind="Github" />
+                        <!-- 抽屉-Bar-固定项-底部 -->
+                        <Button Click="SettingsButton_OnClick" Margin="0,0,0,16"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                Height="50"
+                                materialDesign:ButtonAssist.CornerRadius="25"
+                                ToolTip="Open Settings"
+                                Grid.Row="1">
+                            <materialDesign:PackIcon Kind="Cog" />
                         </Button>
-                    </materialDesign:Badged>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <ScrollViewer x:Name="MainScrollViewer"
+                                      materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
+                                      HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
+                                      VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}">
+                            <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
+                                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
+                                            DataContext="{Binding SelectedItem}"
+                                            DataContextChanged="OnSelectedItemChanged" />
+                        </ScrollViewer>
+
+                        <materialDesign:Snackbar x:Name="MainSnackbar"
+                                                 MessageQueue="{materialDesign:MessageQueue}" />
+
+                        <materialDesign:Badged Badge="{Binding Notifications}"
+                                               Margin="0,0,28,28"
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               BadgeColorZoneMode="PrimaryDark">
+                            <Button Width="56" Height="56"
+                                    materialDesign:ButtonAssist.CornerRadius="28"
+                                    Background="{DynamicResource SecondaryHueMidBrush}"
+                                    BorderThickness="0"
+                                    Command="{Binding AddNewNotiCommand}"
+                                    Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
+                                <materialDesign:PackIcon Width="26" Height="26" Kind="Github" />
+                            </Button>
+                        </materialDesign:Badged>
+                    </Grid>
                 </Grid>
             </materialDesign:DrawerHost>
         </materialDesign:DialogHost>

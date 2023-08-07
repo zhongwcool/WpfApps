@@ -40,14 +40,14 @@ public class MainViewModel : ObservableObject
         yield return new NavigationItem(
             nameof(PageDemo1),
             typeof(PageDemo1),
-            PackIconKind.Palette,
-            PackIconKind.PaletteOutline);
+            PackIconKind.Alien,
+            PackIconKind.AlienOutline);
 
         yield return new NavigationItem(
             nameof(PageDemo2),
             typeof(PageDemo2),
-            PackIconKind.Palette,
-            PackIconKind.PaletteOutline);
+            PackIconKind.Butterfly,
+            PackIconKind.ButterflyOutline);
     }
 
     public ObservableCollection<NavigationItem> NavigationItems { get; }

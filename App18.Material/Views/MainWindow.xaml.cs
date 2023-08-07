@@ -12,9 +12,6 @@ using MaterialDesignThemes.Wpf;
 
 namespace App18.Material.Views;
 
-/// <summary>
-///     Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     public MainWindow()
@@ -74,14 +71,6 @@ public partial class MainWindow : Window
 
         theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
 
-        if (theme is Theme internalTheme && internalTheme.ColorAdjustment == null)
-            internalTheme.ColorAdjustment = new ColorAdjustment
-            {
-                DesiredContrastRatio = 4.5f,
-                Contrast = Contrast.Medium,
-                Colors = ColorSelection.All
-            };
-
         paletteHelper.SetTheme(theme);
     }
 
@@ -101,20 +90,23 @@ public partial class MainWindow : Window
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (ActualWidth <= 700)
+        switch (ActualWidth)
         {
-            NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
-            NavDrawer.IsLeftDrawerOpen = false;
-        }
-        else if (ActualWidth is > 700 and <= 1600)
-        {
-            NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
-            NavDrawer.IsLeftDrawerOpen = false;
-        }
-        else if (ActualWidth > 1600)
-        {
-            NavDrawer.OpenMode = DrawerHostOpenMode.Standard;
-            NavDrawer.IsLeftDrawerOpen = true;
+            case <= 700:
+                NavRail.Visibility = Visibility.Visible;
+                NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
+                NavDrawer.IsLeftDrawerOpen = false;
+                break;
+            case > 700 and <= 1600:
+                NavRail.Visibility = Visibility.Visible;
+                NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
+                NavDrawer.IsLeftDrawerOpen = false;
+                break;
+            case > 1600:
+                NavRail.Visibility = Visibility.Collapsed;
+                NavDrawer.OpenMode = DrawerHostOpenMode.Standard;
+                NavDrawer.IsLeftDrawerOpen = true;
+                break;
         }
     }
 
@@ -130,5 +122,10 @@ public partial class MainWindow : Window
         //获得时分秒
         BlockPrefix.Text = DateTime.Now.ToString($"MM月dd日 {week} HH:mm:");
         BlockSecond.Text = DateTime.Now.ToString("ss");
+    }
+
+    private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        MainSnackbar.MessageQueue?.Enqueue("Function is under development.");
     }
 }

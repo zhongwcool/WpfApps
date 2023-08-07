@@ -20,6 +20,16 @@ public class NavigationItem : ObservableObject
 
     public PackIconKind SelectedIcon { get; set; }
     public PackIconKind UnselectedIcon { get; set; }
+    private readonly int _notificationNumber = 0;
+
+    public object? Notifications
+    {
+        get
+        {
+            if (_notificationNumber == 0) return null;
+            return _notificationNumber < 100 ? _notificationNumber : "99+";
+        }
+    }
 
     private object? _content;
 
