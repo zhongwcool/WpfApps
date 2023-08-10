@@ -7,7 +7,7 @@
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
         <TextBlock FontSize="32" Margin="16">Page Child 2</TextBlock>
-        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0643.png" Width="1000"
+        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0643.png" Width="600"
                HorizontalAlignment="Right" VerticalAlignment="Bottom" />
     </Grid>
 </UserControl>

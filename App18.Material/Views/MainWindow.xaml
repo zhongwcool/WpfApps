@@ -91,7 +91,7 @@
 
                 <!-- 抽屉 -->
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel Width="320">
+                    <DockPanel x:Name="DrawerView" Width="220" Background="{DynamicResource PrimaryHueLightBrush}">
                         <ListBox x:Name="DemoItemsListBox"
                                  Margin="0,16,0,16"
                                  AutomationProperties.Name="DemoPagesListBox"
@@ -115,7 +115,7 @@
                                             Value="{Binding SelectedIcon}" />
                                     <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon"
                                             Value="{Binding UnselectedIcon}" />
-                                    <Setter Property="Width" Value="280" />
+                                    <Setter Property="Width" Value="200" />
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
@@ -130,7 +130,8 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- 抽屉-Bar -->
-                    <Grid x:Name="NavRail" Width="80" Grid.Column="0">
+                    <Grid x:Name="NavRail" Width="80" Background="{DynamicResource PrimaryHueLightBrush}"
+                          Grid.Column="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
