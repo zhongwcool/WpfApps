@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using App18.Material.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -8,22 +9,33 @@ public class PageHomeViewModel : ObservableObject
 {
     public PageHomeViewModel()
     {
-        EmailList.Add(new Email
-        {
-            Name = "John Doe",
-            Time = "Today",
-            Subject = "豆花鱼",
-            Content =
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet, dolor sed vulputate euismod, arcu nunc ornare nisl, ut lacinia tellus nisl quis nunc. Sed sed nisl euismod, aliquet nisl sed, aliquam nisl. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, quis aliquam nisl nisl quis nisl. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, quis aliquam nisl nisl quis nisl."
-        });
+        // 获取当前时间
+        var currentTime = DateTime.Now;
+        var timeAgo = new TimeSpan(0, 0, 20, 0); // 20分钟前的时间间隔
+        // 计算过去的时间
+        var pastTime = currentTime.Subtract(timeAgo);
 
         EmailList.Add(new Email
         {
-            Name = "John Doe",
-            Time = "Today",
-            Subject = "John Doe",
+            Name = "老强",
+            Time = pastTime,
+            Subject = "豆花鱼",
             Content =
-                "Jetpack Compose offers an implementation of Material Design 3, the next evolution of Material Design. "
+                "最近忙吗？昨晚我去了你最爱的那家饭馆，点了他们的特色豆花鱼，吃着吃着就想你了。"
+        });
+
+        // 获取当前时间
+        timeAgo = new TimeSpan(29, 0, 20, 0); // 20分钟前的时间间隔
+        // 计算过去的时间
+        pastTime = currentTime.Subtract(timeAgo);
+
+        EmailList.Add(new Email
+        {
+            Name = "So Durl",
+            Time = pastTime,
+            Subject = "Dinner Club",
+            Content =
+                "I think it's time for us to finally try that new noodle shop downtown that doesn't use menusAnyone else have other suggestions for dinner club this week? I'm so intrigued by this idea of a noodle restaurant where no one gets to order for themselves - could be fun, or terrible, or both :)"
         });
     }
 

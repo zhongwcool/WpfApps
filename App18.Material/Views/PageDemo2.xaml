@@ -7,8 +7,68 @@
              Background="{DynamicResource PrimaryHueLightBrush}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0641.jpg" Stretch="Fill"
-               HorizontalAlignment="Left" />
-        <TextBlock FontSize="32" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="16">Page Demo 2</TextBlock>
+        <Grid Width="900" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Background="{DynamicResource PrimaryHueLightBrush}">
+                <TextBlock Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">PrimaryHueLightForegroundBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1" Background="{DynamicResource PrimaryHueMidBrush}">
+                <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">PrimaryHueMidForegroundBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="2" Background="{DynamicResource PrimaryHueDarkBrush}">
+                <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">PrimaryHueDarkForegroundBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource SecondaryHueLightBrush}">
+                <TextBlock Foreground="{DynamicResource SecondaryHueLightForegroundBrush}">SecondaryHueLightForegroundBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1" Background="{DynamicResource SecondaryHueMidBrush}">
+                <TextBlock Foreground="{DynamicResource SecondaryHueMidForegroundBrush}">SecondaryHueMidForegroundBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="2" Background="{DynamicResource SecondaryHueDarkBrush}">
+                <TextBlock Foreground="{DynamicResource SecondaryHueDarkForegroundBrush}">SecondaryHueDarkForegroundBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource SecondaryAccentBrush}">
+                <TextBlock>SecondaryAccentBrush</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesignBackground}">
+                <TextBlock>MaterialDesignBackground</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="2" Background="{DynamicResource MaterialDesignPaper}">
+                <TextBlock>MaterialDesignPaper</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0" Background="{DynamicResource MaterialDesignCardBackground}">
+                <TextBlock>MaterialDesignCardBackground</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="1" Background="{DynamicResource MaterialDesignBody}">
+                <TextBlock>MaterialDesignBody</TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="2" Background="{DynamicResource MaterialDesignBodyLight}"
+                  MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <TextBlock Name="TxtBrush">MaterialDesignBodyLight</TextBlock>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

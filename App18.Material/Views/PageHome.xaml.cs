@@ -19,7 +19,7 @@ public partial class PageHome : UserControl
         // 创建具有修改透明度的新 Brush
         var modifiedBackground = new SolidColorBrush(brush.Color)
         {
-            Opacity = 0.2 // 设置新的透明度
+            Opacity = 0.4 // 设置新的透明度
         };
 
         // 将按钮的背景色设置为修改后的 Brush
