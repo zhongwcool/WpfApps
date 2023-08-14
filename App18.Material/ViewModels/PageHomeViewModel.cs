@@ -1,7 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using App18.Material.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Mar.Console;
 
 namespace App18.Material.ViewModels;
 
@@ -9,51 +14,76 @@ public class PageHomeViewModel : ObservableObject
 {
     public PageHomeViewModel()
     {
-        // 获取当前时间
-        var currentTime = DateTime.Now;
-        var timeAgo = new TimeSpan(0, 0, 20, 0); // 20分钟前的时间间隔
-        // 计算过去的时间
-        var pastTime = currentTime.Subtract(timeAgo);
+        EmailList = new ObservableCollection<Mail>();
+        _demoItemsView = CollectionViewSource.GetDefaultView(EmailList);
+        _demoItemsView.Filter = CollectionFilter;
 
-        EmailList.Add(new Email
+        Prepare();
+    }
+
+    private void Prepare()
+    {
+        var task = Task.Run(() =>
         {
-            Name = "老强",
-            Time = pastTime,
-            Subject = "豆花鱼",
-            Content =
-                "最近忙吗？昨晚我去了你最爱的那家饭馆，点了他们的特色豆花鱼，吃着吃着就想你了。"
+            var model = JsonUtil.Load<MailMode>(JSON_FILE);
+            return model?.Mails;
         });
 
-        // 获取当前时间
-        timeAgo = new TimeSpan(29, 0, 20, 0); // 20分钟前的时间间隔
-        // 计算过去的时间
-        pastTime = currentTime.Subtract(timeAgo);
-
-        EmailList.Add(new Email
+        task.ContinueWith(_ =>
         {
-            Name = "So Durl",
-            Time = pastTime,
-            Subject = "Dinner Club",
-            Content =
-                "I think it's time for us to finally try that new noodle shop downtown that doesn't use menusAnyone else have other suggestions for dinner club this week? I'm so intrigued by this idea of a noodle restaurant where no one gets to order for themselves - could be fun, or terrible, or both :)"
-        });
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (task.Result == null) return;
+                foreach (var mail in task.Result) EmailList.Add(mail);
 
-        // 获取当前时间
-        timeAgo = new TimeSpan(0, 1, 1, 0); // 20分钟前的时间间隔
-        // 计算过去的时间
-        pastTime = currentTime.Subtract(timeAgo);
-
-        EmailList.Add(new Email
-        {
-            Name = "Lily MacDonald",
-            Time = pastTime,
-            Subject = "This food show is made for you",
-            Content =
-                "Ping-you'd love this new food show i started watching. It's produced by a Thai drummer who star..We’re updating the cards and ranking all the time, so check back regularly. At first, you might need to follow some people or star some repositories to get started",
-            Link1 =
-                "https://media.cnn.com/api/v1/images/stellar/prod/210127235319-03-how-to-stay-warm-this-winter-wellness-clothes.jpg?q=w_3000,h_2000,x_0,y_0,c_fill"
+                SelectedItem = EmailList.First();
+            });
         });
     }
 
-    public ObservableCollection<Email> EmailList { get; set; } = new();
+    private const string JSON_FILE = "mails.json";
+
+    public ObservableCollection<Mail> EmailList { get; set; }
+
+    private Mail? _selectedItem;
+
+    public Mail? SelectedItem
+    {
+        get => _selectedItem;
+        set => SetProperty(ref _selectedItem, value);
+    }
+
+    private int _selectedIndex;
+
+    public int SelectedIndex
+    {
+        get => _selectedIndex;
+        set => SetProperty(ref _selectedIndex, value);
+    }
+
+    private readonly ICollectionView _demoItemsView;
+
+    private string _searchKeyword;
+
+    public string SearchKeyword
+    {
+        get => _searchKeyword;
+        set
+        {
+            if (SetProperty(ref _searchKeyword, value)) _demoItemsView.Refresh();
+        }
+    }
+
+    private bool CollectionFilter(object obj)
+    {
+        var item = (Mail)obj;
+        if (string.IsNullOrWhiteSpace(_searchKeyword)) return true;
+
+        return (!string.IsNullOrWhiteSpace(item.From) &&
+                item.From.ToLower().Contains(_searchKeyword!.ToLower()))
+               || (!string.IsNullOrWhiteSpace(item.Body) &&
+                   item.Body.ToLower().Contains(_searchKeyword!.ToLower()))
+               || (!string.IsNullOrWhiteSpace(item.Subject) &&
+                   item.Subject.ToLower().Contains(_searchKeyword!.ToLower()));
+    }
 }

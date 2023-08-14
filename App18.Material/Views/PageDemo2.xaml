@@ -45,8 +45,8 @@
                 <TextBlock Foreground="{DynamicResource SecondaryHueDarkForegroundBrush}">SecondaryHueDarkForegroundBrush</TextBlock>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource SecondaryAccentBrush}">
-                <TextBlock>SecondaryAccentBrush</TextBlock>
+            <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource MaterialDesignChipBackground}">
+                <TextBlock>MaterialDesignChipBackground</TextBlock>
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesignBackground}">

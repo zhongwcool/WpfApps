@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:App18.Material.ViewModels"
              xmlns:cv="clr-namespace:App18.Material.Converters"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:views="clr-namespace:App18.Material.Views"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:PageHomeViewModel, IsDesignTimeCreatable=True}"
              Background="{DynamicResource PrimaryHueLightBrush}"
@@ -15,8 +16,44 @@
         <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
     </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Border Background="{DynamicResource MaterialDesignPaper}"
+                    HorizontalAlignment="Left" Margin="0,16,0,0"
+                    Width="310" Height="48" CornerRadius="24">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Style="{StaticResource MaterialDesignToolButton}">
+                        <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                    </Button>
+                    <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+                             Grid.Column="1"
+                             MinWidth="200"
+                             Margin="8,0,0,0"
+                             VerticalAlignment="Center"
+                             materialDesign:HintAssist.Hint="Build a search bar"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             BorderThickness="0" />
+                    <Button Grid.Column="2" IsEnabled="False"
+                            Style="{StaticResource MaterialDesignToolButton}">
+                        <materialDesign:PackIcon Margin="8,0,0,0" Kind="Microphone" Opacity=".56" />
+                    </Button>
+                </Grid>
+            </Border>
+        
         <ListView HorizontalAlignment="Left" VerticalAlignment="Top"
-                  ItemsSource="{Binding EmailList}">
+                  ItemsSource="{Binding EmailList}"
+                  SelectedIndex="{Binding SelectedIndex}"
+                  SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
@@ -39,7 +76,7 @@
                                                        Source="https://img-blog.csdnimg.cn/20190323161418695.png" />
 
                                                 <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
-                                                    <TextBlock Text="{Binding Name}" />
+                                                    <TextBlock Text="{Binding From}" />
                                                     <TextBlock
                                                         Text="{Binding Time, Converter={StaticResource DateToHumanizeConverter}}"
                                                         FontSize="10" Margin="0,2,0,0" />
@@ -51,7 +88,7 @@
                                                            Text="{Binding Subject}" />
 
                                                 <TextBlock VerticalAlignment="Top" Margin="5,0,0,0"
-                                                           Text="{Binding Content}"
+                                                           Text="{Binding Body}"
                                                            TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
                                             </StackPanel>
 
@@ -84,7 +121,10 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+        </StackPanel>
 
-        <Image Height="400" Width="400" Source="pack://application:,,,/Resources/girl-cleaning-dishes.png" />
+        <views:PageMail Margin="{Binding MarginRequirement, FallbackValue=16}"
+                        DataContext="{Binding SelectedItem}"
+                        Grid.Column="1" />
     </Grid>
 </UserControl>
