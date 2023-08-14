@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:App15.Animated.ViewModels"
+        xmlns:models="clr-namespace:App15.Animated.Models"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="720" Width="1280"
@@ -26,12 +27,13 @@
                         <Button Content="hello 3" Margin="0 0 2 5" Height="32" />
                         <Button Content="hello 4" Margin="0 0 2 5" Height="32" />
                         <Button Content="hello 5" Margin="0 0 2 5" Height="32" />
+                        
                         <ListBox Margin="0 0 2 5" ItemsSource="{Binding TestItems}"
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                  HorizontalContentAlignment="Stretch">
                             <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="32" DataContext="{Binding }" Margin="4,2">
+                                <DataTemplate DataType="{x:Type models:TestItemModel}">
+                                    <Grid Height="32" Margin="4,2">
                                         <TextBlock Text="{Binding ProductName}" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
                                         <TextBlock Text="{Binding ProductDescription}" TextTrimming="CharacterEllipsis" FontSize="10" Margin="0 0 50 0" VerticalAlignment="Bottom"/>
                                         <TextBlock Text="{Binding ProductPrice, StringFormat={}{0:C}}" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>

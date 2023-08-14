@@ -1,0 +1,31 @@
+{
+  "Mails": [
+    {
+      "Name": "老强",
+      "Time": "2023-08-12 15:01:59",
+      "Subject": "豆花鱼",
+      "Content": "最近忙吗？昨晚我去了你最爱的那家饭馆，点了他们的特色豆花鱼，吃着吃着就想你了。"
+    },
+    {
+      "Name": "So Durl",
+      "Time": "2023-08-12 14:51:59",
+      "Subject": "Dinner Club",
+      "Content": "I think it's time for us to finally try that new noodle shop downtown that doesn't use menusAnyone else have other suggestions for dinner club this week? I'm so intrigued by this idea of a noodle restaurant where no one gets to order for themselves - could be fun, or terrible, or both :)"
+    },
+    {
+      "Name": "Lily MacDonald",
+      "Time": "2023-08-12 13:01:59",
+      "Subject": "This food show is made for you",
+      "Content": "Ping-you'd love this new food show i started watching. It's produced by a Thai drummer who star..We’re updating the cards and ranking all the time, so check back regularly. At first, you might need to follow some people or star some repositories to get started",
+      "Link1": "https://media.cnn.com/api/v1/images/stellar/prod/210127235319-03-how-to-stay-warm-this-winter-wellness-clothes.jpg?q=w_3000,h_2000,x_0,y_0,c_fill"
+    },
+    {
+      "Name": "Ziad Aouad",
+      "Time": "2023-08-12 12:00:59",
+      "Subject": "Dynamic color & illustration",
+      "Content": "Dynamic color can be applied through mapping the color schemes to the different parts of the illustrations. This especially applies to illustrations that sits on a surface that will dynamically change.",
+      "Link1": "https://www.thesprucepets.com/thmb/7CHmDlv4W4jejT9e8WpSqVkB29w=/2121x0/filters:no_upscale():strip_icc()/Yorkshireterrierongrass-1c79d05c23104385b9e7e8ad0117abb9.jpg"
+    }
+  ],
+  "Last_Update": "2023-06-09 11:35:56"
+}
