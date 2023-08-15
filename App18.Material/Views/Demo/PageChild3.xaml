@@ -3,11 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <TextBlock FontSize="32" Margin="16">Page Child 3</TextBlock>
-        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0644.png" Width="600"
-               HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary
+                        Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Viewbox Height="1" Grid.Row="0" />
+
+        <ScrollViewer Width="600" Margin="16"
+                      HorizontalAlignment="Left"
+                      Grid.Row="1">
+            <Grid>
+                <Border Background="#FFF" Opacity="0.4" CornerRadius="4" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Margin="0" Grid.Row="0">
+                        <StackPanel Opacity="0.9" VerticalAlignment="Center" DockPanel.Dock="Left">
+                            <TextBlock FontWeight="Bold" Margin="16">Page Child 3</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <materialDesign:PopupBox Padding="2,0,2,0"
+                                                     Style="{StaticResource MaterialDesignToolPopupBox}">
+                                <StackPanel>
+                                    <Button Content="More" />
+                                    <Button Content="Options" />
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <Grid Grid.Row="1">
+                        <Border Background="#FFF" Opacity="0.8" CornerRadius="0,0,4,4" />
+
+                        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0644.png" Width="400"
+                               HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -118,8 +118,8 @@
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter TargetName="PART_Back" Property="Background"
-                                                        Value="{DynamicResource PrimaryHueLightBrush}" />
-                                                <Setter TargetName="PART_Back" Property="Opacity" Value="0.2" />
+                                                        Value="{DynamicResource MaterialDesignPaper}" />
+                                                <Setter TargetName="PART_Back" Property="Opacity" Value="0.9" />
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
                                                 <Setter TargetName="PART_Back" Property="Background"
