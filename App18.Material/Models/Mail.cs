@@ -16,6 +16,14 @@ public class Mail : ObservableObject
     public string Body { get; set; }
     public string Link1 { get; set; }
 
+    private bool _hasStar;
+
+    public bool HasStar
+    {
+        get => _hasStar;
+        set => SetProperty(ref _hasStar, value);
+    }
+
     private object? _content;
 
     public object? Content => _content ??= CreateContent();

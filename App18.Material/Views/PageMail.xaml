@@ -132,7 +132,7 @@
 
                     <DockPanel Margin="15" Grid.Row="0">
                         <StackPanel Opacity="0.9" VerticalAlignment="Center" DockPanel.Dock="Left">
-                            <TextBlock Text="{Binding Subject}" />
+                            <TextBlock Text="{Binding Subject}" FontWeight="Bold" />
                             <TextBlock
                                 Text="3 Messages"
                                 FontSize="10" Margin="0,2,0,0" />
@@ -160,19 +160,31 @@
                         <Border Background="#FFF" Opacity="0.8" CornerRadius="0,0,4,4" />
 
                         <StackPanel Margin="15,15,15,15" Orientation="Vertical">
-                            <StackPanel Height="50" Orientation="Horizontal">
-                                <materialDesign:Card Width="36" Height="36" UniformCornerRadius="18">
-                                    <Image VerticalAlignment="Center" HorizontalAlignment="Center"
-                                           Source="{Binding FromAvatar}" />
-                                </materialDesign:Card>
+                            <DockPanel Height="50">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:Card Width="36" Height="36" UniformCornerRadius="18">
+                                        <Image VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Source="{Binding FromAvatar}" />
+                                    </materialDesign:Card>
 
-                                <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding From}" />
-                                    <TextBlock
-                                        Text="{Binding Date, Converter={StaticResource DateToHumanizeConverter}}"
-                                        FontSize="10" Margin="0,2,0,0" />
+                                    <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding From}" />
+                                        <TextBlock
+                                            Text="{Binding Date, Converter={StaticResource DateToHumanizeConverter}}"
+                                            FontSize="10" Margin="0,2,0,0" />
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
+
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right"
+                                            DockPanel.Dock="Right">
+                                    <ToggleButton IsChecked="{Binding HasStar}"
+                                                  materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Star}"
+                                                  Content="{materialDesign:PackIcon Kind=StarOutline}"
+                                                  Background="{DynamicResource MaterialDesignBackground}"
+                                                  Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                                  Style="{StaticResource MaterialDesignActionToggleButton}" />
+                                </StackPanel>
+                            </DockPanel>
 
                             <TextBlock Margin="0,5,0,5" Opacity="0.8"
                                        Text="{Binding To, Converter={StaticResource Address2NickConverter}}" />

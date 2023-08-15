@@ -26,8 +26,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
+            <!-- 关键词 -->
             <Border Background="{DynamicResource MaterialDesignPaper}"
-                    HorizontalAlignment="Left" Margin="0,16,0,0"
+                    HorizontalAlignment="Left" Margin="0,16,0,8"
                     Width="310" Height="48" CornerRadius="24"
                     Grid.Row="0">
                 <Grid>
@@ -58,6 +60,7 @@
                 </Grid>
             </Border>
 
+            <!-- 邮件列表 -->
             <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top"
                           VerticalScrollBarVisibility="Hidden"
                           Grid.Row="1">
@@ -82,22 +85,34 @@
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
 
-                                                    <StackPanel Height="50" Orientation="Horizontal" Grid.Row="0">
-                                                        <materialDesign:Card Width="36" Height="36"
-                                                                             UniformCornerRadius="18">
-                                                            <Image VerticalAlignment="Center"
-                                                                   HorizontalAlignment="Center"
-                                                                   Source="{Binding FromAvatar}" />
-                                                        </materialDesign:Card>
+                                                    <DockPanel Height="50" Grid.Row="0">
+                                                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                                            <materialDesign:Card Width="36" Height="36"
+                                                                UniformCornerRadius="18">
+                                                                <Image VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center"
+                                                                       Source="{Binding FromAvatar}" />
+                                                            </materialDesign:Card>
 
-                                                        <StackPanel Opacity="0.9" Margin="8,5,0,5"
-                                                                    VerticalAlignment="Center">
-                                                            <TextBlock Text="{Binding From}" />
-                                                            <TextBlock
-                                                                Text="{Binding Date, Converter={StaticResource DateToHumanizeConverter}}"
-                                                                FontSize="10" Margin="0,2,0,0" />
+                                                            <StackPanel Opacity="0.9" Margin="8,5,0,5"
+                                                                        VerticalAlignment="Center">
+                                                                <TextBlock Text="{Binding From}" />
+                                                                <TextBlock
+                                                                    Text="{Binding Date, Converter={StaticResource DateToHumanizeConverter}}"
+                                                                    FontSize="10" Margin="0,2,0,0" />
+                                                            </StackPanel>
                                                         </StackPanel>
-                                                    </StackPanel>
+
+                                                        <StackPanel VerticalAlignment="Center"
+                                                                    HorizontalAlignment="Right" DockPanel.Dock="Right">
+                                                            <ToggleButton IsChecked="{Binding HasStar}"
+                                                                          materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Star}"
+                                                                          Content="{materialDesign:PackIcon Kind=StarOutline}"
+                                                                          Background="{DynamicResource MaterialDesignBackground}"
+                                                                          Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                                                          Style="{StaticResource MaterialDesignActionToggleButton}" />
+                                                        </StackPanel>
+                                                    </DockPanel>
 
                                                     <StackPanel Grid.Row="1">
                                                         <TextBlock FontSize="15" FontWeight="DemiBold" Margin="5,0,5,5"
