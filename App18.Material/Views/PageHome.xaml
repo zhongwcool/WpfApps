@@ -38,7 +38,7 @@
                     </Grid.ColumnDefinitions>
                     <Button
                         Style="{StaticResource MaterialDesignToolButton}">
-                        <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                        <materialDesign:PackIcon Margin="8,0,0,0" Kind="Search" Opacity=".56" />
                     </Button>
                     <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
                              Grid.Column="1"
@@ -48,10 +48,13 @@
                              materialDesign:HintAssist.Hint="Build a search bar"
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                              BorderThickness="0" />
-                    <Button Grid.Column="2" IsEnabled="False"
-                            Style="{StaticResource MaterialDesignToolButton}">
-                        <materialDesign:PackIcon Margin="8,0,0,0" Kind="Microphone" Opacity=".56" />
-                    </Button>
+                    <materialDesign:Card Width="34" Height="34"
+                                         UniformCornerRadius="17" Margin="8,0,8,0"
+                                         Grid.Column="2">
+                        <Image VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Source="{Binding MyAvatar}" />
+                    </materialDesign:Card>
                 </Grid>
             </Border>
 
@@ -72,7 +75,7 @@
                                             <Grid>
                                                 <Border x:Name="PART_Back" Background="#FFF" Opacity="0.4"
                                                         CornerRadius="4" />
-                                                <Grid Width="280" Margin="15">
+                                                <Grid Width="280" Margin="15,10,15,15">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="55" />

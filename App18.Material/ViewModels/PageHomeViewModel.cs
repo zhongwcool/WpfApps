@@ -86,4 +86,7 @@ public class PageHomeViewModel : ObservableObject
                || (!string.IsNullOrWhiteSpace(item.Subject) &&
                    item.Subject.ToLower().Contains(_searchKeyword!.ToLower()));
     }
+
+    public string MyAvatar { get; set; } =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh2iUZxg0UGw0mPw-sQLjTd64TR9lyif9Y7w&usqp=CAU";
 }
