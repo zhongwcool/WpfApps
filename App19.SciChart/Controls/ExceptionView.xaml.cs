@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
+using Mar.Console;
 using SciChart.Charting.Visuals;
 
 namespace App19.SciChart00.Controls;
 
 public partial class ExceptionView : Window
 {
-    public ExceptionView(Exception exception)
+    private readonly Exception? _exception;
+
+    public ExceptionView(Exception? exception)
     {
         InitializeComponent();
-
+        _exception = exception;
         LogException(exception);
     }
 
-    private void LogException(Exception exception)
+    private void LogException(Exception? exception)
     {
         if (exception == null) return;
 
@@ -34,17 +36,8 @@ public partial class ExceptionView : Window
 
     private void EmailSupport_Click(object sender, RoutedEventArgs e)
     {
-        var email = "mailto:support@scichart.com?subject=Unhandled%20Exception&body=" +
-                    Uri.EscapeDataString(FormatEmail());
-        try
-        {
-            Process.Start(email);
-        }
-        catch (Exception)
-        {
-            MessageBox.Show(
-                "We have not detected an email client on your PC!\r\nPlease email support@scichart.com with the exception message.");
-        }
+        EmailUtil.SendEmail("2872700763@qq.com", "zhongwcool@qq.com", $"崩溃日志-{_exception?.Message}",
+            Uri.EscapeDataString(FormatEmail()), "smtp.qq.com", 587, "2872700763", "utyydjctjirrdfgc");
     }
 
     private string FormatEmail()
