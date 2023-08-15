@@ -109,88 +109,101 @@
 
                 <cv:DateToHumanizeConverter x:Key="DateToHumanizeConverter" />
                 <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
+                <cv:Address2NickConverter x:Key="Address2NickConverter" />
             </ResourceDictionary>
         </Grid.Resources>
-        <Grid Width="600" MaxHeight="800" Margin="16" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border Background="#FFF" Opacity="0.4" CornerRadius="4" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Viewbox Height="1" Grid.Row="0" />
+
+        <ScrollViewer Width="600" MaxHeight="800" Margin="16"
+                      HorizontalAlignment="Left" VerticalAlignment="Top"
+                      Grid.Row="1">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <Border Background="#FFF" Opacity="0.4" CornerRadius="4" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <DockPanel Margin="15" Grid.Row="0">
-                    <StackPanel Opacity="0.9" VerticalAlignment="Center" DockPanel.Dock="Left">
-                        <TextBlock Text="{Binding Subject}" />
-                        <TextBlock
-                            Text="3 Messages"
-                            FontSize="10" Margin="0,2,0,0" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button
-                            Width="30"
-                            Padding="2,0,2,0"
-                            materialDesign:RippleAssist.IsCentered="True"
-                            Style="{StaticResource MaterialDesignToolButton}">
-                            <materialDesign:PackIcon Kind="DeleteOutline" />
-                        </Button>
-                        <materialDesign:PopupBox Padding="2,0,2,0"
-                                                 Style="{StaticResource MaterialDesignToolPopupBox}">
-                            <StackPanel>
-                                <Button Content="More" />
-                                <Button Content="Options" />
-                            </StackPanel>
-                        </materialDesign:PopupBox>
-                    </StackPanel>
-                </DockPanel>
-
-                <Grid Grid.Row="1">
-                    <Border Background="#FFF" Opacity="0.8" CornerRadius="0,0,4,4" />
-
-                    <StackPanel Margin="15,15,15,15" Orientation="Vertical">
-                        <StackPanel Height="50" Orientation="Horizontal">
-                            <Image Width="35" Height="35" Margin="0,5,0,5"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Source="https://img-blog.csdnimg.cn/20190323161418695.png" />
-
-                            <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding From}" />
-                                <TextBlock
-                                    Text="{Binding Time, Converter={StaticResource DateToHumanizeConverter}}"
-                                    FontSize="10" Margin="0,2,0,0" />
-                            </StackPanel>
+                    <DockPanel Margin="15" Grid.Row="0">
+                        <StackPanel Opacity="0.9" VerticalAlignment="Center" DockPanel.Dock="Left">
+                            <TextBlock Text="{Binding Subject}" />
+                            <TextBlock
+                                Text="3 Messages"
+                                FontSize="10" Margin="0,2,0,0" />
                         </StackPanel>
 
-                        <TextBlock Margin="0,5,0,5" Opacity="0.8">To me,Ziad, and Lily</TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button
+                                Width="30"
+                                Padding="2,0,2,0"
+                                materialDesign:RippleAssist.IsCentered="True"
+                                Style="{StaticResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon Kind="DeleteOutline" />
+                            </Button>
+                            <materialDesign:PopupBox Padding="2,0,2,0"
+                                                     Style="{StaticResource MaterialDesignToolPopupBox}">
+                                <StackPanel>
+                                    <Button Content="More" />
+                                    <Button Content="Options" />
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                        </StackPanel>
+                    </DockPanel>
 
-                        <TextBlock VerticalAlignment="Top" Margin="0,5,0,5"
-                                   Text="{Binding Body}"
-                                   TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis" />
+                    <Grid Grid.Row="1">
+                        <Border Background="#FFF" Opacity="0.8" CornerRadius="0,0,4,4" />
 
-                        <Image Source="{Binding Link1}" Height="480" Margin="0,5,0,0"
-                               Stretch="UniformToFill"
-                               Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}" />
+                        <StackPanel Margin="15,15,15,15" Orientation="Vertical">
+                            <StackPanel Height="50" Orientation="Horizontal">
+                                <materialDesign:Card Width="36" Height="36" UniformCornerRadius="18">
+                                    <Image VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Source="{Binding FromAvatar}" />
+                                </materialDesign:Card>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Button Margin="15" Height="40" Content="Reply"
-                                    materialDesign:ButtonAssist.CornerRadius="20"
-                                    Style="{StaticResource MaterialDesignFlatLightButtonM}"
-                                    Grid.Column="0" />
+                                <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding From}" />
+                                    <TextBlock
+                                        Text="{Binding Date, Converter={StaticResource DateToHumanizeConverter}}"
+                                        FontSize="10" Margin="0,2,0,0" />
+                                </StackPanel>
+                            </StackPanel>
 
-                            <Button Margin="15" Height="40" Content="Reply All"
-                                    materialDesign:ButtonAssist.CornerRadius="20"
-                                    Style="{StaticResource MaterialDesignFlatLightButtonM}"
-                                    Grid.Column="1" />
-                        </Grid>
-                    </StackPanel>
+                            <TextBlock Margin="0,5,0,5" Opacity="0.8"
+                                       Text="{Binding To, Converter={StaticResource Address2NickConverter}}" />
+
+                            <TextBlock VerticalAlignment="Top" Margin="0,5,0,5"
+                                       Text="{Binding Body}"
+                                       TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis" />
+
+                            <Image Source="{Binding Link1}" Height="480" Margin="0,5,0,0"
+                                   Stretch="UniformToFill"
+                                   Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}" />
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Margin="15" Height="40" Content="Reply"
+                                        materialDesign:ButtonAssist.CornerRadius="20"
+                                        Style="{StaticResource MaterialDesignFlatLightButtonM}"
+                                        Grid.Column="0" />
+
+                                <Button Margin="15" Height="40" Content="Reply All"
+                                        materialDesign:ButtonAssist.CornerRadius="20"
+                                        Style="{StaticResource MaterialDesignFlatLightButtonM}"
+                                        Grid.Column="1" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

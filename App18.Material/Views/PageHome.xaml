@@ -21,10 +21,15 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Border Background="{DynamicResource MaterialDesignPaper}"
                     HorizontalAlignment="Left" Margin="0,16,0,0"
-                    Width="310" Height="48" CornerRadius="24">
+                    Width="310" Height="48" CornerRadius="24"
+                    Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -49,79 +54,89 @@
                     </Button>
                 </Grid>
             </Border>
-        
-        <ListView HorizontalAlignment="Left" VerticalAlignment="Top"
-                  ItemsSource="{Binding EmailList}"
-                  SelectedIndex="{Binding SelectedIndex}"
-                  SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <Border Margin="0,12,0,0" CornerRadius="4">
-                                    <Grid>
-                                        <Border x:Name="PART_Back" Background="#FFF" Opacity="0.4" CornerRadius="4" />
-                                        <Grid Width="280" Margin="15">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="55" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
-                                            
-                                            <StackPanel Height="50" Orientation="Horizontal" Grid.Row="0">
-                                                <Image Width="35" Height="35" Margin="5,5,0,5"
-                                                       VerticalAlignment="Center"
-                                                       HorizontalAlignment="Center"
-                                                       Source="https://img-blog.csdnimg.cn/20190323161418695.png" />
 
-                                                <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
-                                                    <TextBlock Text="{Binding From}" />
-                                                    <TextBlock
-                                                        Text="{Binding Time, Converter={StaticResource DateToHumanizeConverter}}"
-                                                        FontSize="10" Margin="0,2,0,0" />
-                                                </StackPanel>
-                                            </StackPanel>
-                                            
-                                            <StackPanel Grid.Row="1">
-                                                <TextBlock FontSize="15" FontWeight="DemiBold" Margin="5,0,5,5"
-                                                           Text="{Binding Subject}" />
+            <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top"
+                          VerticalScrollBarVisibility="Hidden"
+                          Grid.Row="1">
+                <ListView ItemsSource="{Binding EmailList}"
+                          SelectedIndex="{Binding SelectedIndex}"
+                          SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          PreviewMouseWheel="ListView_PreviewMouseWheel">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Margin="0,12,0,0" CornerRadius="4">
+                                            <Grid>
+                                                <Border x:Name="PART_Back" Background="#FFF" Opacity="0.4"
+                                                        CornerRadius="4" />
+                                                <Grid Width="280" Margin="15">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="55" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
 
-                                                <TextBlock VerticalAlignment="Top" Margin="5,0,0,0"
-                                                           Text="{Binding Body}"
-                                                           TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
-                                            </StackPanel>
+                                                    <StackPanel Height="50" Orientation="Horizontal" Grid.Row="0">
+                                                        <materialDesign:Card Width="36" Height="36"
+                                                                             UniformCornerRadius="18">
+                                                            <Image VerticalAlignment="Center"
+                                                                   HorizontalAlignment="Center"
+                                                                   Source="{Binding FromAvatar}" />
+                                                        </materialDesign:Card>
 
-                                            <materialDesign:Card Grid.Row="2" Margin="5,5,5,0" UniformCornerRadius="4"
-                                                                 Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}">
-                                                <Image Source="{Binding Link1}" Height="80"
-                                                       Stretch="UniformToFill" />
-                                            </materialDesign:Card>
-                                        </Grid>
-                                    </Grid>
-                                </Border>
+                                                        <StackPanel Opacity="0.9" Margin="8,5,0,5"
+                                                                    VerticalAlignment="Center">
+                                                            <TextBlock Text="{Binding From}" />
+                                                            <TextBlock
+                                                                Text="{Binding Date, Converter={StaticResource DateToHumanizeConverter}}"
+                                                                FontSize="10" Margin="0,2,0,0" />
+                                                        </StackPanel>
+                                                    </StackPanel>
 
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="PART_Back" Property="Background"
-                                                Value="{DynamicResource PrimaryHueLightBrush}" />
-                                        <Setter TargetName="PART_Back" Property="Opacity" Value="0.2" />
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="PART_Back" Property="Background"
-                                                Value="{DynamicResource PrimaryHueMidBrush}" />
-                                        <Setter TargetName="PART_Back" Property="Opacity" Value="0.8" />
-                                        <Setter Property="TextElement.Foreground"
-                                                Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-        </StackPanel>
+                                                    <StackPanel Grid.Row="1">
+                                                        <TextBlock FontSize="15" FontWeight="DemiBold" Margin="5,0,5,5"
+                                                                   Text="{Binding Subject}" />
+
+                                                        <TextBlock VerticalAlignment="Top" Margin="5,0,0,0"
+                                                                   Text="{Binding Body}"
+                                                                   TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                                                    </StackPanel>
+
+                                                    <materialDesign:Card Grid.Row="2" Margin="5,5,5,0"
+                                                                         UniformCornerRadius="4"
+                                                                         Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}">
+                                                        <Image Source="{Binding Link1}" Height="80"
+                                                               Stretch="UniformToFill" />
+                                                    </materialDesign:Card>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="PART_Back" Property="Background"
+                                                        Value="{DynamicResource PrimaryHueLightBrush}" />
+                                                <Setter TargetName="PART_Back" Property="Opacity" Value="0.2" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="PART_Back" Property="Background"
+                                                        Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                <Setter TargetName="PART_Back" Property="Opacity" Value="0.8" />
+                                                <Setter Property="TextElement.Foreground"
+                                                        Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
 
         <views:PageMail Margin="{Binding MarginRequirement, FallbackValue=16}"
                         DataContext="{Binding SelectedItem}"

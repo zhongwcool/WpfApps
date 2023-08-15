@@ -2,26 +2,44 @@
   "Mails": [
     {
       "From": "老强",
-      "Time": "2023-08-12 15:01:59",
+      "FromAvatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKYc9uaFHfyTOA8aLJFvYOma5bhyLVbY_yi8-S-uqCGbQ241nx2tMyPcoILvO40uqEvU&usqp=CAU",
+      "To": [
+        "example@gmail.com"
+      ],
+      "Date": "2023-08-12 15:01:59",
       "Subject": "豆花鱼",
       "Body": "最近忙吗？昨晚我去了你最爱的那家饭馆，点了他们的特色豆花鱼，吃着吃着就想你了。"
     },
     {
       "From": "So Durl",
-      "Time": "2023-08-12 14:51:59",
+      "FromAvatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ESuqpYLE0PeId29cTWzz-rlglVCOEIra_7uzweUOR2z6buybjhYIxz_OsiS-GCsdI34&usqp=CAU",
+      "To": [
+        "me<example1@gmail.com>",
+        "Ziad<example2@gmail.com>",
+        "Lily<example3@gmail.com>"
+      ],
+      "Date": "2023-08-12 14:51:59",
       "Subject": "Dinner Club",
       "Body": "I think it's time for us to finally try that new noodle shop downtown that doesn't use menusAnyone else have other suggestions for dinner club this week? I'm so intrigued by this idea of a noodle restaurant where no one gets to order for themselves - could be fun, or terrible, or both :)"
     },
     {
       "From": "Lily MacDonald",
-      "Time": "2023-08-12 13:01:59",
+      "FromAvatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcqfbHmdAL98sk67aLUpKIm3FnaDahq7YOFwsId2U3pgTD5yxocJ1pN3xhUweV4pPrWSY&usqp=CAU",
+      "To": [
+        "Lily<example3@gmail.com>"
+      ],
+      "Date": "2023-08-12 13:01:59",
       "Subject": "This food show is made for you",
       "Body": "Ping-you'd love this new food show i started watching. It's produced by a Thai drummer who star..We’re updating the cards and ranking all the time, so check back regularly. At first, you might need to follow some people or star some repositories to get started",
       "Link1": "https://media.cnn.com/api/v1/images/stellar/prod/210127235319-03-how-to-stay-warm-this-winter-wellness-clothes.jpg?q=w_3000,h_2000,x_0,y_0,c_fill"
     },
     {
       "From": "Ziad Aouad",
-      "Time": "2023-08-12 12:00:59",
+      "FromAvatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRooTUpd-vx3h3Vfenlwefi9RGk4trohyb2yg&usqp=CAU",
+      "To": [
+        "zhongwcool@163.com"
+      ],
+      "Date": "2023-08-12 12:00:59",
       "Subject": "Dynamic color & illustration",
       "Body": "Dynamic color can be applied through mapping the color schemes to the different parts of the illustrations. This especially applies to illustrations that sits on a surface that will dynamically change.",
       "Link1": "https://www.thesprucepets.com/thmb/7CHmDlv4W4jejT9e8WpSqVkB29w=/2121x0/filters:no_upscale():strip_icc()/Yorkshireterrierongrass-1c79d05c23104385b9e7e8ad0117abb9.jpg"

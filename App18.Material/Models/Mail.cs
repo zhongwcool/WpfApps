@@ -9,8 +9,9 @@ namespace App18.Material.Models;
 public class Mail : ObservableObject
 {
     public string From { get; set; }
-    public List<string> ToWhom { get; set; }
-    public DateTime Time { get; set; }
+    public string FromAvatar { get; set; }
+    public List<string> To { get; set; }
+    public DateTime Date { get; set; }
     public string Subject { get; set; }
     public string Body { get; set; }
     public string Link1 { get; set; }

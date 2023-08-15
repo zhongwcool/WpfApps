@@ -19,8 +19,8 @@ public class MainViewModel : ObservableObject
             new(
                 nameof(PageHome),
                 typeof(PageHome),
-                PackIconKind.Palette,
-                PackIconKind.PaletteOutline)
+                PackIconKind.TransitionMasked,
+                PackIconKind.Transition)
         };
 
         foreach (var item in GenerateNavigationItems(snackbarMessageQueue).OrderBy(i => i.Name))
@@ -40,14 +40,14 @@ public class MainViewModel : ObservableObject
         yield return new NavigationItem(
             nameof(PageDemo1),
             typeof(PageDemo1),
-            PackIconKind.Alien,
-            PackIconKind.AlienOutline);
+            PackIconKind.NaturePeople,
+            PackIconKind.NaturePeopleOutline);
 
         yield return new NavigationItem(
             nameof(PageDemo2),
             typeof(PageDemo2),
-            PackIconKind.Butterfly,
-            PackIconKind.ButterflyOutline);
+            PackIconKind.Palette,
+            PackIconKind.PaletteOutline);
     }
 
     public ObservableCollection<NavigationItem> NavigationItems { get; }
