@@ -1,11 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App14.IASystem.Models;
 
 public class Pool : ObservableObject
 {
+    public Pool()
+    {
+        AddDate = DateTime.Now;
+        PoolId = Guid.NewGuid();
+    }
     private Guid _poolId;
 
     public Guid PoolId
@@ -54,9 +59,9 @@ public class Pool : ObservableObject
         set => SetProperty(ref _farm, value);
     }
 
-    private IList<Device> _devices;
+    private ObservableCollection<Device> _devices;
 
-    public virtual IList<Device> Devices
+    public virtual ObservableCollection<Device> Devices
     {
         get => _devices;
         set => SetProperty(ref _devices, value);

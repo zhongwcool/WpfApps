@@ -10,17 +10,16 @@ namespace App14.IASystem.Views;
 
 public partial class MainWindow : Window
 {
-    private IaContext Context { get; }
+    private IaContext Context { get; set; }
 
     public MainWindow()
     {
         InitializeComponent();
-
-        Context = new IaContext();
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        Context = new IaContext();
         // this is for demo purposes only, to make it easier
         // to get up and running
         Context.Database.EnsureCreated();

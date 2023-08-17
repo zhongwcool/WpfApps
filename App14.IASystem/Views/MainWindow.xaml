@@ -20,19 +20,21 @@
             <TabItem x:Name="PoolsTab" Header="鱼塘" Selector.Selected="PoolsTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:PoolsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <DataGrid Grid.Row="0" x:Name="DataGridPools"
-                                  ItemsSource="{Binding PoolsCollection}"
-                                  SelectedItem="{Binding SelectedPool, Mode=TwoWay}">
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid x:Name="DataGridPools"
+                                  ItemsSource="{Binding Pools}"
+                                  SelectedItem="{Binding SelectedPool, Mode=TwoWay}"
+                                  Grid.Column="0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="鱼塘名" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="基地" Binding="{Binding Farm.Name}" />
@@ -44,97 +46,91 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <Button Grid.Row="1" Content="删除鱼塘" Margin="5,5,5,5" Command="{Binding RemovePoolCommand}" />
-                    </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <StackPanel>
+                                    <HeaderedContentControl Header="鱼塘信息" Margin="0,5,0,0"
+                                                            Style="{StaticResource H3HeaderedContentControl}">
+                                        <ui:SimpleStackPanel Spacing="5">
+                                            <TextBox ui:ControlHelper.Header="鱼塘名:" Margin="5,0,0,0" Width="160"
+                                                     VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                     Text="{Binding SelectedPool.Name}" />
+                                            <Slider ui:ControlHelper.Header="进度:" Margin="5,0,0,0" Width="160"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                    Minimum="0" Maximum="100"
+                                                    Value="{Binding SelectedPool.Progress}" />
+                                            <DatePicker ui:ControlHelper.Header="创建日期:" Margin="5,0,0,0"
+                                                        Width="160"
+                                                        SelectedDate="{Binding SelectedPool.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBox ui:ControlHelper.Header="鱼塘说明:" Margin="5,0,0,0" Width="600"
+                                                     HorizontalAlignment="Left"
+                                                     Text="{Binding SelectedPool.Note}"
+                                                     TextWrapping="Wrap" />
+                                        </ui:SimpleStackPanel>
+                                    </HeaderedContentControl>
 
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="200" />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0">
-                                <HeaderedContentControl Header="鱼塘信息" Margin="0,5,0,0"
-                                                        Style="{StaticResource H3HeaderedContentControl}">
-                                    <ui:SimpleStackPanel Spacing="5">
-                                        <TextBox ui:ControlHelper.Header="鱼塘名:" Margin="5,0,0,0" Width="160"
-                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                 Text="{Binding SelectedPool.Name}" />
-                                        <Slider ui:ControlHelper.Header="进度:" Margin="5,0,0,0" Width="160"
+                                    <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
+                                                            Style="{StaticResource H3HeaderedContentControl}">
+                                        <DataGrid Grid.Row="0" Width="600"
+                                                  x:Name="DataGridSelectedPool"
+                                                  Margin="5,5,0,5"
+                                                  HorizontalAlignment="Left"
+                                                  ItemsSource="{Binding SelectedPool.Devices}"
+                                                  SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
+                                                <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
+                                                <DataGridTextColumn Header="创建日期"
+                                                                    Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
+                                                                    IsReadOnly="True" />
+                                                <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
+                                                <DataGridTextColumn Header="Hik IP" Binding="{Binding HikIp}" />
+                                                <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}"
+                                                                    IsReadOnly="True" />
+                                                <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}"
+                                                                    IsReadOnly="True" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </HeaderedContentControl>
+
+                                    <Button Content="删除设备" Margin="5,5,5,5"
+                                            Command="{Binding RemoveNodeCommand}" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="1"
+                                  Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                                  IsEnabled="{Binding IsNodeSelected}">
+                                <ui:SimpleStackPanel Spacing="5">
+                                    <TextBox ui:ControlHelper.Header="设备:" Margin="5,0,0,0" Width="160"
+                                             VerticalAlignment="Center" HorizontalAlignment="Left"
+                                             Text="{Binding SelectedNode.NodeName}" />
+                                    <DatePicker ui:ControlHelper.Header="添加日期:" Margin="5,0,0,0" Width="160"
                                                 VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                Minimum="0" Maximum="100"
-                                                Value="{Binding SelectedPool.Progress}" />
-                                        <DatePicker ui:ControlHelper.Header="创建日期:" Margin="5,0,0,0" Width="160"
-                                                    SelectedDate="{Binding SelectedPool.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBox ui:ControlHelper.Header="鱼塘说明:" Margin="5,0,0,0" Width="600"
-                                                 HorizontalAlignment="Left"
-                                                 Text="{Binding SelectedPool.Note}"
-                                                 TextWrapping="Wrap" />
-                                    </ui:SimpleStackPanel>
-                                </HeaderedContentControl>
-
-                                <HeaderedContentControl Header="设备列表" Margin="0,5,0,0"
-                                                        Style="{StaticResource H3HeaderedContentControl}">
-                                    <DataGrid Grid.Row="0" Width="600"
-                                              x:Name="DataGridSelectedPool"
-                                              Margin="5,5,0,5"
-                                              HorizontalAlignment="Left"
-                                              ItemsSource="{Binding SelectedPool.Devices}"
-                                              SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
-                                            <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
-                                            <DataGridTextColumn Header="创建日期"
-                                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
-                                                                IsReadOnly="True" />
-                                            <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
-                                            <DataGridTextColumn Header="Hik IP" Binding="{Binding HikIp}" />
-                                            <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}"
-                                                                IsReadOnly="True" />
-                                            <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}"
-                                                                IsReadOnly="True" />
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                </HeaderedContentControl>
-
-                                <Button Content="删除设备" Margin="5,5,5,5" 
-                                        Command="{Binding RemoveNodeCommand}"
-                                        Visibility="Collapsed"/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <Button Content="保存" Margin="5,5,5,5"
-                                        Style="{DynamicResource AccentButtonStyle}"
-                                        Command="{Binding SaveCommand}" />
-
-                            </StackPanel>
-                        </Grid>
-
-                        <Grid Grid.Column="1"
-                              Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
-                              IsEnabled="{Binding IsNodeSelected}">
-                            <ui:SimpleStackPanel Spacing="5">
-                                <TextBox ui:ControlHelper.Header="设备:" Margin="5,0,0,0" Width="160"
-                                         VerticalAlignment="Center" HorizontalAlignment="Left"
-                                         Text="{Binding SelectedNode.NodeName}" />
-                                <DatePicker ui:ControlHelper.Header="添加日期:" Margin="5,0,0,0" Width="160"
-                                            VerticalAlignment="Center" HorizontalAlignment="Left"
-                                            SelectedDate="{Binding SelectedNode.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBox ui:ControlHelper.Header="HIK IP:" Margin="5,0,0,0" Width="160"
-                                         VerticalAlignment="Center" HorizontalAlignment="Left"
-                                         Text="{Binding SelectedNode.HikIp}" />
-                                <ComboBox ui:ControlHelper.Header="归属:" Margin="5,15,0,0" Width="160"
-                                          VerticalAlignment="Center" HorizontalAlignment="Left"
-                                          ItemsSource="{Binding OwnerList}"
-                                          DisplayMemberPath="Description"
-                                          SelectedIndex="{Binding SelectedPoolIndex}" />
-                            </ui:SimpleStackPanel>
+                                                SelectedDate="{Binding SelectedNode.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox ui:ControlHelper.Header="HIK IP:" Margin="5,0,0,0" Width="160"
+                                             VerticalAlignment="Center" HorizontalAlignment="Left"
+                                             Text="{Binding SelectedNode.HikIp}" />
+                                </ui:SimpleStackPanel>
+                            </Grid>
                         </Grid>
                     </Grid>
+
+                    <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
+                        <Button Content="删除鱼塘" Margin="5,5,5,5"
+                                Command="{Binding RemovePoolCommand}" />
+
+                        <Button Content="增加鱼塘" Margin="5,5,5,5"
+                                Command="{Binding AddPoolCommand}" />
+
+                        <Button Content="保存" Margin="5,5,5,5"
+                                Style="{DynamicResource AccentButtonStyle}"
+                                Command="{Binding SaveCommand}" />
+                    </WrapPanel>
                 </Grid>
             </TabItem>
 
