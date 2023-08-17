@@ -63,7 +63,7 @@ public class PageHomeViewModel : ObservableObject
 
     private readonly ICollectionView _demoItemsView;
 
-    private string _searchKeyword;
+    private string _searchKeyword = string.Empty;
 
     public string SearchKeyword
     {
@@ -79,10 +79,8 @@ public class PageHomeViewModel : ObservableObject
         var item = (Mail)obj;
         if (string.IsNullOrWhiteSpace(_searchKeyword)) return true;
 
-        return (!string.IsNullOrWhiteSpace(item.From) &&
-                item.From.ToLower().Contains(_searchKeyword!.ToLower()))
-               || (!string.IsNullOrWhiteSpace(item.Body) &&
-                   item.Body.ToLower().Contains(_searchKeyword!.ToLower()))
+        return (!string.IsNullOrWhiteSpace(item.From) && item.From.ToLower().Contains(_searchKeyword!.ToLower()))
+               || (!string.IsNullOrWhiteSpace(item.Body) && item.Body.ToLower().Contains(_searchKeyword!.ToLower()))
                || (!string.IsNullOrWhiteSpace(item.Subject) &&
                    item.Subject.ToLower().Contains(_searchKeyword!.ToLower()));
     }

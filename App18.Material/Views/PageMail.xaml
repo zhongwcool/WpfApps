@@ -120,6 +120,7 @@
         <Viewbox Height="1" Grid.Row="0" />
 
         <ScrollViewer Width="600" MaxHeight="800" Margin="16"
+                      VerticalScrollBarVisibility="Hidden"
                       HorizontalAlignment="Left" VerticalAlignment="Top"
                       Grid.Row="1">
             <Grid>
@@ -193,8 +194,8 @@
                                        Text="{Binding Body}"
                                        TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis" />
 
-                            <Image Source="{Binding Link1}" Height="480" Margin="0,5,0,0"
-                                   Stretch="UniformToFill"
+                            <Image Source="{Binding Link1}" MaxHeight="480" Margin="0,5,0,0"
+                                   Stretch="Uniform"
                                    Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}" />
 
                             <Grid>
