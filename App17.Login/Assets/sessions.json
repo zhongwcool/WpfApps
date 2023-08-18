@@ -2,8 +2,8 @@
   "Sessions": [
     {
       "Cookie": "SESSION=2afd481e-80f3-4ea7-89ff-619188e23a0a",
-      "UserPhone": "15151406638",
-      "UserPwd": "12345678",
+      "UserPhone": "",
+      "UserPwd": "",
       "DeviceId": "2001219",
       "LoginApi": "https://webapp2.zytdwl.cn/customer/login",
       "RedirApi": "https://webapp2.zytdwl.cn/customer/welcome",
