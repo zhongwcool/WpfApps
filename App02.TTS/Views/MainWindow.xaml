@@ -23,8 +23,7 @@
                     <Label FontWeight="Bold">角色:</Label>
                     <ComboBox ItemsSource="{Binding Roles}"
                               DisplayMemberPath="Name" SelectedValuePath="VoiceKey"
-                              SelectedValue="{Binding SelectedValue}"
-                              SelectedIndex="{Binding IndexRole}"
+                              SelectedValue="{Binding SelectedValue, Mode=TwoWay}"
                               Width="200"
                               HorizontalAlignment="Left" />
                 </WrapPanel>

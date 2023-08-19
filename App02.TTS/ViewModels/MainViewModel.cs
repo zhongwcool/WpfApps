@@ -10,9 +10,15 @@ namespace App02.TTS.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
+    private SpeechConfig _config;
+    
     public MainViewModel()
     {
         Prepare();
+        PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(SelectedValue)) _config.SpeechSynthesisVoiceName = SelectedValue;
+        };
 
         CommandSpeak = new RelayCommand(() => { SpeakAsync(TxtContent); });
     }
@@ -33,22 +39,7 @@ public class MainViewModel : ObservableObject
         _config = SpeechConfig.FromSubscription(azure.SubscriptionKey, azure.SubscriptionRegion);
         TxtContent = azure.Text;
 
-        for (var i = 0; i < Roles.Count; i++)
-        {
-            if (Roles[i].VoiceKey != azure.VoiceKey) continue;
-            IndexRole = i;
-            break;
-        }
-
-        if (-1 == IndexRole)
-        {
-            IndexRole = 0;
-            SelectedValue = Roles[IndexRole].VoiceKey;
-        }
-        else
-        {
-            SelectedValue = Roles[IndexRole].VoiceKey;
-        }
+        SelectedValue = azure.VoiceKey;
 
         _config.SpeechSynthesisVoiceName = SelectedValue;
     }
@@ -56,21 +47,14 @@ public class MainViewModel : ObservableObject
     private const string JSON_AZURE = "azure.json";
     private const string JSON_ROLES = "roles.json";
 
-    private SpeechConfig _config;
-
     private string _selectedValue = string.Empty;
 
     public string SelectedValue
     {
         get => _selectedValue;
-        set
-        {
-            SetProperty(ref _selectedValue, value);
-            _config.SpeechSynthesisVoiceName = _selectedValue;
-        }
+        set => SetProperty(ref _selectedValue, value);
     }
-
-    public int IndexRole { get; set; } = -1;
+    
     public string TxtError { get; set; } = string.Empty;
     public string TxtContent { get; set; } = string.Empty;
 
