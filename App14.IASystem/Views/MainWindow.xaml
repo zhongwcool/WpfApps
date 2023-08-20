@@ -137,69 +137,89 @@
             <TabItem x:Name="DevicesTab" Header="设备" Selector.Selected="DevicesTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:DevicesTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Column="0" x:Name="DataGridDevices"
-                              ItemsSource="{Binding DevicesCollection}"
-                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
-                            <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
-                            <DataGridTextColumn Header="归属鱼塘" Binding="{Binding Pool.Name}" />
-                            <DataGridTextColumn Header="创建日期"
-                                                Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
-                                                IsReadOnly="True" />
-                            <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
-                            <DataGridTextColumn Header="Hik IP" Binding="{Binding HikIp}" />
-                            <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
-                            <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <DataGrid Grid.Column="0" x:Name="DataGridDevices"
+                                  ItemsSource="{Binding Devices}"
+                                  SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="节点名" Binding="{Binding NodeName}" />
+                                <DataGridTextColumn Header="序列号" Binding="{Binding SerialNum}" />
+                                <DataGridTextColumn Header="归属鱼塘" Binding="{Binding Pool.Name}" />
+                                <DataGridTextColumn Header="创建日期"
+                                                    Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
+                                                    IsReadOnly="True" />
+                                <DataGridTextColumn Header="类型" Binding="{Binding Type}" />
+                                <DataGridTextColumn Header="Hik IP" Binding="{Binding HikIp}" />
+                                <DataGridTextColumn Header="协议版本" Binding="{Binding Protocol}" />
+                                <DataGridTextColumn Header="固件版本" Binding="{Binding Firmware}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                    <StackPanel Grid.Column="1">
-                        <HeaderedContentControl Header="基本信息" Margin="0,5,0,0"
-                                                Style="{StaticResource H3HeaderedContentControl}">
-                            <Grid>
-                                <Grid.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Margin" Value="5" />
-                                    </Style>
-                                </Grid.Resources>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="65" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="40" />
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="节点名" />
-                                <TextBlock Grid.Row="0" Grid.Column="2" Text="设备类型" />
-                                <TextBlock Grid.Row="0" Grid.Column="4" Text="添加日期" />
-                                <TextBlock Grid.Row="0" Grid.Column="6" Text="归属" />
+                        <StackPanel Grid.Column="1">
+                            <HeaderedContentControl Header="基本信息" Margin="0,5,0,0"
+                                                    Style="{StaticResource H3HeaderedContentControl}">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="5" />
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="65" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="节点名" />
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="设备类型" />
+                                    <TextBlock Grid.Row="0" Grid.Column="4" Text="添加日期" />
+                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="归属" />
 
-                                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                           Text="{Binding SelectedDevice.NodeName}" />
-                                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                           Text="{Binding SelectedDevice.ModelNum}" />
-                                <DatePicker Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                            Width="120"
-                                            SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <ComboBox Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                          Width="120" ItemsSource="{Binding OwnerList}" DisplayMemberPath="Description"
-                                          SelectedIndex="{Binding SelectedIndex}" />
-                            </Grid>
-                        </HeaderedContentControl>
-                    </StackPanel>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding SelectedDevice.NodeName}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding SelectedDevice.ModelNum}" />
+                                    <DatePicker Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"
+                                                VerticalAlignment="Center"
+                                                Width="120"
+                                                SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <ComboBox Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"
+                                              VerticalAlignment="Center" Width="120"
+                                              ItemsSource="{Binding OwnerList}"
+                                              DisplayMemberPath="Description" SelectedValuePath="Pool"
+                                              SelectedValue="{Binding SelectedValue, Mode=TwoWay}" />
+                                </Grid>
+                            </HeaderedContentControl>
+                        </StackPanel>
+                    </Grid>
+
+                    <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
+                        <Button Content="删除设备" Margin="5,5,5,5"
+                                Command="{Binding DeleteDeviceCommand}" />
+
+                        <Button Content="保存" Margin="5,5,5,5"
+                                Style="{DynamicResource AccentButtonStyle}"
+                                Command="{Binding SaveCommand}" />
+                    </WrapPanel>
                 </Grid>
             </TabItem>
 

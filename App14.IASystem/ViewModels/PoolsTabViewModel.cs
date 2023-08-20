@@ -13,6 +13,39 @@ namespace App14.IASystem.ViewModels;
 public class PoolsTabViewModel : ObservableValidator
 {
     private IaContext Context { get; }
+
+    public PoolsTabViewModel(IaContext iaContext)
+    {
+        RemovePoolCommand = new RelayCommand(DoRemoveSelectedPool, CanExecute_RemoveSelectedPoolCommand);
+        RemoveNodeCommand = new RelayCommand(DoRemoveSelectedNode, CanExecute_RemoveSelectedNodeCommand);
+        AddPoolCommand = new RelayCommand(DoAddPool);
+        SaveCommand = new RelayCommand(DoSave);
+
+        Context = iaContext;
+        // load the entities into EF Core
+        Context.Pools.Load();
+        // bind to the source
+        Pools = new ObservableCollection<Pool>(Context.Pools.OrderBy(pool => pool.Name).ToList());
+        SelectedPool = Pools.FirstOrDefault();
+
+        OwnerList = Context.Pools.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
+        OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
+
+        PropertyChanged += (_, args) =>
+        {
+            switch (args.PropertyName)
+            {
+                case nameof(SelectedPool):
+                    RemovePoolCommand.NotifyCanExecuteChanged();
+                    break;
+                case nameof(SelectedNode):
+                    RemoveNodeCommand.NotifyCanExecuteChanged();
+                    IsNodeSelected = null == SelectedNode ? IsNodeSelected = false : IsNodeSelected = true;
+                    break;
+            }
+        };
+    }
+
     public ObservableCollection<Pool> Pools { get; set; }
 
     private Pool _selectedPool = new();
@@ -28,54 +61,7 @@ public class PoolsTabViewModel : ObservableValidator
     public Device SelectedNode
     {
         get => _selectedNode;
-        set
-        {
-            SetProperty(ref _selectedNode, value);
-
-            IsNodeSelected = (null != _selectedNode);
-
-            if (null == _selectedNode?.Pool)
-            {
-                _selectedPoolIndex = 0;
-                OnPropertyChanged(nameof(SelectedPoolIndex));
-                return;
-            }
-
-            for (var j = 0; j < OwnerList.Count; j++)
-            {
-                if (null == OwnerList[j].Pool || OwnerList[j].Pool.PoolId != _selectedNode.Pool.PoolId) continue;
-                _selectedPoolIndex = j;
-                OnPropertyChanged(nameof(SelectedPoolIndex));
-                break;
-            }
-
-            RemoveNodeCommand.NotifyCanExecuteChanged();
-        }
-    }
-
-    public PoolsTabViewModel(IaContext iaContext)
-    {
-        RemovePoolCommand = new RelayCommand(DoRemoveSelectedPool, CanExecute_RemoveSelectedPoolCommand);
-        RemoveNodeCommand = new RelayCommand(DoRemoveSelectedNode, CanExecute_RemoveSelectedNodeCommand);
-        AddPoolCommand = new RelayCommand(DoAddPool);
-        SaveCommand = new RelayCommand(DoSave);
-        
-        Context = iaContext;
-        // load the entities into EF Core
-        Context.Pools.Load();
-        // bind to the source
-        Pools = new ObservableCollection<Pool>(Context.Pools.OrderBy(pool => pool.Name).ToList());
-        SelectedPool = Pools.FirstOrDefault();
-        
-        OwnerList = Context.Pools.Local.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
-        OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
-
-        if (SelectedPool != null)
-            SelectedPool.PropertyChanged += (sender, args) =>
-            {
-                RemovePoolCommand.NotifyCanExecuteChanged();
-                RemoveNodeCommand.NotifyCanExecuteChanged();
-            };
+        set => SetProperty(ref _selectedNode, value);
     }
 
     private bool _isNodeSelected = false;
@@ -116,7 +102,6 @@ public class PoolsTabViewModel : ObservableValidator
 
     private void DoRemoveSelectedNode()
     {
-        //SelectedNode.Pool = null;
         SelectedPool.Devices.Remove(SelectedNode);
     }
 
@@ -132,19 +117,6 @@ public class PoolsTabViewModel : ObservableValidator
         ValidateAllProperties();
         if (!HasErrors)
         {
-            Context.SaveChanges();
-        }
-    }
-
-    private int _selectedPoolIndex = 0;
-
-    public int SelectedPoolIndex
-    {
-        get => _selectedPoolIndex;
-        set
-        {
-            SetProperty(ref _selectedPoolIndex, value);
-            SelectedNode.Pool = OwnerList[_selectedPoolIndex].Pool;
             Context.SaveChanges();
         }
     }
