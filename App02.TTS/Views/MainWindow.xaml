@@ -6,16 +6,21 @@
         xmlns:vm="clr-namespace:App02.TTS.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
-        Title="Speech Studio | Text-To-Speech" SizeToContent="WidthAndHeight">
+        Title="Speech Studio | Text-To-Speech" Width="800" SizeToContent="Height">
     <Grid>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Viewbox Height="1" Grid.Row="0" />
+        <StackPanel Grid.Row="1">
             <Grid Margin="10">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -23,24 +28,45 @@
                          HorizontalAlignment="Left"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"
-                         FontSize="12"
-                         Width="600" Height="200"
+                         FontSize="12" Height="200"
                          Grid.Row="0" />
 
-                <StackPanel Margin="0,10,0,10" Orientation="Horizontal" Grid.Row="1">
-                    <Label FontWeight="Bold">声音:</Label>
-                    <ComboBox ItemsSource="{Binding Voices}"
-                              DisplayMemberPath="Name" SelectedValuePath="VoiceKey"
-                              SelectedValue="{Binding SelectedValue, Mode=TwoWay}"
-                              HorizontalAlignment="Left" />
-                </StackPanel>
+                <Grid Margin="0,10,0,10" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label FontWeight="Bold" Grid.Column="0">声音*:</Label>
+                    <ListBox ItemsSource="{Binding Voices}"
+                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                             DisplayMemberPath="Name" SelectedValuePath="VoiceKey"
+                             SelectedValue="{Binding SelectedVoice, Mode=TwoWay}"
+                             HorizontalAlignment="Left"
+                             Grid.Column="1" />
+                </Grid>
+
+                <Grid Margin="0,10,0,10" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label FontWeight="Bold" Grid.Column="0">风格:</Label>
+                    <ListBox ItemsSource="{Binding Styles}"
+                             Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                             DisplayMemberPath="ShortName" SelectedValuePath="StyleKey"
+                             SelectedValue="{Binding SelectedStyle, Mode=TwoWay}"
+                             HorizontalAlignment="Left"
+                             Grid.Column="1" />
+                </Grid>
                 
                 <!-- Buttons -->
                 <WrapPanel Margin="0,10,0,10" Grid.Row="3">
                     <Button Command="{Binding CommandSpeak}">Echo Textbox</Button>
                 </WrapPanel>
 
-                <Label Foreground="Red" Content="{Binding TxtError}" Grid.Row="4" />
+                <WrapPanel Grid.Row="4">
+                    <TextBlock Foreground="Red" Text="{Binding TxtError}" />
+                </WrapPanel>
             </Grid>
         </StackPanel>
     </Grid>

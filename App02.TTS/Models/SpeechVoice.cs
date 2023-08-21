@@ -1,4 +1,6 @@
-﻿namespace App02.TTS.Models;
+﻿using System.Collections.Generic;
+
+namespace App02.TTS.Models;
 
 public class SpeechVoice
 {
@@ -7,4 +9,5 @@ public class SpeechVoice
     public string VoiceName { get; set; } = string.Empty;
     public string Gender { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    public List<string> SpeechStyles { get; set; } = new();
 }

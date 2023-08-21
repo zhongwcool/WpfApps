@@ -1,5 +1,10 @@
 [
   {
+    "ShortName": "默认",
+    "StyleKey": "",
+    "Description": "默认"
+  },
+  {
     "ShortName": "广告-欢快",
     "StyleKey": "advertisement_upbeat",
     "Description": "用兴奋和精力充沛的语气推广产品或服务。"

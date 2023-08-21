@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
+using System.Windows.Data;
 using App02.TTS.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -16,18 +18,27 @@ public class MainViewModel : ObservableObject
     public MainViewModel()
     {
         Prepare();
+        
         PropertyChanged += (_, args) =>
         {
-            if (args.PropertyName == nameof(SelectedValue)) _config.SpeechSynthesisVoiceName = SelectedValue;
+            if (args.PropertyName == nameof(SelectedVoice))
+            {
+                CommandSpeak.NotifyCanExecuteChanged();
+                if (!string.IsNullOrWhiteSpace(SelectedVoice)) _config.SpeechSynthesisVoiceName = SelectedVoice;
+            }
         };
 
-        CommandSpeak = new RelayCommand(() => { SpeakAsync(TxtContent); });
+        CommandSpeak = new RelayCommand(() => { SpeakAsync(TxtContent); },
+            () => !string.IsNullOrWhiteSpace(_selectedVoice));
     }
 
     private void Prepare()
     {
         Styles = new ObservableCollection<SpeechStyle>(JsonUtil.Load<List<SpeechStyle>>(JSON_STYLE));
         Voices = new ObservableCollection<SpeechVoice>(JsonUtil.Load<List<SpeechVoice>>(JSON_VOICE));
+
+        _voiceItemsView = CollectionViewSource.GetDefaultView(Voices);
+        _voiceItemsView.Filter = CollectionFilter;
 
         var azure = JsonUtil.Load<Models.Azure>(JSON_AZURE);
         if (azure == null)
@@ -40,23 +51,42 @@ public class MainViewModel : ObservableObject
         // 
         _config = SpeechConfig.FromSubscription(azure.SubscriptionKey, azure.SubscriptionRegion);
         TxtContent = azure.Text;
-        SelectedValue = azure.VoiceKey;
-        _config.SpeechSynthesisVoiceName = SelectedValue;
+        SelectedVoice = azure.VoiceKey;
+        _config.SpeechSynthesisVoiceName = SelectedVoice;
     }
 
     private const string JSON_AZURE = "azure.json";
     private const string JSON_VOICE = "voices.json";
     private const string JSON_STYLE = "styles.json";
 
-    private string _selectedValue = string.Empty;
+    private string _selectedVoice = string.Empty;
 
-    public string SelectedValue
+    public string SelectedVoice
     {
-        get => _selectedValue;
-        set => SetProperty(ref _selectedValue, value);
+        get => _selectedVoice;
+        set => SetProperty(ref _selectedVoice, value);
     }
 
-    public string TxtError { get; private set; } = string.Empty;
+    private ICollectionView _voiceItemsView;
+
+    private string _selectedStyle = string.Empty;
+
+    public string SelectedStyle
+    {
+        get => _selectedStyle;
+        set
+        {
+            if (SetProperty(ref _selectedStyle, value)) _voiceItemsView.Refresh();
+        }
+    }
+
+    private string _txtError = string.Empty;
+
+    public string TxtError
+    {
+        get => _txtError;
+        private set => SetProperty(ref _txtError, value);
+    }
     public string TxtContent { get; set; } = string.Empty;
 
     private async void SpeakAsync(string text)
@@ -67,7 +97,7 @@ public class MainViewModel : ObservableObject
         switch (result.Reason)
         {
             case ResultReason.SynthesizingAudioCompleted:
-                TxtError = $"Speech synthesized for text [{text}]";
+                TxtError = $"Done. [{text}]";
                 break;
             case ResultReason.Canceled:
             {
@@ -87,8 +117,16 @@ public class MainViewModel : ObservableObject
         }
     }
 
+    private bool CollectionFilter(object obj)
+    {
+        if (string.IsNullOrWhiteSpace(SelectedStyle)) return true;
+
+        var item = (SpeechVoice)obj;
+        return item.SpeechStyles.Contains(SelectedStyle);
+    }
+
     public IRelayCommand CommandSpeak { get; }
 
-    public ObservableCollection<SpeechVoice> Voices { get; set; }
-    public ObservableCollection<SpeechStyle> Styles { get; set; }
+    public ObservableCollection<SpeechVoice> Voices { get; private set; }
+    public ObservableCollection<SpeechStyle> Styles { get; private set; }
 }
