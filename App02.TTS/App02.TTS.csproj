@@ -10,12 +10,12 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
-        <PackageReference Include="Mar.Console" Version="0.3.0"/>
-        <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.30.0"/>
-        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="Mar.Console" Version="0.4.0"/>
+        <PackageReference Include="MaterialDesignThemes" Version="4.9.0"/>
+        <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.31.0"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\roles.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\azure.json $(ProjectDir)$(OutDir)"/>
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\voices.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\azure.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\styles.json $(ProjectDir)$(OutDir)"/>
     </Target>
 
 </Project>

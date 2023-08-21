@@ -1,0 +1,172 @@
+[
+  {
+    "ShortName": "广告-欢快",
+    "StyleKey": "advertisement_upbeat",
+    "Description": "用兴奋和精力充沛的语气推广产品或服务。"
+  },
+  {
+    "ShortName": "撒娇",
+    "StyleKey": "affectionate",
+    "Description": "以较高的音调和音量表达温暖而亲切的语气。 说话者处于吸引听众注意力的状态。 说话者的个性往往是讨喜的。"
+  },
+  {
+    "ShortName": "愤怒",
+    "StyleKey": "angry",
+    "Description": "表达生气和厌恶的语气。"
+  },
+  {
+    "ShortName": "数字助理",
+    "StyleKey": "assistant",
+    "Description": "数字助理用的是热情而轻松的语气。"
+  },
+  {
+    "ShortName": "平静",
+    "StyleKey": "calm",
+    "Description": "以沉着冷静的态度说话。 语气、音调和韵律与其他语音类型相比要统一得多。"
+  },
+  {
+    "ShortName": "聊天",
+    "StyleKey": "chat",
+    "Description": "表达轻松随意的语气。"
+  },
+  {
+    "ShortName": "愉悦",
+    "StyleKey": "cheerful",
+    "Description": "表达积极愉快的语气。"
+  },
+  {
+    "ShortName": "客户服务",
+    "StyleKey": "customerservice",
+    "Description": "以友好热情的语气为客户提供支持。"
+  },
+  {
+    "ShortName": "沮丧",
+    "StyleKey": "depressed",
+    "Description": "调低音调和音量来表达忧郁、沮丧的语气。"
+  },
+  {
+    "ShortName": "不满",
+    "StyleKey": "disgruntled",
+    "Description": "表达轻蔑和抱怨的语气。 这种情绪的语音表现出不悦和蔑视。"
+  },
+  {
+    "ShortName": "纪录片-旁白",
+    "StyleKey": "documentary-narration",
+    "Description": "用一种轻松、感兴趣和信息丰富的风格讲述纪录片，适合配音纪录片、专家评论和类似内容。"
+  },
+  {
+    "ShortName": "尴尬",
+    "StyleKey": "embarrassed",
+    "Description": "在说话者感到不舒适时表达不确定、犹豫的语气。"
+  },
+  {
+    "ShortName": "同理心",
+    "StyleKey": "empathetic",
+    "Description": "表达关心和理解。"
+  },
+  {
+    "ShortName": "羡慕",
+    "StyleKey": "envious",
+    "Description": "当你渴望别人拥有的东西时，表达一种钦佩的语气。"
+  },
+  {
+    "ShortName": "兴奋",
+    "StyleKey": "excited",
+    "Description": "表达乐观和充满希望的语气。 似乎发生了一些美好的事情，说话人对此非常满意。"
+  },
+  {
+    "ShortName": "害怕",
+    "StyleKey": "fearful",
+    "Description": "以较高的音调、较高的音量和较快的语速来表达恐惧、紧张的语气。 说话人处于紧张和不安的状态。"
+  },
+  {
+    "ShortName": "友好",
+    "StyleKey": "friendly",
+    "Description": "表达一种愉快、怡人且温暖的语气。 听起来很真诚且满怀关切。"
+  },
+  {
+    "ShortName": "温柔",
+    "StyleKey": "gentle",
+    "Description": "以较低的音调和音量表达温和、礼貌和愉快的语气。"
+  },
+  {
+    "ShortName": "期待",
+    "StyleKey": "hopeful",
+    "Description": "表达一种温暖且渴望的语气。 听起来像是会有好事发生在说话人身上。"
+  },
+  {
+    "ShortName": "抒情",
+    "StyleKey": "lyrical",
+    "Description": "以优美又带感伤的方式表达情感。"
+  },
+  {
+    "ShortName": "旁白-专业",
+    "StyleKey": "narration-professional",
+    "Description": "以专业、客观的语气朗读内容。"
+  },
+  {
+    "ShortName": "旁白-放松",
+    "StyleKey": "narration-relaxed",
+    "Description": "为内容阅读表达一种舒缓而悦耳的语气。"
+  },
+  {
+    "ShortName": "新闻",
+    "StyleKey": "newscast",
+    "Description": "以正式专业的语气叙述新闻。"
+  },
+  {
+    "ShortName": "新闻 - 休闲",
+    "StyleKey": "newscast-casual",
+    "Description": "以通用、随意的语气发布一般新闻。"
+  },
+  {
+    "ShortName": "新闻 - 正式",
+    "StyleKey": "newscast-formal",
+    "Description": "以正式、自信和权威的语气发布新闻。"
+  },
+  {
+    "ShortName": "诗歌朗诵",
+    "StyleKey": "poetry-reading",
+    "Description": "在读诗时表达出带情感和节奏的语气。"
+  },
+  {
+    "ShortName": "悲伤",
+    "StyleKey": "sad",
+    "Description": "表达悲伤语气。"
+  },
+  {
+    "ShortName": "严厉",
+    "StyleKey": "serious",
+    "Description": "表达严肃和命令的语气。 说话者的声音通常比较僵硬，节奏也不那么轻松。"
+  },
+  {
+    "ShortName": "喊叫",
+    "StyleKey": "shouting",
+    "Description": "就像从遥远的地方说话或在外面说话，但能让自己清楚地听到"
+  },
+  {
+    "ShortName": "体育解说",
+    "StyleKey": "sports_commentary",
+    "Description": "用轻松有趣的语气播报体育赛事。"
+  },
+  {
+    "ShortName": "体育解说-兴奋",
+    "StyleKey": "sports_commentary_excited",
+    "Description": "用快速且充满活力的语气播报体育赛事精彩瞬间。"
+  },
+  {
+    "ShortName": "恐惧",
+    "StyleKey": "terrified",
+    "Description": "表达一种非常害怕的语气，语速快且声音颤抖。 听起来说话人处于不稳定的疯狂状态。"
+  },
+  {
+    "ShortName": "不友好",
+    "StyleKey": "unfriendly",
+    "Description": "表达一种冷淡无情的语气。"
+  },
+  {
+    "ShortName": "低语",
+    "StyleKey": "whispering",
+    "Description": "说话非常柔和，发出的声音小且温柔"
+  }
+]

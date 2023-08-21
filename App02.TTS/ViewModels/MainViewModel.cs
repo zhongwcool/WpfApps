@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using App02.TTS.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -25,27 +26,27 @@ public class MainViewModel : ObservableObject
 
     private void Prepare()
     {
-        var model0 = JsonUtil.Load<RoleModel>(JSON_ROLES);
-        if (model0 == null) return;
-        foreach (var role in model0.Roles) Roles.Add(role);
+        Styles = new ObservableCollection<SpeechStyle>(JsonUtil.Load<List<SpeechStyle>>(JSON_STYLE));
+        Voices = new ObservableCollection<SpeechVoice>(JsonUtil.Load<List<SpeechVoice>>(JSON_VOICE));
 
-        var model = JsonUtil.Load<AzureModel>(JSON_AZURE);
-        if (model == null) return;
-        var azure = model.Azure;
-
+        var azure = JsonUtil.Load<Models.Azure>(JSON_AZURE);
+        if (azure == null)
+        {
+            TxtError = "Azure.json is not found!";
+            return;
+        }
         //
         // For more samples please visit https://github.com/Azure-Samples/cognitive-services-speech-sdk 
         // 
         _config = SpeechConfig.FromSubscription(azure.SubscriptionKey, azure.SubscriptionRegion);
         TxtContent = azure.Text;
-
         SelectedValue = azure.VoiceKey;
-
         _config.SpeechSynthesisVoiceName = SelectedValue;
     }
 
     private const string JSON_AZURE = "azure.json";
-    private const string JSON_ROLES = "roles.json";
+    private const string JSON_VOICE = "voices.json";
+    private const string JSON_STYLE = "styles.json";
 
     private string _selectedValue = string.Empty;
 
@@ -54,8 +55,8 @@ public class MainViewModel : ObservableObject
         get => _selectedValue;
         set => SetProperty(ref _selectedValue, value);
     }
-    
-    public string TxtError { get; set; } = string.Empty;
+
+    public string TxtError { get; private set; } = string.Empty;
     public string TxtContent { get; set; } = string.Empty;
 
     private async void SpeakAsync(string text)
@@ -88,5 +89,6 @@ public class MainViewModel : ObservableObject
 
     public IRelayCommand CommandSpeak { get; }
 
-    public ObservableCollection<Role> Roles { get; set; } = new();
+    public ObservableCollection<SpeechVoice> Voices { get; set; }
+    public ObservableCollection<SpeechStyle> Styles { get; set; }
 }

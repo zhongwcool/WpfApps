@@ -1,0 +1,142 @@
+[
+  {
+    "Name": "晓晓",
+    "VoiceKey": "zh-CN-XiaoxiaoNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "活泼、温暖的声音，具有多种场景风格和情感。"
+  },
+  {
+    "Name": "云希",
+    "VoiceKey": "zh-CN-YunxiNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "活泼、阳光的声音，具有丰富的情感，可用于许多对话场景。"
+  },
+  {
+    "Name": "云健",
+    "VoiceKey": "zh-CN-YunjianNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "专业、流利的声音，具有多种场景风格。"
+  },
+  {
+    "Name": "晓伊",
+    "VoiceKey": "zh-CN-XiaoyiNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "无"
+  },
+  {
+    "Name": "晓辰",
+    "VoiceKey": "zh-CN-XiaochenNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "休闲、放松的声音，用于自发性对话和会议听录。"
+  },
+  {
+    "Name": "晓涵",
+    "VoiceKey": "zh-CN-XiaohanNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "温暖、甜美、富有感情的声音，可用于许多对话场景。"
+  },
+  {
+    "Name": "晓梦",
+    "VoiceKey": "zh-CN-XiaomengNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "无"
+  },
+  {
+    "Name": "晓墨",
+    "VoiceKey": "zh-CN-XiaomoNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "清晰、放松的声音，具有丰富的角色扮演和情感，适合音频书籍。"
+  },
+  {
+    "Name": "晓秋",
+    "VoiceKey": "zh-CN-XiaoqiuNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "知性、舒适的声音，适合阅读长篇内容。"
+  },
+  {
+    "Name": "晓睿",
+    "VoiceKey": "zh-CN-XiaoruiNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "成熟、睿智的声音，具有丰富的情感，适合音频书籍。"
+  },
+  {
+    "Name": "晓双",
+    "VoiceKey": "zh-CN-XiaoshuangNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "可爱、愉悦的声音，可应用于许多儿童相关场景。"
+  },
+  {
+    "Name": "晓萱",
+    "VoiceKey": "zh-CN-XiaoxuanNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "自信、有能力的声音，具有丰富的角色扮演和情感，适合音频书籍。"
+  },
+  {
+    "Name": "晓颜",
+    "VoiceKey": "zh-CN-XiaoyanNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "训练有素、舒适的声音，用于客户服务和对话场景。"
+  },
+  {
+    "Name": "晓悠",
+    "VoiceKey": "zh-CN-XiaoyouNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "天使般的清晰声音，可以应用于许多儿童相关场景。"
+  },
+  {
+    "Name": "晓甄",
+    "VoiceKey": "zh-CN-XiaozhenNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Female",
+    "Description": "无"
+  },
+  {
+    "Name": "云枫",
+    "VoiceKey": "zh-CN-YunfengNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "无"
+  },
+  {
+    "Name": "云皓",
+    "VoiceKey": "zh-CN-YunhaoNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "无"
+  },
+  {
+    "Name": "云夏",
+    "VoiceKey": "zh-CN-YunxiaNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "无"
+  },
+  {
+    "Name": "云野",
+    "VoiceKey": "zh-CN-YunyeNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "专业、流利的声音，具有多种场景风格。"
+  },
+  {
+    "Name": "云泽",
+    "VoiceKey": "zh-CN-YunzeNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "无"
+  }
+]
