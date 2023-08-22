@@ -14,11 +14,11 @@ namespace App02.TTS.ViewModels;
 public class MainViewModel : ObservableObject
 {
     private SpeechConfig _config;
-    
+
     public MainViewModel()
     {
         Prepare();
-        
+
         PropertyChanged += (_, args) =>
         {
             if (args.PropertyName == nameof(SelectedVoice))
@@ -47,6 +47,7 @@ public class MainViewModel : ObservableObject
             TxtError = "Azure.json is not found!";
             return;
         }
+
         //
         // For more samples please visit https://github.com/Azure-Samples/cognitive-services-speech-sdk 
         // 
@@ -89,13 +90,25 @@ public class MainViewModel : ObservableObject
         get => _txtError;
         private set => SetProperty(ref _txtError, value);
     }
+
     public string TxtContent { get; set; } = string.Empty;
 
     private async void SpeakAsync(string text)
     {
         if (null == _config) return;
+
+        var ssml =
+            @$"<speak version='1.0' xml:lang='zh-CN' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts'>
+            <voice name='{_config.SpeechSynthesisVoiceName}'>
+                <mstts:express-as style='{SelectedStyle}'>{text}</mstts:express-as>
+            </voice>
+        </speak>";
+
+        // Required for sentence-level WordBoundary events
+        _config.SetProperty(PropertyId.SpeechServiceResponse_RequestSentenceBoundary, "true");
+
         using var synthesizer = new SpeechSynthesizer(_config);
-        using var result = await synthesizer.SpeakTextAsync(text);
+        using var result = await synthesizer.SpeakSsmlAsync(ssml);
         switch (result.Reason)
         {
             case ResultReason.SynthesizingAudioCompleted:
