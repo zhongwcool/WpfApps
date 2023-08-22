@@ -34,6 +34,7 @@ public class MainViewModel : ObservableObject
 
     private void Prepare()
     {
+        Roles = new ObservableCollection<SpeechRole>(JsonUtil.Load<List<SpeechRole>>(JSON_ROLE));
         Styles = new ObservableCollection<SpeechStyle>(JsonUtil.Load<List<SpeechStyle>>(JSON_STYLE));
         Voices = new ObservableCollection<SpeechVoice>(JsonUtil.Load<List<SpeechVoice>>(JSON_VOICE));
 
@@ -58,6 +59,7 @@ public class MainViewModel : ObservableObject
     private const string JSON_AZURE = "azure.json";
     private const string JSON_VOICE = "voices.json";
     private const string JSON_STYLE = "styles.json";
+    private const string JSON_ROLE = "roles.json";
 
     private string _selectedVoice = string.Empty;
 
@@ -129,4 +131,5 @@ public class MainViewModel : ObservableObject
 
     public ObservableCollection<SpeechVoice> Voices { get; private set; }
     public ObservableCollection<SpeechStyle> Styles { get; private set; }
+    public ObservableCollection<SpeechRole> Roles { get; private set; }
 }

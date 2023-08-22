@@ -1,0 +1,47 @@
+[
+  {
+    "RoleName": "默认",
+    "RoleKey": "",
+    "Description": "默认"
+  },
+  {
+    "RoleName": "小女孩",
+    "RoleKey": "Girl",
+    "Description": "The voice imitates a girl."
+  },
+  {
+    "RoleName": "小男孩",
+    "RoleKey": "Boy",
+    "Description": "The voice imitates a boy."
+  },
+  {
+    "RoleName": "女青年",
+    "RoleKey": "YoungAdultFemale",
+    "Description": "The voice imitates a young adult female."
+  },
+  {
+    "RoleName": "男青年",
+    "RoleKey": "YoungAdultMale",
+    "Description": "The voice imitates a young adult male."
+  },
+  {
+    "RoleName": "女中年",
+    "RoleKey": "OlderAdultFemale",
+    "Description": "The voice imitates an older adult female."
+  },
+  {
+    "RoleName": "男中年",
+    "RoleKey": "OlderAdultMale",
+    "Description": "The voice imitates an older adult male."
+  },
+  {
+    "RoleName": "女老年",
+    "RoleKey": "SeniorFemale",
+    "Description": "The voice imitates a senior female."
+  },
+  {
+    "RoleName": "男老年",
+    "RoleKey": "SeniorMale",
+    "Description": "The voice imitates a senior male."
+  }
+]

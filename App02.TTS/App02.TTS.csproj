@@ -15,7 +15,7 @@
         <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.31.0"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\voices.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\azure.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\styles.json $(ProjectDir)$(OutDir)"/>
+        <Exec Command="xcopy /e /d /y $(ProjectDir)Assets\voices.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\azure.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\styles.json $(ProjectDir)$(OutDir)&#xA;xcopy /e /d /y $(ProjectDir)Assets\roles.json $(ProjectDir)$(OutDir)"/>
     </Target>
 
 </Project>

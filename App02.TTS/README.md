@@ -28,8 +28,13 @@ Text-To-Speech 是 [Speech Studio](https://speech.microsoft.com/portal/) 中的�
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
        xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="zh-CN">
     <voice name="zh-CN-XiaomoNeural">
-        <mstts:express-as style="sad" styledegree="2">
-            快走吧，路上一定要注意安全，早去早回。
+        女儿看见父亲走了进来，问道：
+        <mstts:express-as role="YoungAdultFemale" style="calm">
+            “您来的挺快的，怎么过来的？”
+        </mstts:express-as>
+        父亲放下手提包，说：
+        <mstts:express-as role="OlderAdultMale" style="calm">
+            “刚打车过来的，路上还挺顺畅。”
         </mstts:express-as>
     </voice>
 </speak>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:App02.TTS.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         Title="Speech Studio | Text-To-Speech" Width="800" SizeToContent="Height">
@@ -24,11 +25,13 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBox Text="{Binding TxtContent}"
-                         HorizontalAlignment="Left"
-                         TextWrapping="Wrap"
+                <TextBox Text="{Binding TxtContent}" Height="200"
+                         VerticalAlignment="Top"
+                         materialDesign:HintAssist.Hint="This is a text area"
                          AcceptsReturn="True"
-                         FontSize="12" Height="200"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
                          Grid.Row="0" />
 
                 <Grid Margin="0,10,0,10" Grid.Row="1">

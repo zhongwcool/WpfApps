@@ -7,7 +7,21 @@
     "Description": "活泼、温暖的声音，具有多种场景风格和情感。",
     "SpeechStyles": [
       "assistant",
-      "chat"
+      "chat",
+      "customerservice",
+      "newscast",
+      "affectionate",
+      "angry",
+      "calm",
+      "cheerful",
+      "disgruntled",
+      "fearful",
+      "gentle",
+      "lyrical",
+      "sad",
+      "serious",
+      "poetry-reading",
+      "friendly"
     ]
   },
   {
@@ -17,7 +31,18 @@
     "Gender": "Male",
     "Description": "活泼、阳光的声音，具有丰富的情感，可用于许多对话场景。",
     "SpeechStyles": [
-      "assistant"
+      "narration-relaxed",
+      "embarrassed",
+      "fearful",
+      "cheerful",
+      "disgruntled",
+      "serious",
+      "angry",
+      "sad",
+      "depressed",
+      "chat",
+      "assistant",
+      "newscast"
     ]
   },
   {
@@ -25,14 +50,49 @@
     "VoiceKey": "zh-CN-YunjianNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Male",
-    "Description": "专业、流利的声音，具有多种场景风格。"
+    "Description": "无",
+    "SpeechStyles": [
+      "narration-relaxed",
+      "sports_commentary",
+      "sports_commentary_excited",
+      "angry",
+      "disgruntled",
+      "cheerful",
+      "sad",
+      "serious",
+      "depressed",
+      "documentary-narration"
+    ]
   },
   {
     "Name": "晓伊",
     "VoiceKey": "zh-CN-XiaoyiNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "angry",
+      "disgruntled",
+      "affectionate",
+      "cheerful",
+      "fearful",
+      "sad",
+      "embarrassed",
+      "serious",
+      "gentle"
+    ]
+  },
+  {
+    "Name": "云扬",
+    "VoiceKey": "zh-CN-YunyangNeural",
+    "VoiceName": "中文(普通话，简体)",
+    "Gender": "Male",
+    "Description": "专业、流利的声音，具有多种场景风格。",
+    "SpeechStyles": [
+      "customerservice",
+      "narration-professional",
+      "newscast-casual"
+    ]
   },
   {
     "Name": "晓辰",
@@ -46,21 +106,50 @@
     "VoiceKey": "zh-CN-XiaohanNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "温暖、甜美、富有感情的声音，可用于许多对话场景。"
+    "Description": "温暖、甜美、富有感情的声音，可用于许多对话场景。",
+    "SpeechStyles": [
+      "calm",
+      "fearful",
+      "cheerful",
+      "disgruntled",
+      "serious",
+      "angry",
+      "sad",
+      "gentle",
+      "affectionate",
+      "embarrassed"
+    ]
   },
   {
     "Name": "晓梦",
     "VoiceKey": "zh-CN-XiaomengNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "chat"
+    ]
   },
   {
     "Name": "晓墨",
     "VoiceKey": "zh-CN-XiaomoNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "清晰、放松的声音，具有丰富的角色扮演和情感，适合音频书籍。"
+    "Description": "清晰、放松的声音，具有丰富的角色扮演和情感，适合音频书籍。",
+    "SpeechStyles": [
+      "embarrassed",
+      "calm",
+      "fearful",
+      "cheerful",
+      "disgruntled",
+      "serious",
+      "angry",
+      "sad",
+      "depressed",
+      "affectionate",
+      "gentle",
+      "envious"
+    ]
   },
   {
     "Name": "晓秋",
@@ -74,21 +163,40 @@
     "VoiceKey": "zh-CN-XiaoruiNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "成熟、睿智的声音，具有丰富的情感，适合音频书籍。"
+    "Description": "成熟、睿智的声音，具有丰富的情感，适合音频书籍。",
+    "SpeechStyles": [
+      "calm",
+      "fearful",
+      "angry",
+      "sad"
+    ]
   },
   {
     "Name": "晓双",
     "VoiceKey": "zh-CN-XiaoshuangNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "可爱、愉悦的声音，可应用于许多儿童相关场景。"
+    "Description": "可爱、愉悦的声音，可应用于许多儿童相关场景。",
+    "SpeechStyles": [
+      "chat"
+    ]
   },
   {
     "Name": "晓萱",
     "VoiceKey": "zh-CN-XiaoxuanNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "自信、有能力的声音，具有丰富的角色扮演和情感，适合音频书籍。"
+    "Description": "自信、有能力的声音，具有丰富的角色扮演和情感，适合音频书籍。",
+    "SpeechStyles": [
+      "calm",
+      "fearful",
+      "cheerful",
+      "disgruntled",
+      "serious",
+      "angry",
+      "gentle",
+      "depressed"
+    ]
   },
   {
     "Name": "晓颜",
@@ -109,41 +217,89 @@
     "VoiceKey": "zh-CN-XiaozhenNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Female",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "angry",
+      "disgruntled",
+      "cheerful",
+      "fearful",
+      "sad",
+      "serious"
+    ]
   },
   {
     "Name": "云枫",
     "VoiceKey": "zh-CN-YunfengNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Male",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "angry",
+      "disgruntled",
+      "cheerful",
+      "fearful",
+      "sad",
+      "serious",
+      "depressed"
+    ]
   },
   {
     "Name": "云皓",
     "VoiceKey": "zh-CN-YunhaoNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Male",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "advertisement_upbeat"
+    ]
   },
   {
     "Name": "云夏",
     "VoiceKey": "zh-CN-YunxiaNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Male",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "calm",
+      "fearful",
+      "cheerful",
+      "angry",
+      "sad"
+    ]
   },
   {
     "Name": "云野",
     "VoiceKey": "zh-CN-YunyeNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Male",
-    "Description": "专业、流利的声音，具有多种场景风格。"
+    "Description": "成熟、放松的声音，具有多种情感，适合音频书籍。",
+    "SpeechStyles": [
+      "embarrassed",
+      "calm",
+      "fearful",
+      "cheerful",
+      "disgruntled",
+      "serious",
+      "angry",
+      "sad"
+    ]
   },
   {
     "Name": "云泽",
     "VoiceKey": "zh-CN-YunzeNeural",
     "VoiceName": "中文(普通话，简体)",
     "Gender": "Male",
-    "Description": "无"
+    "Description": "无",
+    "SpeechStyles": [
+      "calm",
+      "fearful",
+      "cheerful",
+      "disgruntled",
+      "serious",
+      "angry",
+      "sad",
+      "depressed",
+      "documentary-narration"
+    ]
   }
 ]
