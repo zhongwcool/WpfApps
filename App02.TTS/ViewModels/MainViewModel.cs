@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Data;
 using App02.TTS.Models;
@@ -19,17 +20,21 @@ public class MainViewModel : ObservableObject
     {
         Prepare();
 
-        PropertyChanged += (_, args) =>
-        {
-            if (args.PropertyName == nameof(SelectedVoice))
-            {
-                CommandSpeak.NotifyCanExecuteChanged();
-                if (!string.IsNullOrWhiteSpace(SelectedVoice)) _config.SpeechSynthesisVoiceName = SelectedVoice;
-            }
-        };
-
         CommandSpeak = new RelayCommand(() => { SpeakAsync(TxtContent); },
             () => !string.IsNullOrWhiteSpace(_selectedVoice));
+
+        PropertyChanged += (_, args) =>
+        {
+            switch (args.PropertyName)
+            {
+                case nameof(SelectedVoice):
+                {
+                    CommandSpeak.NotifyCanExecuteChanged();
+                    if (!string.IsNullOrWhiteSpace(SelectedVoice)) _config.SpeechSynthesisVoiceName = SelectedVoice;
+                    break;
+                }
+            }
+        };
     }
 
     private void Prepare()
@@ -38,8 +43,8 @@ public class MainViewModel : ObservableObject
         Styles = new ObservableCollection<SpeechStyle>(JsonUtil.Load<List<SpeechStyle>>(JSON_STYLE));
         Voices = new ObservableCollection<SpeechVoice>(JsonUtil.Load<List<SpeechVoice>>(JSON_VOICE));
 
-        _voiceItemsView = CollectionViewSource.GetDefaultView(Voices);
-        _voiceItemsView.Filter = CollectionFilter;
+        _styleItemsView = CollectionViewSource.GetDefaultView(Styles);
+        _styleItemsView.Filter = CollectionFilter;
 
         var azure = JsonUtil.Load<Models.Azure>(JSON_AZURE);
         if (azure == null)
@@ -54,6 +59,7 @@ public class MainViewModel : ObservableObject
         _config = SpeechConfig.FromSubscription(azure.SubscriptionKey, azure.SubscriptionRegion);
         TxtContent = azure.Text;
         SelectedVoice = azure.VoiceKey;
+        SelectedItem = Voices.FirstOrDefault(voice => voice.VoiceKey == SelectedVoice);
         _config.SpeechSynthesisVoiceName = SelectedVoice;
     }
 
@@ -67,20 +73,28 @@ public class MainViewModel : ObservableObject
     public string SelectedVoice
     {
         get => _selectedVoice;
-        set => SetProperty(ref _selectedVoice, value);
+        set
+        {
+            if (SetProperty(ref _selectedVoice, value)) _styleItemsView.Refresh();
+        }
     }
 
-    private ICollectionView _voiceItemsView;
+    private SpeechVoice _selectedItem;
+
+    public SpeechVoice SelectedItem
+    {
+        get => _selectedItem;
+        set => SetProperty(ref _selectedItem, value);
+    }
+
+    private ICollectionView _styleItemsView;
 
     private string _selectedStyle = string.Empty;
 
     public string SelectedStyle
     {
         get => _selectedStyle;
-        set
-        {
-            if (SetProperty(ref _selectedStyle, value)) _voiceItemsView.Refresh();
-        }
+        set => SetProperty(ref _selectedStyle, value);
     }
 
     private string _txtError = string.Empty;
@@ -134,10 +148,10 @@ public class MainViewModel : ObservableObject
 
     private bool CollectionFilter(object obj)
     {
-        if (string.IsNullOrWhiteSpace(SelectedStyle)) return true;
-
-        var item = (SpeechVoice)obj;
-        return item.SpeechStyles.Contains(SelectedStyle);
+        var item = (SpeechStyle)obj;
+        if (string.IsNullOrWhiteSpace(item.StyleKey)) return true;
+        if (SelectedItem == null) return false;
+        return SelectedItem.SpeechStyles.Contains(item.StyleKey);
     }
 
     public IRelayCommand CommandSpeak { get; }
