@@ -31,8 +31,8 @@ public class MainViewModel : ObservableObject
                 {
                     CommandSpeak.NotifyCanExecuteChanged();
                     if (!string.IsNullOrWhiteSpace(SelectedVoice)) _config.SpeechSynthesisVoiceName = SelectedVoice;
-                    break;
                 }
+                    break;
             }
         };
     }
@@ -73,10 +73,7 @@ public class MainViewModel : ObservableObject
     public string SelectedVoice
     {
         get => _selectedVoice;
-        set
-        {
-            if (SetProperty(ref _selectedVoice, value)) _styleItemsView.Refresh();
-        }
+        set => SetProperty(ref _selectedVoice, value);
     }
 
     private SpeechVoice _selectedItem;
@@ -84,7 +81,10 @@ public class MainViewModel : ObservableObject
     public SpeechVoice SelectedItem
     {
         get => _selectedItem;
-        set => SetProperty(ref _selectedItem, value);
+        set
+        {
+            if (SetProperty(ref _selectedItem, value)) _styleItemsView.Refresh();
+        }
     }
 
     private ICollectionView _styleItemsView;
