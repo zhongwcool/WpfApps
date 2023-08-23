@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using App14.IASystem.Context;
-using App14.IASystem.Enums;
 using App14.IASystem.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -18,7 +17,28 @@ namespace App14.IASystem.ViewModels;
 
 public class RecsTabViewModel : ObservableObject
 {
-    private IaContext Context { get; }
+    private readonly IaContext _context;
+
+    public RecsTabViewModel()
+    {
+        _context = new IaContext();
+        // load the entities into EF Core
+        _context.Pools.Load();
+        _context.Devices.Load();
+        _context.RecWqms.Load();
+        // bind to the source
+        RecWqms = new ObservableCollection<RecWqm>(_context.RecWqms.ToList());
+        Pools = new ObservableCollection<Pool>(_context.Pools.OrderBy(pool => pool.Name).ToList());
+
+        Task.Delay(1500).ContinueWith(_ => { SelectedPoolIndex = 0; }
+        );
+
+        DataCommand = new RelayCommand(DoGentData, CanExecute_DataCommand);
+        StopCommand = new RelayCommand(DoStopData, CanExecute_StopCommand);
+        ClearCommand = new RelayCommand(DoClearData, CanExecute_ClearCommand);
+
+        RecWqms.CollectionChanged += (_, _) => { ClearCommand.NotifyCanExecuteChanged(); };
+    }
 
     public ISeries[] Series { get; set; }
         = new ISeries[]
@@ -30,8 +50,8 @@ public class RecsTabViewModel : ObservableObject
             }
         };
 
-    public ObservableCollection<RecWqm> WqmsCollection { get; set; }
-    public ObservableCollection<Pool> PoolList { get; }
+    public ObservableCollection<RecWqm> RecWqms { get; set; }
+    public ObservableCollection<Pool> Pools { get; }
 
     private Pool _selectedPool = new();
 
@@ -71,55 +91,6 @@ public class RecsTabViewModel : ObservableObject
     {
         get => _selectedDeviceIndex;
         set => SetProperty(ref _selectedDeviceIndex, value);
-    }
-
-    public List<Tuple<string, DivideMode>> Fonts { get; } = new()
-    {
-        new Tuple<string, DivideMode>("秒", DivideMode.Second),
-        new Tuple<string, DivideMode>("分钟", DivideMode.Minute),
-        new Tuple<string, DivideMode>("小时", DivideMode.Hour),
-        new Tuple<string, DivideMode>("天", DivideMode.Day)
-    };
-
-    private int _selectedFontIndex = 0;
-
-    public int SelectedFontIndex
-    {
-        get => _selectedFontIndex;
-        set => SetProperty(ref _selectedFontIndex, value);
-    }
-
-    private Tuple<string, DivideMode> _selectedFont;
-
-    public Tuple<string, DivideMode> SelectedFont
-    {
-        get => _selectedFont;
-        set => SetProperty(ref _selectedFont, value);
-    }
-
-    public RecsTabViewModel(IaContext iaContext)
-    {
-        Context = iaContext;
-        // load the entities into EF Core
-        Context.Pools.Load();
-        Context.Devices.Load();
-        Context.RecWqms.Load();
-        // bind to the source
-        WqmsCollection = Context.RecWqms.Local.ToObservableCollection();
-        PoolList = Context.Pools.Local.ToObservableCollection();
-
-        Task.Delay(1500).ContinueWith(_ =>
-            {
-                SelectedPoolIndex = 0;
-                SelectedFontIndex = 0;
-            }
-        );
-
-        DataCommand = new RelayCommand(DoGentData, CanExecute_DataCommand);
-        StopCommand = new RelayCommand(DoStopData, CanExecute_StopCommand);
-        ClearCommand = new RelayCommand(DoClearData, CanExecute_ClearCommand);
-
-        WqmsCollection.CollectionChanged += (_, _) => { ClearCommand.NotifyCanExecuteChanged(); };
     }
 
     private bool _isBusy;
@@ -162,6 +133,9 @@ public class RecsTabViewModel : ObservableObject
 
     private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
+        // 保存数据
+        _context.SaveChanges();
+        
         //如果用户取消了当前操作就关闭窗口。
         if (!e.Cancelled)
         {
@@ -202,6 +176,7 @@ public class RecsTabViewModel : ObservableObject
         }
 
         var progressPercentage = 0;
+        var adt = DateTime.Now;
 
         for (var i = 1; i <= max; i++)
         {
@@ -212,16 +187,17 @@ public class RecsTabViewModel : ObservableObject
             var p = rand.NextSingle() + rand.Next(5, 9);
             var ds = rand.NextSingle() + rand.Next(95, 101);
             var dr = rand.NextSingle() + rand.Next(90, 105);
+            var dt = adt.AddSeconds(i);
 
             var rec = new RecWqm
             {
                 Id = Guid.NewGuid(), HtTemp = t, HtPh = p, HtDosat = ds, HtDor = dr, Pool = SelectedPool,
-                Device = SelectedDevice, TimeStamp = GetDateTime(i)
+                Device = SelectedDevice, TimeStamp = dt
             };
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Context.Add(rec);
-                Context.SaveChanges();
+                RecWqms.Add(rec);
+                _context.RecWqms.Add(rec);
             });
 
             bgWorker?.ReportProgress(progressPercentage);
@@ -236,40 +212,7 @@ public class RecsTabViewModel : ObservableObject
             Thread.Sleep(100);
         }
 
-        _adt = DateTime.Now;
-
         e.Result = progressPercentage;
-    }
-
-    private DateTime _adt = DateTime.Now;
-
-    private DateTime GetDateTime(int seed)
-    {
-        switch (SelectedFont.Item2)
-        {
-            case DivideMode.Second:
-            {
-                var dt = _adt.AddSeconds(seed);
-                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-            }
-            case DivideMode.Minute:
-            {
-                var dt = _adt.AddMinutes(seed);
-                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-            }
-            case DivideMode.Hour:
-            {
-                var dt = _adt.AddHours(seed);
-                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-            }
-            case DivideMode.Day:
-            {
-                var dt = _adt.AddDays(seed);
-                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-            }
-        }
-
-        return DateTime.Now;
     }
 
     private double _currentProgress;
@@ -303,12 +246,13 @@ public class RecsTabViewModel : ObservableObject
 
     private void DoClearData()
     {
-        Context.RecWqms.Local.Clear();
-        Context.SaveChanges();
+        RecWqms.Clear();
+        _context.RecWqms.Local.Clear();
+        _context.SaveChanges();
     }
 
     private bool CanExecute_ClearCommand()
     {
-        return Context.RecWqms.Local.Count > 0;
+        return RecWqms.Count > 0;
     }
 }

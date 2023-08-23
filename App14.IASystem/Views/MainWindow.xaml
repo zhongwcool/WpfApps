@@ -7,7 +7,7 @@
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="IASystem Tool" Height="800" Width="1200" Loaded="Window_Loaded">
+        Title="IASystem Tool" Height="800" Width="1200">
     <Window.Resources>
         <Style TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False" />
@@ -226,80 +226,73 @@
             <TabItem x:Name="RecWqmTab" Header="数据" Selector.Selected="RecsTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:RecsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Column="0" x:Name="DataGridRecs"
-                              ItemsSource="{Binding WqmsCollection}"
-                              SelectedItem="{Binding SelectedRecWqm, Mode=TwoWay}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="温度" Binding="{Binding HtTemp}" />
-                            <DataGridTextColumn Header="PH" Binding="{Binding HtPh}" />
-                            <DataGridTextColumn Header="溶氧浓度" Binding="{Binding HtDor}" />
-                            <DataGridTextColumn Header="溶氧饱和度" Binding="{Binding HtDosat}" />
-                            <DataGridTextColumn Header="设备" Binding="{Binding Device.SerialNum}" />
-                            <DataGridTextColumn Header="时间戳"
-                                                Binding="{Binding Path=TimeStamp, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <DataGrid Grid.Column="0" x:Name="DataGridRecs"
+                                  ItemsSource="{Binding RecWqms}"
+                                  SelectedItem="{Binding SelectedRecWqm, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="温度" Binding="{Binding HtTemp}" />
+                                <DataGridTextColumn Header="PH" Binding="{Binding HtPh}" />
+                                <DataGridTextColumn Header="溶氧浓度" Binding="{Binding HtDor}" />
+                                <DataGridTextColumn Header="溶氧饱和度" Binding="{Binding HtDosat}" />
+                                <DataGridTextColumn Header="设备" Binding="{Binding Device.SerialNum}" />
+                                <DataGridTextColumn Header="时间戳"
+                                                    Binding="{Binding Path=TimeStamp, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                    <StackPanel Grid.Column="1">
-                        <HeaderedContentControl Header="生产模拟数据" Margin="5,5,0,0"
-                                                Style="{StaticResource H3HeaderedContentControl}">
-                            <StackPanel>
-                                <WrapPanel>
-                                    <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
-                                              ItemsSource="{Binding PoolList}"
-                                              DisplayMemberPath="Name"
-                                              SelectedIndex="{Binding SelectedPoolIndex}"
-                                              SelectedItem="{Binding SelectedPool, Mode=TwoWay}" />
-                                    <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
-                                              ItemsSource="{Binding SelectedPool.Devices}"
-                                              DisplayMemberPath="NodeName"
-                                              SelectedIndex="{Binding SelectedDeviceIndex}"
-                                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}" />
-                                </WrapPanel>
+                        <StackPanel Grid.Column="1">
+                            <HeaderedContentControl Header="生产模拟数据" Margin="5,5,5,0"
+                                                    Style="{StaticResource H3HeaderedContentControl}">
+                                <StackPanel>
+                                    <WrapPanel>
+                                        <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
+                                                  ItemsSource="{Binding Pools}"
+                                                  DisplayMemberPath="Name"
+                                                  SelectedIndex="{Binding SelectedPoolIndex}"
+                                                  SelectedItem="{Binding SelectedPool, Mode=TwoWay}" />
+                                        <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
+                                                  ItemsSource="{Binding SelectedPool.Devices}"
+                                                  DisplayMemberPath="NodeName"
+                                                  SelectedIndex="{Binding SelectedDeviceIndex}"
+                                                  SelectedItem="{Binding SelectedDevice, Mode=TwoWay}" />
+                                        <Button Content="开始" Margin="5,5,0,5"
+                                                Command="{Binding DataCommand}" />
+                                        <Button Content="停止" Margin="5,5,0,5"
+                                                Command="{Binding StopCommand}" />
+                                    </WrapPanel>
 
-                                <WrapPanel>
-                                    <ComboBox VerticalAlignment="Center" Width="150" Margin="5,5,0,5"
-                                              ItemsSource="{Binding Fonts}"
-                                              DisplayMemberPath="Item1"
-                                              SelectedIndex="{Binding SelectedFontIndex}"
-                                              SelectedItem="{Binding SelectedFont, Mode=TwoWay}" />
-                                </WrapPanel>
+                                    <ProgressBar Value="{Binding CurrentProgress}" Maximum="100" Minimum="0" />
+                                </StackPanel>
+                            </HeaderedContentControl>
 
-                                <WrapPanel>
-                                    <Button Content="开始" Margin="5,5,0,5"
-                                            Command="{Binding DataCommand}" />
-                                    <Button Content="清除数据" Margin="5,5,0,5"
-                                            Command="{Binding ClearCommand}" />
-                                    <Button Content="停止" Margin="5,5,0,5"
-                                            Command="{Binding StopCommand}" />
-                                </WrapPanel>
+                            <HeaderedContentControl Header="图表化数据" Margin="5,15,0,0"
+                                                    Style="{StaticResource H3HeaderedContentControl}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="250" />
+                                        <RowDefinition Height="250" />
+                                    </Grid.RowDefinitions>
 
-                                <ProgressBar Value="{Binding CurrentProgress}" Maximum="100" Minimum="0" />
-                            </StackPanel>
-                        </HeaderedContentControl>
+                                    <wpf:CartesianChart Grid.Row="0" Series="{Binding Series}" />
+                                </Grid>
+                            </HeaderedContentControl>
+                        </StackPanel>
+                    </Grid>
 
-                        <HeaderedContentControl Header="图表化数据" Margin="5,15,0,0"
-                                                Style="{StaticResource H3HeaderedContentControl}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="250" />
-                                    <RowDefinition Height="250" />
-                                </Grid.RowDefinitions>
-
-                                <wpf:CartesianChart Grid.Row="0" Grid.Column="0"
-                                                    Series="{Binding Series}" />
-                            </Grid>
-                        </HeaderedContentControl>
-                    </StackPanel>
+                    <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
+                        <Button Content="清除数据" Margin="5,5,5,5"
+                                Command="{Binding ClearCommand}" />
+                    </WrapPanel>
                 </Grid>
             </TabItem>
         </TabControl>

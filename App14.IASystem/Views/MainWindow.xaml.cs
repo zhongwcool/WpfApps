@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using App14.IASystem.Context;
 using App14.IASystem.Enums;
@@ -10,37 +9,22 @@ namespace App14.IASystem.Views;
 
 public partial class MainWindow : Window
 {
-    private IaContext Context { get; set; }
-
     public MainWindow()
     {
         InitializeComponent();
-    }
 
-    private void Window_Loaded(object sender, RoutedEventArgs e)
-    {
-        Context = new IaContext();
-        // this is for demo purposes only, to make it easier
-        // to get up and running
-        Context.Database.EnsureCreated();
-        // uncomment if you want to fill database with default values
-        // Fill();
-
-        // bind to the source
-        PoolsTab.DataContext = new PoolsTabViewModel(Context);
-        DevicesTab.DataContext = new DevicesTabViewModel(Context);
-        RecWqmTab.DataContext = new RecsTabViewModel(Context);
-    }
-
-    protected override void OnClosing(CancelEventArgs e)
-    {
-        // clean up database connections
-        Context.Dispose();
-        base.OnClosing(e);
+        PoolsTab.DataContext = new PoolsTabViewModel();
+        DevicesTab.DataContext = new DevicesTabViewModel();
+        RecWqmTab.DataContext = new RecsTabViewModel();
     }
 
     private void Fill()
     {
+        using var context = new IaContext();
+        // this is for demo purposes only, to make it easier
+        // to get up and running
+        context.Database.EnsureCreated();
+        
         var farms = new[]
         {
             new Farm { Id = Guid.NewGuid(), Name = "阳澄湖1号", GongYang = 98, ShiFei = 90, TouWei = 30, XiaoDu = 50 },
@@ -262,11 +246,11 @@ public partial class MainWindow : Window
             },
         };
 
-        Context.Farms.AddRange(farms);
-        Context.Pools.AddRange(pools);
-        Context.Devices.AddRange(devices);
-        Context.RecWqms.AddRange(wqms);
-        Context.SaveChanges();
+        context.Farms.AddRange(farms);
+        context.Pools.AddRange(pools);
+        context.Devices.AddRange(devices);
+        context.RecWqms.AddRange(wqms);
+        context.SaveChanges();
     }
 
     // to avoid exception "某个 ItemsControl 与它的项源不一致"

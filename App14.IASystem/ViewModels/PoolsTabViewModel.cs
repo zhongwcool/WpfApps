@@ -10,25 +10,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App14.IASystem.ViewModels;
 
-public class PoolsTabViewModel : ObservableValidator
+public class PoolsTabViewModel : ObservableValidator, IDisposable
 {
-    private IaContext Context { get; }
+    private readonly IaContext _context;
 
-    public PoolsTabViewModel(IaContext iaContext)
+    public PoolsTabViewModel()
     {
         RemovePoolCommand = new RelayCommand(DoRemoveSelectedPool, CanExecute_RemoveSelectedPoolCommand);
         RemoveNodeCommand = new RelayCommand(DoRemoveSelectedNode, CanExecute_RemoveSelectedNodeCommand);
         AddPoolCommand = new RelayCommand(DoAddPool);
         SaveCommand = new RelayCommand(DoSave);
 
-        Context = iaContext;
+        _context = new IaContext();
         // load the entities into EF Core
-        Context.Pools.Load();
+        _context.Farms.Load();
+        _context.Devices.Load();
+        _context.Pools.Load();
         // bind to the source
-        Pools = new ObservableCollection<Pool>(Context.Pools.OrderBy(pool => pool.Name).ToList());
+        Pools = new ObservableCollection<Pool>(_context.Pools.OrderBy(pool => pool.Name).ToList());
         SelectedPool = Pools.FirstOrDefault();
 
-        OwnerList = Context.Pools.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
+        OwnerList = _context.Pools.Select(pool => new Owner { Pool = pool, Description = pool.Name })
+            .OrderBy(owner => owner.Description).ToList();
         OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
 
         PropertyChanged += (_, args) =>
@@ -79,9 +82,9 @@ public class PoolsTabViewModel : ObservableValidator
         SelectedPool = new Pool
         {
             Name = "New Pool",
-            Farm = Context.Farms.FirstOrDefault()
+            Farm = _context.Farms.FirstOrDefault()
         };
-        Context.Pools.Add(SelectedPool);
+        _context.Pools.Add(SelectedPool);
         Pools.Add(SelectedPool);
     }
 
@@ -89,7 +92,7 @@ public class PoolsTabViewModel : ObservableValidator
 
     private void DoRemoveSelectedPool()
     {
-        Context.Pools.Remove(SelectedPool);
+        _context.Pools.Remove(SelectedPool);
         Pools.Remove(SelectedPool);
     }
 
@@ -117,9 +120,31 @@ public class PoolsTabViewModel : ObservableValidator
         ValidateAllProperties();
         if (!HasErrors)
         {
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 
     public List<Owner> OwnerList { get; }
+
+    private void ReleaseUnmanagedResources()
+    {
+        _context.Dispose();
+    }
+
+    private void Dispose(bool disposing)
+    {
+        ReleaseUnmanagedResources();
+        if (disposing) _context?.Dispose();
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    ~PoolsTabViewModel()
+    {
+        Dispose(false);
+    }
 }

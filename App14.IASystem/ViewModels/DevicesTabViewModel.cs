@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using App14.IASystem.Context;
@@ -9,32 +10,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App14.IASystem.ViewModels;
 
-public class DevicesTabViewModel : ObservableValidator
+public class DevicesTabViewModel : ObservableValidator, IDisposable
 {
-    private IaContext Context { get; }
+    private readonly IaContext _context;
 
-    public DevicesTabViewModel(IaContext iaContext)
+    public DevicesTabViewModel()
     {
         DeleteDeviceCommand = new RelayCommand(DoDeleteDevice, CanExecute_DeleteDeviceCommand);
         SaveCommand = new RelayCommand(DoSave);
 
         PropertyChanged += (_, args) =>
         {
-            if (args.PropertyName == nameof(SelectedDevice))
+            switch (args.PropertyName)
             {
-                DeleteDeviceCommand.NotifyCanExecuteChanged();
-                if (null != SelectedDevice) SelectedValue = SelectedDevice.Pool;
+                case nameof(SelectedDevice):
+                {
+                    DeleteDeviceCommand.NotifyCanExecuteChanged();
+                    if (null != SelectedDevice) SelectedValue = SelectedDevice.Pool;
+                    break;
+                }
             }
         };
 
-        Context = iaContext;
+        _context = new IaContext();
         // load the entities into EF Core
-        Context.Devices.Load();
+        _context.Devices.Load();
         // bind to the source
-        OwnerList = Context.Pools.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
+        OwnerList = _context.Pools.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
         OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
 
-        Devices = new ObservableCollection<Device>(Context.Devices.OrderBy(device => device.NodeName).ToList());
+        Devices = new ObservableCollection<Device>(_context.Devices.OrderBy(device => device.NodeName).ToList());
         SelectedDevice = Devices.FirstOrDefault();
     }
 
@@ -42,7 +47,7 @@ public class DevicesTabViewModel : ObservableValidator
 
     private void DoDeleteDevice()
     {
-        Context.Devices.Remove(SelectedDevice);
+        _context.Devices.Remove(SelectedDevice);
         Devices.Remove(SelectedDevice);
     }
 
@@ -56,7 +61,7 @@ public class DevicesTabViewModel : ObservableValidator
     private void DoSave()
     {
         ValidateAllProperties();
-        if (!HasErrors) Context.SaveChanges();
+        if (!HasErrors) _context.SaveChanges();
     }
 
     public ObservableCollection<Device> Devices { get; set; }
@@ -78,4 +83,26 @@ public class DevicesTabViewModel : ObservableValidator
     }
 
     public List<Owner> OwnerList { get; }
+
+    private void ReleaseUnmanagedResources()
+    {
+        _context.Dispose();
+    }
+
+    private void Dispose(bool disposing)
+    {
+        ReleaseUnmanagedResources();
+        if (disposing) _context?.Dispose();
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    ~DevicesTabViewModel()
+    {
+        Dispose(false);
+    }
 }
