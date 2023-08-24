@@ -20,28 +20,73 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Python文件:" FontWeight="Heavy" VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="0"/>
-            <TextBlock x:Name="TxtPath" Text="" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock Text="Python文件:" FontWeight="Heavy" VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="0" />
+            <TextBlock x:Name="TxtPath" Text="" VerticalAlignment="Center" Grid.Column="1" />
             <Button Click="ButtonSelect_OnClick" Content="选择脚本" Margin="5,5,5,5" Grid.Column="2" />
         </Grid>
-        
+
         <Grid Grid.Row="1">
-            <wpf:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" />
+            <wpf:CartesianChart Series="{Binding XYSeries}"
+                                XAxes="{Binding XAxes}"
+                                YAxes="{Binding YAxes}" />
+
+            <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20">
+                <Border Height="60" Width="60" CornerRadius="60" Background="Gold"
+                        MouseEnter="UIElement_OnMouseEnter" MouseLeave="UIElement_OnMouseLeave">
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.2" To="#40444444"
+                                                    Storyboard.TargetName="PART_Shadow"
+                                                    Storyboard.TargetProperty="Color" />
+                                    <DoubleAnimation Duration="0:0:0.2" To="5"
+                                                     Storyboard.TargetName="PART_Shadow"
+                                                     Storyboard.TargetProperty="BlurRadius" />
+                                    <DoubleAnimation Duration="0:0:0.2" To="10"
+                                                     Storyboard.TargetName="PART_Shadow"
+                                                     Storyboard.TargetProperty="ShadowDepth" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.2" To="#AA444444"
+                                                    Storyboard.TargetName="PART_Shadow"
+                                                    Storyboard.TargetProperty="Color" />
+                                    <DoubleAnimation Duration="0:0:0.2" To="5"
+                                                     Storyboard.TargetName="PART_Shadow"
+                                                     Storyboard.TargetProperty="BlurRadius" />
+                                    <DoubleAnimation Duration="0:0:0.2" To="4"
+                                                     Storyboard.TargetName="PART_Shadow"
+                                                     Storyboard.TargetProperty="ShadowDepth" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+                    <Border.Effect>
+                        <DropShadowEffect x:Name="PART_Shadow" Color="#AA444444" BlurRadius="5"
+                                          ShadowDepth="4" Opacity="0.5" />
+                    </Border.Effect>
+                    <TextBlock x:Name="Block" Text="悬浮区"
+                               Foreground="{DynamicResource SystemControlForegroundAltHighBrush}"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Border>
+            </WrapPanel>
         </Grid>
 
-        <TextBlock MouseEnter="UIElement_OnMouseEnter" MouseLeave="UIElement_OnMouseLeave" x:Name="Block" Margin="5"
-                   Grid.Row="1" />
-        
+
         <WrapPanel Grid.Row="2">
             <Button Click="ButtonCheck_OnClick" Margin="5">检查venv</Button>
             <WrapPanel x:Name="PanelOp">
-                <TextBlock Text="执行Python脚本: " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="执行Python脚本: " VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <Button Click="ButtonRun_OnClick" Margin="5">增加(串行1)</Button>
                 <Button Click="ButtonRun02_OnClick" Margin="5">增加(串行2)</Button>
                 <Button Click="ButtonParallel_OnClick" Margin="5">增加(并行)</Button>
             </WrapPanel>
-            
-            <TextBlock x:Name="TxtCost" Text=".." VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <TextBlock x:Name="TxtCost" Text=".." VerticalAlignment="Center" HorizontalAlignment="Left" />
         </WrapPanel>
     </Grid>
 </Window>
