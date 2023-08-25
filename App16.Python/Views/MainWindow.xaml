@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:vm="clr-namespace:App16.Python.ViewModels"
+        xmlns:control="clr-namespace:App16.Python.Control"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         Title="Call Python Script" Height="450" Width="800">
@@ -30,50 +31,13 @@
                                 XAxes="{Binding XAxes}"
                                 YAxes="{Binding YAxes}" />
 
-            <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20">
-                <Border Height="60" Width="60" CornerRadius="60" Background="Gold"
-                        MouseEnter="UIElement_OnMouseEnter" MouseLeave="UIElement_OnMouseLeave">
-                    <Border.Triggers>
-                        <EventTrigger RoutedEvent="MouseEnter">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ColorAnimation Duration="0:0:0.2" To="#40444444"
-                                                    Storyboard.TargetName="PART_Shadow"
-                                                    Storyboard.TargetProperty="Color" />
-                                    <DoubleAnimation Duration="0:0:0.2" To="5"
-                                                     Storyboard.TargetName="PART_Shadow"
-                                                     Storyboard.TargetProperty="BlurRadius" />
-                                    <DoubleAnimation Duration="0:0:0.2" To="10"
-                                                     Storyboard.TargetName="PART_Shadow"
-                                                     Storyboard.TargetProperty="ShadowDepth" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ColorAnimation Duration="0:0:0.2" To="#AA444444"
-                                                    Storyboard.TargetName="PART_Shadow"
-                                                    Storyboard.TargetProperty="Color" />
-                                    <DoubleAnimation Duration="0:0:0.2" To="5"
-                                                     Storyboard.TargetName="PART_Shadow"
-                                                     Storyboard.TargetProperty="BlurRadius" />
-                                    <DoubleAnimation Duration="0:0:0.2" To="4"
-                                                     Storyboard.TargetName="PART_Shadow"
-                                                     Storyboard.TargetProperty="ShadowDepth" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Border.Triggers>
-                    <Border.Effect>
-                        <DropShadowEffect x:Name="PART_Shadow" Color="#AA444444" BlurRadius="5"
-                                          ShadowDepth="4" Opacity="0.5" />
-                    </Border.Effect>
-                    <TextBlock x:Name="Block" Text="悬浮区"
-                               Foreground="{DynamicResource SystemControlForegroundAltHighBrush}"
-                               VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </Border>
-            </WrapPanel>
+            <ScrollViewer>
+                <TextBlock x:Name="Block" Margin="5" />
+            </ScrollViewer>
+
+            <control:FloatButton Kiwi="悬浮区"
+                                 VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"
+                                 MouseEnter="UIElement_OnMouseEnter" MouseLeave="UIElement_OnMouseLeave" />
         </Grid>
 
 
