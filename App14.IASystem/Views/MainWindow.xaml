@@ -17,7 +17,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem x:Name="PoolsTab" Header="鱼塘" Selector.Selected="PoolsTab_OnSelected"
+            <TabItem x:Name="PoolsTab" Header="鱼塘"
                      d:DataContext="{d:DesignInstance d:Type=vm:PoolsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -134,7 +134,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="DevicesTab" Header="设备" Selector.Selected="DevicesTab_OnSelected"
+            <TabItem x:Name="DevicesTab" Header="设备"
                      d:DataContext="{d:DesignInstance d:Type=vm:DevicesTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -223,7 +223,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="RecWqmTab" Header="数据" Selector.Selected="RecsTab_OnSelected"
+            <TabItem x:Name="RecWqmTab" Header="数据"
                      d:DataContext="{d:DesignInstance d:Type=vm:RecsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -265,10 +265,6 @@
                                                   DisplayMemberPath="NodeName"
                                                   SelectedIndex="{Binding SelectedDeviceIndex}"
                                                   SelectedItem="{Binding SelectedDevice, Mode=TwoWay}" />
-                                        <Button Content="开始" Margin="5,5,0,5"
-                                                Command="{Binding DataCommand}" />
-                                        <Button Content="停止" Margin="5,5,0,5"
-                                                Command="{Binding StopCommand}" />
                                     </WrapPanel>
 
                                     <ProgressBar Value="{Binding CurrentProgress}" Maximum="100" Minimum="0" />
@@ -283,7 +279,7 @@
                                         <RowDefinition Height="250" />
                                     </Grid.RowDefinitions>
 
-                                    <wpf:CartesianChart Grid.Row="0" Series="{Binding Series}" />
+                                    <wpf:CartesianChart Grid.Row="0" Series="{Binding HtTempSeries}" />
                                 </Grid>
                             </HeaderedContentControl>
                         </StackPanel>
@@ -292,6 +288,10 @@
                     <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
                         <Button Content="清除数据" Margin="5,5,5,5"
                                 Command="{Binding ClearCommand}" />
+                        <Button Content="开始" Margin="5,5,0,5"
+                                Command="{Binding DataCommand}" />
+                        <Button Content="停止" Margin="5,5,0,5"
+                                Command="{Binding StopCommand}" />
                     </WrapPanel>
                 </Grid>
             </TabItem>

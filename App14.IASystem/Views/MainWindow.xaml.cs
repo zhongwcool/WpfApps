@@ -252,23 +252,4 @@ public partial class MainWindow : Window
         context.RecWqms.AddRange(wqms);
         context.SaveChanges();
     }
-
-    // to avoid exception "某个 ItemsControl 与它的项源不一致"
-    // {
-    private void PoolsTab_OnSelected(object sender, RoutedEventArgs e)
-    {
-        DataGridPools.Items.Refresh();
-        DataGridSelectedPool.Items.Refresh();
-    }
-
-    private void DevicesTab_OnSelected(object sender, RoutedEventArgs e)
-    {
-        DataGridDevices.Items.Refresh();
-    }
-
-    private void RecsTab_OnSelected(object sender, RoutedEventArgs e)
-    {
-        DataGridRecs.Items.Refresh();
-    }
-    // }
 }

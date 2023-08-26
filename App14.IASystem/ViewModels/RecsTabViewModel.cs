@@ -10,6 +10,7 @@ using App14.IASystem.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,30 +28,62 @@ public class RecsTabViewModel : ObservableObject
         _context.Devices.Load();
         _context.RecWqms.Load();
         // bind to the source
-        RecWqms = new ObservableCollection<RecWqm>(_context.RecWqms.ToList());
         Pools = new ObservableCollection<Pool>(_context.Pools.OrderBy(pool => pool.Name).ToList());
 
-        Task.Delay(1500).ContinueWith(_ => { SelectedPoolIndex = 0; }
-        );
+        Task.Delay(1500).ContinueWith(_ => { SelectedPoolIndex = 0; });
 
         DataCommand = new RelayCommand(DoGentData, CanExecute_DataCommand);
         StopCommand = new RelayCommand(DoStopData, CanExecute_StopCommand);
-        ClearCommand = new RelayCommand(DoClearData, CanExecute_ClearCommand);
+        ClearCommand = new RelayCommand(DoClearData);
 
-        RecWqms.CollectionChanged += (_, _) => { ClearCommand.NotifyCanExecuteChanged(); };
-    }
-
-    public ISeries[] Series { get; set; }
-        = new ISeries[]
+        HtTempSeries = new ObservableCollection<ISeries>
         {
-            new LineSeries<double>
+            new LineSeries<ObservableValue>
             {
-                Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
+                Values = HtTempValues,
                 Fill = null
             }
         };
 
-    public ObservableCollection<RecWqm> RecWqms { get; set; }
+        PropertyChanged += (_, args) =>
+        {
+            switch (args.PropertyName)
+            {
+                case nameof(SelectedDevice):
+                {
+                    LoadRecsAndDraw();
+                }
+                    break;
+            }
+        };
+    }
+
+    private void LoadRecsAndDraw()
+    {
+        RecWqms.Clear();
+        var query = _context.RecWqms.Local
+            .Where(rec =>
+                string.Equals(rec.Device.SerialNum, SelectedDevice.SerialNum, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(e => e.TimeStamp)
+            .ToList();
+        foreach (var recWqm in query) RecWqms.Add(recWqm);
+
+        HtTempValues.Clear();
+        var query2 = _context.RecWqms.Local
+            .Where(rec =>
+                string.Equals(rec.Device.SerialNum, SelectedDevice.SerialNum, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(e => e.TimeStamp)
+            .Select(rec => new ObservableValue(rec.HtTemp))
+            .Take(40)
+            .ToList();
+        foreach (var ht in query2) HtTempValues.Add(ht);
+    }
+
+    private ObservableCollection<ObservableValue> HtTempValues { get; } = new();
+
+    public ObservableCollection<ISeries> HtTempSeries { get; set; }
+
+    public ObservableCollection<RecWqm> RecWqms { get; set; } = new();
     public ObservableCollection<Pool> Pools { get; }
 
     private Pool _selectedPool = new();
@@ -114,9 +147,37 @@ public class RecsTabViewModel : ObservableObject
         set => SetProperty(ref _selectedRecWqm, value);
     }
 
-    private BackgroundWorker _worker;
+    public IRelayCommand ClearCommand { get; }
+
+    private void DoClearData()
+    {
+        RecWqms.Clear();
+        _context.RecWqms.Local.Clear();
+        _context.SaveChanges();
+    }
+
+    #region 生产模拟数据
+
+    public IRelayCommand StopCommand { get; }
+
+    private void DoStopData()
+    {
+        _worker.CancelAsync();
+        _worker.Dispose();
+        IsBusy = false;
+    }
+
+    private bool CanExecute_StopCommand()
+    {
+        return IsBusy;
+    }
 
     public IRelayCommand DataCommand { get; }
+
+    private bool CanExecute_DataCommand()
+    {
+        return IsBusy is not true;
+    }
 
     private void DoGentData()
     {
@@ -131,11 +192,13 @@ public class RecsTabViewModel : ObservableObject
         IsBusy = true;
     }
 
+    private BackgroundWorker _worker;
+
     private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
         // 保存数据
         _context.SaveChanges();
-        
+
         //如果用户取消了当前操作就关闭窗口。
         if (!e.Cancelled)
         {
@@ -183,10 +246,10 @@ public class RecsTabViewModel : ObservableObject
             progressPercentage = Convert.ToInt32((double)i / max * 100);
 
             var rand = new Random();
-            var t = rand.NextSingle() + rand.Next(0, 30);
-            var p = rand.NextSingle() + rand.Next(5, 9);
-            var ds = rand.NextSingle() + rand.Next(95, 101);
-            var dr = rand.NextSingle() + rand.Next(90, 105);
+            var t = (float)Math.Round(rand.NextSingle() + rand.Next(0, 30), 2);
+            var p = (float)Math.Round(rand.NextSingle() + rand.Next(5, 9), 2);
+            var ds = (float)Math.Round(rand.NextSingle() + rand.Next(95, 101), 2);
+            var dr = (float)Math.Round(rand.NextSingle() + rand.Next(90, 105), 2);
             var dt = adt.AddSeconds(i);
 
             var rec = new RecWqm
@@ -223,36 +286,5 @@ public class RecsTabViewModel : ObservableObject
         set => SetProperty(ref _currentProgress, value);
     }
 
-    private bool CanExecute_DataCommand()
-    {
-        return IsBusy is not true;
-    }
-
-    public IRelayCommand StopCommand { get; }
-
-    private void DoStopData()
-    {
-        _worker.CancelAsync();
-        _worker.Dispose();
-        IsBusy = false;
-    }
-
-    private bool CanExecute_StopCommand()
-    {
-        return IsBusy;
-    }
-
-    public IRelayCommand ClearCommand { get; }
-
-    private void DoClearData()
-    {
-        RecWqms.Clear();
-        _context.RecWqms.Local.Clear();
-        _context.SaveChanges();
-    }
-
-    private bool CanExecute_ClearCommand()
-    {
-        return RecWqms.Count > 0;
-    }
+    #endregion
 }
