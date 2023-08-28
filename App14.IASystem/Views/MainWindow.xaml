@@ -273,14 +273,27 @@
 
                             <HeaderedContentControl Header="图表化数据" Margin="5,15,0,0"
                                                     Style="{StaticResource H3HeaderedContentControl}">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="250" />
-                                        <RowDefinition Height="250" />
-                                    </Grid.RowDefinitions>
+                                <UniformGrid Columns="2">
+                                    <Grid Height="250">
+                                        <TextBlock Text="温度数据" />
+                                        <wpf:CartesianChart Series="{Binding HtTempSeries}" />
+                                    </Grid>
 
-                                    <wpf:CartesianChart Grid.Row="0" Series="{Binding HtTempSeries}" />
-                                </Grid>
+                                    <Grid Height="250">
+                                        <TextBlock Text="PH数据" />
+                                        <wpf:CartesianChart Series="{Binding HtPhSeries}" />
+                                    </Grid>
+
+                                    <Grid Height="250">
+                                        <TextBlock Text="溶氧浓度" />
+                                        <wpf:CartesianChart Series="{Binding HtDosatSeries}" />
+                                    </Grid>
+
+                                    <Grid Height="250">
+                                        <TextBlock Text="容氧饱和度" />
+                                        <wpf:CartesianChart Series="{Binding HtDorSeries}" />
+                                    </Grid>
+                                </UniformGrid>
                             </HeaderedContentControl>
                         </StackPanel>
                     </Grid>

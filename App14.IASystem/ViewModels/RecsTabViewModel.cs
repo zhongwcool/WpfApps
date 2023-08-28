@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -45,13 +46,40 @@ public class RecsTabViewModel : ObservableObject
             }
         };
 
+        HtPhSeries = new ObservableCollection<ISeries>
+        {
+            new LineSeries<ObservableValue>
+            {
+                Values = HtPhValues,
+                Fill = null
+            }
+        };
+
+        HtDosatSeries = new ObservableCollection<ISeries>
+        {
+            new LineSeries<ObservableValue>
+            {
+                Values = HtDosatValues,
+                Fill = null
+            }
+        };
+
+        HtDorSeries = new ObservableCollection<ISeries>
+        {
+            new LineSeries<ObservableValue>
+            {
+                Values = HtDorValues,
+                Fill = null
+            }
+        };
+
         PropertyChanged += (_, args) =>
         {
             switch (args.PropertyName)
             {
                 case nameof(SelectedDevice):
                 {
-                    LoadRecsAndDraw();
+                    if (SelectedDevice != null) LoadRecsAndDraw();
                 }
                     break;
             }
@@ -69,19 +97,33 @@ public class RecsTabViewModel : ObservableObject
         foreach (var recWqm in query) RecWqms.Add(recWqm);
 
         HtTempValues.Clear();
+        HtPhValues.Clear();
+        HtDosatValues.Clear();
+        HtDorValues.Clear();
         var query2 = _context.RecWqms.Local
             .Where(rec =>
                 string.Equals(rec.Device.SerialNum, SelectedDevice.SerialNum, StringComparison.OrdinalIgnoreCase))
             .OrderByDescending(e => e.TimeStamp)
-            .Select(rec => new ObservableValue(rec.HtTemp))
-            .Take(40)
+            .Take(10)
             .ToList();
-        foreach (var ht in query2) HtTempValues.Add(ht);
+        foreach (var wqm in query2)
+        {
+            HtTempValues.Add(new ObservableValue(wqm.HtTemp));
+            HtPhValues.Add(new ObservableValue(wqm.HtPh));
+            HtDosatValues.Add(new ObservableValue(wqm.HtDosat));
+            HtDorValues.Add(new ObservableValue(wqm.HtDor));
+        }
     }
 
     private ObservableCollection<ObservableValue> HtTempValues { get; } = new();
+    private ObservableCollection<ObservableValue> HtPhValues { get; } = new();
+    private ObservableCollection<ObservableValue> HtDosatValues { get; } = new();
+    private ObservableCollection<ObservableValue> HtDorValues { get; } = new();
 
     public ObservableCollection<ISeries> HtTempSeries { get; set; }
+    public ObservableCollection<ISeries> HtPhSeries { get; set; }
+    public ObservableCollection<ISeries> HtDosatSeries { get; set; }
+    public ObservableCollection<ISeries> HtDorSeries { get; set; }
 
     public ObservableCollection<RecWqm> RecWqms { get; set; } = new();
     public ObservableCollection<Pool> Pools { get; }
@@ -193,10 +235,12 @@ public class RecsTabViewModel : ObservableObject
     }
 
     private BackgroundWorker _worker;
+    private readonly List<RecWqm> _recs = new();
 
     private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
         // 保存数据
+        _context.RecWqms.AddRange(_recs);
         _context.SaveChanges();
 
         //如果用户取消了当前操作就关闭窗口。
@@ -238,6 +282,8 @@ public class RecsTabViewModel : ObservableObject
             max = (int)e.Argument;
         }
 
+        _recs.Clear();
+
         var progressPercentage = 0;
         var adt = DateTime.Now;
 
@@ -260,7 +306,7 @@ public class RecsTabViewModel : ObservableObject
             Application.Current.Dispatcher.Invoke(() =>
             {
                 RecWqms.Add(rec);
-                _context.RecWqms.Add(rec);
+                _recs.Add(rec);
             });
 
             bgWorker?.ReportProgress(progressPercentage);
