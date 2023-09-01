@@ -11,6 +11,7 @@ public class Pool : ObservableObject
         AddDate = DateTime.Now;
         PoolId = Guid.NewGuid();
     }
+
     private Guid _poolId;
 
     public Guid PoolId
@@ -25,6 +26,14 @@ public class Pool : ObservableObject
     {
         get => _name;
         set => SetProperty(ref _name, value);
+    }
+
+    private float _size;
+
+    public float Size
+    {
+        get => _size;
+        set => SetProperty(ref _size, value);
     }
 
     private string _note;

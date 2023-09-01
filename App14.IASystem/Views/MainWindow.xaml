@@ -31,13 +31,13 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="DataGridPools"
-                                  ItemsSource="{Binding Pools}"
+                        <DataGrid ItemsSource="{Binding Pools}"
                                   SelectedItem="{Binding SelectedPool, Mode=TwoWay}"
                                   Grid.Column="0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="鱼塘名" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="基地" Binding="{Binding Farm.Name}" />
+                                <DataGridTextColumn Header="大小" Binding="{Binding Size}" />
                                 <DataGridTextColumn Header="创建日期"
                                                     Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
                                                     IsReadOnly="True" />
