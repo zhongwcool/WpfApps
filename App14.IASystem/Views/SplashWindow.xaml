@@ -1,0 +1,25 @@
+﻿<Window x:Class="App14.IASystem.Views.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="SplashWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <ScrollViewer>
+                <TextBlock x:Name="Block" Margin="5" />
+            </ScrollViewer>
+        </Grid>
+
+        <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
+            <Button Content="生成" Margin="5" Style="{DynamicResource AccentButtonStyle}" Click="ButtonBase_OnClick" />
+            <Button Content="查看" Margin="5" Style="{DynamicResource AccentButtonStyle}" Click="ButtonView_OnClick" />
+        </WrapPanel>
+    </Grid>
+</Window>
