@@ -27,8 +27,17 @@ public class DevicesTabViewModel : ObservableValidator, IDisposable
                 {
                     DeleteDeviceCommand.NotifyCanExecuteChanged();
                     if (null != SelectedDevice) SelectedValue = SelectedDevice.Pool;
-                    break;
                 }
+                    break;
+                case nameof(SelectedValue):
+                {
+                    if (null != SelectedDevice)
+                    {
+                        SelectedDevice.Pool = SelectedValue;
+                        _context?.Devices.Update(SelectedDevice);
+                    }
+                }
+                    break;
             }
         };
 
