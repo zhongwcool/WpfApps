@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using App14.IASystem.Context;
 using App14.IASystem.Models;
@@ -10,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App14.IASystem.ViewModels;
 
-public class DevicesTabViewModel : ObservableValidator, IDisposable
+public class DevicesTabViewModel : ObservableValidator
 {
     private readonly IaContext _context;
 
-    public DevicesTabViewModel()
+    public DevicesTabViewModel(IaContext context)
     {
+        _context = context;
+
         DeleteDeviceCommand = new RelayCommand(DoDeleteDevice, CanExecute_DeleteDeviceCommand);
         SaveCommand = new RelayCommand(DoSave);
 
@@ -26,29 +26,24 @@ public class DevicesTabViewModel : ObservableValidator, IDisposable
                 case nameof(SelectedDevice):
                 {
                     DeleteDeviceCommand.NotifyCanExecuteChanged();
-                    if (null != SelectedDevice) SelectedValue = SelectedDevice.Pool;
+                    SelectedPool = SelectedDevice?.Pool;
                 }
                     break;
-                case nameof(SelectedValue):
+                case nameof(SelectedPool):
                 {
-                    if (null != SelectedDevice)
-                    {
-                        SelectedDevice.Pool = SelectedValue;
-                        _context?.Devices.Update(SelectedDevice);
-                    }
+                    SelectedDevice.Pool = SelectedPool;
+                    _context?.Devices.Update(SelectedDevice);
                 }
                     break;
             }
         };
 
-        _context = new IaContext();
         // load the entities into EF Core
+        _context.Pools.Load();
         _context.Devices.Load();
-        // bind to the source
-        OwnerList = _context.Pools.Select(pool => new Owner { Pool = pool, Description = pool.Name }).ToList();
-        OwnerList.Insert(0, new Owner { Pool = null, Description = "None" });
-
-        Devices = new ObservableCollection<Device>(_context.Devices.OrderBy(device => device.NodeName).ToList());
+        // 刷新设备列表
+        Pools = _context.Pools.Local.ToObservableCollection();
+        Devices = _context.Devices.Local.ToObservableCollection();
         SelectedDevice = Devices.FirstOrDefault();
     }
 
@@ -56,7 +51,6 @@ public class DevicesTabViewModel : ObservableValidator, IDisposable
 
     private void DoDeleteDevice()
     {
-        _context.Devices.Remove(SelectedDevice);
         Devices.Remove(SelectedDevice);
     }
 
@@ -75,7 +69,7 @@ public class DevicesTabViewModel : ObservableValidator, IDisposable
 
     public ObservableCollection<Device> Devices { get; set; }
 
-    private Device _selectedDevice = new();
+    private Device _selectedDevice;
 
     public Device SelectedDevice
     {
@@ -83,35 +77,13 @@ public class DevicesTabViewModel : ObservableValidator, IDisposable
         set => SetProperty(ref _selectedDevice, value);
     }
 
-    private Pool _selectedValue;
+    private Pool _selectedPool;
 
-    public Pool SelectedValue
+    public Pool SelectedPool
     {
-        get => _selectedValue;
-        set => SetProperty(ref _selectedValue, value);
+        get => _selectedPool;
+        set => SetProperty(ref _selectedPool, value);
     }
 
-    public List<Owner> OwnerList { get; }
-
-    private void ReleaseUnmanagedResources()
-    {
-        _context.Dispose();
-    }
-
-    private void Dispose(bool disposing)
-    {
-        ReleaseUnmanagedResources();
-        if (disposing) _context?.Dispose();
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    ~DevicesTabViewModel()
-    {
-        Dispose(false);
-    }
+    public ObservableCollection<Pool> Pools { get; set; }
 }

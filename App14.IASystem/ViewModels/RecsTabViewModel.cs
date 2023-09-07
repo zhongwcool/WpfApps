@@ -21,15 +21,15 @@ public class RecsTabViewModel : ObservableObject
 {
     private readonly IaContext _context;
 
-    public RecsTabViewModel()
+    public RecsTabViewModel(IaContext context)
     {
-        _context = new IaContext();
+        _context = context;
         // load the entities into EF Core
-        _context.Pools.Load();
+        _context.Pools.OrderBy(pool => pool.Name).Load();
         _context.Devices.Load();
         _context.RecWqms.Load();
         // bind to the source
-        Pools = new ObservableCollection<Pool>(_context.Pools.OrderBy(pool => pool.Name).ToList());
+        Pools = _context.Pools.Local.ToObservableCollection();
 
         Task.Delay(1500).ContinueWith(_ => { SelectedPoolIndex = 0; });
 
@@ -128,7 +128,7 @@ public class RecsTabViewModel : ObservableObject
     public ObservableCollection<RecWqm> RecWqms { get; set; } = new();
     public ObservableCollection<Pool> Pools { get; }
 
-    private Pool _selectedPool = new();
+    private Pool _selectedPool;
 
     public Pool SelectedPool
     {
@@ -140,7 +140,7 @@ public class RecsTabViewModel : ObservableObject
         }
     }
 
-    private Device _selectedDevice = new();
+    private Device _selectedDevice;
 
     public Device SelectedDevice
     {

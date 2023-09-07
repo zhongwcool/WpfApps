@@ -7,7 +7,7 @@
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="IASystem Tool" Height="800" Width="1200">
+        Title="IASystem Tool" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False" />
@@ -17,7 +17,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem x:Name="PoolsTab" Header="鱼塘"
+            <TabItem x:Name="PoolsTab" Header="鱼塘" Selector.Selected="PoolsTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:PoolsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -31,7 +31,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Pools}"
+                        <DataGrid x:Name="DataGridPools"
+                                  ItemsSource="{Binding Pools}"
                                   SelectedItem="{Binding SelectedPool, Mode=TwoWay}"
                                   Grid.Column="0">
                             <DataGrid.Columns>
@@ -134,7 +135,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="DevicesTab" Header="设备"
+            <TabItem x:Name="DevicesTab" Header="设备" Selector.Selected="DevicesTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:DevicesTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -204,9 +205,9 @@
                                                 SelectedDate="{Binding SelectedDevice.AddDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <ComboBox Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"
                                               VerticalAlignment="Center" Width="120"
-                                              ItemsSource="{Binding OwnerList}"
-                                              DisplayMemberPath="Description" SelectedValuePath="Pool"
-                                              SelectedValue="{Binding SelectedValue, Mode=TwoWay}" />
+                                              ItemsSource="{Binding Pools}"
+                                              DisplayMemberPath="Name"
+                                              SelectedValue="{Binding SelectedPool, Mode=TwoWay}" />
                                 </Grid>
                             </HeaderedContentControl>
                         </StackPanel>
@@ -223,7 +224,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="RecWqmTab" Header="数据"
+            <TabItem x:Name="RecWqmTab" Header="数据" Selector.Selected="RecsTab_OnSelected"
                      d:DataContext="{d:DesignInstance d:Type=vm:RecsTabViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
