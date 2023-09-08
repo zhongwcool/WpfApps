@@ -67,36 +67,11 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <control:DailyView
-                            SourceIndex="{Binding DailyModel.Daily[0].Code_Day}"
-                            ShortDate="{Binding DailyModel.Daily[0].Date}"
-                            High="{Binding DailyModel.Daily[0].High}"
-                            Low="{Binding DailyModel.Daily[0].Low}"
-                            Grid.Column="0" />
-                        <control:DailyView
-                            SourceIndex="{Binding DailyModel.Daily[1].Code_Day}"
-                            ShortDate="{Binding DailyModel.Daily[1].Date}"
-                            High="{Binding DailyModel.Daily[1].High}"
-                            Low="{Binding DailyModel.Daily[1].Low}"
-                            Grid.Column="1" />
-                        <control:DailyView
-                            SourceIndex="{Binding DailyModel.Daily[2].Code_Day}"
-                            ShortDate="{Binding DailyModel.Daily[2].Date}"
-                            High="{Binding DailyModel.Daily[2].High}"
-                            Low="{Binding DailyModel.Daily[2].Low}"
-                            Grid.Column="2" />
-                        <control:DailyView
-                            SourceIndex="{Binding DailyModel.Daily[3].Code_Day}"
-                            ShortDate="{Binding DailyModel.Daily[3].Date}"
-                            High="{Binding DailyModel.Daily[3].High}"
-                            Low="{Binding DailyModel.Daily[3].Low}"
-                            Grid.Column="3" />
-                        <control:DailyView
-                            SourceIndex="{Binding DailyModel.Daily[4].Code_Day}"
-                            ShortDate="{Binding DailyModel.Daily[4].Date}"
-                            High="{Binding DailyModel.Daily[4].High}"
-                            Low="{Binding DailyModel.Daily[4].Low}"
-                            Grid.Column="4" />
+                        <control:DailyView Body="{Binding DailyModel.Daily[0]}" Grid.Column="0" />
+                        <control:DailyView Body="{Binding DailyModel.Daily[1]}" Grid.Column="1" />
+                        <control:DailyView Body="{Binding DailyModel.Daily[2]}" Grid.Column="2" />
+                        <control:DailyView Body="{Binding DailyModel.Daily[3]}" Grid.Column="3" />
+                        <control:DailyView Body="{Binding DailyModel.Daily[4]}" Grid.Column="4" />
                     </Grid>
                 </Grid>
 

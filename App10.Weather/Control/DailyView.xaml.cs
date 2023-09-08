@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using App10.Weather.Models;
 
 namespace App10.Weather.Control;
 
@@ -12,56 +13,13 @@ public partial class DailyView : UserControl
 
     #region Property
 
-    public static readonly DependencyProperty ShortDateProperty =
-        DependencyProperty.Register(
-            nameof(ShortDate),
-            typeof(string),
-            typeof(DailyView),
-            new PropertyMetadata(string.Empty));
+    public static readonly DependencyProperty BodyProperty =
+        DependencyProperty.Register(nameof(Body), typeof(Daily), typeof(DailyView), new PropertyMetadata(null));
 
-    public string ShortDate
+    public Daily Body
     {
-        get => (string)GetValue(ShortDateProperty);
-        set => SetValue(ShortDateProperty, value);
-    }
-
-    public static readonly DependencyProperty HighProperty =
-        DependencyProperty.Register(
-            nameof(High),
-            typeof(int),
-            typeof(DailyView),
-            new PropertyMetadata(0));
-
-    public int High
-    {
-        get => (int)GetValue(HighProperty);
-        set => SetValue(HighProperty, value);
-    }
-
-    public static readonly DependencyProperty LowProperty =
-        DependencyProperty.Register(
-            nameof(Low),
-            typeof(int),
-            typeof(DailyView),
-            new PropertyMetadata(0));
-
-    public int Low
-    {
-        get => (int)GetValue(LowProperty);
-        set => SetValue(LowProperty, value);
-    }
-
-    public static readonly DependencyProperty SourceIndexProperty =
-        DependencyProperty.Register(
-            nameof(SourceIndex),
-            typeof(int),
-            typeof(DailyView),
-            new PropertyMetadata(99));
-
-    public int SourceIndex
-    {
-        get => (int)GetValue(SourceIndexProperty);
-        set => SetValue(SourceIndexProperty, value);
+        get => (Daily)GetValue(BodyProperty);
+        set => SetValue(BodyProperty, value);
     }
 
     #endregion

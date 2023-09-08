@@ -1,5 +1,4 @@
 ﻿<UserControl x:Class="App10.Weather.Control.DailyView"
-             x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,19 +18,18 @@
         </Grid.RowDefinitions>
         <TextBlock FontSize="16"
                    HorizontalAlignment="Center"
-                   Text="{Binding ElementName=Root, Path=ShortDate, Converter={StaticResource StringToWeekConverter}}"
+                   Text="{Binding Body.Date, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource StringToWeekConverter}}"
                    Grid.Row="0" />
         <Image Margin="10"
-               Source="{Binding ElementName=Root, Path=SourceIndex, Converter={StaticResource IndexToImageSourceConverter}}"
+               Source="{Binding Body.Code_Day, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource IndexToImageSourceConverter}}"
                Grid.Row="1" />
         <StackPanel Grid.Row="2">
             <TextBlock FontSize="16" 
-                       HorizontalAlignment="Center" 
-                       Text="{Binding ElementName=Root, Path=High}" />
-            <TextBlock FontSize="16" 
-                       HorizontalAlignment="Center" 
-                       Opacity="0.6" 
-                       Text="{Binding ElementName=Root, Path=Low}" />
+                       HorizontalAlignment="Center"
+                       Text="{Binding Body.High, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <TextBlock FontSize="16" Opacity="0.6"
+                       HorizontalAlignment="Center"
+                       Text="{Binding Body.Low, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         </StackPanel>
     </Grid>
 </UserControl>
