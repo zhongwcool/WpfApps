@@ -12,197 +12,198 @@
         Style="{StaticResource MaterialDesignWindow}"
         Title="Material 3" Height="720" Width="1200">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <materialDesign:ColorZone Background="{DynamicResource PrimaryHueMidBrush}"
-                                  materialDesign:ElevationAssist.Elevation="Dp0"
-                                  DockPanel.Dock="Top"
-                                  Mode="Standard" Grid.Row="0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <StackPanel Height="64" Orientation="Horizontal" Grid.Column="0">
-                    <Image Margin="15,0,15,0" Width="48" Height="48"
-                           Source="pack://application:,,,/Resources/logo_home.png" />
-
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                               AutomationProperties.Name="Material Design In XAML Toolkit"
-                               FontSize="22"
-                               Text="Material Design In XAML Toolkit" />
-                </StackPanel>
-
-                <DockPanel Grid.Column="2">
-                    <TextBlock x:Name="BlockPrefix" Margin="5,0,0,0"
-                               FontSize="32" FontWeight="Black"
-                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                               VerticalAlignment="Center" />
-
-                    <TextBlock x:Name="BlockSecond" Margin="0,0,5,0" Width="40"
-                               FontSize="32" FontWeight="Black"
-                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                               VerticalAlignment="Center" />
-                    <!-- 弹出菜单 -->
-                    <materialDesign:PopupBox StaysOpen="False"
-                                             Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                                             PlacementMode="BottomAndAlignRightEdges">
-                        <StackPanel>
-                            <Grid Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <TextBlock Margin="0,0,10,0" Text="Light"
-                                           Grid.Row="0" Grid.Column="0" />
-                                <ToggleButton x:Name="DarkModeToggleButton"
-                                              Click="MenuDarkModeButton_Click"
-                                              Grid.Row="0" Grid.Column="1" />
-                                <TextBlock Margin="10,0,0,0" Text="Dark"
-                                           Grid.Row="0" Grid.Column="2" />
-                            </Grid>
-
-                            <Separator />
-
-                            <Button Click="ButtonClose_OnClick" Content="退出程序" />
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-                </DockPanel>
-            </Grid>
-        </materialDesign:ColorZone>
-
-        <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
-                                   SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}"
-                                   Grid.Row="1">
-
-            <materialDesign:DrawerHost x:Name="NavDrawer"
-                                       IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
-                                       LeftDrawerCornerRadius="0 20 20 0"
-                                       OpenMode="Modal">
-
-                <!-- 抽屉 -->
-                <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel x:Name="DrawerView" Width="220" Background="{DynamicResource PrimaryHueLightBrush}">
-                        <ListBox x:Name="DemoItemsListBox"
-                                 Margin="0,16,0,16"
-                                 AutomationProperties.Name="DemoPagesListBox"
-                                 ItemsSource="{Binding NavigationItems}"
-                                 PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
-                                 SelectedIndex="{Binding SelectedIndex}"
-                                 SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}">
-                            <ListBox.Resources>
-                                <Style TargetType="ScrollViewer"
-                                       BasedOn="{StaticResource MaterialDesignScrollViewer}" />
-                                <Style TargetType="ScrollBar"
-                                       BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
-                                <DataTemplate DataType="{x:Type md:NavigationItem}">
-                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
-                                </DataTemplate>
-                            </ListBox.Resources>
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem"
-                                       BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
-                                    <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon"
-                                            Value="{Binding SelectedIcon}" />
-                                    <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon"
-                                            Value="{Binding UnselectedIcon}" />
-                                    <Setter Property="Width" Value="200" />
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-                        </ListBox>
-                    </DockPanel>
-                </materialDesign:DrawerHost.LeftDrawerContent>
-
-                <!-- 内容 -->
+        <Grid Background="#8FFF" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Background="{DynamicResource PrimaryHueMidBrush}"
+                                      materialDesign:ElevationAssist.Elevation="Dp0"
+                                      DockPanel.Dock="Top"
+                                      Mode="Standard" Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
+                    <StackPanel Height="64" Orientation="Horizontal" Grid.Column="0">
+                        <Image Margin="15,0,15,0" Width="48" Height="48"
+                               Source="pack://application:,,,/Resources/logo_home.png" />
 
-                    <!-- 抽屉-Bar -->
-                    <Grid x:Name="NavRail" Width="80" Background="{DynamicResource PrimaryHueLightBrush}"
-                          Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <!-- 抽屉-Bar-固定项 -->
-                        <Viewbox VerticalAlignment="Top" Stretch="Uniform" Grid.Row="0">
-                            <ListBox VerticalAlignment="Top" Margin="0,12,0,0"
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                   AutomationProperties.Name="Material Design In XAML Toolkit"
+                                   FontSize="22"
+                                   Text="Material Design In XAML Toolkit" />
+                    </StackPanel>
+
+                    <DockPanel Grid.Column="2">
+                        <TextBlock x:Name="BlockPrefix" Margin="5,0,0,0"
+                                   FontSize="32" FontWeight="Black"
+                                   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                   VerticalAlignment="Center" />
+
+                        <TextBlock x:Name="BlockSecond" Margin="0,0,5,0" Width="40"
+                                   FontSize="32" FontWeight="Black"
+                                   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                   VerticalAlignment="Center" />
+                        <!-- 弹出菜单 -->
+                        <materialDesign:PopupBox StaysOpen="False"
+                                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                                 PlacementMode="BottomAndAlignRightEdges">
+                            <StackPanel>
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Margin="0,0,10,0" Text="Light"
+                                               Grid.Row="0" Grid.Column="0" />
+                                    <ToggleButton x:Name="DarkModeToggleButton"
+                                                  Click="MenuDarkModeButton_Click"
+                                                  Grid.Row="0" Grid.Column="1" />
+                                    <TextBlock Margin="10,0,0,0" Text="Dark"
+                                               Grid.Row="0" Grid.Column="2" />
+                                </Grid>
+
+                                <Separator />
+
+                                <Button Click="ButtonClose_OnClick" Content="退出程序" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </DockPanel>
+                </Grid>
+            </materialDesign:ColorZone>
+
+            <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
+                                       SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}"
+                                       Grid.Row="1">
+
+                <materialDesign:DrawerHost x:Name="NavDrawer"
+                                           IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
+                                           LeftDrawerCornerRadius="0 20 20 0"
+                                           OpenMode="Modal">
+
+                    <!-- 抽屉 -->
+                    <materialDesign:DrawerHost.LeftDrawerContent>
+                        <DockPanel x:Name="DrawerView" Width="220" Background="{DynamicResource PrimaryHueLightBrush}">
+                            <ListBox Margin="0,16,0,16"
                                      ItemsSource="{Binding NavigationItems}"
-                                     SelectedValue="{Binding SelectedItem}">
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem"
-                                           BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
-                                        <Setter Property="materialDesign:BadgedAssist.Badge"
-                                                Value="{Binding Notifications}" />
-                                        <Setter Property="materialDesign:BadgedAssist.BadgeBackground"
-                                                Value="#930006" />
-                                        <Setter Property="materialDesign:BadgedAssist.BadgeForeground"
-                                                Value="#FFDAD4" />
-                                        <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible"
-                                                Value="True" />
-                                        <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon"
-                                                Value="{Binding SelectedIcon}" />
-                                        <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon"
-                                                Value="{Binding UnselectedIcon}" />
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
+                                     PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
+                                     SelectedIndex="{Binding SelectedIndex}"
+                                     SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}">
                                 <ListBox.Resources>
+                                    <Style TargetType="ScrollViewer"
+                                           BasedOn="{StaticResource MaterialDesignScrollViewer}" />
+                                    <Style TargetType="ScrollBar"
+                                           BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
                                     <DataTemplate DataType="{x:Type md:NavigationItem}">
-                                        <TextBlock Text="{Binding Name}"
-                                                   TextAlignment="Center"
-                                                   TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
                                     </DataTemplate>
                                 </ListBox.Resources>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem"
+                                           BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
+                                        <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon"
+                                                Value="{Binding SelectedIcon}" />
+                                        <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon"
+                                                Value="{Binding UnselectedIcon}" />
+                                        <Setter Property="Width" Value="200" />
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
                             </ListBox>
-                        </Viewbox>
+                        </DockPanel>
+                    </materialDesign:DrawerHost.LeftDrawerContent>
 
-                        <!-- 抽屉-Bar-固定项-底部 -->
-                        <Button Click="SettingsButton_OnClick" Margin="0,0,0,16"
-                                Style="{StaticResource MaterialDesignIconButton}"
-                                Height="50"
-                                materialDesign:ButtonAssist.CornerRadius="25"
-                                ToolTip="Open Settings"
-                                Grid.Row="1">
-                            <materialDesign:PackIcon Kind="Cog" />
-                        </Button>
-                    </Grid>
+                    <!-- 内容区 -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="1">
-                        <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
-                                        Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
-                                        DataContext="{Binding SelectedItem}" />
+                        <!-- 左-Bar -->
+                        <Grid x:Name="NavRail" Width="80" Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!-- 抽屉-Bar-固定项 -->
+                            <Viewbox VerticalAlignment="Top" Stretch="Uniform" Grid.Row="0">
+                                <ListBox VerticalAlignment="Top" Margin="0,12,0,0"
+                                         ItemsSource="{Binding NavigationItems}"
+                                         SelectedValue="{Binding SelectedItem}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem"
+                                               BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
+                                            <Setter Property="materialDesign:BadgedAssist.Badge"
+                                                    Value="{Binding Notifications}" />
+                                            <Setter Property="materialDesign:BadgedAssist.BadgeBackground"
+                                                    Value="#930006" />
+                                            <Setter Property="materialDesign:BadgedAssist.BadgeForeground"
+                                                    Value="#FFDAD4" />
+                                            <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible"
+                                                    Value="True" />
+                                            <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon"
+                                                    Value="{Binding SelectedIcon}" />
+                                            <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon"
+                                                    Value="{Binding UnselectedIcon}" />
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.Resources>
+                                        <DataTemplate DataType="{x:Type md:NavigationItem}">
+                                            <TextBlock Text="{Binding Name}"
+                                                       TextAlignment="Center"
+                                                       TextWrapping="Wrap" />
+                                        </DataTemplate>
+                                    </ListBox.Resources>
+                                </ListBox>
+                            </Viewbox>
 
-                        <materialDesign:Snackbar x:Name="MainSnackbar"
-                                                 MessageQueue="{materialDesign:MessageQueue}" />
-
-                        <materialDesign:Badged Badge="{Binding Notifications}"
-                                               Margin="0,0,28,28"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               BadgeColorZoneMode="PrimaryDark">
-                            <Button Width="56" Height="56"
-                                    materialDesign:ButtonAssist.CornerRadius="28"
-                                    Background="{DynamicResource SecondaryHueMidBrush}"
-                                    BorderThickness="0"
-                                    Command="{Binding AddNewNotiCommand}"
-                                    Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
-                                <materialDesign:PackIcon Width="26" Height="26" Kind="Github" />
+                            <!-- 抽屉-Bar-固定项-底部 -->
+                            <Button Click="SettingsButton_OnClick" Margin="0,0,0,16"
+                                    Style="{StaticResource MaterialDesignIconButton}"
+                                    Height="50"
+                                    materialDesign:ButtonAssist.CornerRadius="25"
+                                    ToolTip="Open Settings"
+                                    Grid.Row="1">
+                                <materialDesign:PackIcon Kind="Cog" />
                             </Button>
-                        </materialDesign:Badged>
+                        </Grid>
+
+                        <!-- 右-内容 -->
+                        <Grid Grid.Column="1">
+                            <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
+                                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
+                                            DataContext="{Binding SelectedItem}" />
+
+                            <materialDesign:Snackbar x:Name="MainSnackbar"
+                                                     MessageQueue="{materialDesign:MessageQueue}" />
+
+                            <materialDesign:Badged Badge="{Binding Notifications}"
+                                                   Margin="0,0,28,28"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                   BadgeColorZoneMode="PrimaryDark">
+                                <Button Width="56" Height="56"
+                                        materialDesign:ButtonAssist.CornerRadius="28"
+                                        Background="{DynamicResource SecondaryHueMidBrush}"
+                                        BorderThickness="0"
+                                        Command="{Binding AddNewNotiCommand}"
+                                        Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
+                                    <materialDesign:PackIcon Width="26" Height="26" Kind="Github" />
+                                </Button>
+                            </materialDesign:Badged>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </materialDesign:DrawerHost>
-        </materialDesign:DialogHost>
+                </materialDesign:DrawerHost>
+            </materialDesign:DialogHost>
+        </Grid>
     </Grid>
 </Window>

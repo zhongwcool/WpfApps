@@ -110,7 +110,6 @@ public partial class MainWindow : Window
     {
         // 获取当前按钮的背景色 Brush
         if (DrawerView.Background is not SolidColorBrush brush0) return;
-        if (NavRail.Background is not SolidColorBrush brush1) return;
         // 创建具有修改透明度的新 Brush
         var modifiedBackground = new SolidColorBrush(brush0.Color)
         {

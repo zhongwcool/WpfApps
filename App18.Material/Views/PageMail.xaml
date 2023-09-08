@@ -40,7 +40,7 @@
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             CornerRadius="{Binding Path=(materialDesign:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
                                     <ProgressBar x:Name="ProgressBar"
-                                                 Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                                                 Width="{Binding RelativeSource={RelativeSource AncestorType=ButtonBase}, Path=ActualWidth}"
                                                  Height="{TemplateBinding Height}"
                                                  HorizontalAlignment="Left"
                                                  VerticalAlignment="Center"
@@ -124,7 +124,7 @@
                       HorizontalAlignment="Left" VerticalAlignment="Top"
                       Grid.Row="1">
             <Grid>
-                <Border Background="#FFF" Opacity="0.4" CornerRadius="4" />
+                <Border Background="{DynamicResource MaterialDesignPaper}" Opacity="0.4" CornerRadius="4" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -158,7 +158,7 @@
                     </DockPanel>
 
                     <Grid Grid.Row="1">
-                        <Border Background="#FFF" Opacity="0.8" CornerRadius="0,0,4,4" />
+                        <Border Background="{DynamicResource MaterialDesignPaper}" Opacity="0.8" CornerRadius="0,0,4,4" />
 
                         <StackPanel Margin="15,15,15,15" Orientation="Vertical">
                             <DockPanel Height="50">
