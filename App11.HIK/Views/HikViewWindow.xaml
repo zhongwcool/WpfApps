@@ -1,5 +1,4 @@
 ﻿<Window x:Class="App11.HIK.Views.HikViewWindow"
-        x:Name="Root"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +8,8 @@
         Background="{DynamicResource AppBackgroundBrush}"
         Title="View实现" VerticalContentAlignment="Stretch" Width="440">
     <Grid>
-        <ListView ItemsSource="{Binding ElementName=Root, Path=HikList}" Width="420" HorizontalAlignment="Center">
+        <ListView ItemsSource="{Binding HikList, RelativeSource={RelativeSource AncestorType=Window}}"
+                  Width="420" HorizontalAlignment="Center">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
