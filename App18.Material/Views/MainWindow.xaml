@@ -13,6 +13,7 @@
         Background="Transparent"
         Title="Material 3" Height="720" Width="1200">
     <Grid>
+        <Grid Background="{DynamicResource MaterialDesignPaper}" />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
