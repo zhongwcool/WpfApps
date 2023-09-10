@@ -10,9 +10,9 @@
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         SizeChanged="Window_SizeChanged"
         Style="{StaticResource MaterialDesignWindow}"
+        Background="Transparent"
         Title="Material 3" Height="720" Width="1200">
     <Grid>
-        <Grid Background="#8FFF" />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -88,7 +88,8 @@
 
                 <materialDesign:DrawerHost x:Name="NavDrawer"
                                            IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
-                                           LeftDrawerCornerRadius="0 20 20 0"
+                                           LeftDrawerCornerRadius="0 0 0 0"
+                                           LeftDrawerBackground="Transparent"
                                            OpenMode="Modal">
 
                     <!-- 抽屉 -->
@@ -129,7 +130,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- 左-Bar -->
+                        <!-- 内容左-Bar -->
                         <Grid x:Name="NavRail" Width="80" Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -178,7 +179,7 @@
                             </Button>
                         </Grid>
 
-                        <!-- 右-内容 -->
+                        <!-- 内容右-Body -->
                         <Grid Grid.Column="1">
                             <ContentControl Margin="{Binding MarginRequirement, FallbackValue=16}"
                                             Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"

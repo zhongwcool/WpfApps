@@ -38,6 +38,18 @@ public partial class MainWindow : Window
                 MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
             });
         });
+
+        // var paletteHelper = new PaletteHelper();
+        // if (paletteHelper.GetThemeManager() is { } themeManager)
+        // {
+        //     themeManager.ThemeChanged += (_, e) =>
+        //     {
+        //         Task.Delay(1500).ContinueWith(_ =>
+        //         {
+        //             Dispatcher.Invoke(Change);
+        //         });
+        //     };
+        // }
     }
 
     private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -106,6 +118,20 @@ public partial class MainWindow : Window
         }
     }
 
+    private void Change()
+    {
+        // 获取当前按钮的背景色 Brush
+        if (DrawerView.Background is not SolidColorBrush brush0) return;
+        var modifiedBackground = new SolidColorBrush(brush0.Color)
+        {
+            Opacity = 0.6 // 设置新的透明度
+        };
+
+        // 将按钮的背景色设置为修改后的 Brush
+        //DrawerView.Background = modifiedBackground;
+        NavDrawer.LeftDrawerBackground = modifiedBackground;
+    }
+
     private void ReduceBackground()
     {
         // 获取当前按钮的背景色 Brush
@@ -113,7 +139,7 @@ public partial class MainWindow : Window
         // 创建具有修改透明度的新 Brush
         var modifiedBackground = new SolidColorBrush(brush0.Color)
         {
-            Opacity = 0.4 // 设置新的透明度
+            Opacity = 0.6 // 设置新的透明度
         };
 
         // 将按钮的背景色设置为修改后的 Brush

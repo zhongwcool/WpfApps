@@ -23,40 +23,45 @@
         <Viewbox Height="1" Grid.Row="0" />
 
         <ScrollViewer Width="600" Margin="16"
-                      HorizontalAlignment="Left"
+                      HorizontalAlignment="Left" VerticalAlignment="Top"
                       Grid.Row="1">
-            <Grid>
-                <Border Background="#FFF" Opacity="0.4" CornerRadius="4" />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+            <StackPanel>
+                <Grid Height="550">
+                    <Border Background="{DynamicResource MaterialDesignPaper}" Opacity="0.4" CornerRadius="4" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <DockPanel Margin="0" Grid.Row="0">
-                        <StackPanel Opacity="0.9" VerticalAlignment="Center" DockPanel.Dock="Left">
-                            <TextBlock FontWeight="Bold" Margin="16">Page Child 1</TextBlock>
-                        </StackPanel>
+                        <DockPanel Margin="0" Grid.Row="0">
+                            <StackPanel Opacity="0.9" VerticalAlignment="Center" DockPanel.Dock="Left">
+                                <TextBlock FontWeight="Bold" Margin="16">Page Child 1</TextBlock>
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <materialDesign:PopupBox Padding="2,0,2,0"
-                                                     Style="{StaticResource MaterialDesignToolPopupBox}">
-                                <StackPanel>
-                                    <Button Content="More" />
-                                    <Button Content="Options" />
-                                </StackPanel>
-                            </materialDesign:PopupBox>
-                        </StackPanel>
-                    </DockPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PopupBox Padding="2,0,2,0"
+                                                         Style="{StaticResource MaterialDesignToolPopupBox}">
+                                    <StackPanel>
+                                        <Button Content="More" />
+                                        <Button Content="Options" />
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                        </DockPanel>
 
-                    <Grid Grid.Row="1">
-                        <Border Background="#FFF" Opacity="0.8" CornerRadius="0,0,4,4" />
+                        <Grid Grid.Row="1">
+                            <Border Background="{DynamicResource MaterialDesignPaper}"
+                                    Opacity="0.8"
+                                    CornerRadius="0,0,4,4" />
 
-                        <Image Source="pack://application:,,,/Resources/illustrations/IMG_0642.png" Width="400"
-                               HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                            <Image Width="400"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   Source="pack://application:,,,/Resources/illustrations/IMG_0642.png" />
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

@@ -76,7 +76,7 @@
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Margin="0,12,0,0" CornerRadius="4">
                                             <Grid>
-                                                <Border x:Name="PART_Back" Opacity="0.8" CornerRadius="4"
+                                                <Border x:Name="PART_Back" Opacity="0.6" CornerRadius="4"
                                                         Background="{DynamicResource MaterialDesignPaper}" />
                                                 <Grid Width="280" Margin="15,10,15,15">
                                                     <Grid.RowDefinitions>
@@ -144,6 +144,8 @@
                                                 <Setter TargetName="PART_Back" Property="Background"
                                                         Value="{DynamicResource PrimaryHueLightBrush}" />
                                                 <Setter TargetName="PART_Back" Property="Opacity" Value="0.8" />
+                                                <Setter Property="TextElement.Foreground"
+                                                        Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
