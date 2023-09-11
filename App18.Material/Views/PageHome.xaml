@@ -135,18 +135,37 @@
                                         </Border>
 
                                         <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="true" />
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="TextElement.Foreground"
+                                                        Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
                                                 <Setter TargetName="PART_Back" Property="Background"
-                                                        Value="{Binding Foreground, ElementName=TxtTitle}" />
-                                                <Setter TargetName="PART_Back" Property="Opacity" Value="0.2" />
-                                            </Trigger>
-                                            <Trigger Property="IsSelected" Value="True">
+                                                        Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                <Setter TargetName="PART_Back" Property="Opacity" Value="0.8" />
+                                            </MultiTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="false" />
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
                                                 <Setter TargetName="PART_Back" Property="Background"
                                                         Value="{DynamicResource PrimaryHueLightBrush}" />
                                                 <Setter TargetName="PART_Back" Property="Opacity" Value="0.8" />
                                                 <Setter Property="TextElement.Foreground"
                                                         Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-                                            </Trigger>
+                                            </MultiTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="true" />
+                                                    <Condition Property="IsSelected" Value="false" />
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="PART_Back" Property="Background"
+                                                        Value="{DynamicResource MaterialDesignPaper}" />
+                                                <Setter TargetName="PART_Back" Property="Opacity" Value="1" />
+                                            </MultiTrigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
