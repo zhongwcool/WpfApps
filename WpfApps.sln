@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App18.Material", "App18.Mat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App19.SciChart", "App19.SciChart\App19.SciChart.csproj", "{FE2D6D72-5C5D-4803-BCBD-C10226514C0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App20.Focus", "App20.Focus\App20.Focus.csproj", "{AD733890-6CB3-4397-9A43-414A2FB07CD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,5 +122,9 @@ Global
 		{FE2D6D72-5C5D-4803-BCBD-C10226514C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE2D6D72-5C5D-4803-BCBD-C10226514C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE2D6D72-5C5D-4803-BCBD-C10226514C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD733890-6CB3-4397-9A43-414A2FB07CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD733890-6CB3-4397-9A43-414A2FB07CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD733890-6CB3-4397-9A43-414A2FB07CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD733890-6CB3-4397-9A43-414A2FB07CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
