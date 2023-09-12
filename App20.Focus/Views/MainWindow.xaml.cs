@@ -20,6 +20,7 @@ public partial class MainWindow : Window
     private void MyControl_MouseEnter(object sender, MouseEventArgs e)
     {
         Log.Debug("mouse enter");
+        ScrollViewer.ScrollToBottom();
         // 创建关键帧动画
         var animation = new DoubleAnimationUsingKeyFrames
         {
@@ -44,6 +45,7 @@ public partial class MainWindow : Window
     private void MyControl_MouseLeave(object sender, MouseEventArgs e)
     {
         Log.Debug("mouse leave");
+        ScrollViewer.ScrollToBottom();
         // 停止动画
         MyControl.BeginAnimation(OpacityProperty, null);
     }

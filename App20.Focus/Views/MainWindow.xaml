@@ -6,9 +6,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="BlockConsole" />
-        <Rectangle x:Name="MyControl"
-                   Width="80" Height="50" RadiusX="5" RadiusY="5" Fill="Gold"
-                   MouseEnter="MyControl_MouseEnter" MouseLeave="MyControl_MouseLeave" />
+        <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto" Opacity="0.8">
+            <TextBox x:Name="BlockConsole" />
+        </ScrollViewer>
+        <Canvas>
+            <Rectangle x:Name="MyControl" Canvas.Right="100" Canvas.Top="280"
+                       Width="80" Height="50" RadiusX="5" RadiusY="5" Fill="Gold"
+                       MouseEnter="MyControl_MouseEnter" MouseLeave="MyControl_MouseLeave" />
+
+            <Image Source="pack://application:,,,/Resource/ImgPeperPlane.png" Width="200" Height="100" Canvas.Top="310"
+                   Canvas.Right="180" />
+        </Canvas>
     </Grid>
 </Window>

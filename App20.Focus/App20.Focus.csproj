@@ -22,4 +22,9 @@
         </Page>
     </ItemGroup>
 
+    <ItemGroup>
+        <None Remove="Resource\ImgPeperPlane.png"/>
+        <Resource Include="Resource\ImgPeperPlane.png"/>
+    </ItemGroup>
+
 </Project>
