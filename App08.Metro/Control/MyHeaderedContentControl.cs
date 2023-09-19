@@ -10,7 +10,7 @@ public class MyHeaderedContentControl : HeaderedContentControl
     private ContentPresenter _content;
 
     public static readonly DependencyProperty ClickToHideProperty =
-        DependencyProperty.Register("ClickToHide", typeof(bool), typeof(MyHeaderedContentControl),
+        DependencyProperty.Register(nameof(ClickToHide), typeof(bool), typeof(MyHeaderedContentControl),
             new PropertyMetadata(null));
 
     public bool ClickToHide
@@ -20,7 +20,7 @@ public class MyHeaderedContentControl : HeaderedContentControl
     }
 
     public static readonly DependencyProperty HideContentFromBootProperty =
-        DependencyProperty.Register("HideContentFromBoot", typeof(bool), typeof(MyHeaderedContentControl),
+        DependencyProperty.Register(nameof(HideContentFromBoot), typeof(bool), typeof(MyHeaderedContentControl),
             new PropertyMetadata(null));
 
     /// <summary>

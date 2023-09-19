@@ -7,7 +7,7 @@ namespace App08.Metro.Control;
 public class IconCheckBox : CheckBox
 {
     public static readonly DependencyProperty IconProperty =
-        DependencyProperty.Register("Icon", typeof(Geometry), typeof(IconCheckBox), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Icon), typeof(Geometry), typeof(IconCheckBox), new PropertyMetadata(null));
 
 
     static IconCheckBox()

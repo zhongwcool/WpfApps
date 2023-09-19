@@ -7,34 +7,35 @@ namespace App03.Network.Control;
 public class SimpleButton : Button
 {
     public static readonly DependencyProperty ModeProperty =
-        DependencyProperty.Register("Mode", typeof(ButtonType), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(Mode), typeof(ButtonType), typeof(SimpleButton),
             new PropertyMetadata(ButtonType.IconText));
 
     public static readonly DependencyProperty IconProperty =
-        DependencyProperty.Register("Icon", typeof(ImageSource), typeof(SimpleButton), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(SimpleButton),
+            new PropertyMetadata(null));
 
     public static readonly DependencyProperty CornerRadiusProperty =
-        DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(SimpleButton),
             new PropertyMetadata(new CornerRadius(0)));
 
     public static readonly DependencyProperty MouseOverForegroundProperty =
-        DependencyProperty.Register("MouseOverForeground", typeof(Brush), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(MouseOverForeground), typeof(Brush), typeof(SimpleButton),
             new PropertyMetadata());
 
     public static readonly DependencyProperty MousePressedForegroundProperty =
-        DependencyProperty.Register("MousePressedForeground", typeof(Brush), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(MousePressedForeground), typeof(Brush), typeof(SimpleButton),
             new PropertyMetadata());
 
     public static readonly DependencyProperty MouseOverBorderBrushProperty =
-        DependencyProperty.Register("MouseOverBorderBrush", typeof(Brush), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(MouseOverBorderBrush), typeof(Brush), typeof(SimpleButton),
             new PropertyMetadata());
 
     public static readonly DependencyProperty MouseOverBackgroundProperty =
-        DependencyProperty.Register("MouseOverBackground", typeof(Brush), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(MouseOverBackground), typeof(Brush), typeof(SimpleButton),
             new PropertyMetadata());
 
     public static readonly DependencyProperty MousePressedBackgroundProperty =
-        DependencyProperty.Register("MousePressedBackground", typeof(Brush), typeof(SimpleButton),
+        DependencyProperty.Register(nameof(MousePressedBackground), typeof(Brush), typeof(SimpleButton),
             new PropertyMetadata());
 
     static SimpleButton()

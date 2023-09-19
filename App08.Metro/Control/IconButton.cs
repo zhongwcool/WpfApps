@@ -7,7 +7,7 @@ namespace App08.Metro.Control;
 public class IconButton : Button
 {
     public static readonly DependencyProperty IconProperty =
-        DependencyProperty.Register("Icon", typeof(Geometry), typeof(IconButton), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Icon), typeof(Geometry), typeof(IconButton), new PropertyMetadata(null));
 
 
     static IconButton()

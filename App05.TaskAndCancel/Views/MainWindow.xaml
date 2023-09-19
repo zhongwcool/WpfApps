@@ -55,16 +55,16 @@
                                             <EventTrigger RoutedEvent="MouseLeave">
                                                 <BeginStoryboard>
                                                     <Storyboard>
-                                                        <ColorAnimation Duration="0:0:0.2" To="#AA444444"
+                                                        <ColorAnimation Duration="0:0:0.5" To="#AA444444"
                                                                         Storyboard.TargetName="PART_Shadow"
                                                                         Storyboard.TargetProperty="Color" />
-                                                        <DoubleAnimation Duration="0:0:0.2" To="5"
+                                                        <DoubleAnimation Duration="0:0:0.5" To="5"
                                                                          Storyboard.TargetName="PART_Shadow"
                                                                          Storyboard.TargetProperty="BlurRadius" />
-                                                        <DoubleAnimation Duration="0:0:0.2" To="4"
+                                                        <DoubleAnimation Duration="0:0:0.5" To="4"
                                                                          Storyboard.TargetName="PART_Shadow"
                                                                          Storyboard.TargetProperty="ShadowDepth" />
-                                                        <DoubleAnimation Duration="0:0:0.2" To="0.5"
+                                                        <DoubleAnimation Duration="0:0:0.5" To="0.5"
                                                                          Storyboard.TargetName="PART_Shadow"
                                                                          Storyboard.TargetProperty="Opacity" />
                                                     </Storyboard>

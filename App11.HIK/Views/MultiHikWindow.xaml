@@ -10,7 +10,7 @@
         Title="多个设备" VerticalContentAlignment="Stretch" Width="800">
     <ScrollViewer>
         <ItemsControl
-            ItemsSource="{Binding NodeWcList, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            ItemsSource="{Binding NodeWcList, RelativeSource={RelativeSource AncestorType=Window}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" />
