@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="SplashWindow" Height="450" Width="800">
+        Title="IA工具" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -17,7 +17,7 @@
             </ScrollViewer>
         </Grid>
 
-        <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
+        <WrapPanel HorizontalAlignment="Right" Grid.Row="1">
             <Button Content="生成" Margin="5" Style="{DynamicResource AccentButtonStyle}" Click="ButtonBase_OnClick" />
             <Button Content="查看" Margin="5" Style="{DynamicResource AccentButtonStyle}" Click="ButtonView_OnClick" />
         </WrapPanel>

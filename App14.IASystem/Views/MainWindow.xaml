@@ -7,7 +7,7 @@
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="IASystem Tool" Height="800" Width="1200" Loaded="Window_Loaded">
+        Title="IA工具" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False" />
@@ -43,6 +43,7 @@
                                                     Binding="{Binding Path=AddDate, StringFormat={}{0:yyyy-MM-dd}}"
                                                     IsReadOnly="True" />
                                 <DataGridTextColumn Header="进度" Binding="{Binding Progress}" />
+                                <DataGridTextColumn Header="DI" Binding="{Binding DisplayIndex}" />
                                 <DataGridTextColumn Header="设备数" Binding="{Binding Devices.Count}" />
                             </DataGrid.Columns>
                         </DataGrid>

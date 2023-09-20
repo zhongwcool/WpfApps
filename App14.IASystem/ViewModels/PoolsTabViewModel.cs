@@ -24,7 +24,7 @@ public class PoolsTabViewModel : ObservableValidator
         // load the entities into EF Core
         _context.Farms.Load();
         _context.Devices.Load();
-        _context.Pools.OrderBy(pool => pool.Name).Load();
+        _context.Pools.OrderBy(pool => pool.DisplayIndex).Load();
         // bind to the source
         Pools = _context.Pools.Local.ToObservableCollection();
         SelectedPool = Pools.FirstOrDefault();

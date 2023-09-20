@@ -35,35 +35,35 @@ public partial class SplashWindow : Window
                 new Pool
                 {
                     PoolId = Guid.NewGuid(), AddDate = new DateTime(2022, 3, 25), Farm = farms[0], Name = "2号塘",
-                    Size = 16.4f,
+                    Size = 16.4f, DisplayIndex = 0,
                     Note =
                         "高标准循环水池塘，主要养殖加州鲈、阳澄湖大闸蟹。\n水槽内高密度养殖加州鲈形成集约化，可视化设备、水质传感器、纳米增氧设备工作效率大大提高，劳动力投入大大减少。新型集污设备部署在水槽后半部分，提取出大量污染物，同时循环河道将养殖尾水带入净化区，净化区种植的水生蔬菜吸收养分净化水质，在净化区产出本地名品阳澄湖大闸蟹，个头饱满肉质鲜美。"
                 },
                 new Pool
                 {
                     PoolId = Guid.NewGuid(), AddDate = new DateTime(2022, 3, 25), Farm = farms[0], Name = "5号塘",
-                    Size = 12.7f,
+                    Size = 12.7f, DisplayIndex = 1,
                     Note =
                         "高标准循环水池塘，主要养殖加州鲈、阳澄湖大闸蟹。\n水槽内高密度养殖加州鲈形成集约化，可视化设备、水质传感器、纳米增氧设备工作效率大大提高，劳动力投入大大减少。新型集污设备为嵌入式部署，提取出大量污染物，同时循环河道将养殖尾水带入净化区，净化区种植的水草吸收养分净化水质，在净化区产出本地名品阳澄湖大闸蟹，个头饱满肉质鲜美。"
                 },
                 new Pool
                 {
                     PoolId = Guid.NewGuid(), AddDate = new DateTime(2022, 8, 11), Farm = farms[0], Name = "9号塘",
-                    Size = 17.9f,
+                    Size = 17.9f, DisplayIndex = 2,
                     Note =
                         "高标准循环水池塘，主要养殖阳澄湖大闸蟹。\n在传统的高标准蟹塘基础上改造，在蟹塘外侧的河道中部署推水车，形成水循环，种植菖蒲等植物净化水质，投放花白鲢调节藻类，为大闸蟹养殖区提供源源不断的优质水体。"
                 },
                 new Pool
                 {
                     PoolId = Guid.NewGuid(), AddDate = new DateTime(2022, 9, 12), Farm = farms[0], Name = "10号塘",
-                    Size = 18.2f,
+                    Size = 18.2f, DisplayIndex = 3,
                     Note =
                         "高标准循环水池塘，主要养殖阳澄湖大闸蟹。\n在传统的高标准蟹塘基础上改造，在蟹塘外侧的河道中部署推水车，形成水循环，种植菖蒲等植物净化水质，投放花白鲢调节藻类，为大闸蟹养殖区提供源源不断的优质水体。"
                 },
                 new Pool
                 {
                     PoolId = Guid.NewGuid(), AddDate = new DateTime(2022, 10, 1), Farm = farms[0], Name = "11号塘",
-                    Size = 17.5f,
+                    Size = 17.5f, DisplayIndex = 4,
                     Note =
                         "高标准循环水池塘，主要养殖阳澄湖大闸蟹。\n在传统的高标准蟹塘基础上改造，在蟹塘外侧的河道中部署推水车，形成水循环，种植菖蒲等植物净化水质，投放花白鲢调节藻类，为大闸蟹养殖区提供源源不断的优质水体。"
                 }

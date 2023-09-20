@@ -20,6 +20,14 @@ public class Pool : ObservableObject
         set => SetProperty(ref _poolId, value);
     }
 
+    private uint _displayIndex = uint.MaxValue; // 显示索引
+
+    public uint DisplayIndex
+    {
+        get => _displayIndex;
+        set => SetProperty(ref _displayIndex, value);
+    }
+
     private string _name;
 
     public string Name
