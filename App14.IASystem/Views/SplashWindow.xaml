@@ -4,22 +4,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="IA工具" Height="450" Width="800">
+        Title="IA助手" Height="450" Width="400">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="数据库文件:" FontWeight="Heavy" VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="0" />
+            <TextBlock x:Name="TxtPath" Text="" VerticalAlignment="Center" Grid.Column="1" />
+            <Button Content="选择" Margin="5,5,5,5" Grid.Column="2" Click="ButtonSelect_OnClick" />
+        </Grid>
+
+        <Grid Grid.Row="1">
             <ScrollViewer>
-                <TextBlock x:Name="Block" Margin="5" />
+                <TextBlock x:Name="BlockConsole" />
             </ScrollViewer>
         </Grid>
 
-        <WrapPanel HorizontalAlignment="Right" Grid.Row="1">
-            <Button Content="生成" Margin="5" Style="{DynamicResource AccentButtonStyle}" Click="ButtonBase_OnClick" />
-            <Button Content="查看" Margin="5" Style="{DynamicResource AccentButtonStyle}" Click="ButtonView_OnClick" />
+        <WrapPanel HorizontalAlignment="Right" Grid.Row="2">
+            <Button Content="升级" Margin="5" Click="ButtonUpgd_OnClick" IsEnabled="False" />
+            <Button Content="生成" Margin="5" Click="ButtonNew_OnClick" Style="{DynamicResource AccentButtonStyle}" />
+            <Button Content="管理" Margin="5" Click="ButtonView_OnClick" />
         </WrapPanel>
     </Grid>
 </Window>

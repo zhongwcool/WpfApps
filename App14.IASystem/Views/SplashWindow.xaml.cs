@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using App14.IASystem.Context;
 using App14.IASystem.Enums;
 using App14.IASystem.Models;
+using App14.IASystem.Writers;
+using Microsoft.Win32;
+using Serilog;
 
 namespace App14.IASystem.Views;
 
@@ -13,7 +17,73 @@ public partial class SplashWindow : Window
     public SplashWindow()
     {
         InitializeComponent();
+
+        var customWriter = new T2TextWriter(BlockConsole); // 替换为你的界面控件
+        Console.SetOut(customWriter);
+
+        Prepare();
     }
+
+    private void Prepare()
+    {
+        // 从配置文件中读取上次选择的文件路径
+        var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        if (configuration.AppSettings.Settings["LastFilePath"] != null)
+        {
+            _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
+            _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
+            TxtPath.Text = _lastRelativePath;
+            return;
+        }
+
+        // 如果不存在，创建该键，并将初始值设置为空字符串
+        configuration.AppSettings.Settings.Add("LastFilePath", "");
+        configuration.Save(ConfigurationSaveMode.Modified);
+    }
+
+    private string _lastFilePath = "ia-system.db";
+    private string _lastRelativePath = "";
+
+    private void ButtonSelect_OnClick(object sender, RoutedEventArgs e)
+    {
+        // 弹出选择文件对话框，设置初始目录为上次选择的文件所在目录
+        var openFileDialog = new OpenFileDialog
+        {
+            InitialDirectory = Path.GetDirectoryName(_lastFilePath) ?? string.Empty,
+            Title = "选择数据库文件",
+            Filter = "数据库文件|*.db"
+        };
+        if (openFileDialog.ShowDialog() != true) return;
+        // 用户点击了“打开”按钮
+        _lastFilePath = openFileDialog.FileName;
+        _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
+        TxtPath.Text = _lastRelativePath;
+
+        // 记录选择的文件路径到配置文件中
+        var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        config.AppSettings.Settings["LastFilePath"].Value = _lastFilePath;
+        config.Save();
+    }
+
+    private void ButtonUpgd_OnClick(object sender, RoutedEventArgs e)
+    {
+        Log.Fatal("The function is under developing..");
+    }
+
+    private void ButtonNew_OnClick(object sender, RoutedEventArgs e)
+    {
+        File.Delete(_lastFilePath); // 删除文件
+        Log.Debug("删除旧数据库文件");
+        CreateAndFill();
+    }
+
+    private void ButtonView_OnClick(object sender, RoutedEventArgs e)
+    {
+        var wind = new MainWindow();
+        wind.Show();
+    }
+
+    #region 创建和填充数据
 
     private async void CreateAndFill()
     {
@@ -23,7 +93,7 @@ public partial class SplashWindow : Window
             // this is for demo purposes only, to make it easier
             // to get up and running
             context.Database.EnsureCreated();
-            Print("创建成功");
+            Log.Debug("创建数据库文件");
 
             var farms = new[]
             {
@@ -196,19 +266,6 @@ public partial class SplashWindow : Window
 
                 new Device
                 {
-                    SerialNum = "F0000005", AddDate = DateTime.Now, Type = ModelType.WC,
-                    ModelNum = "IAS-WC-A2", NodeName = "Demo05", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                    Firmware = "0", Protocol = "0"
-                },
-                new Device
-                {
-                    SerialNum = "F0000006", AddDate = DateTime.Now, Type = ModelType.WC,
-                    ModelNum = "IAS-WC-A2", NodeName = "Demo06", Mac = "00:00:00:00:00:00", TcpPort = 8000,
-                    Firmware = "0", Protocol = "0"
-                },
-
-                new Device
-                {
                     SerialNum = "F0000001", AddDate = new DateTime(2023, 1, 1), Type = ModelType.WC,
                     ModelNum = "IAS-WC-A2", NodeName = "HIK-015", HikIp = "192.168.77.101", Mac = "00:00:00:00:00:00",
                     TcpPort = 8000, Firmware = "0", Protocol = "0"
@@ -243,35 +300,17 @@ public partial class SplashWindow : Window
             };
 
             context.Farms.AddRange(farms);
-            Print("插入基地数据");
+            Log.Debug("插入基地数据");
             context.Pools.AddRange(pools);
-            Print("插入鱼塘信息");
+            Log.Debug("插入鱼塘信息");
             context.Devices.AddRange(devices);
-            Print("插入设备数据");
+            Log.Debug("插入设备数据");
             context.RecWqms.AddRange(wqms);
-            Print("插入设备记录");
+            Log.Debug("插入设备记录");
             context.SaveChanges();
-            Print("save data");
+            Log.Debug("保存");
         });
     }
 
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-    {
-        File.Delete("ia-system.db"); // 删除文件
-        var prefix = DateTime.Now.ToString("HH:mm:ss.fff");
-        Block.Text += $"{prefix} 删除旧数据库文件\n";
-        CreateAndFill();
-    }
-
-    private void Print(string message)
-    {
-        var prefix = DateTime.Now.ToString("HH:mm:ss.fff");
-        Dispatcher.Invoke(() => { Block.Text += $"{prefix} {message}\n"; });
-    }
-
-    private void ButtonView_OnClick(object sender, RoutedEventArgs e)
-    {
-        var wind = new MainWindow();
-        wind.Show();
-    }
+    #endregion
 }

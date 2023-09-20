@@ -7,7 +7,7 @@
         xmlns:wpf="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="IA工具" Height="800" Width="1200" Loaded="Window_Loaded">
+        Title="IA数据查看器" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False" />
@@ -58,9 +58,15 @@
                                     <HeaderedContentControl Header="鱼塘信息" Margin="0,5,0,0"
                                                             Style="{StaticResource H3HeaderedContentControl}">
                                         <ui:SimpleStackPanel Spacing="5">
-                                            <TextBox ui:ControlHelper.Header="鱼塘名:" Margin="5,0,0,0" Width="160"
-                                                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                     Text="{Binding SelectedPool.Name}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBox ui:ControlHelper.Header="鱼塘名:" Margin="5,0,0,0" Width="160"
+                                                         VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                         Text="{Binding SelectedPool.Name}" />
+                                                <TextBox ui:ControlHelper.Header="大小:" Margin="5,0,0,0" Width="160"
+                                                         VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                         Text="{Binding SelectedPool.Size}" />
+                                                <TextBlock Text="亩" VerticalAlignment="Bottom" />
+                                            </StackPanel>
                                             <Slider ui:ControlHelper.Header="进度:" Margin="5,0,0,0" Width="160"
                                                     VerticalAlignment="Center" HorizontalAlignment="Left"
                                                     Minimum="0" Maximum="100"
@@ -303,7 +309,7 @@
                     <WrapPanel HorizontalAlignment="Center" Grid.Row="1">
                         <Button Content="清除数据" Margin="5,5,5,5"
                                 Command="{Binding ClearCommand}" />
-                        <Button Content="开始" Margin="5,5,0,5"
+                        <Button Content="模拟" Margin="5,5,0,5"
                                 Command="{Binding DataCommand}" />
                         <Button Content="停止" Margin="5,5,0,5"
                                 Command="{Binding StopCommand}" />
