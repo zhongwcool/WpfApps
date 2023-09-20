@@ -8,7 +8,7 @@ namespace App14.IASystem;
 
 public partial class App : Application
 {
-    private readonly string _file = Path.Combine("03-ToolLog", "log.txt");
+    private readonly string _file = Path.Combine("00-Log", "tool.txt");
 
     public App()
     {

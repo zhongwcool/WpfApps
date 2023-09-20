@@ -7,6 +7,7 @@
         <UseWPF>true</UseWPF>
         <AssemblyName>iatool</AssemblyName>
         <LangVersion>11</LangVersion>
+        <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -34,12 +35,18 @@
 
     <ItemGroup>
         <Folder Include="Assets"/>
+        <Folder Include="Resources\"/>
     </ItemGroup>
 
     <ItemGroup>
         <Reference Include="ModernWpf">
             <HintPath>C:\Users\alex\.nuget\packages\modernwpfui\0.9.6\lib\net462\ModernWpf.dll</HintPath>
         </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Resources\logo.ico"/>
+        <Resource Include="Resources\logo.ico"/>
     </ItemGroup>
 
 </Project>
