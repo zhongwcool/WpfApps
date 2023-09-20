@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
@@ -12,6 +13,15 @@ public class T2TextWriter : TextWriter
     public T2TextWriter(TextBox textBox)
     {
         _outputTextBox = textBox;
+        _outputTextBox.TextChanged += (_, _) =>
+        {
+            if (_outputTextBox.Text.Length <= _outputTextBox.MaxLength) return;
+            var lines = _outputTextBox.Text.Split('\n').ToList();
+
+            if (lines.Count <= 1) return;
+            lines.RemoveAt(0);
+            _outputTextBox.Text = string.Join("\n", lines);
+        };
     }
 
     public override void Write(char value)

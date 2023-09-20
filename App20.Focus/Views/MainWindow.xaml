@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="App20.Focus" Height="450" Width="800">
     <Grid>
         <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto" Opacity="0.8">
-            <TextBox x:Name="BlockConsole" />
+            <TextBox x:Name="BlockConsole" MaxLength="1000" />
         </ScrollViewer>
         <Canvas>
             <Rectangle x:Name="MyControl" Canvas.Right="100" Canvas.Top="280"
