@@ -9,7 +9,7 @@ namespace App14.IASystem.Writers;
 public class T2TextWriter : TextWriter
 {
     private readonly TextBlock _outputTextBlock; // 替换为你的界面控件
-    private const int MAX_LENGTH = 2000;
+    private const int MAX_LENGTH = 5000;
 
     public T2TextWriter(TextBlock textBlock)
     {

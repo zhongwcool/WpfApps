@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="IA助手" Height="450" Width="400">
+        Title="IA助手" Height="450" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,7 +25,7 @@
 
         <Grid Grid.Row="1">
             <ScrollViewer>
-                <TextBlock x:Name="BlockConsole" />
+                <TextBlock x:Name="BlockConsole" FontFamily="Lucida Console" Margin="5" />
             </ScrollViewer>
         </Grid>
 

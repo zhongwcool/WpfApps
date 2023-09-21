@@ -90,8 +90,7 @@ public class RecsTabViewModel : ObservableObject
     {
         RecWqms.Clear();
         var query = _context.RecWqms.Local
-            .Where(rec =>
-                string.Equals(rec.Device.SerialNum, SelectedDevice.SerialNum, StringComparison.OrdinalIgnoreCase))
+            .Where(rec => rec.Device.SerialNum == SelectedDevice.SerialNum)
             .OrderByDescending(e => e.TimeStamp)
             .ToList();
         foreach (var recWqm in query) RecWqms.Add(recWqm);
@@ -101,8 +100,7 @@ public class RecsTabViewModel : ObservableObject
         HtDosatValues.Clear();
         HtDorValues.Clear();
         var query2 = _context.RecWqms.Local
-            .Where(rec =>
-                string.Equals(rec.Device.SerialNum, SelectedDevice.SerialNum, StringComparison.OrdinalIgnoreCase))
+            .Where(rec => rec.Device.SerialNum == SelectedDevice.SerialNum)
             .OrderByDescending(e => e.TimeStamp)
             .Take(10)
             .ToList();

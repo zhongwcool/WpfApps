@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using App14.IASystem.Context;
 using App14.IASystem.Enums;
 using App14.IASystem.Models;
 using App14.IASystem.Writers;
+using ConsoleTables;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Serilog;
 
@@ -30,6 +33,8 @@ public partial class SplashWindow : Window
         var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         if (configuration.AppSettings.Settings["LastFilePath"] != null)
         {
+            DisplayDatabaseSummary();
+
             _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
             _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
             TxtPath.Text = _lastRelativePath;
@@ -63,6 +68,8 @@ public partial class SplashWindow : Window
         var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         config.AppSettings.Settings["LastFilePath"].Value = _lastFilePath;
         config.Save();
+
+        DisplayDatabaseSummary();
     }
 
     private void ButtonUpgd_OnClick(object sender, RoutedEventArgs e)
@@ -79,9 +86,70 @@ public partial class SplashWindow : Window
 
     private void ButtonView_OnClick(object sender, RoutedEventArgs e)
     {
+        // 创建并打开新窗口
         var wind = new MainWindow();
-        wind.Show();
+        wind.ShowDialog();
     }
+
+    #region 数据库概要
+
+    // 在某个界面或逻辑中使用DbContext查询数据库信息
+    private static void DisplayDatabaseSummary()
+    {
+        using var context = new IaContext();
+        // 获取所有的DbSet属性
+        var dbSets = context.GetType().GetProperties()
+            .Where(p => p.PropertyType.IsGenericType &&
+                        p.PropertyType.GetGenericTypeDefinition() == typeof(DbSet<>))
+            .ToList();
+
+        // 打印表的数量和字段信息
+        Console.WriteLine("数据库概要信息：");
+        Console.WriteLine($"总共有 {dbSets.Count} 张表。");
+        Console.WriteLine();
+
+        var entityTypes = context.Model.GetEntityTypes();
+        foreach (var entityType in entityTypes)
+        {
+            var tableName = entityType.GetTableName();
+            Console.WriteLine($"@Table: {tableName}");
+            var table0 = new ConsoleTable("Table", "Column", "Type");
+            var columns = entityType.GetProperties();
+            foreach (var column in columns)
+            {
+                var columnName = column.Name;
+                var columnType = column.ClrType.Name;
+
+                // 添加行到表格
+                table0.AddRow(tableName, columnName, columnType);
+            }
+
+            // 打印表格
+            table0.Write();
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("每张表有的数据量:");
+
+        var table = new ConsoleTable("Table", "Count");
+
+        foreach (var dbSet in dbSets)
+        {
+            var countMethod = typeof(Queryable).GetMethods()
+                .First(m => m.Name == "Count" && m.GetParameters().Length == 1);
+            var count = (int)countMethod
+                .MakeGenericMethod(dbSet.PropertyType.GetGenericArguments())
+                .Invoke(null, new[] { dbSet.GetValue(context) })!;
+
+            // 添加行到表格
+            table.AddRow(dbSet.Name, count);
+        }
+
+        // 打印表格
+        table.Write();
+    }
+
+    #endregion
 
     #region 创建和填充数据
 
