@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using App06.Dll.Models;
 
@@ -17,12 +17,11 @@ public partial class MainWindow : Window
         InitializeComponent();
         Loaded += Window_Loaded;
 
-        var dll = new Thread(() =>
+        Task.Run(() =>
         {
             var data = hello();
             Dispatcher.Invoke(() => { MyBlock.AppendText($"结果：{data}\n"); });
         });
-        dll.Start();
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)

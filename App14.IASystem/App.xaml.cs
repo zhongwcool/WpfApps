@@ -26,13 +26,25 @@ public partial class App : Application
 
     private static void PrintSystemInfo()
     {
-        Log.Fatal("Windows Version: {OsVersion}", Environment.OSVersion);
+        var os = Environment.OSVersion;
+        var version = os.Version;
+        switch (version.Major)
+        {
+            case 10 when version.Build >= 19041:
+                Log.Fatal("Windows Version: Windows 10 {OsVersion}", version.Build);
+                break;
+            case 10 when version.Build >= 22000:
+                Log.Fatal("Windows Version: Windows 11 {OsVersion}", version.Build);
+                break;
+            default:
+                Log.Fatal("Windows Version: {OsVersion}", Environment.OSVersion);
+                break;
+        }
+
         Log.Fatal(".NET SDK Version: {Version}", Environment.Version);
 
-        ManagementObjectSearcher searcher;
-
         // Query CPU
-        searcher = new ManagementObjectSearcher("select * from Win32_Processor");
+        var searcher = new ManagementObjectSearcher("select * from Win32_Processor");
         foreach (var o in searcher.Get())
         {
             var share = (ManagementObject)o;
@@ -44,7 +56,7 @@ public partial class App : Application
         foreach (var o in searcher.Get())
         {
             var share = (ManagementObject)o;
-            Log.Fatal("Graphics Card: " + share["Name"]);
+            Log.Fatal("Graphics Card: {Unknown}", share["Name"]);
         }
 
         // Query Memory
@@ -54,7 +66,7 @@ public partial class App : Application
             var share = (ManagementObject)o;
             var capacityBytes = (ulong)share["Capacity"];
             var mem = (double)capacityBytes / 1024 / 1024 / 1024;
-            Log.Fatal("Memory: " + mem + "GB");
+            Log.Fatal("Memory: {Unknown} GB", mem);
         }
     }
 
