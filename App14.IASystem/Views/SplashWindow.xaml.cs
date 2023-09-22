@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +9,6 @@ using App14.IASystem.Models;
 using App14.IASystem.Writers;
 using ConsoleTables;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
 using Serilog;
 
 namespace App14.IASystem.Views;
@@ -23,49 +21,6 @@ public partial class SplashWindow : Window
 
         var customWriter = new T2TextWriter(BlockConsole); // 替换为你的界面控件
         Console.SetOut(customWriter);
-
-        Prepare();
-    }
-
-    private void Prepare()
-    {
-        // 从配置文件中读取上次选择的文件路径
-        var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        if (configuration.AppSettings.Settings["LastFilePath"] != null)
-        {
-            _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
-            _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
-            TxtPath.Text = _lastRelativePath;
-            return;
-        }
-
-        // 如果不存在，创建该键，并将初始值设置为空字符串
-        configuration.AppSettings.Settings.Add("LastFilePath", "");
-        configuration.Save(ConfigurationSaveMode.Modified);
-    }
-
-    private string _lastFilePath = "ia-system.db";
-    private string _lastRelativePath = "";
-
-    private void ButtonSelect_OnClick(object sender, RoutedEventArgs e)
-    {
-        // 弹出选择文件对话框，设置初始目录为上次选择的文件所在目录
-        var openFileDialog = new OpenFileDialog
-        {
-            InitialDirectory = Path.GetDirectoryName(_lastFilePath) ?? string.Empty,
-            Title = "选择数据库文件",
-            Filter = "数据库文件|*.db"
-        };
-        if (openFileDialog.ShowDialog() != true) return;
-        // 用户点击了“打开”按钮
-        _lastFilePath = openFileDialog.FileName;
-        _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
-        TxtPath.Text = _lastRelativePath;
-
-        // 记录选择的文件路径到配置文件中
-        var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        config.AppSettings.Settings["LastFilePath"].Value = _lastFilePath;
-        config.Save();
     }
 
     private void ButtonUpgrade_OnClick(object sender, RoutedEventArgs e)
@@ -75,7 +30,7 @@ public partial class SplashWindow : Window
 
     private void ButtonRege_OnClick(object sender, RoutedEventArgs e)
     {
-        File.Delete(_lastFilePath); // 删除文件
+        File.Delete("ia-system.db"); // 删除文件
         Log.Debug("删除旧数据库文件");
         CreateAndFill();
     }
