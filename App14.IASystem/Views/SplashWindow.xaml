@@ -3,8 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:cv="clr-namespace:App14.IASystem.Converter"
         mc:Ignorable="d"
         Title="IA助手" Height="450" Width="600">
+    <Window.Resources>
+        <cv:NonEmpty2VisibleConverter x:Key="NonEmpty2VisibleConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,10 +21,13 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Text="数据库文件:" FontWeight="Heavy" VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="0" />
             <TextBlock x:Name="TxtPath" Text="" VerticalAlignment="Center" Grid.Column="1" />
-            <Button Content="选择" Margin="5,5,5,5" Grid.Column="2" Click="ButtonSelect_OnClick" />
+            <Button Content="选择" Margin="5" Click="ButtonSelect_OnClick" Grid.Column="2" />
+            <Button Content="详情" Margin="5" Click="ButtonDetail_OnClick" Grid.Column="3"
+                    IsEnabled="{Binding Text, ElementName=TxtPath, Converter={StaticResource NonEmpty2VisibleConverter}}" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -30,9 +37,11 @@
         </Grid>
 
         <WrapPanel HorizontalAlignment="Right" Grid.Row="2">
-            <Button Content="升级" Margin="5" Click="ButtonUpgd_OnClick" IsEnabled="False" />
-            <Button Content="生成" Margin="5" Click="ButtonNew_OnClick" Style="{DynamicResource AccentButtonStyle}" />
-            <Button Content="管理" Margin="5" Click="ButtonView_OnClick" />
+            <TextBlock Text="数据库操作:" FontWeight="Heavy" VerticalAlignment="Center" />
+            <Button Content="升级" Margin="5" Click="ButtonUpgrade_OnClick" IsEnabled="False" />
+            <Button Content="生成" Margin="5" Click="ButtonRege_OnClick" Style="{DynamicResource AccentButtonStyle}"
+                    x:Name="BtnRege" />
+            <Button Content="查看" Margin="5" Click="ButtonView_OnClick" />
         </WrapPanel>
     </Grid>
 </Window>

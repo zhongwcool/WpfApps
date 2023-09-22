@@ -33,8 +33,6 @@ public partial class SplashWindow : Window
         var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         if (configuration.AppSettings.Settings["LastFilePath"] != null)
         {
-            DisplayDatabaseSummary();
-
             _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
             _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
             TxtPath.Text = _lastRelativePath;
@@ -68,16 +66,14 @@ public partial class SplashWindow : Window
         var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         config.AppSettings.Settings["LastFilePath"].Value = _lastFilePath;
         config.Save();
-
-        DisplayDatabaseSummary();
     }
 
-    private void ButtonUpgd_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonUpgrade_OnClick(object sender, RoutedEventArgs e)
     {
         Log.Fatal("The function is under developing..");
     }
 
-    private void ButtonNew_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonRege_OnClick(object sender, RoutedEventArgs e)
     {
         File.Delete(_lastFilePath); // 删除文件
         Log.Debug("删除旧数据库文件");
@@ -89,6 +85,12 @@ public partial class SplashWindow : Window
         // 创建并打开新窗口
         var wind = new MainWindow();
         wind.ShowDialog();
+    }
+
+    private void ButtonDetail_OnClick(object sender, RoutedEventArgs e)
+    {
+        BtnRege.IsEnabled = false;
+        DisplayDatabaseSummary();
     }
 
     #region 数据库概要
@@ -130,9 +132,7 @@ public partial class SplashWindow : Window
         }
 
         Console.WriteLine("每张表有的数据量:");
-
         var table = new ConsoleTable("Table", "Count");
-
         foreach (var dbSet in dbSets)
         {
             var countMethod = typeof(Queryable).GetMethods()
