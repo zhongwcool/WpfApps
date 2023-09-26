@@ -32,7 +32,7 @@
                                 YAxes="{Binding YAxes}" />
 
             <ScrollViewer>
-                <TextBlock x:Name="Block" Margin="5" />
+                <TextBlock x:Name="BlockConsole" FontFamily="Lucida Console" Margin="5" />
             </ScrollViewer>
 
             <control:FloatButton Kiwi="悬浮区"

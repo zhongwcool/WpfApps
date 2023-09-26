@@ -9,7 +9,9 @@ using App16.Python.Control;
 using App16.Python.Models;
 using App16.Python.Utils;
 using App16.Python.ViewModels;
+using App16.Python.Writers;
 using Microsoft.Win32;
+using Serilog;
 
 namespace App16.Python.Views;
 
@@ -22,6 +24,9 @@ public partial class MainWindow : Window
         InitializeComponent();
         _vm = new MainViewModel();
         DataContext = _vm;
+
+        var customWriter = new T2TextWriter(BlockConsole); // 替换为你的界面控件
+        Console.SetOut(customWriter);
 
         Prepare();
         CheckVenv();
@@ -75,7 +80,7 @@ public partial class MainWindow : Window
     {
         if (string.IsNullOrEmpty(_lastRelativePath))
         {
-            Dispatcher.Invoke(() => { Block.Text = "未指定python文件"; });
+            Log.Debug("未指定python文件");
             return;
         }
 
@@ -90,13 +95,13 @@ public partial class MainWindow : Window
             CreateNoWindow = true, // 设置不创建进程窗口
             WindowStyle = ProcessWindowStyle.Hidden // 隐藏进程窗口
         };
-        Dispatcher.Invoke(() => { Block.Text += $"正在执行: {startInfo.FileName} {startInfo.Arguments}\n"; });
+        Log.Debug($"正在执行: {startInfo.FileName} {startInfo.Arguments}");
         using var process = Process.Start(startInfo);
         using var reader = process?.StandardOutput;
         var result = reader?.ReadToEnd();
         Dispatcher.Invoke(() =>
         {
-            Block.Text += result;
+            if (result != null) Log.Debug(result);
             Random random = new();
             var randomValue = random.Next(1, 100);
             _vm.AddData(randomValue);
@@ -119,7 +124,6 @@ public partial class MainWindow : Window
 
     private void ButtonRun_OnClick(object sender, RoutedEventArgs e)
     {
-        Block.Text = "";
         DoDemo(_serialTaskExecutor);
     }
 
@@ -127,7 +131,6 @@ public partial class MainWindow : Window
 
     private void ButtonRun02_OnClick(object sender, RoutedEventArgs e)
     {
-        Block.Text = "";
         DoDemo(_serial2TaskExecutor);
     }
 
@@ -135,7 +138,6 @@ public partial class MainWindow : Window
 
     private void ButtonParallel_OnClick(object sender, RoutedEventArgs e)
     {
-        Block.Text = "";
         DoDemo(_parallelTaskExecutor);
     }
 

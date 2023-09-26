@@ -11,7 +11,7 @@ using SkiaSharp;
 
 namespace App16.Python.ViewModels;
 
-public partial class MainViewModel : ObservableObject
+public class MainViewModel : ObservableObject
 {
     private ObservableCollection<DateTimePoint> RawSeries { get; }
     public ObservableCollection<ISeries> XYSeries { get; set; }
