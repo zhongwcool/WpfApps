@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
+using LiveChartsCore.Drawing;
 using LiveChartsCore.SkiaSharpView;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,7 +43,8 @@ public class RecsTabViewModel : ObservableObject
             new LineSeries<ObservableValue>
             {
                 Values = HtTempValues,
-                Fill = null
+                GeometrySize = 4f,
+                DataPadding = new LvcPoint(0, 0)
             }
         };
 
@@ -51,7 +53,8 @@ public class RecsTabViewModel : ObservableObject
             new LineSeries<ObservableValue>
             {
                 Values = HtPhValues,
-                Fill = null
+                GeometrySize = 4f,
+                DataPadding = new LvcPoint(0, 0)
             }
         };
 
@@ -60,7 +63,8 @@ public class RecsTabViewModel : ObservableObject
             new LineSeries<ObservableValue>
             {
                 Values = HtDosatValues,
-                Fill = null
+                GeometrySize = 4f,
+                DataPadding = new LvcPoint(0, 0)
             }
         };
 
@@ -69,7 +73,8 @@ public class RecsTabViewModel : ObservableObject
             new LineSeries<ObservableValue>
             {
                 Values = HtDorValues,
-                Fill = null
+                GeometrySize = 4f,
+                DataPadding = new LvcPoint(0, 0)
             }
         };
 
