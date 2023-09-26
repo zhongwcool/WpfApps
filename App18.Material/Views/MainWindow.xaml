@@ -31,7 +31,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Height="64" Orientation="Horizontal" Grid.Column="0">
                         <Image Margin="15,0,15,0" Width="48" Height="48"
-                               Source="pack://application:,,,/Resources/logo_home.png" />
+                               Source="pack://application:,,,/Resources/logo_main.png" />
 
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
