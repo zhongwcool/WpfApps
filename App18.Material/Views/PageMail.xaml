@@ -16,97 +16,6 @@
                     <ResourceDictionary
                         Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
                 </ResourceDictionary.MergedDictionaries>
-
-                <cv:BrushOpacityConverter x:Key="BrushOpacityConverter" />
-
-                <Style x:Key="MaterialDesignFlatLightButtonM" TargetType="{x:Type ButtonBase}">
-                    <Setter Property="Background"
-                            Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.16}" />
-                    <Setter Property="BorderBrush" Value="Transparent" />
-                    <Setter Property="BorderThickness" Value="0" />
-                    <Setter Property="Cursor" Value="Hand" />
-                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
-                    <Setter Property="Height" Value="32" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    <Setter Property="Padding" Value="16,4,16,4" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ButtonBase}">
-                                <Grid>
-                                    <Border x:Name="border"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="{Binding Path=(materialDesign:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
-                                    <ProgressBar x:Name="ProgressBar"
-                                                 Width="{Binding RelativeSource={RelativeSource AncestorType=ButtonBase}, Path=ActualWidth}"
-                                                 Height="{TemplateBinding Height}"
-                                                 HorizontalAlignment="Left"
-                                                 VerticalAlignment="Center"
-                                                 Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.IndicatorBackground)}"
-                                                 BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.IndicatorBackground)}"
-                                                 Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.IndicatorForeground)}"
-                                                 IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.IsIndeterminate)}"
-                                                 Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.Maximum)}"
-                                                 Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.Minimum)}"
-                                                 Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.Opacity)}"
-                                                 Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                                                 Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                 Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ButtonProgressAssist.Value)}">
-                                        <ProgressBar.Clip>
-                                            <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                                <Binding ElementName="border" Path="ActualWidth" />
-                                                <Binding ElementName="border" Path="ActualHeight" />
-                                                <Binding ElementName="border" Path="CornerRadius" />
-                                                <Binding ElementName="border" Path="BorderThickness" />
-                                            </MultiBinding>
-                                        </ProgressBar.Clip>
-                                    </ProgressBar>
-
-                                    <materialDesign:Ripple Padding="{TemplateBinding Padding}"
-                                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                           Content="{TemplateBinding Content}"
-                                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                           ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                           Focusable="False"
-                                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                        <materialDesign:Ripple.Clip>
-                                            <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                                <Binding ElementName="border" Path="ActualWidth" />
-                                                <Binding ElementName="border" Path="ActualHeight" />
-                                                <Binding ElementName="border" Path="CornerRadius" />
-                                                <Binding ElementName="border" Path="BorderThickness" />
-                                            </MultiBinding>
-                                        </materialDesign:Ripple.Clip>
-                                    </materialDesign:Ripple>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter TargetName="border" Property="Background"
-                                                Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.36}" />
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="false">
-                                        <Setter Property="Opacity" Value="0.38" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="TextBlock.FontSize" Value="14" />
-                    <Setter Property="TextBlock.FontWeight" Value="Medium" />
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="2" />
-                    <Setter Property="materialDesign:ButtonProgressAssist.IndicatorBackground" Value="Transparent" />
-                    <Setter Property="materialDesign:ButtonProgressAssist.IndicatorForeground"
-                            Value="{DynamicResource PrimaryHueMidBrush}" />
-                    <Setter Property="materialDesign:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
-                    <Setter Property="materialDesign:ButtonProgressAssist.Opacity" Value=".4" />
-                    <Setter Property="materialDesign:RippleAssist.Feedback"
-                            Value="{DynamicResource PrimaryHueMidBrush}" />
-                </Style>
-
                 <cv:DateToHumanizeConverter x:Key="DateToHumanizeConverter" />
                 <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
                 <cv:Address2NickConverter x:Key="Address2NickConverter" />
@@ -205,12 +114,12 @@
                                 </Grid.ColumnDefinitions>
                                 <Button Margin="15" Height="40" Content="Reply"
                                         materialDesign:ButtonAssist.CornerRadius="20"
-                                        Style="{StaticResource MaterialDesignFlatLightButtonM}"
+                                        Style="{StaticResource MaterialDesign3Button}"
                                         Grid.Column="0" />
 
                                 <Button Margin="15" Height="40" Content="Reply All"
                                         materialDesign:ButtonAssist.CornerRadius="20"
-                                        Style="{StaticResource MaterialDesignFlatLightButtonM}"
+                                        Style="{StaticResource MaterialDesign3Button}"
                                         Grid.Column="1" />
                             </Grid>
                         </StackPanel>
