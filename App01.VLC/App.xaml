@@ -29,6 +29,11 @@
                 <!-- Other merged dictionaries here -->
                 <ResourceDictionary Source="Style/TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <LinearGradientBrush x:Key="MyGradientBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#AFFF" />
+                <GradientStop Offset="1" Color="Transparent" />
+            </LinearGradientBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
