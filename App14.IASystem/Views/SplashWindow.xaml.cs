@@ -6,8 +6,8 @@ using System.Windows;
 using App14.IASystem.Context;
 using App14.IASystem.Enums;
 using App14.IASystem.Models;
-using App14.IASystem.Writers;
 using ConsoleTables;
+using Mar.Controls.Tool;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -18,9 +18,15 @@ public partial class SplashWindow : Window
     public SplashWindow()
     {
         InitializeComponent();
+    }
 
-        var customWriter = new T2TextWriter(BlockConsole); // 替换为你的界面控件
-        Console.SetOut(customWriter);
+    private void ButtonDebug_OnClick(object sender, RoutedEventArgs e)
+    {
+        var console = new ConsoleWindow(this)
+        {
+            Capacity = 3000
+        };
+        console.Show();
     }
 
     private void ButtonUpgrade_OnClick(object sender, RoutedEventArgs e)
