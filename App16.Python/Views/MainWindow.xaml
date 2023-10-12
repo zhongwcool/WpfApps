@@ -31,10 +31,6 @@
                                 XAxes="{Binding XAxes}"
                                 YAxes="{Binding YAxes}" />
 
-            <ScrollViewer>
-                <TextBlock x:Name="BlockConsole" FontFamily="Lucida Console" Margin="5" />
-            </ScrollViewer>
-
             <control:FloatButton Kiwi="悬浮区"
                                  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"
                                  MouseEnter="UIElement_OnMouseEnter" MouseLeave="UIElement_OnMouseLeave" />

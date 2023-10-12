@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -9,7 +10,7 @@ using App16.Python.Control;
 using App16.Python.Models;
 using App16.Python.Utils;
 using App16.Python.ViewModels;
-using App16.Python.Writers;
+using Mar.Controls.Tool;
 using Microsoft.Win32;
 using Serilog;
 
@@ -25,8 +26,14 @@ public partial class MainWindow : Window
         _vm = new MainViewModel();
         DataContext = _vm;
 
-        var customWriter = new T2TextWriter(BlockConsole); // 替换为你的界面控件
-        Console.SetOut(customWriter);
+        Task.Delay(500).ContinueWith(_ =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                var console = new ConsoleWindow();
+                console.Show();
+            });
+        });
 
         Prepare();
         CheckVenv();
