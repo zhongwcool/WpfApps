@@ -157,7 +157,8 @@ public partial class MainWindow : Window
         var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         if (configuration.AppSettings.Settings["LastFilePath"] != null)
         {
-            _lastFilePath = configuration.AppSettings.Settings["LastFilePath"].Value;
+            var file = configuration.AppSettings.Settings["LastFilePath"].Value;
+            if (!string.IsNullOrEmpty(file)) _lastFilePath = file;
             _lastRelativePath = Path.GetRelativePath(Environment.CurrentDirectory, _lastFilePath); // 转换为相对路径
             TxtPath.Text = _lastRelativePath;
             return;
@@ -168,7 +169,7 @@ public partial class MainWindow : Window
         configuration.Save(ConfigurationSaveMode.Modified);
     }
 
-    private string _lastFilePath = "";
+    private string _lastFilePath = "main.py";
     private string _lastRelativePath = "";
 
     private void ButtonSelect_OnClick(object sender, RoutedEventArgs e)
