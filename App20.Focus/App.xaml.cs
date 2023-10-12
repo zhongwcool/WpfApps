@@ -8,7 +8,7 @@ namespace App20.Focus;
 
 public partial class App : Application
 {
-    private readonly string _file = Path.Combine("00-Log", "log.txt");
+    private readonly string _file = Path.Combine("Log", "log.txt");
 
     public App()
     {

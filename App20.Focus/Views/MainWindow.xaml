@@ -6,9 +6,6 @@
         mc:Ignorable="d"
         Title="App20.Focus" Height="450" Width="800">
     <Grid>
-        <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto" Opacity="0.8">
-            <TextBox x:Name="BlockConsole" MaxLength="1000" />
-        </ScrollViewer>
         <Canvas>
             <Rectangle x:Name="MyControl" Canvas.Right="100" Canvas.Top="280"
                        Width="80" Height="50" RadiusX="5" RadiusY="5" Fill="Gold"

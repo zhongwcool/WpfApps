@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using App20.Focus.Writers;
+using Mar.Controls.Tool;
 using Serilog;
 
 namespace App20.Focus.Views;
@@ -13,14 +14,19 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        var customWriter = new T2TextWriter(BlockConsole); // 替换为你的界面控件
-        Console.SetOut(customWriter);
+        Task.Delay(500).ContinueWith(_ =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                var console = new ConsoleWindow();
+                console.Show();
+            });
+        });
     }
 
     private void MyControl_MouseEnter(object sender, MouseEventArgs e)
     {
         Log.Debug("mouse enter");
-        ScrollViewer.ScrollToBottom();
         // 创建关键帧动画
         var animation = new DoubleAnimationUsingKeyFrames
         {
@@ -45,7 +51,6 @@ public partial class MainWindow : Window
     private void MyControl_MouseLeave(object sender, MouseEventArgs e)
     {
         Log.Debug("mouse leave");
-        ScrollViewer.ScrollToBottom();
         // 停止动画
         MyControl.BeginAnimation(OpacityProperty, null);
     }
