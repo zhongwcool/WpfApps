@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
@@ -8,8 +9,8 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using App16.Python.Control;
 using App16.Python.Models;
-using App16.Python.Utils;
 using App16.Python.ViewModels;
+using Mar.Console;
 using Mar.Controls.Tool;
 using Microsoft.Win32;
 using Serilog;
@@ -197,10 +198,10 @@ public partial class MainWindow : Window
 
     private void DoDemo(ITaskExecutor executor)
     {
-        var model = JsonUtil.Load<RenWuModel>(JSON_FILE);
-        if (null == model) return;
+        var tasks = JsonUtil.Load<List<RenWu>>(JSON_FILE);
+        if (null == tasks) return;
 
-        foreach (var soul in model.Tasks) executor.AddTask(() => Test(soul));
+        foreach (var task in tasks) executor.AddTask(() => Test(task));
     }
 
     private const string JSON_FILE = "tasks.json";
