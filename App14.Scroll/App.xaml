@@ -3,6 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Other merged dictionaries here -->
+                <ResourceDictionary Source="Styles/Light.xaml" />
+                <ResourceDictionary Source="Styles/ScrollViewer.xaml" />
+                <ResourceDictionary Source="Styles/ScrollBar.xaml" />
 
+            </ResourceDictionary.MergedDictionaries>
+
+            <LinearGradientBrush x:Key="MyGradientBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#AFFF" />
+                <GradientStop Offset="1" Color="Transparent" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

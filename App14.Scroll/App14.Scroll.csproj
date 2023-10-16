@@ -7,4 +7,10 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Reference Include="ModernWpf">
+            <HintPath>C:\Users\alex\.nuget\packages\modernwpfui\0.9.6\lib\net5.0-windows7.0\ModernWpf.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
 </Project>

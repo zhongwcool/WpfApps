@@ -5,5 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="App14.Scroll" Height="450" Width="800">
-    <Grid />
+    <Grid>
+        <ScrollViewer Width="200" Height="200">
+            <StackPanel Width="200">
+                <TextBlock TextWrapping="Wrap">
+                    非常抱歉，似乎我提到的MouseBehavior库并不存在。请原谅我给出了错误的信息。
+
+                    在WPF中，默认情况下没有直接支持Grid的双击事件。但是，你仍然可以通过自定义行为或使用现有的第三方库来实现Grid的双击事件。
+
+                    一个常用的第三方库是System.Windows.Interactivity，它是Expression Blend SDK的一部分，提供了许多附加行为和交互功能。你可以通过以下步骤来使用它
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap">
+                    非常抱歉，似乎我提到的MouseBehavior库并不存在。请原谅我给出了错误的信息。
+
+                    在WPF中，默认情况下没有直接支持Grid的双击事件。但是，你仍然可以通过自定义行为或使用现有的第三方库来实现Grid的双击事件。
+
+                    一个常用的第三方库是System.Windows.Interactivity，它是Expression Blend SDK的一部分，提供了许多附加行为和交互功能。你可以通过以下步骤来使用它
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap">
+                    非常抱歉，似乎我提到的MouseBehavior库并不存在。请原谅我给出了错误的信息。
+
+                    在WPF中，默认情况下没有直接支持Grid的双击事件。但是，你仍然可以通过自定义行为或使用现有的第三方库来实现Grid的双击事件。
+
+                    一个常用的第三方库是System.Windows.Interactivity，它是Expression Blend SDK的一部分，提供了许多附加行为和交互功能。你可以通过以下步骤来使用它
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>
