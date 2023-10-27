@@ -8,16 +8,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.9"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9"/>
-        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+        <PackageReference Include="Mar.Controls" Version="0.3.4"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.13"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.13"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.75"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="Serilog" Version="3.0.1"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0"/>
+        <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+        <PackageReference Include="System.Management" Version="7.0.2"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Assets"/>
+        <None Remove="MyHotel.db"/>
+        <EmbeddedResource Include="MyHotel.db"/>
+        <None Update="Assets\MyHotel.db">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

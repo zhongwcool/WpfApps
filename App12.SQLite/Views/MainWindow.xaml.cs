@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using App12.SQLite.HotelDbContext;
 using App12.SQLite.Models;
 using App12.SQLite.ViewModels;
+using Mar.Controls.Tool;
 
 namespace App12.SQLite.Views;
 
@@ -18,6 +20,18 @@ public partial class MainWindow : Window
         RoomTypeCb.ItemsSource = RtCbFilter.ItemsSource = Enum.GetNames(typeof(RoomTypes));
 
         Context = new HotelContext();
+
+        Task.Delay(500).ContinueWith(_ =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                var console = new ConsoleWindow(this)
+                {
+                    Capacity = 2000
+                };
+                console.Show();
+            });
+        });
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -31,6 +45,7 @@ public partial class MainWindow : Window
         // bind to the source
         ClientsTab.DataContext = new ClientsTabViewModel(Context);
         RoomsTab.DataContext = new RoomsTabViewModel(Context);
+        CouponsTab.DataContext = new CouponTabViewModel(Context);
     }
 
     protected override void OnClosing(CancelEventArgs e)

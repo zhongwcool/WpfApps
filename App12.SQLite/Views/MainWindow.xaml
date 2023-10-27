@@ -327,5 +327,10 @@
             </Grid>
         </TabItem>
         <!-- </ Hotel room TAB > -->
+
+        <TabItem x:Name="CouponsTab" Header="优惠券"
+                 d:DataContext="{d:DesignInstance d:Type=vm:CouponTabViewModel, IsDesignTimeCreatable=True}">
+            <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Coupons}" />
+        </TabItem>
     </TabControl>
 </Window>
