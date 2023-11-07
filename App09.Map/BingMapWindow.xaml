@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:wpf="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
-        Title="Bing Map" Height="450" Width="800">
+        Title="Bing Map (Deprecated)" Height="450" Width="800">
     <Grid>
         <UniformGrid Columns="2">
             <wpf:Map Name="MyMap0" ZoomLevel="14" Mode="Aerial" Center="31.5068271,120.7741375"

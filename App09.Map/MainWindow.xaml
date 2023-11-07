@@ -4,29 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
         mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="高德地图" Height="720" Width="1080">
+        Title="高德地图 (.Net48 Only)" Height="720" Width="1080">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <WebBrowser x:Name="WebBrowser" Grid.Row="0" />
-            
+        <interop:AirspaceDecorator
+            AirspaceMode="Redirect"
+            IsInputRedirectionEnabled="True"
+            IsOutputRedirectionEnabled="True">
+            <WebBrowser x:Name="WebBrowser" />
+        </interop:AirspaceDecorator>
+        
         <!-- 命令栏 -->
-        <Grid Grid.Row="1">
+        <Grid VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             
             <WrapPanel Grid.Column="0">
-                <Button Content="修改地图之心" Margin="10" Click="ButtonChangeCenter_OnClick" />
-                <Button Content="回到原点" Margin="10" Click="ButtonAddPolygon_OnClick" />
+                <Button Content="随机位置" Margin="10" Click="ButtonRandom_OnClick" />
+                <Button Content="回到原点" Margin="10" Click="ButtonReset_OnClick" />
             </WrapPanel>
 
-            <ui:CommandBar
+            <ui:CommandBar 
                 VerticalAlignment="Center"
                 Background="Transparent"
                 DefaultLabelPosition="Right"

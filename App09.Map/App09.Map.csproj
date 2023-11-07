@@ -2,10 +2,10 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <LangVersion>10</LangVersion>
+        <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +17,21 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3"/>
+        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2088.41"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.DwayneNeed, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>Assets\DwayneNeed\Microsoft.DwayneNeed.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.DwayneNeed.Win32, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>Assets\DwayneNeed\Microsoft.DwayneNeed.Win32.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Assets\"/>
     </ItemGroup>
 
 </Project>

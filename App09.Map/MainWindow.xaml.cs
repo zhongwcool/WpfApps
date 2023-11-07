@@ -19,12 +19,12 @@ public partial class MainWindow : Window
         };
     }
 
-    private void ButtonChangeCenter_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonRandom_OnClick(object sender, RoutedEventArgs e)
     {
         WebBrowser.InvokeScript("randomZoomCenter");
     }
 
-    private void ButtonAddPolygon_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonReset_OnClick(object sender, RoutedEventArgs e)
     {
         WebBrowser.InvokeScript("setMapCenter", new object[] { 120.721603, 31.367004 });
     }
