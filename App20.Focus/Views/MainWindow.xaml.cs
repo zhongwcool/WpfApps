@@ -18,7 +18,10 @@ public partial class MainWindow : Window
         {
             Dispatcher.Invoke(() =>
             {
-                var console = new ConsoleWindow(this);
+                var console = new ConsoleWindow(this)
+                {
+                    PrintEnv = false
+                };
                 console.Show();
             });
         });
