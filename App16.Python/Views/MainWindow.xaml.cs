@@ -10,7 +10,7 @@ using System.Windows.Threading;
 using App16.Python.Control;
 using App16.Python.Models;
 using App16.Python.ViewModels;
-using Mar.Console;
+using Mar.Cheese;
 using Mar.Controls.Tool;
 using Microsoft.Win32;
 using Serilog;
@@ -106,7 +106,7 @@ public partial class MainWindow : Window
             CreateNoWindow = true, // 设置不创建进程窗口
             WindowStyle = ProcessWindowStyle.Hidden // 隐藏进程窗口
         };
-        Log.Debug($"正在执行: {startInfo.FileName} {startInfo.Arguments}");
+        Log.Debug("正在执行: {StartInfoFileName} {StartInfoArguments}", startInfo.FileName, startInfo.Arguments);
         using var process = Process.Start(startInfo);
         using var reader = process?.StandardOutput;
         var result = reader?.ReadToEnd();

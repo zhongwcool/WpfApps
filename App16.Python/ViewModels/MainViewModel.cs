@@ -68,7 +68,7 @@ public class MainViewModel : ObservableObject
         }
     };
 
-    public void Timer_Tick(object sender, EventArgs e)
+    public void Timer_Tick(object? sender, EventArgs e)
     {
         Dispatcher.CurrentDispatcher.Invoke(AddOneRand);
     }
