@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
-        <PackageReference Include="LibVLCSharp" Version="3.8.0"/>
-        <PackageReference Include="LibVLCSharp.WPF" Version="3.8.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+        <PackageReference Include="LibVLCSharp" Version="3.8.2"/>
+        <PackageReference Include="LibVLCSharp.WPF" Version="3.8.2"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
-        <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18"/>
+        <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.20"/>
     </ItemGroup>
 
 </Project>

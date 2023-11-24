@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3"/>
-        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2088.41"/>
+        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2151.40"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
     </ItemGroup>
 

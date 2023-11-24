@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Data;
 using App18.Material.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Mar.Console;
+using Mar.Cheese;
 
 namespace App18.Material.ViewModels;
 
