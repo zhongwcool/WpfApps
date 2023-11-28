@@ -70,7 +70,7 @@ internal class AudioDeviceHandler : IDisposable
         _capture.StartRecording();
     }
 
-    public void Stop()
+    private void Stop()
     {
         _capture.StopRecording();
     }
@@ -122,7 +122,6 @@ internal class AudioDeviceHandler : IDisposable
             Stop();
         }
 
-        _cts.Cancel();
         _cts.Dispose();
     }
 }

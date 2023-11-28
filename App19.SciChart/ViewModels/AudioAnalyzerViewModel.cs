@@ -35,7 +35,7 @@ public class AudioAnalyzerViewModel : ObservableObject
         set => SetProperty(ref _dataSeries, value);
     }
 
-    private void Update(object sender, EventArgs e)
+    private void Update(object? sender, EventArgs e)
     {
         Update((AudioDataAnalyzer)sender);
     }
@@ -82,8 +82,16 @@ public class AudioAnalyzerViewModel : ObservableObject
 
     private string FindDefaultDevice()
     {
-        var deviceId = _audioDeviceSource.DefaultDevice;
-        if (deviceId == null) deviceId = AvailableDevices.FirstOrDefault()?.ID;
+        string deviceId = null;
+        try
+        {
+            deviceId = _audioDeviceSource.DefaultDevice;
+            if (deviceId == null) deviceId = AvailableDevices.FirstOrDefault()?.ID;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
 
         return deviceId;
     }
@@ -189,7 +197,7 @@ public class AudioAnalyzerViewModel : ObservableObject
         }
     }
 
-    private void DispatcherShutdownStarted(object sender, EventArgs e)
+    private void DispatcherShutdownStarted(object? sender, EventArgs e)
     {
         OnExampleExit();
     }

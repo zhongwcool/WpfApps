@@ -2,16 +2,20 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
-             xmlns:ui="http://schemas.modernwpf.com/2019"
-             StartupUri="Views/AudioAnalyzerWindow.xaml">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources />
-                <ui:XamlControlsResources />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Brown" SecondaryColor="Lime" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
-            <!-- Other merged dictionaries here -->
+
+            <!-- Other app resources here -->
+            <Thickness x:Key="ControlPageContentMargin">24,20,24,20</Thickness>
 
             <!-- Enables the SciChart Visual Xccelerator engine https://www.scichart.com/documentation/win/current/Enabling%20The%20Visual%20Xccelerator%20Engine.html -->
             <Style TargetType="{x:Type s:SciChartSurface}">
