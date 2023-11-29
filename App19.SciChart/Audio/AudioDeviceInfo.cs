@@ -21,33 +21,26 @@ namespace App19.SciChart00.Audio;
 
 public class AudioDeviceInfo : ObservableObject
 {
-    private string _displayName;
-    private string _id;
-
     public AudioDeviceInfo(MMDevice device)
     {
         _displayName = device.DeviceFriendlyName;
         _id = device.ID;
     }
 
+    private string _displayName;
+
     public string DisplayName
     {
         get => _displayName;
-        set
-        {
-            _displayName = value;
-            OnPropertyChanged(nameof(DisplayName));
-        }
+        set => SetProperty(ref _displayName, value);
     }
+
+    private string _id;
 
     public string ID
     {
         get => _id;
-        set
-        {
-            _id = value;
-            OnPropertyChanged(nameof(ID));
-        }
+        set => SetProperty(ref _id, value);
     }
 
     internal void Update(MMDevice device)

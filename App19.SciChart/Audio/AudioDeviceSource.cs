@@ -32,7 +32,7 @@ internal class AudioDeviceSource : IDisposable, IMMNotificationClient
     public ObservableCollection<AudioDeviceInfo> Devices { get; } = new();
     public event EventHandler DevicesChanged;
 
-    public string DefaultDevice { get; private set; }
+    public string? DefaultDevice { get; private set; }
 
     public AudioDeviceSource()
     {
@@ -41,7 +41,7 @@ internal class AudioDeviceSource : IDisposable, IMMNotificationClient
         RefreshDevices();
     }
 
-    public AudioDeviceHandler CreateHandler(string id)
+    public AudioDeviceHandler CreateHandler(string? id)
     {
         var device = _enumerator.GetDevice(id);
         return new AudioDeviceHandler(device);
@@ -77,13 +77,11 @@ internal class AudioDeviceSource : IDisposable, IMMNotificationClient
         DevicesChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private string GetDefaultDevice()
+    private string? GetDefaultDevice()
     {
         if (!_enumerator.HasDefaultAudioEndpoint(DataFlow.Capture, Role.Communications)) return null;
-        using (var device = _enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications))
-        {
-            return device.ID;
-        }
+        using var device = _enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
+        return device.ID;
     }
 
     public void Dispose()

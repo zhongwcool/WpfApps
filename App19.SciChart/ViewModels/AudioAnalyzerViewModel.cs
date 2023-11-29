@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -37,7 +36,7 @@ public class AudioAnalyzerViewModel : ObservableObject
 
     private void Update(object? sender, EventArgs e)
     {
-        Update((AudioDataAnalyzer)sender);
+        Update((AudioDataAnalyzer)sender!);
     }
 
     private IDataSeries _uniformHeatmapDataSeries;
@@ -49,49 +48,25 @@ public class AudioAnalyzerViewModel : ObservableObject
     }
 
     private readonly AudioDeviceSource _audioDeviceSource = new();
-    private AudioDeviceHandler _audioDeviceHandler;
+    private AudioDeviceHandler? _audioDeviceHandler;
 
     public ObservableCollection<AudioDeviceInfo> AvailableDevices => _audioDeviceSource.Devices;
 
-    private string _selectedDeviceId;
+    private string? _selectedDeviceId;
 
-    public string SelectedDeviceId
+    public string? SelectedDeviceId
     {
         get => _selectedDeviceId;
         set
         {
             SetProperty(ref _selectedDeviceId, value);
             HandleInputDeviceChange(value);
-            for (var index = 0; index < AvailableDevices.Count; index++)
-            {
-                var device = AvailableDevices[index];
-                if (device.ID != value) continue;
-                SelectedIndex = index;
-                break;
-            }
         }
     }
 
-    private int _selectedIndex;
-
-    public int SelectedIndex
+    private string? FindDefaultDevice()
     {
-        get => _selectedIndex;
-        set => SetProperty(ref _selectedIndex, value);
-    }
-
-    private string FindDefaultDevice()
-    {
-        string deviceId = null;
-        try
-        {
-            deviceId = _audioDeviceSource.DefaultDevice;
-            if (deviceId == null) deviceId = AvailableDevices.FirstOrDefault()?.ID;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+        var deviceId = _audioDeviceSource.DefaultDevice;
 
         return deviceId;
     }
@@ -102,17 +77,14 @@ public class AudioAnalyzerViewModel : ObservableObject
         SelectedDeviceId = FindDefaultDevice();
     }
 
-    private AudioDataAnalyzer _audioDataAnalyzer;
+    private AudioDataAnalyzer? _audioDataAnalyzer;
 
-    private void HandleInputDeviceChange(string newId)
+    private void HandleInputDeviceChange(string? newId)
     {
         _audioDeviceHandler?.Dispose();
         _audioDeviceHandler = null;
-        if (_audioDataAnalyzer != null)
-        {
-            _audioDataAnalyzer.Update -= Update;
-            _audioDataAnalyzer = null;
-        }
+        if (null != _audioDataAnalyzer) _audioDataAnalyzer.Update -= Update;
+        _audioDataAnalyzer = null;
 
         if (newId == null)
         {
@@ -143,12 +115,12 @@ public class AudioAnalyzerViewModel : ObservableObject
         set => SetProperty(ref _frequencyDataSeries, value);
     }
 
-    private void Update(AudioDataAnalyzer analyzer)
+    private void Update(AudioDataAnalyzer? analyzer)
     {
         using (_dataSeries.SuspendUpdates())
         {
             _dataSeries.Clear();
-            _dataSeries.Append(analyzer.PrimaryIndices, analyzer.Samples);
+            _dataSeries.Append(analyzer!.PrimaryIndices, analyzer.Samples);
         }
 
         using (_frequencyDataSeries.SuspendUpdates())

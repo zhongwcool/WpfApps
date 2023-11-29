@@ -47,14 +47,14 @@ public class YPeakViewportManager : DefaultViewportManager
         return range;
     }
 
-    private bool IsNullOrInfinity(IComparable value)
+    private static bool IsNullOrInfinity(IComparable value)
     {
         if (value is double d) return double.IsInfinity(d);
 
         return value == null;
     }
 
-    private IComparable FindMin(IDataSeries[] series)
+    private IComparable? FindMin(IDataSeries[] series)
     {
         if (series.Length == 0) return null;
         var min = series[0].YMin;

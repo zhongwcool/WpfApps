@@ -1,10 +1,9 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using App19.SciChart00.ViewModels;
 
 namespace App19.SciChart00.Views;
 
-public partial class PageAudioAnalyzer : UserControl
+public partial class PageAudioAnalyzer
 {
     public PageAudioAnalyzer()
     {
