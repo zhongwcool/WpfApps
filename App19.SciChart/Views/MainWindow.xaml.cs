@@ -3,10 +3,10 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using App19.SciChart00.ViewModels;
+using App19.ViewModels;
 using MaterialDesignThemes.Wpf;
 
-namespace App19.SciChart00.Views;
+namespace App19.Views;
 
 public partial class MainWindow : Window
 {

@@ -4,7 +4,7 @@ using SciChart.Charting.Visuals.PaletteProviders;
 using SciChart.Charting.Visuals.RenderableSeries;
 using SciChart.Core.Extensions;
 
-namespace App19.SciChart00.Audio;
+namespace App19.Audio;
 
 public class AudioAnalyzerPaletteProvider : IFillPaletteProvider
 {

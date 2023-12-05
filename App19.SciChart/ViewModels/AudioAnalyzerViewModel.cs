@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using App19.SciChart00.Audio;
+using App19.Audio;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Xaml.Behaviors.Core;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Charting.Model.DataSeries.Heatmap2DArrayDataSeries;
 
-namespace App19.SciChart00.ViewModels;
+namespace App19.ViewModels;
 
 public class AudioAnalyzerViewModel : ObservableObject
 {

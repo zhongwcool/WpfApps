@@ -17,7 +17,7 @@
 using System;
 using NAudio.Dsp;
 
-namespace App19.SciChart00.Audio;
+namespace App19.Audio;
 
 internal class AudioDataAnalyzer
 {

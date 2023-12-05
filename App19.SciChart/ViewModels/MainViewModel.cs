@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using App19.SciChart00.Models;
-using App19.SciChart00.Views;
+using App19.Models;
+using App19.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MaterialDesignThemes.Wpf;
 
-namespace App19.SciChart00.ViewModels;
+namespace App19.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
@@ -17,8 +17,8 @@ public class MainViewModel : ObservableObject
         NavigationItems = new ObservableCollection<NavigationItem>
         {
             new(
-                nameof(PageHome),
-                typeof(PageHome),
+                nameof(PageColumn),
+                typeof(PageColumn),
                 PackIconKind.TransitionMasked,
                 PackIconKind.Transition)
         };

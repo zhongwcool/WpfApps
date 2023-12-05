@@ -22,7 +22,7 @@ using System.Windows.Threading;
 using NAudio.CoreAudioApi;
 using NAudio.CoreAudioApi.Interfaces;
 
-namespace App19.SciChart00.Audio;
+namespace App19.Audio;
 
 internal class AudioDeviceSource : IDisposable, IMMNotificationClient
 {

@@ -5,7 +5,7 @@
 //   Support: support@scichart.com
 //   Sales:   sales@scichart.com
 // 
-// AudioDeviceInfo.cs is part of the SCICHART® Examples. Permission is hereby granted
+// LabelForegroundConverter.cs is part of the SCICHART® Examples. Permission is hereby granted
 // to modify, create derivative works, distribute and publish any part of this source
 // code whether for commercial, private or personal use. 
 // 
@@ -14,37 +14,27 @@
 // expressed or implied. 
 // *************************************************************************************
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using NAudio.CoreAudioApi;
+using System;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
 
-namespace App19.Audio;
+namespace App19.Views.Column;
 
-public class AudioDeviceInfo : ObservableObject
+public class LabelForegroundConverter : IValueConverter
 {
-    public AudioDeviceInfo(MMDevice device)
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        _displayName = device.DeviceFriendlyName;
-        _id = device.ID;
+        var color = (Color)value;
+
+        var greyScale = color.R * 0.299 + color.G * 0.587 + color.B * 0.114;
+        var newColor = greyScale > 128 ? Colors.Black : Colors.White;
+
+        return newColor;
     }
 
-    private string _displayName;
-
-    public string DisplayName
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        get => _displayName;
-        set => SetProperty(ref _displayName, value);
-    }
-
-    private string _id;
-
-    public string ID
-    {
-        get => _id;
-        set => SetProperty(ref _id, value);
-    }
-
-    internal void Update(MMDevice device)
-    {
-        _displayName = device.DeviceFriendlyName;
+        throw new NotImplementedException();
     }
 }

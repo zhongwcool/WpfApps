@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
-using App19.SciChart00.ViewModels;
+using App19.ViewModels;
 
-namespace App19.SciChart00.Views;
+namespace App19.Views;
 
 public partial class PageAudioAnalyzer
 {

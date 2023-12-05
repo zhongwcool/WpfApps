@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MaterialDesignThemes.Wpf;
 
-namespace App19.SciChart00.Models;
+namespace App19.Models;
 
 public class NavigationItem : ObservableObject
 {

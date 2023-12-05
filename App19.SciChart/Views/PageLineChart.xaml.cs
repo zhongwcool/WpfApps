@@ -4,7 +4,7 @@ using System.Windows.Media;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Charting.Model.Filters;
 
-namespace App19.SciChart00.Views;
+namespace App19.Views;
 
 public partial class PageLineChart : UserControl
 {
@@ -13,19 +13,33 @@ public partial class PageLineChart : UserControl
         InitializeComponent();
         ReduceBackground();
 
-        var lineDataSeries = new XyDataSeries<double>();
-        var mountainDataSeries = new XyDataSeries<DateTime, double>();
+        LineChart1();
+        LineChart2();
+        ColumnChart1();
+    }
 
-        var random = new Random();
-        for (var x = 0; x < 12; x++)
+    private void ColumnChart1()
+    {
+        var dataSeries = new UniformXyDataSeries<double> { SeriesName = "Histogram" };
+
+        var yValues = new[]
+            { 0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4, 16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1 };
+
+        using (sciChart.SuspendUpdates())
         {
-            // Compute a slope function with some noise
-            var y = x != 0 ? Math.Pow(x + random.NextDouble(), 0.291) : Math.Pow((double)x + 1, 0.3);
-            lineDataSeries.Append(x, y);
+            foreach (var t in yValues)
+                // DataSeries for appending data
+                dataSeries.Append(t);
+
+            columnSeries.DataSeries = dataSeries;
         }
 
-        MountainSeries0.DataSeries = lineDataSeries.ToSpline(10);
-        ScatterSeries0.DataSeries = lineDataSeries;
+        sciChart.ZoomExtents();
+    }
+
+    private void LineChart2()
+    {
+        var mountainDataSeries = new XyDataSeries<DateTime, double>();
 
         // 生成正弦函数的数据 y=A*sin(ωx + φ)
         var a = 1.0; // 振幅
@@ -45,6 +59,22 @@ public partial class PageLineChart : UserControl
 
         MountainSeries1.DataSeries = mountainDataSeries.ToSpline(10);
         ScatterSeries1.DataSeries = mountainDataSeries;
+    }
+
+    private void LineChart1()
+    {
+        var lineDataSeries = new XyDataSeries<double>();
+
+        var random = new Random();
+        for (var x = 0; x < 12; x++)
+        {
+            // Compute a slope function with some noise
+            var y = x != 0 ? Math.Pow(x + random.NextDouble(), 0.291) : Math.Pow((double)x + 1, 0.3);
+            lineDataSeries.Append(x, y);
+        }
+
+        MountainSeries0.DataSeries = lineDataSeries.ToSpline(10);
+        ScatterSeries0.DataSeries = lineDataSeries;
     }
 
     private void ReduceBackground()

@@ -1,4 +1,4 @@
-﻿namespace App19.SciChart00.Models;
+﻿namespace App19.Models;
 
 public class Sci
 {
