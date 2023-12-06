@@ -23,14 +23,8 @@
 
                     <!--  Declare RenderableSeries  -->
                     <s:SciChartSurface.RenderableSeries>
-                        <s:FastColumnRenderableSeries x:Name="columnSeries" DataPointWidth="0.8">
-                            <s:FastColumnRenderableSeries.Fill>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                    <GradientStop Offset="0" Color="LightSteelBlue" />
-                                    <GradientStop Offset="1.0" Color="SteelBlue" />
-                                </LinearGradientBrush>
-                            </s:FastColumnRenderableSeries.Fill>
-
+                        <s:FastColumnRenderableSeries x:Name="columnSeries" DataPointWidth="0.8" StrokeThickness="0"
+                                                      Fill="{StaticResource MountainChartFill}">
                             <s:FastColumnRenderableSeries.SeriesAnimation>
                                 <s:WaveAnimation AnimationDelay="0:0:1" Duration="0:0:3" PointDurationFraction="0.2" />
                             </s:FastColumnRenderableSeries.SeriesAnimation>
@@ -62,7 +56,12 @@
                     <s:SciChartSurface.RenderableSeries>
                         <s:FastMountainRenderableSeries x:Name="MountainSeries0" Stroke="#4682b4"
                                                         StrokeThickness="5"
-                                                        Fill="{StaticResource MountainChartFill}" />
+                                                        Fill="{StaticResource MountainChartFill}">
+                            <s:FastMountainRenderableSeries.SeriesAnimation>
+                                <s:FadeAnimation AnimationDelay="0:0:1" Duration="0:0:3" />
+                            </s:FastMountainRenderableSeries.SeriesAnimation>
+                        </s:FastMountainRenderableSeries>
+                        
                         <s:XyScatterRenderableSeries x:Name="ScatterSeries0">
                             <s:EllipsePointMarker Width="7" Height="7" Stroke="#366294" Fill="White" />
                         </s:XyScatterRenderableSeries>
@@ -88,7 +87,11 @@
                     <s:SciChartSurface.RenderableSeries>
                         <s:FastMountainRenderableSeries x:Name="MountainSeries1" Stroke="#4682b4"
                                                         StrokeThickness="5"
-                                                        Fill="{StaticResource MountainChartFill}" />
+                                                        Fill="{StaticResource MountainChartFill}">
+                            <s:FastMountainRenderableSeries.SeriesAnimation>
+                                <s:FadeAnimation AnimationDelay="0:0:1" Duration="0:0:3" />
+                            </s:FastMountainRenderableSeries.SeriesAnimation>
+                        </s:FastMountainRenderableSeries>
                         <s:XyScatterRenderableSeries x:Name="ScatterSeries1">
                             <s:EllipsePointMarker Width="7" Height="7" Stroke="#366294" Fill="White" />
                         </s:XyScatterRenderableSeries>

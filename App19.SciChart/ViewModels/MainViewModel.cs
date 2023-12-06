@@ -17,7 +17,7 @@ public class MainViewModel : ObservableObject
         NavigationItems = new ObservableCollection<NavigationItem>
         {
             new(
-                nameof(PageColumn),
+                "Column Chart",
                 typeof(PageColumn),
                 PackIconKind.TransitionMasked,
                 PackIconKind.Transition)
