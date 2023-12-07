@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+             xmlns:vm="clr-namespace:App19.ViewModels"
              mc:Ignorable="d"
              Background="{DynamicResource PrimaryHueLightBrush}"
              d:DesignHeight="800" d:DesignWidth="500">
@@ -18,8 +19,59 @@
     <Grid>
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                <s:SciChartSurface x:Name="SciChart0" Margin="5" Width="500" Height="350"
+                                   d:DataContext="{d:DesignInstance vm:Chart0ViewModel}"
+                                   RenderableSeries="{s:SeriesBinding RenderableSeriesViewModels}"
+                                   ViewportManager="{Binding ViewportManager}">
+
+                    <s:SciChartSurface.Resources>
+                        <ResourceDictionary Source="/Views/Column/RenderebleSeriesStyles.xaml" />
+                    </s:SciChartSurface.Resources>
+
+                    <!--  Create an X Axis  -->
+                    <s:SciChartSurface.XAxis>
+                        <s:NumericAxis AutoTicks="False"
+                                       DrawMajorBands="True"
+                                       DrawMajorGridLines="False"
+                                       DrawMinorGridLines="False"
+                                       DrawMinorTicks="False"
+                                       MajorDelta="1"
+                                       MinimalZoomConstrain="0.1"
+                                       MinorDelta="0.5"
+                                       VisibleRangeLimit="-1,12" />
+                    </s:SciChartSurface.XAxis>
+
+                    <!--  Create a Y Axis with GrowBy  -->
+                    <s:SciChartSurface.YAxis>
+                        <s:NumericAxis AxisAlignment="Right"
+                                       DrawMajorBands="True"
+                                       DrawMinorGridLines="False"
+                                       DrawMinorTicks="False"
+                                       MinimalZoomConstrain="0.1"
+                                       TextFormatting="{Binding AxisFormatting}" />
+                    </s:SciChartSurface.YAxis>
+
+                    <s:SciChartSurface.ChartModifier>
+                        <s:ModifierGroup>
+                            <s:RubberBandXyZoomModifier IsAnimated="{Binding IsZoomExtendsAnimated}" IsXAxisOnly="True" />
+                            <s:ZoomPanModifier IsEnabled="False" />
+                            <s:RolloverModifier ShowTooltipOn="Always" UseInterpolation="True" />
+                            <s:ZoomExtentsModifier IsAnimated="{Binding IsZoomExtendsAnimated}" />
+                            <s:MouseWheelZoomModifier />
+                            <s:LegendModifier Margin="10"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Bottom"
+                                              GetLegendDataFor="AllSeries"
+                                              LegendPlacement="Bottom"
+                                              Orientation="Horizontal"
+                                              ShowLegend="True"
+                                              ShowVisibilityCheckboxes="True" />
+                        </s:ModifierGroup>
+                    </s:SciChartSurface.ChartModifier>
+                </s:SciChartSurface>
+
                 <!--  Create the chart surface  -->
-                <s:SciChartSurface Name="sciChart" Margin="5" Width="500" Height="350">
+                <s:SciChartSurface x:Name="SciChart1" Margin="5" Width="500" Height="350">
 
                     <!--  Declare RenderableSeries  -->
                     <s:SciChartSurface.RenderableSeries>
@@ -51,7 +103,7 @@
 
                 </s:SciChartSurface>
 
-                <s:SciChartSurface x:Name="sciChart2" Margin="5" Width="500" Height="350">
+                <s:SciChartSurface x:Name="SciChart2" Margin="5" Width="500" Height="350">
 
                     <s:SciChartSurface.RenderableSeries>
                         <s:FastMountainRenderableSeries x:Name="MountainSeries0" Stroke="#4682b4"
@@ -61,7 +113,7 @@
                                 <s:FadeAnimation AnimationDelay="0:0:1" Duration="0:0:3" />
                             </s:FastMountainRenderableSeries.SeriesAnimation>
                         </s:FastMountainRenderableSeries>
-                        
+
                         <s:XyScatterRenderableSeries x:Name="ScatterSeries0">
                             <s:EllipsePointMarker Width="7" Height="7" Stroke="#366294" Fill="White" />
                         </s:XyScatterRenderableSeries>
@@ -82,7 +134,7 @@
 
                 </s:SciChartSurface>
 
-                <s:SciChartSurface x:Name="sciChart3" Margin="5" Width="500" Height="350">
+                <s:SciChartSurface x:Name="SciChart3" Margin="5" Width="500" Height="350">
 
                     <s:SciChartSurface.RenderableSeries>
                         <s:FastMountainRenderableSeries x:Name="MountainSeries1" Stroke="#4682b4"

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using App19.ViewModels;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Charting.Model.Filters;
 
@@ -13,9 +14,15 @@ public partial class PageLineChart : UserControl
         InitializeComponent();
         ReduceBackground();
 
+        LineChart0();
         LineChart1();
         LineChart2();
         ColumnChart1();
+    }
+
+    private void LineChart0()
+    {
+        SciChart0.DataContext = new Chart0ViewModel(false, true);
     }
 
     private void ColumnChart1()
@@ -25,7 +32,7 @@ public partial class PageLineChart : UserControl
         var yValues = new[]
             { 0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4, 16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1 };
 
-        using (sciChart.SuspendUpdates())
+        using (SciChart1.SuspendUpdates())
         {
             foreach (var t in yValues)
                 // DataSeries for appending data
@@ -34,7 +41,7 @@ public partial class PageLineChart : UserControl
             columnSeries.DataSeries = dataSeries;
         }
 
-        sciChart.ZoomExtents();
+        SciChart1.ZoomExtents();
     }
 
     private void LineChart2()
