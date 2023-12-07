@@ -7,9 +7,9 @@ using SciChart.Charting.Model.Filters;
 
 namespace App19.Views;
 
-public partial class PageLineChart : UserControl
+public partial class PageSketch : UserControl
 {
-    public PageLineChart()
+    public PageSketch()
     {
         InitializeComponent();
         ReduceBackground();

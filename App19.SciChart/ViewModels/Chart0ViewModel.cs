@@ -21,7 +21,7 @@ public class Chart0ViewModel : ObservableObject
         var columnStyleKeys = DashboardDataHelper.GetColumnStyleKeys();
         for (var i = 0; i < 5; i++)
         {
-            var dataSeries = new XyDataSeries<double, double> {SeriesName = "Series " + (i + 1)};
+            var dataSeries = new XyDataSeries<double, double> { SeriesName = "Series " + (i + 1) };
             dataSeries.Append(xValues, yValues[i]);
 
             var seriesViewModel = isSideBySide
@@ -30,45 +30,48 @@ public class Chart0ViewModel : ObservableObject
             RenderableSeriesViewModels.Add(seriesViewModel);
         }
     }
-    
-    private static IRenderableSeriesViewModel GetStackedColumn(IXyDataSeries dataSeries, bool isOneHundredPercent, string styleKey, string group)
+
+    private static IRenderableSeriesViewModel GetStackedColumn(IXyDataSeries dataSeries, bool isOneHundredPercent,
+        string styleKey, string group)
     {
         return new StackedColumnRenderableSeriesViewModel
         {
             DataSeries = dataSeries,
             StyleKey = styleKey,
             IsOneHundredPercent = isOneHundredPercent,
-            StackedGroupId = group,
+            StackedGroupId = group
         };
     }
 
-    private static IRenderableSeriesViewModel GetStackedMountain(IXyDataSeries dataSeries, bool isOneHundredPercent, string styleKey)
+    private static IRenderableSeriesViewModel GetStackedMountain(IXyDataSeries dataSeries, bool isOneHundredPercent,
+        string styleKey)
     {
         return new StackedMountainRenderableSeriesViewModel
         {
             DataSeries = dataSeries,
             StyleKey = styleKey,
-            IsOneHundredPercent = isOneHundredPercent,
+            IsOneHundredPercent = isOneHundredPercent
         };
     }
 
     public bool IsSideBySide { get; }
-    
+
     private bool _isZoomExtendsAnimated = true;
+
     public bool IsZoomExtendsAnimated
     {
         get => _isZoomExtendsAnimated;
         set
         {
             _isZoomExtendsAnimated = value;
-            OnPropertyChanged("IsZoomExtendsAnimated");
+            OnPropertyChanged();
         }
     }
 
     public IViewportManager ViewportManager { get; } = new DefaultViewportManager();
-    
+
     private readonly bool _isOneHundredPercent;
     public string AxisFormatting => _isOneHundredPercent ? "#0'%'" : "";
-    
+
     public List<IRenderableSeriesViewModel> RenderableSeriesViewModels { get; set; }
 }

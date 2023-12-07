@@ -38,8 +38,8 @@ public class MainViewModel : ObservableObject
             throw new ArgumentNullException(nameof(snackbarMessageQueue));
 
         yield return new NavigationItem(
-            "Line Chart",
-            typeof(PageLineChart),
+            "Chart Sketch",
+            typeof(PageSketch),
             PackIconKind.NaturePeople,
             PackIconKind.NaturePeopleOutline);
 

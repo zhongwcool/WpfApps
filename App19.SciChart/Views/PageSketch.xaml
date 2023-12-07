@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="App19.Views.PageLineChart"
+﻿<UserControl x:Class="App19.Views.PageSketch"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,14 +18,20 @@
     </UserControl.Resources>
     <Grid>
         <ScrollViewer>
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ItemsControl HorizontalAlignment="Left" VerticalAlignment="Top">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
                 <s:SciChartSurface x:Name="SciChart0" Margin="5" Width="500" Height="350"
                                    d:DataContext="{d:DesignInstance vm:Chart0ViewModel}"
                                    RenderableSeries="{s:SeriesBinding RenderableSeriesViewModels}"
                                    ViewportManager="{Binding ViewportManager}">
 
                     <s:SciChartSurface.Resources>
-                        <ResourceDictionary Source="/Views/Column/RenderebleSeriesStyles.xaml" />
+                        <ResourceDictionary Source="/Views/Sketch/RenderebleSeries2Styles.xaml" />
                     </s:SciChartSurface.Resources>
 
                     <!--  Create an X Axis  -->
@@ -173,7 +179,7 @@
                     </s:SciChartSurface.ChartModifier>
 
                 </s:SciChartSurface>
-            </StackPanel>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </UserControl>
