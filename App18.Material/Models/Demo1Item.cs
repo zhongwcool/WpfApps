@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MaterialDesignThemes.Wpf;
 
@@ -31,13 +30,5 @@ public class Demo1Item : ObservableObject
         var content = Activator.CreateInstance(_contentType);
 
         return content;
-    }
-
-    private Thickness _marginRequirement = new(0);
-
-    public Thickness MarginRequirement
-    {
-        get => _marginRequirement;
-        set => SetProperty(ref _marginRequirement, value);
     }
 }

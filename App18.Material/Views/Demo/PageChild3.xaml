@@ -22,7 +22,7 @@
 
         <Viewbox Height="1" Grid.Row="0" />
 
-        <ScrollViewer Width="600" Margin="16"
+        <ScrollViewer Width="600"
                       HorizontalAlignment="Left" VerticalAlignment="Top"
                       Grid.Row="1">
             <StackPanel>
