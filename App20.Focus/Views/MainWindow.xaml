@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="App20.Focus" Height="450" Width="800">
     <Grid>
-        <Canvas>
+        <Canvas x:Name="ParticleCanvas">
             <Rectangle x:Name="MyControl" Canvas.Right="100" Canvas.Top="280"
                        Width="80" Height="50" RadiusX="5" RadiusY="5" Fill="Gold"
                        MouseEnter="MyControl_MouseEnter" MouseLeave="MyControl_MouseLeave" />
