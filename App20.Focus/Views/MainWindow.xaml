@@ -11,8 +11,30 @@
                        Width="80" Height="50" RadiusX="5" RadiusY="5" Fill="Gold"
                        MouseEnter="MyControl_MouseEnter" MouseLeave="MyControl_MouseLeave" />
 
-            <Image Source="pack://application:,,,/Resource/ImgPeperPlane.png" Width="200" Height="100" Canvas.Top="310"
+            <Image Source="pack://application:,,,/Resources/ImgPaperPlane.png" Width="200" Height="100"
+                   Canvas.Top="310"
                    Canvas.Right="180" />
         </Canvas>
+
+        <Path Data="{StaticResource IconTest}" Fill="Gold" RenderTransformOrigin="0.5,1"
+              VerticalAlignment="Bottom" HorizontalAlignment="Left"
+              Stretch="Fill" Width="100" Height="100" Margin="20,0,0,0">
+            <Path.RenderTransform>
+                <RotateTransform x:Name="MyRotateTransform" />
+            </Path.RenderTransform>
+            <Path.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Angle"
+                                Storyboard.TargetName="MyRotateTransform"
+                                From="-10" To="10" Duration="0:0:1"
+                                AutoReverse="True" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Path.Triggers>
+        </Path>
     </Grid>
 </Window>

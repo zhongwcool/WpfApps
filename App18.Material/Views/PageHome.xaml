@@ -78,6 +78,7 @@
                                             <Grid>
                                                 <Border x:Name="PART_Back" Opacity="0.6" CornerRadius="4"
                                                         Background="{DynamicResource MaterialDesignPaper}" />
+                                                
                                                 <Grid Width="280" Margin="15,10,15,15">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto" />
