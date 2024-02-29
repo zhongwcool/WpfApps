@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Other merged dictionaries here -->
                 <ResourceDictionary Source="Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Mar.Controls;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

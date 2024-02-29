@@ -3,17 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mar="clr-namespace:Mar.Controls;assembly=Mar.Controls"
         mc:Ignorable="d"
         Title="App20.Focus" Height="450" Width="800">
     <Grid>
+        <mar:Watermark Mark="Louis Vuitton" FontSize="30" Angle="45" MarkMargin="10" MarkBrush="LightGray">
+            <Border BorderThickness="1" CornerRadius="4" />
+        </mar:Watermark>
+        
         <Canvas>
             <Rectangle x:Name="MyControl" Canvas.Right="100" Canvas.Top="280"
                        Width="80" Height="50" RadiusX="5" RadiusY="5" Fill="Gold"
                        MouseEnter="MyControl_MouseEnter" MouseLeave="MyControl_MouseLeave" />
 
             <Image Source="pack://application:,,,/Resources/ImgPaperPlane.png" Width="200" Height="100"
-                   Canvas.Top="310"
-                   Canvas.Right="180" />
+                   Canvas.Top="310" Canvas.Right="180" />
         </Canvas>
     </Grid>
 </Window>

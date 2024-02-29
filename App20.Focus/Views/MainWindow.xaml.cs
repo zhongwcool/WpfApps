@@ -20,7 +20,7 @@ public partial class MainWindow : Window
             {
                 var console = new ConsoleWindow(this)
                 {
-                    PrintEnv = false
+                    PrintHello = false
                 };
                 console.Show();
             });
