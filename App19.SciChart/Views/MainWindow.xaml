@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:md="clr-namespace:App19.Models"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:me="clr-namespace:App19.Models"
         xmlns:vm="clr-namespace:App19.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
@@ -13,20 +13,21 @@
         Background="Transparent"
         Title="SciChart Demo" Height="800" Width="1200">
     <Grid>
-        <Grid Background="{DynamicResource MaterialDesignPaper}" />
+        <Grid Background="{DynamicResource MaterialDesign.Brush.Background}" />
 
-        <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
-                                   SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+        <md:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
+                       SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
 
-            <materialDesign:DrawerHost x:Name="NavDrawer"
-                                       IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
-                                       LeftDrawerCornerRadius="0 0 0 0"
-                                       LeftDrawerBackground="Transparent"
-                                       OpenMode="Modal">
+            <md:DrawerHost x:Name="NavDrawer"
+                           IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
+                           LeftDrawerCornerRadius="0 0 0 0"
+                           LeftDrawerBackground="Transparent"
+                           OpenMode="Modal">
 
                 <!-- 抽屉 -->
-                <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel x:Name="DrawerView" Width="220" Background="{DynamicResource PrimaryHueLightBrush}">
+                <md:DrawerHost.LeftDrawerContent>
+                    <DockPanel x:Name="DrawerView" Width="220"
+                               Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
                         <ListBox Margin="0,16,0,16"
                                  ItemsSource="{Binding NavigationItems}"
                                  PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
@@ -37,23 +38,23 @@
                                        BasedOn="{StaticResource MaterialDesignScrollViewer}" />
                                 <Style TargetType="ScrollBar"
                                        BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
-                                <DataTemplate DataType="{x:Type md:NavigationItem}">
+                                <DataTemplate DataType="{x:Type me:NavigationItem}">
                                     <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
                                 </DataTemplate>
                             </ListBox.Resources>
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem"
                                        BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
-                                    <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon"
+                                    <Setter Property="md:NavigationDrawerAssist.SelectedIcon"
                                             Value="{Binding SelectedIcon}" />
-                                    <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon"
+                                    <Setter Property="md:NavigationDrawerAssist.UnselectedIcon"
                                             Value="{Binding UnselectedIcon}" />
                                     <Setter Property="Width" Value="200" />
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
                     </DockPanel>
-                </materialDesign:DrawerHost.LeftDrawerContent>
+                </md:DrawerHost.LeftDrawerContent>
 
                 <!-- 内容区 -->
                 <Grid>
@@ -76,22 +77,22 @@
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem"
                                            BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
-                                        <Setter Property="materialDesign:BadgedAssist.Badge"
+                                        <Setter Property="md:BadgedAssist.Badge"
                                                 Value="{Binding Notifications}" />
-                                        <Setter Property="materialDesign:BadgedAssist.BadgeBackground"
+                                        <Setter Property="md:BadgedAssist.BadgeBackground"
                                                 Value="#930006" />
-                                        <Setter Property="materialDesign:BadgedAssist.BadgeForeground"
+                                        <Setter Property="md:BadgedAssist.BadgeForeground"
                                                 Value="#FFDAD4" />
-                                        <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible"
+                                        <Setter Property="md:NavigationRailAssist.IsTextVisible"
                                                 Value="True" />
-                                        <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon"
+                                        <Setter Property="md:NavigationRailAssist.SelectedIcon"
                                                 Value="{Binding SelectedIcon}" />
-                                        <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon"
+                                        <Setter Property="md:NavigationRailAssist.UnselectedIcon"
                                                 Value="{Binding UnselectedIcon}" />
                                     </Style>
                                 </ListBox.ItemContainerStyle>
                                 <ListBox.Resources>
-                                    <DataTemplate DataType="{x:Type md:NavigationItem}">
+                                    <DataTemplate DataType="{x:Type me:NavigationItem}">
                                         <TextBlock Text="{Binding Name}"
                                                    TextAlignment="Center"
                                                    TextWrapping="Wrap" />
@@ -107,11 +108,10 @@
                                         Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
                                         DataContext="{Binding SelectedItem}" />
 
-                        <materialDesign:Snackbar x:Name="MainSnackbar"
-                                                 MessageQueue="{materialDesign:MessageQueue}" />
+                        <md:Snackbar x:Name="MainSnackbar" MessageQueue="{md:MessageQueue}" />
                     </Grid>
                 </Grid>
-            </materialDesign:DrawerHost>
-        </materialDesign:DialogHost>
+            </md:DrawerHost>
+        </md:DialogHost>
     </Grid>
 </Window>

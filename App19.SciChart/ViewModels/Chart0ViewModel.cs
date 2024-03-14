@@ -19,7 +19,7 @@ public class Chart0ViewModel : ObservableObject
         var xValues = DashboardDataHelper.GetXValues();
         var yValues = DashboardDataHelper.GetYValues();
         var columnStyleKeys = DashboardDataHelper.GetColumnStyleKeys();
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 2; i++)
         {
             var dataSeries = new XyDataSeries<double, double> { SeriesName = "Series " + (i + 1) };
             dataSeries.Append(xValues, yValues[i]);

@@ -9,8 +9,7 @@
              xmlns:column="clr-namespace:App19.Views.Column"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:PageColumnViewModel}"
-             Background="{DynamicResource PrimaryHueLightBrush}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

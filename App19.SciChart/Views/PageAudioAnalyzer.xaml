@@ -8,7 +8,7 @@
              xmlns:audio="clr-namespace:App19.Audio"
              xmlns:vm="clr-namespace:App19.ViewModels"
              mc:Ignorable="d"
-             Background="{DynamicResource PrimaryHueLightBrush}"
+             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
              d:DataContext="{d:DesignInstance vm:AudioAnalyzerViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <!-- Note Visual Xccelerator Engine (DirectX is enabled in App.Xaml). You have to do this explicitly in your applications -->

@@ -6,8 +6,7 @@
              xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
              xmlns:vm="clr-namespace:App19.ViewModels"
              mc:Ignorable="d"
-             Background="{DynamicResource PrimaryHueLightBrush}"
-             d:DesignHeight="800" d:DesignWidth="500">
+             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
     <UserControl.Resources>
         <LinearGradientBrush x:Key="MountainChartFill" StartPoint="0,0" EndPoint="0,1">
             <LinearGradientBrush.GradientStops>
@@ -28,8 +27,8 @@
                 <!-- Chart 0 -->
                 <s:SciChartSurface x:Name="SciChart0" Margin="5" Width="500" Height="350"
                                    d:DataContext="{d:DesignInstance vm:Chart0ViewModel}"
-                                   RenderableSeries="{s:SeriesBinding RenderableSeriesViewModels}"
-                                   ViewportManager="{Binding ViewportManager}">
+                                   s:ThemeManager.Theme="BrightSpark"
+                                   RenderableSeries="{s:SeriesBinding RenderableSeriesViewModels}">
 
                     <s:SciChartSurface.Resources>
                         <ResourceDictionary Source="/Views/Sketch/RenderebleSeries2Styles.xaml" />
@@ -78,7 +77,8 @@
                 </s:SciChartSurface>
 
                 <!-- Chart 1 -->
-                <s:SciChartSurface x:Name="SciChart1" Margin="5" Width="500" Height="350">
+                <s:SciChartSurface x:Name="SciChart1" Margin="5" Width="500" Height="350"
+                                   s:ThemeManager.Theme="BrightSpark">
 
                     <!--  Declare RenderableSeries  -->
                     <s:SciChartSurface.RenderableSeries>
@@ -93,7 +93,9 @@
 
                     <!--  Create an X Axis  -->
                     <s:SciChartSurface.XAxis>
-                        <s:NumericAxis AxisTitle="Sample No" DrawMajorBands="False" />
+                        <s:NumericAxis AxisTitle="Sample No" DrawMajorBands="False"
+                                       DrawMajorGridLines="False" DrawMinorGridLines="False"
+                                       DrawMajorTicks="False" DrawMinorTicks="False" />
                     </s:SciChartSurface.XAxis>
 
                     <!--  Create a Y Axis with GrowBy  -->
@@ -111,7 +113,8 @@
                 </s:SciChartSurface>
 
                 <!-- Chart 2 -->
-                <s:SciChartSurface x:Name="SciChart2" Margin="5" Width="500" Height="350">
+                <s:SciChartSurface x:Name="SciChart2" Margin="5" Width="500" Height="350"
+                                   s:ThemeManager.Theme="BrightSpark">
 
                     <s:SciChartSurface.RenderableSeries>
                         <s:FastMountainRenderableSeries x:Name="MountainSeries0" Stroke="#4682b4"
@@ -134,7 +137,7 @@
                     </s:SciChartSurface.XAxis>
 
                     <s:SciChartSurface.YAxis>
-                        <s:NumericAxis GrowBy="0,0.1" MaxAutoTicks="5"
+                        <s:NumericAxis GrowBy="0,0.1"
                                        DrawMajorGridLines="True"
                                        DrawMinorGridLines="False"
                                        DrawMajorBands="False" />
@@ -143,7 +146,8 @@
                 </s:SciChartSurface>
 
                 <!-- Chart 3 -->
-                <s:SciChartSurface x:Name="SciChart3" Margin="5" Width="500" Height="350">
+                <s:SciChartSurface x:Name="SciChart3" Margin="5" Width="500" Height="350"
+                                   s:ThemeManager.Theme="BrightSpark">
 
                     <s:SciChartSurface.RenderableSeries>
                         <s:FastMountainRenderableSeries x:Name="MountainSeries1" Stroke="#4682b4"
@@ -160,11 +164,15 @@
 
                     <!--  Add a DateTime XAxis  -->
                     <s:SciChartSurface.XAxis>
-                        <s:DateTimeAxis x:Name="xAxis" TextFormatting="MM月" GrowBy="0.01, 0.01" MaxAutoTicks="14" />
+                        <s:DateTimeAxis x:Name="xAxis"
+                                        TextFormatting="MM月" GrowBy="0.01, 0.01" MaxAutoTicks="14"
+                                        DrawMajorBands="True"
+                                        DrawMajorGridLines="False"
+                                        DrawMinorGridLines="False" />
                     </s:SciChartSurface.XAxis>
 
                     <s:SciChartSurface.YAxis>
-                        <s:NumericAxis GrowBy="0,0.1" MaxAutoTicks="5"
+                        <s:NumericAxis GrowBy="0,0.1"
                                        DrawMajorGridLines="True"
                                        DrawMinorGridLines="False"
                                        DrawMajorBands="False" />
