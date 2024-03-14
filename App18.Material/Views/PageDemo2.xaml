@@ -18,7 +18,6 @@
                 <RowDefinition Height="100" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
                 <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}">MaterialDesign.Brush.Primary.Light</TextBox>
@@ -42,6 +41,22 @@
 
             <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Dark}">
                 <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}">MaterialDesign.Brush.Secondary.Dark</TextBox>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Foreground</TextBox>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}">MaterialDesign.Brush.ForegroundLight</TextBox>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Chip.Background}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Chip.Background</TextBox>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Background</TextBox>
             </Grid>
         </Grid>
     </Grid>
