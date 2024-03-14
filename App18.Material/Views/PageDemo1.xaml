@@ -7,7 +7,7 @@
              xmlns:md="clr-namespace:App18.Material.Models"
              xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Background="{DynamicResource PrimaryHueLightBrush}"
+             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
              d:DataContext="{d:DesignInstance viewModels:Demo1ViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="{StaticResource ControlPageContentMargin}">
@@ -35,7 +35,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <Border Background="{DynamicResource MaterialDesignPaper}" Width="250"
+                                <Border Background="{DynamicResource MaterialDesign.Brush.Background}" Width="250"
                                         HorizontalAlignment="Left" CornerRadius="4" Margin="0,0,0,10">
                                     <Border.Triggers>
                                         <EventTrigger RoutedEvent="MouseEnter">
@@ -86,7 +86,7 @@
                                         </Grid.ColumnDefinitions>
                                         <!-- 选中效果 -->
                                         <TextBlock x:Name="PART_Bar" Width="5" Visibility="Hidden" Margin="3,5,0,5"
-                                                   Background="{DynamicResource PrimaryHueMidBrush}"
+                                                   Background="{DynamicResource MaterialDesign.Brush.Primary}"
                                                    Grid.Column="0" />
 
                                         <Grid Height="60" Grid.Column="1">

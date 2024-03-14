@@ -10,7 +10,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
         <Setter Property="Height" Value="32" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="16,4,16,4" />
@@ -84,11 +84,11 @@
         <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="2" />
         <Setter Property="materialDesign:ButtonProgressAssist.IndicatorBackground" Value="Transparent" />
         <Setter Property="materialDesign:ButtonProgressAssist.IndicatorForeground"
-                Value="{DynamicResource PrimaryHueMidBrush}" />
+                Value="{DynamicResource MaterialDesign.Brush.Primary}" />
         <Setter Property="materialDesign:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
         <Setter Property="materialDesign:ButtonProgressAssist.Opacity" Value=".4" />
         <Setter Property="materialDesign:RippleAssist.Feedback"
-                Value="{DynamicResource PrimaryHueMidBrush}" />
+                Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     </Style>
 
 </ResourceDictionary>

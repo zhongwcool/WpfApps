@@ -13,16 +13,15 @@
         Background="Transparent"
         Title="Material 3" Height="720" Width="1200">
     <Grid>
-        <Grid Background="{DynamicResource MaterialDesignPaper}" />
+        <Grid Background="{DynamicResource MaterialDesign.Brush.Background}" />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <materialDesign:ColorZone Background="{DynamicResource PrimaryHueMidBrush}"
-                                      materialDesign:ElevationAssist.Elevation="Dp0"
+            <materialDesign:ColorZone materialDesign:ElevationAssist.Elevation="Dp0"
                                       DockPanel.Dock="Top"
-                                      Mode="Standard" Grid.Row="0">
+                                      Mode="PrimaryMid" Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
@@ -34,7 +33,6 @@
                                Source="pack://application:,,,/Resources/logo_main.png" />
 
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
                                    AutomationProperties.Name="Material Design In XAML Toolkit"
                                    FontSize="22"
                                    Text="Material Design In XAML Toolkit" />
@@ -43,16 +41,16 @@
                     <DockPanel Grid.Column="2">
                         <TextBlock x:Name="BlockPrefix" Margin="5,0,0,0"
                                    FontSize="32" FontWeight="Black"
-                                   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                   Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                    VerticalAlignment="Center" />
 
                         <TextBlock x:Name="BlockSecond" Margin="0,0,5,0" Width="40"
                                    FontSize="32" FontWeight="Black"
-                                   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                   Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                    VerticalAlignment="Center" />
                         <!-- 弹出菜单 -->
                         <materialDesign:PopupBox StaysOpen="False"
-                                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                                 Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                                  PlacementMode="BottomAndAlignRightEdges">
                             <StackPanel>
                                 <Grid Margin="10">
@@ -95,7 +93,8 @@
 
                     <!-- 抽屉 -->
                     <materialDesign:DrawerHost.LeftDrawerContent>
-                        <DockPanel x:Name="DrawerView" Width="220" Background="{DynamicResource PrimaryHueLightBrush}">
+                        <DockPanel x:Name="DrawerView" Width="220"
+                                   Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
                             <ListBox Margin="0,16,0,16"
                                      ItemsSource="{Binding NavigationItems}"
                                      PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
@@ -195,10 +194,10 @@
                                                    BadgeColorZoneMode="PrimaryDark">
                                 <Button Width="56" Height="56"
                                         materialDesign:ButtonAssist.CornerRadius="28"
-                                        Background="{DynamicResource SecondaryHueMidBrush}"
+                                        Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                                         BorderThickness="0"
                                         Command="{Binding AddNewNotiCommand}"
-                                        Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
+                                        Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}">
                                     <materialDesign:PackIcon Width="26" Height="26" Kind="Github" />
                                 </Button>
                             </materialDesign:Badged>

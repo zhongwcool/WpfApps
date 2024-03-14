@@ -33,7 +33,7 @@
                       HorizontalAlignment="Left" VerticalAlignment="Top"
                       Grid.Row="1">
             <Grid>
-                <Border Background="{DynamicResource MaterialDesignPaper}" Opacity="0.4" CornerRadius="4" />
+                <Border Background="{DynamicResource MaterialDesign.Brush.Background}" Opacity="0.4" CornerRadius="4" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -67,7 +67,8 @@
                     </DockPanel>
 
                     <Grid Grid.Row="1">
-                        <Border Background="{DynamicResource MaterialDesignPaper}" Opacity="0.8" CornerRadius="0,0,4,4" />
+                        <Border Background="{DynamicResource MaterialDesign.Brush.Background}" Opacity="0.8"
+                                CornerRadius="0,0,4,4" />
 
                         <StackPanel Margin="15,15,15,15" Orientation="Vertical">
                             <DockPanel Height="50">
@@ -90,8 +91,8 @@
                                     <ToggleButton IsChecked="{Binding HasStar}"
                                                   materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Star}"
                                                   Content="{materialDesign:PackIcon Kind=StarOutline}"
-                                                  Background="{DynamicResource MaterialDesignBackground}"
-                                                  Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                                  Background="{DynamicResource MaterialDesign.Brush.Card.Background}"
+                                                  Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                                                   Style="{StaticResource MaterialDesignActionToggleButton}" />
                                 </StackPanel>
                             </DockPanel>

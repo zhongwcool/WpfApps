@@ -4,14 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             Background="{DynamicResource PrimaryHueLightBrush}"
+             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid Width="900" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="400" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
@@ -21,53 +20,28 @@
                 <RowDefinition Height="100" />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" Background="{DynamicResource PrimaryHueLightBrush}">
-                <TextBox Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">PrimaryHueLightForegroundBrush</TextBox>
+            <Grid Grid.Row="0" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}">MaterialDesign.Brush.Primary.Light</TextBox>
             </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="1" Background="{DynamicResource PrimaryHueMidBrush}">
-                <TextBox Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">PrimaryHueMidForegroundBrush</TextBox>
+            <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}">MaterialDesign.Brush.Primary</TextBox>
             </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="2" Background="{DynamicResource PrimaryHueDarkBrush}">
-                <TextBox Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">PrimaryHueDarkForegroundBrush</TextBox>
+            <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">MaterialDesign.Brush.Primary.Dark</TextBox>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource SecondaryHueLightBrush}">
-                <TextBox Foreground="{DynamicResource SecondaryHueLightForegroundBrush}">SecondaryHueLightForegroundBrush</TextBox>
+            <Grid Grid.Row="0" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Light}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}">MaterialDesign.Brush.Secondary.Light</TextBox>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="1" Background="{DynamicResource SecondaryHueMidBrush}">
-                <TextBox Foreground="{DynamicResource SecondaryHueMidForegroundBrush}">SecondaryHueMidForegroundBrush</TextBox>
+            <Grid Grid.Row="1" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}">MaterialDesign.Brush.Secondary</TextBox>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="2" Background="{DynamicResource SecondaryHueDarkBrush}">
-                <TextBox Foreground="{DynamicResource SecondaryHueDarkForegroundBrush}">SecondaryHueDarkForegroundBrush</TextBox>
-            </Grid>
-
-            <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource MaterialDesignChipBackground}">
-                <TextBox>MaterialDesignChipBackground</TextBox>
-            </Grid>
-
-            <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesignBackground}">
-                <TextBox>MaterialDesignBackground</TextBox>
-            </Grid>
-
-            <Grid Grid.Row="2" Grid.Column="2" Background="{DynamicResource MaterialDesignPaper}">
-                <TextBox>MaterialDesignPaper</TextBox>
-            </Grid>
-
-            <Grid Grid.Row="3" Grid.Column="0" Background="{DynamicResource MaterialDesignCardBackground}">
-                <TextBox>MaterialDesignCardBackground</TextBox>
-            </Grid>
-
-            <Grid Grid.Row="3" Grid.Column="1" Background="{DynamicResource MaterialDesignBody}">
-                <TextBox>MaterialDesignBody</TextBox>
-            </Grid>
-
-            <Grid Grid.Row="3" Grid.Column="2" Background="{DynamicResource MaterialDesignBodyLight}"
-                  MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-                <TextBox Name="TxtBrush">MaterialDesignBodyLight</TextBox>
+            <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Dark}">
+                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}">MaterialDesign.Brush.Secondary.Dark</TextBox>
             </Grid>
         </Grid>
     </Grid>
