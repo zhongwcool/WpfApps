@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
     <Grid>
         <Grid Width="900" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>

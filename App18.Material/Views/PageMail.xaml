@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:models="clr-namespace:App18.Material.Models"
+             xmlns:me="clr-namespace:App18.Material.Models"
              xmlns:cv="clr-namespace:App18.Material.Converters"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance models:Mail, IsDesignTimeCreatable=True}"
-             d:DesignHeight="800" d:DesignWidth="1000">
+             d:DataContext="{d:DesignInstance me:Mail, IsDesignTimeCreatable=True}">
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
@@ -52,17 +51,17 @@
                             <Button
                                 Width="30"
                                 Padding="2,0,2,0"
-                                materialDesign:RippleAssist.IsCentered="True"
+                                md:RippleAssist.IsCentered="True"
                                 Style="{StaticResource MaterialDesignToolButton}">
-                                <materialDesign:PackIcon Kind="DeleteOutline" />
+                                <md:PackIcon Kind="DeleteOutline" />
                             </Button>
-                            <materialDesign:PopupBox Padding="2,0,2,0"
-                                                     Style="{StaticResource MaterialDesignToolPopupBox}">
+                            <md:PopupBox Padding="2,0,2,0"
+                                         Style="{StaticResource MaterialDesignToolPopupBox}">
                                 <StackPanel>
                                     <Button Content="More" />
                                     <Button Content="Options" />
                                 </StackPanel>
-                            </materialDesign:PopupBox>
+                            </md:PopupBox>
                         </StackPanel>
                     </DockPanel>
 
@@ -73,10 +72,10 @@
                         <StackPanel Margin="15,15,15,15" Orientation="Vertical">
                             <DockPanel Height="50">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:Card Width="36" Height="36" UniformCornerRadius="18">
+                                    <md:Card Width="36" Height="36" UniformCornerRadius="18">
                                         <Image VerticalAlignment="Center" HorizontalAlignment="Center"
                                                Source="{Binding FromAvatar}" />
-                                    </materialDesign:Card>
+                                    </md:Card>
 
                                     <StackPanel Opacity="0.9" Margin="8,5,0,5" VerticalAlignment="Center">
                                         <TextBlock Text="{Binding From}" />
@@ -89,8 +88,8 @@
                                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right"
                                             DockPanel.Dock="Right">
                                     <ToggleButton IsChecked="{Binding HasStar}"
-                                                  materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Star}"
-                                                  Content="{materialDesign:PackIcon Kind=StarOutline}"
+                                                  md:ToggleButtonAssist.OnContent="{md:PackIcon Kind=Star}"
+                                                  Content="{md:PackIcon Kind=StarOutline}"
                                                   Background="{DynamicResource MaterialDesign.Brush.Card.Background}"
                                                   Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                                                   Style="{StaticResource MaterialDesignActionToggleButton}" />
@@ -114,12 +113,12 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Button Margin="15" Height="40" Content="Reply"
-                                        materialDesign:ButtonAssist.CornerRadius="20"
+                                        md:ButtonAssist.CornerRadius="20"
                                         Style="{StaticResource MaterialDesign3Button}"
                                         Grid.Column="0" />
 
                                 <Button Margin="15" Height="40" Content="Reply All"
-                                        materialDesign:ButtonAssist.CornerRadius="20"
+                                        md:ButtonAssist.CornerRadius="20"
                                         Style="{StaticResource MaterialDesign3Button}"
                                         Grid.Column="1" />
                             </Grid>

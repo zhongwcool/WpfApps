@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:App18.Material.ViewModels"
         xmlns:md="clr-namespace:App18.Material.Models"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
@@ -19,9 +19,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <materialDesign:ColorZone materialDesign:ElevationAssist.Elevation="Dp0"
-                                      DockPanel.Dock="Top"
-                                      Mode="PrimaryMid" Grid.Row="0">
+            <md3:ColorZone md3:ElevationAssist.Elevation="Dp0" DockPanel.Dock="Top" Mode="PrimaryMid" Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
@@ -49,9 +47,9 @@
                                    Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                    VerticalAlignment="Center" />
                         <!-- 弹出菜单 -->
-                        <materialDesign:PopupBox StaysOpen="False"
-                                                 Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                                                 PlacementMode="BottomAndAlignRightEdges">
+                        <md3:PopupBox StaysOpen="False"
+                                      Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                      PlacementMode="BottomAndAlignRightEdges">
                             <StackPanel>
                                 <Grid Margin="10">
                                     <Grid.ColumnDefinitions>
@@ -76,23 +74,23 @@
 
                                 <Button Click="ButtonClose_OnClick" Content="退出程序" />
                             </StackPanel>
-                        </materialDesign:PopupBox>
+                        </md3:PopupBox>
                     </DockPanel>
                 </Grid>
-            </materialDesign:ColorZone>
+            </md3:ColorZone>
 
-            <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
-                                       SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}"
-                                       Grid.Row="1">
+            <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
+                            SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}"
+                            Grid.Row="1">
 
-                <materialDesign:DrawerHost x:Name="NavDrawer"
-                                           IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
-                                           LeftDrawerCornerRadius="0 0 0 0"
-                                           LeftDrawerBackground="Transparent"
-                                           OpenMode="Modal">
+                <md3:DrawerHost x:Name="NavDrawer"
+                                IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
+                                LeftDrawerCornerRadius="0 0 0 0"
+                                LeftDrawerBackground="Transparent"
+                                OpenMode="Modal">
 
                     <!-- 抽屉 -->
-                    <materialDesign:DrawerHost.LeftDrawerContent>
+                    <md3:DrawerHost.LeftDrawerContent>
                         <DockPanel x:Name="DrawerView" Width="220"
                                    Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
                             <ListBox Margin="0,16,0,16"
@@ -112,16 +110,16 @@
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem"
                                            BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
-                                        <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon"
+                                        <Setter Property="md3:NavigationDrawerAssist.SelectedIcon"
                                                 Value="{Binding SelectedIcon}" />
-                                        <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon"
+                                        <Setter Property="md3:NavigationDrawerAssist.UnselectedIcon"
                                                 Value="{Binding UnselectedIcon}" />
                                         <Setter Property="Width" Value="200" />
                                     </Style>
                                 </ListBox.ItemContainerStyle>
                             </ListBox>
                         </DockPanel>
-                    </materialDesign:DrawerHost.LeftDrawerContent>
+                    </md3:DrawerHost.LeftDrawerContent>
 
                     <!-- 内容区 -->
                     <Grid>
@@ -144,17 +142,17 @@
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="ListBoxItem"
                                                BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
-                                            <Setter Property="materialDesign:BadgedAssist.Badge"
+                                            <Setter Property="md3:BadgedAssist.Badge"
                                                     Value="{Binding Notifications}" />
-                                            <Setter Property="materialDesign:BadgedAssist.BadgeBackground"
+                                            <Setter Property="md3:BadgedAssist.BadgeBackground"
                                                     Value="#930006" />
-                                            <Setter Property="materialDesign:BadgedAssist.BadgeForeground"
+                                            <Setter Property="md3:BadgedAssist.BadgeForeground"
                                                     Value="#FFDAD4" />
-                                            <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible"
+                                            <Setter Property="md3:NavigationRailAssist.IsTextVisible"
                                                     Value="True" />
-                                            <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon"
+                                            <Setter Property="md3:NavigationRailAssist.SelectedIcon"
                                                     Value="{Binding SelectedIcon}" />
-                                            <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon"
+                                            <Setter Property="md3:NavigationRailAssist.UnselectedIcon"
                                                     Value="{Binding UnselectedIcon}" />
                                         </Style>
                                     </ListBox.ItemContainerStyle>
@@ -172,10 +170,10 @@
                             <Button Click="SettingsButton_OnClick" Margin="0,0,0,16"
                                     Style="{StaticResource MaterialDesignIconButton}"
                                     Height="50"
-                                    materialDesign:ButtonAssist.CornerRadius="25"
+                                    md3:ButtonAssist.CornerRadius="25"
                                     ToolTip="Open Settings"
                                     Grid.Row="1">
-                                <materialDesign:PackIcon Kind="Cog" />
+                                <md3:PackIcon Kind="Cog" />
                             </Button>
                         </Grid>
 
@@ -185,26 +183,26 @@
                                             Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
                                             DataContext="{Binding SelectedItem}" />
 
-                            <materialDesign:Snackbar x:Name="MainSnackbar"
-                                                     MessageQueue="{materialDesign:MessageQueue}" />
+                            <md3:Snackbar x:Name="MainSnackbar"
+                                          MessageQueue="{md3:MessageQueue}" />
 
-                            <materialDesign:Badged Badge="{Binding Notifications}"
-                                                   Margin="0,0,28,28"
-                                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                                   BadgeColorZoneMode="PrimaryDark">
+                            <md3:Badged Badge="{Binding Notifications}"
+                                        Margin="0,0,28,28"
+                                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                        BadgeColorZoneMode="PrimaryDark">
                                 <Button Width="56" Height="56"
-                                        materialDesign:ButtonAssist.CornerRadius="28"
+                                        md3:ButtonAssist.CornerRadius="28"
                                         Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                                         BorderThickness="0"
                                         Command="{Binding AddNewNotiCommand}"
                                         Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}">
-                                    <materialDesign:PackIcon Width="26" Height="26" Kind="Github" />
+                                    <md3:PackIcon Width="26" Height="26" Kind="Github" />
                                 </Button>
-                            </materialDesign:Badged>
+                            </md3:Badged>
                         </Grid>
                     </Grid>
-                </materialDesign:DrawerHost>
-            </materialDesign:DialogHost>
+                </md3:DrawerHost>
+            </md3:DialogHost>
         </Grid>
     </Grid>
 </Window>
