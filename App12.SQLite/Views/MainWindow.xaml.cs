@@ -36,9 +36,6 @@ public partial class MainWindow : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        // this is for demo purposes only, to make it easier
-        // to get up and running
-        Context.Database.EnsureCreated();
         // uncomment if you want to fill database with default values
         // Fill();
 

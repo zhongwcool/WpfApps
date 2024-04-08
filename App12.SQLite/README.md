@@ -2,7 +2,9 @@
 
 You don't need to install any database software. You can use SQLite.
 
-你不必像MySQl或SQL Server一样先安装数据库软件才能使用数据库，你可以使用SQLite。
+你不必像MySQl或SQL Server一样先安装数据库软件才能使用数据库，你可以使用SQLite.
+
+但同时也受到很多性能或功能限制，比如`Upsert`操作.
 
 ## [Hotel System](https://github.com/mentapro/HotelSystem)
 
