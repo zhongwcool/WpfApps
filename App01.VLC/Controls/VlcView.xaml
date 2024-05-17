@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="App01.VLC.Controls.VlcView"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+             xmlns:ct="clr-namespace:App01.VLC.Controls"
+             xmlns:md="clr-namespace:App01.VLC.Models"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance d:Type=md:Channel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <wpf:VideoView x:Name="VideoView" Background="Black">
+            <Grid>
+                <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <WrapPanel.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="LightGray" />
+                            <GradientStop Offset="1" Color="Transparent" />
+                        </LinearGradientBrush>
+                    </WrapPanel.Background>
+
+                    <ct:ClickableTextBlock Text="{Binding Name}" Click="OnTitleClick" />
+                </WrapPanel>
+            </Grid>
+        </wpf:VideoView>
+    </Grid>
+</UserControl>

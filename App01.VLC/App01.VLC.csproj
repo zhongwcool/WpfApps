@@ -5,14 +5,15 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
-        <LangVersion>10</LangVersion>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
-        <PackageReference Include="LibVLCSharp" Version="3.8.2"/>
-        <PackageReference Include="LibVLCSharp.WPF" Version="3.8.2"/>
-        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="LibVLCSharp" Version="3.8.4"/>
+        <PackageReference Include="LibVLCSharp.WPF" Version="3.8.4"/>
+        <PackageReference Include="MaterialDesignColors" Version="3.0.0"/>
+        <PackageReference Include="MaterialDesignThemes" Version="5.0.0"/>
         <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.20"/>
     </ItemGroup>
 
