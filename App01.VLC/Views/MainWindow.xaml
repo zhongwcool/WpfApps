@@ -9,15 +9,18 @@
         xmlns:cv="clr-namespace:App01.VLC.Converter"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
+        PreviewKeyDown="MainWindow_OnPreviewKeyDown"
         Title="App01: Vlc播放" Height="640" Width="1080">
     <Window.Resources>
         <cv:True2VisibleConverter x:Key="True2VisibleConverter" />
     </Window.Resources>
-    <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
+    <md3:DialogHost DialogTheme="Inherit" Identifier="DialogRoot"
                     SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <Grid x:Name="ViewGrid">
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Channels}">
+                <ItemsControl ItemsSource="{Binding Channels}"
+                              VirtualizingStackPanel.IsVirtualizing="True"
+                              VirtualizingStackPanel.VirtualizationMode="Recycling">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
@@ -45,9 +48,14 @@
                                     <ct:ClickableTextBlock Text="{Binding Name}" Click="OnItemClick" />
                                 </StackPanel>
 
-                                <Image Source="{Binding Url}" Stretch="UniformToFill"
-                                       VerticalAlignment="Center" HorizontalAlignment="Center"
-                                       Grid.Row="1" />
+                                <Image Grid.Row="1">
+                                    <Image.Source>
+                                        <BitmapImage DecodePixelWidth="100" DecodePixelHeight="100"
+                                                     UriSource="{Binding Url}"
+                                                     CacheOption="OnDemand"
+                                                     CreateOptions="DelayCreation" />
+                                    </Image.Source>
+                                </Image>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -56,12 +64,24 @@
 
             <md3:Snackbar x:Name="MainSnackbar" MessageQueue="{md3:MessageQueue}" />
 
-            <Grid Background="#2000" Visibility="{Binding IsBusy, Converter={StaticResource True2VisibleConverter}}">
-                <ProgressBar Width="24" Height="24" Margin="16"
-                             IsIndeterminate="True"
-                             Style="{StaticResource MaterialDesignCircularProgressBar}"
-                             Value="33" />
+            <Grid Background="#2000"
+                  Visibility="{Binding IsBusy, Converter={StaticResource True2VisibleConverter}}">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <ProgressBar Width="24" Height="24" Margin="16"
+                                 IsIndeterminate="True"
+                                 Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                 Value="33" />
+                    <TextBlock Text="{Binding TxtStatus}" />
+                </StackPanel>
             </Grid>
+
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Visibility="{Binding IsBusy2, Converter={StaticResource True2VisibleConverter}}"
+                        Width="150">
+                <TextBlock Text="{Binding TxtStatus}" />
+                <ProgressBar Maximum="{Binding Max}" Value="{Binding Index}" />
+            </StackPanel>
         </Grid>
     </md3:DialogHost>
 </Window>

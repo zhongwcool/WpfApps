@@ -3,28 +3,72 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using App01.VLC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Mar.Cheese;
 
 namespace App01.VLC.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
+    public MainViewModel()
+    {
+        _semaphore = new SemaphoreSlim(8, 10);
+        _client = new HttpClient
+        {
+            Timeout = TimeSpan.FromSeconds(10)
+        };
+        Channels.CollectionChanged += (sender, args) =>
+        {
+            //当数量超过1时将IsBusy设为false
+            if (Channels.Count <= 1)
+            {
+                IsBusy = false;
+                IsBusy2 = true;
+            }
+        };
+    }
+
+    private readonly HttpClient _client;
+    private readonly SemaphoreSlim _semaphore;
+
     public async Task LoadDataAsync()
     {
-        var client = new HttpClient();
-        const string playlistUrl = "https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8";
-        var m3UContent = await client.GetStringAsync(playlistUrl);
-
+        const string playlistUrl =
+            "https://mirror.ghproxy.com/https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8";
+        TxtStatus = "加载播放数据..";
+        var m3UContent = await _client.GetStringAsync(playlistUrl);
         var channels = ParseM3UContent(m3UContent);
+        Max = channels.Count;
 
+        TxtStatus = "检出有效地址..";
+        var counter = 0;
         foreach (var channel in channels)
         {
-            Channels.Add(channel);
-        }
+            _ = Task.Run(async () =>
+            {
+                await _semaphore.WaitAsync();
+                var isAvailable = await CheckIptvUrl(channel);
+                if (isAvailable)
+                {
+                    Application.Current.Dispatcher.Invoke(() => { Channels.Add(channel); });
+                }
 
-        IsBusy = false;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Interlocked.Increment(ref counter);
+                    Index = counter;
+                    TxtStatus = $"检出有效地址..{Index}/{Max}";
+                    if (Index == Max)
+                    {
+                        IsBusy2 = false;
+                    }
+                });
+            });
+        }
     }
 
     private bool _isBusy = true;
@@ -33,6 +77,38 @@ public class MainViewModel : ObservableObject
     {
         get => _isBusy;
         set => SetProperty(ref _isBusy, value);
+    }
+
+    private bool _isBusy2 = false;
+
+    public bool IsBusy2
+    {
+        get => _isBusy2;
+        set => SetProperty(ref _isBusy2, value);
+    }
+
+    private string _txtStatus = "Data is preparing..";
+
+    public string TxtStatus
+    {
+        get => _txtStatus;
+        set => SetProperty(ref _txtStatus, value);
+    }
+
+    private int _index = 0;
+
+    public int Index
+    {
+        get => _index;
+        set => SetProperty(ref _index, value);
+    }
+
+    private int _max = 100;
+
+    public int Max
+    {
+        get => _max;
+        set => SetProperty(ref _max, value);
     }
 
     public ObservableCollection<Channel> Channels { get; set; } = [];
@@ -79,5 +155,27 @@ public class MainViewModel : ObservableObject
         }
 
         return channels;
+    }
+
+    private async Task<bool> CheckIptvUrl(Channel channel)
+    {
+        try
+        {
+            var response = await _client.GetAsync(channel.Url, HttpCompletionOption.ResponseHeadersRead);
+            return response.IsSuccessStatusCode &&
+                   response.Content.Headers.ContentType?.MediaType == "application/vnd.apple.mpegurl";
+        }
+        catch (Exception e)
+        {
+            "Exception Caught!".PrintErr();
+            $"Message :{e.Message} ".PrintErr();
+        }
+        finally
+        {
+            // 释放 SemaphoreSlim
+            _semaphore.Release();
+        }
+
+        return false;
     }
 }
