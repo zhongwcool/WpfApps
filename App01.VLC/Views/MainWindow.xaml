@@ -18,53 +18,77 @@
                     SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <Grid x:Name="ViewGrid">
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Channels}"
-                              VirtualizingStackPanel.IsVirtualizing="True"
-                              VirtualizingStackPanel.VirtualizationMode="Recycling">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="120" Width="180">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                <StackPanel Visibility="{Binding IsBusy3, Converter={StaticResource True2VisibleConverter}}">
+                    <Grid Margin="0,10,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label FontWeight="Bold" Grid.Column="0">分组:</Label>
+                        <ListBox ItemsSource="{Binding Groups}"
+                                 Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                                 DisplayMemberPath="Title"
+                                 SelectedItem="{Binding SelectedGroup, Mode=TwoWay}"
+                                 HorizontalAlignment="Left"
+                                 Grid.Column="1" />
+                    </Grid>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                    <StackPanel.Background>
-                                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                            <GradientStop Offset="0" Color="LightGray" />
-                                            <GradientStop Offset="1" Color="White" />
-                                        </LinearGradientBrush>
-                                    </StackPanel.Background>
-                                    <Image Source="{Binding TvgLogo}" Width="28" Height="28"
-                                           Stretch="Uniform" Margin="2"
-                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Grid Margin="0,10,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label FontWeight="Bold" Grid.Column="0">频道:</Label>
+                        <ItemsControl ItemsSource="{Binding Channels}"
+                                      VirtualizingStackPanel.IsVirtualizing="True"
+                                      VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                      Grid.Column="1">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="120" Width="180">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
 
-                                    <ct:ClickableTextBlock Text="{Binding Name}" Click="OnItemClick" />
-                                </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                            <StackPanel.Background>
+                                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                                    <GradientStop Offset="0" Color="LightGray" />
+                                                    <GradientStop Offset="1" Color="White" />
+                                                </LinearGradientBrush>
+                                            </StackPanel.Background>
+                                            <Image Source="{Binding TvgLogo}" Width="28" Height="28"
+                                                   Stretch="Uniform" Margin="2"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
 
-                                <Image Grid.Row="1">
-                                    <Image.Source>
-                                        <BitmapImage DecodePixelWidth="100" DecodePixelHeight="100"
-                                                     UriSource="{Binding Url}"
-                                                     CacheOption="OnDemand"
-                                                     CreateOptions="DelayCreation" />
-                                    </Image.Source>
-                                </Image>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                            <ct:ClickableTextBlock Text="{Binding Name}" Click="OnItemClick" />
+                                        </StackPanel>
+
+                                        <Image Grid.Row="1">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelWidth="100" DecodePixelHeight="100"
+                                                             UriSource="{Binding Url}"
+                                                             CacheOption="OnDemand"
+                                                             CreateOptions="DelayCreation" />
+                                            </Image.Source>
+                                        </Image>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </StackPanel>
             </ScrollViewer>
 
             <md3:Snackbar x:Name="MainSnackbar" MessageQueue="{md3:MessageQueue}" />
 
-            <Grid Background="#2000"
+            <Grid Background="#2fff"
                   Visibility="{Binding IsBusy, Converter={StaticResource True2VisibleConverter}}">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <ProgressBar Width="24" Height="24" Margin="16"

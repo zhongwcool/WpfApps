@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using App01.VLC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Mar.Cheese;
@@ -24,12 +27,14 @@ public class MainViewModel : ObservableObject
         Channels.CollectionChanged += (sender, args) =>
         {
             //当数量超过1时将IsBusy设为false
-            if (Channels.Count <= 1)
-            {
-                IsBusy = false;
-                IsBusy2 = true;
-            }
+            if (Channels.Count > 1) return;
+            IsBusy = false;
+            IsBusy2 = true;
+            IsBusy3 = true;
         };
+
+        _channelItemsView = CollectionViewSource.GetDefaultView(Channels);
+        _channelItemsView.Filter = CollectionFilter;
     }
 
     private readonly HttpClient _client;
@@ -54,7 +59,15 @@ public class MainViewModel : ObservableObject
                 var isAvailable = await CheckIptvUrl(channel);
                 if (isAvailable)
                 {
-                    Application.Current.Dispatcher.Invoke(() => { Channels.Add(channel); });
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Channels.Add(channel);
+                        //将channel中的GroupTitle添加到Groups中
+                        if (Groups.All(gp => gp.Title != channel.GroupTitle))
+                        {
+                            Groups.Add(new TvGroup { Title = channel.GroupTitle });
+                        }
+                    });
                 }
 
                 Application.Current.Dispatcher.Invoke(() =>
@@ -65,6 +78,7 @@ public class MainViewModel : ObservableObject
                     if (Index == Max)
                     {
                         IsBusy2 = false;
+                        SelectedGroup = Groups.FirstOrDefault();
                     }
                 });
             });
@@ -85,6 +99,14 @@ public class MainViewModel : ObservableObject
     {
         get => _isBusy2;
         set => SetProperty(ref _isBusy2, value);
+    }
+
+    private bool _isBusy3 = false;
+
+    public bool IsBusy3
+    {
+        get => _isBusy3;
+        set => SetProperty(ref _isBusy3, value);
     }
 
     private string _txtStatus = "Data is preparing..";
@@ -178,4 +200,27 @@ public class MainViewModel : ObservableObject
 
         return false;
     }
+
+    private bool CollectionFilter(object obj)
+    {
+        if (SelectedGroup == null) return true;
+        if (SelectedGroup.Title == "全部") return true;
+        var channel = (Channel)obj;
+        return Channels.Contains(channel) && channel.GroupTitle == SelectedGroup.Title;
+    }
+
+    private readonly ICollectionView _channelItemsView;
+
+    private TvGroup _selectedGroup;
+
+    public TvGroup SelectedGroup
+    {
+        get => _selectedGroup;
+        set
+        {
+            if (SetProperty(ref _selectedGroup, value)) _channelItemsView.Refresh();
+        }
+    }
+
+    public ObservableCollection<TvGroup> Groups { get; private set; } = [];
 }
