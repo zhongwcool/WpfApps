@@ -73,7 +73,7 @@
                                         </Border.Triggers>
                                         <Grid>
                                             <Border x:Name="PART_Root" Opacity="0.2"
-                                                    Background="{Binding Background, ElementName=PART_Title, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.2}" />
+                                                    Background="{Binding Foreground, ElementName=PART_Title, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.2}" />
 
                                             <Grid Height="120" Width="180">
                                                 <Grid.RowDefinitions>
