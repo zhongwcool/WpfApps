@@ -23,6 +23,16 @@
 
                     <ct:ClickableTextBlock Text="{Binding Name}" Click="OnTitleClick" />
                 </WrapPanel>
+
+                <Grid x:Name="LoadView" Background="#2fff">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ProgressBar Width="24" Height="24" Margin="16"
+                                     IsIndeterminate="True"
+                                     Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                     Value="33" />
+                        <TextBlock Text="数据准备中..." />
+                    </StackPanel>
+                </Grid>
             </Grid>
         </wpf:VideoView>
     </Grid>

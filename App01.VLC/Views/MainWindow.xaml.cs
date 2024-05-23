@@ -24,7 +24,7 @@ public partial class MainWindow : Window
     private void OnItemClick(object sender, RoutedEventArgs e)
     {
         if (((FrameworkElement)sender).DataContext is not Channel channel) return;
-        _vlcview = new VlcView()
+        _vlcview = new VlcView
         {
             DataContext = channel
         };
