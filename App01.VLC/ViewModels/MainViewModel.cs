@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using App01.VLC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Mar.Cheese;
+using Channel = App01.VLC.Models.Channel;
 
 namespace App01.VLC.ViewModels;
 
@@ -19,6 +23,8 @@ public class MainViewModel : ObservableObject
 {
     public MainViewModel()
     {
+        Prepare();
+        
         _semaphore = new SemaphoreSlim(8, 10);
         _client = new HttpClient
         {
@@ -29,60 +35,119 @@ public class MainViewModel : ObservableObject
             //当数量超过1时将IsBusy设为false
             if (Channels.Count > 1) return;
             IsBusy = false;
-            IsBusy2 = true;
-            IsBusy3 = true;
+            ShowPanel = true;
         };
 
         _channelItemsView = CollectionViewSource.GetDefaultView(Channels);
         _channelItemsView.Filter = CollectionFilter;
     }
+    
+    private void Prepare()
+    {
+        var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        var assembly = Assembly.GetEntryAssembly()?.GetName();
+        var myAppFolder = Path.Combine(appDataPath, null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
+        var jsonFile = Path.Combine(myAppFolder, JsonFile);
+
+        try
+        {
+            var model = JsonUtil.Load<MyApp>(jsonFile);
+            if (model == null) return;
+            _config = model;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private MyApp _config = new();
+    private const string JsonFile = "app.json";
 
     private readonly HttpClient _client;
     private readonly SemaphoreSlim _semaphore;
 
     public async Task LoadDataAsync()
     {
-        const string playlistUrl =
-            "https://mirror.ghproxy.com/https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8";
         TxtStatus = "加载播放数据..";
-        var m3UContent = await _client.GetStringAsync(playlistUrl);
-        var channels = ParseM3UContent(m3UContent);
-        Max = channels.Count;
 
-        TxtStatus = "检出有效地址..";
-        var counter = 0;
-        foreach (var channel in channels)
+        if (_config.Channels.Count > 0)
         {
-            _ = Task.Run(async () =>
+            foreach (var channel in _config.Channels)
             {
-                await _semaphore.WaitAsync();
-                var isAvailable = await CheckIptvUrl(channel);
-                if (isAvailable)
+                Channels.Add(channel);
+                //将channel中的GroupTitle添加到Groups中
+                if (Groups.All(gp => gp.Title != channel.GroupTitle))
                 {
+                    Groups.Add(new TvGroup { Title = channel.GroupTitle });
+                }
+            }
+            SelectedGroup = Groups.FirstOrDefault();
+            return;
+        }
+
+        try
+        {
+            var m3UContent = await _client.GetStringAsync(_config.Site);
+            var channels = ParseM3UContent(m3UContent);
+            Max = channels.Count;
+            TxtStatus = "解析数据..";
+            var counter = 0;
+            foreach (var channel in channels)
+            {
+                _ = Task.Run(async () =>
+                {
+                    await _semaphore.WaitAsync();
+                    var isAvailable = await CheckIptvUrl(channel);
+                    if (isAvailable)
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            Channels.Add(channel);
+                            //将channel中的GroupTitle添加到Groups中
+                            if (Groups.All(gp => gp.Title != channel.GroupTitle))
+                            {
+                                Groups.Add(new TvGroup { Title = channel.GroupTitle });
+                            }
+
+                            IsBusy2 = true;
+                        });
+                    }
+
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        Channels.Add(channel);
-                        //将channel中的GroupTitle添加到Groups中
-                        if (Groups.All(gp => gp.Title != channel.GroupTitle))
+                        Interlocked.Increment(ref counter);
+                        Index = counter;
+                        TxtStatus = $"检查频道是否有效..{Index}/{Max}";
+                        if (Index == Max)
                         {
-                            Groups.Add(new TvGroup { Title = channel.GroupTitle });
+                            IsBusy2 = false;
+                            SelectedGroup = Groups.FirstOrDefault();
+                            SaveUserChoice();
                         }
                     });
-                }
-
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    Interlocked.Increment(ref counter);
-                    Index = counter;
-                    TxtStatus = $"检出有效地址..{Index}/{Max}";
-                    if (Index == Max)
-                    {
-                        IsBusy2 = false;
-                        SelectedGroup = Groups.FirstOrDefault();
-                    }
                 });
-            });
+            }
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            TxtStatus = $"!更新数据出错..请稍后重试";
+        }
+    }
+    
+    // 保存用户选择
+    private void SaveUserChoice()
+    {
+        _config.Channels.Clear();
+        _config.Channels.AddRange(Channels);
+        
+        var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        var assembly = Assembly.GetEntryAssembly()?.GetName();
+        var myAppFolder = Path.Combine(appDataPath, null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
+        Directory.CreateDirectory(myAppFolder);
+        var jsonFile = Path.Combine(myAppFolder, JsonFile);
+        JsonUtil.Save(jsonFile, _config);
     }
 
     private bool _isBusy = true;
@@ -101,12 +166,12 @@ public class MainViewModel : ObservableObject
         set => SetProperty(ref _isBusy2, value);
     }
 
-    private bool _isBusy3 = false;
+    private bool _showPanel = false;
 
-    public bool IsBusy3
+    public bool ShowPanel
     {
-        get => _isBusy3;
-        set => SetProperty(ref _isBusy3, value);
+        get => _showPanel;
+        set => SetProperty(ref _showPanel, value);
     }
 
     private string _txtStatus = "Data is preparing..";

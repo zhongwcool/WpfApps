@@ -7,4 +7,5 @@ public class Channel
     public string TvgLogo { get; set; }
     public string Name { get; set; }
     public string Url { get; set; }
+    public bool HasStar { get; set; }
 }
