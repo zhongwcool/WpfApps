@@ -8,7 +8,6 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -24,7 +23,7 @@ public class MainViewModel : ObservableObject
     public MainViewModel()
     {
         Prepare();
-        
+
         _semaphore = new SemaphoreSlim(8, 10);
         _client = new HttpClient
         {
@@ -41,13 +40,14 @@ public class MainViewModel : ObservableObject
         _channelItemsView = CollectionViewSource.GetDefaultView(Channels);
         _channelItemsView.Filter = CollectionFilter;
     }
-    
+
     private void Prepare()
     {
         var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         var assembly = Assembly.GetEntryAssembly()?.GetName();
-        var myAppFolder = Path.Combine(appDataPath, null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
-        var jsonFile = Path.Combine(myAppFolder, JsonFile);
+        var myAppFolder = Path.Combine(appDataPath,
+            null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
+        var jsonFile = Path.Combine(myAppFolder, JSON_FILE);
 
         try
         {
@@ -62,7 +62,7 @@ public class MainViewModel : ObservableObject
     }
 
     private MyApp _config = new();
-    private const string JsonFile = "app.json";
+    private const string JSON_FILE = "app.json";
 
     private readonly HttpClient _client;
     private readonly SemaphoreSlim _semaphore;
@@ -82,6 +82,7 @@ public class MainViewModel : ObservableObject
                     Groups.Add(new TvGroup { Title = channel.GroupTitle });
                 }
             }
+
             SelectedGroup = Groups.FirstOrDefault();
             return;
         }
@@ -135,18 +136,19 @@ public class MainViewModel : ObservableObject
             TxtStatus = $"!更新数据出错..请稍后重试";
         }
     }
-    
+
     // 保存用户选择
     private void SaveUserChoice()
     {
         _config.Channels.Clear();
         _config.Channels.AddRange(Channels);
-        
+
         var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         var assembly = Assembly.GetEntryAssembly()?.GetName();
-        var myAppFolder = Path.Combine(appDataPath, null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
+        var myAppFolder = Path.Combine(appDataPath,
+            null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
         Directory.CreateDirectory(myAppFolder);
-        var jsonFile = Path.Combine(myAppFolder, JsonFile);
+        var jsonFile = Path.Combine(myAppFolder, JSON_FILE);
         JsonUtil.Save(jsonFile, _config);
     }
 

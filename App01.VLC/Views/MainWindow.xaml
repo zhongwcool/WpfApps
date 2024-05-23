@@ -50,35 +50,63 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="120" Width="180">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="30" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
+                                    <Border Background="Transparent" Margin="0,0,5,10">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                                         Storyboard.TargetName="PART_Root"
+                                                                         Storyboard.TargetProperty="Opacity" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0:0:1" To="0.2"
+                                                                         Storyboard.TargetName="PART_Root"
+                                                                         Storyboard.TargetProperty="Opacity" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                        <Grid>
+                                            <Border x:Name="PART_Root" Opacity="0.2"
+                                                    Background="{Binding Foreground, ElementName=PART_Title, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.2}" />
 
-                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                            <StackPanel.Background>
-                                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                                    <GradientStop Offset="0" Color="LightGray" />
-                                                    <GradientStop Offset="1" Color="White" />
-                                                </LinearGradientBrush>
-                                            </StackPanel.Background>
-                                            <Image Source="{Binding TvgLogo}" Width="28" Height="28"
-                                                   Stretch="Uniform" Margin="2"
-                                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <Grid Height="120" Width="180">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
 
-                                            <ct:ClickableTextBlock Text="{Binding Name}" Click="OnItemClick" />
-                                        </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                                    <StackPanel.Background>
+                                                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                                            <GradientStop Offset="0" Color="LightGray" />
+                                                            <GradientStop Offset="1" Color="White" />
+                                                        </LinearGradientBrush>
+                                                    </StackPanel.Background>
+                                                    <Image Source="{Binding TvgLogo}" Width="28" Height="28"
+                                                           Stretch="Uniform" Margin="2"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
 
-                                        <Image Grid.Row="1">
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelWidth="100" DecodePixelHeight="100"
-                                                             UriSource="{Binding Url}"
-                                                             CacheOption="OnDemand"
-                                                             CreateOptions="DelayCreation" />
-                                            </Image.Source>
-                                        </Image>
-                                    </Grid>
+                                                    <ct:ClickableTextBlock x:Name="PART_Title" Text="{Binding Name}"
+                                                                           Click="OnItemClick" />
+                                                </StackPanel>
+
+                                                <Image Grid.Row="1">
+                                                    <Image.Source>
+                                                        <BitmapImage DecodePixelWidth="100" DecodePixelHeight="100"
+                                                                     UriSource="{Binding Url}"
+                                                                     CacheOption="OnDemand"
+                                                                     CreateOptions="DelayCreation" />
+                                                    </Image.Source>
+                                                </Image>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

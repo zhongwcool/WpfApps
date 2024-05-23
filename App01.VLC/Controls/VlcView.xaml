@@ -13,7 +13,7 @@
     <Grid>
         <wpf:VideoView x:Name="VideoView" Background="Black">
             <Grid>
-                <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5">
                     <WrapPanel.Background>
                         <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                             <GradientStop Offset="0" Color="LightGray" />
