@@ -12,6 +12,7 @@
                     <Border>
                         <StackPanel Orientation="Vertical">
                             <TextBlock x:Name="PART_Title" Text="{TemplateBinding Text}"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                                        Padding="2, 4, 2, 2"
                                        Cursor="Hand">
                                 <TextBlock.Style>

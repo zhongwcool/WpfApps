@@ -22,12 +22,12 @@ public partial class VlcView
             _mediaPlayer = new MediaPlayer(_libVlc);
             _mediaPlayer.Playing += (_, _) =>
             {
-                Application.Current.Dispatcher.Invoke(() => { LoadView.Visibility = Visibility.Collapsed; });
+                Dispatcher.Invoke(() => { ViewLoad.Visibility = Visibility.Collapsed; });
             };
 
             await Task.Run(() =>
             {
-                Application.Current.Dispatcher.Invoke(() => { VideoView.MediaPlayer = _mediaPlayer; });
+                Dispatcher.Invoke(() => { VideoView.MediaPlayer = _mediaPlayer; });
 
                 using var media = new Media(_libVlc, new Uri(channel.Url));
                 _mediaPlayer.Play(media);
@@ -35,9 +35,10 @@ public partial class VlcView
         };
         Unloaded += (_, _) =>
         {
-            _mediaPlayer?.Stop();
-            _mediaPlayer?.Dispose();
-            _libVlc?.Dispose();
+            if (null == _libVlc) return;
+            _mediaPlayer.Stop();
+            _mediaPlayer.Dispose();
+            _libVlc.Dispose();
         };
     }
 
