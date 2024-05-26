@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using App18.Material.Dialogs;
 using App18.Material.ViewModels;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 
 namespace App18.Material.Views;
 
@@ -19,9 +20,20 @@ public partial class MainWindow : Window
         InitializeComponent();
         DataContext = new MainViewModel(MainSnackbar.MessageQueue!);
         ReduceBackground();
-
         //开启全屏
         EntryMaximizedWindow();
+
+        // 加载主题
+        UpdateTheme();
+        SystemEvents.UserPreferenceChanged += (_, args) =>
+        {
+            // 当事件是由于主题变化引起的
+            if (args.Category == UserPreferenceCategory.General)
+            {
+                // 这里你可以写代码来处理主题变化，例如，重新加载样式或者资源
+                UpdateTheme();
+            }
+        };
 
         var dispatcherTimer = new DispatcherTimer();
         // 当间隔时间过去时发生的事件
@@ -38,6 +50,26 @@ public partial class MainWindow : Window
                 MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
             });
         });
+    }
+
+    private void UpdateTheme()
+    {
+        var paletteHelper = new PaletteHelper();
+        var theme = paletteHelper.GetTheme();
+        // 检查当前主题并应用
+        switch (Theme.GetSystemTheme())
+        {
+            case BaseTheme.Light:
+                theme.SetBaseTheme(BaseTheme.Light);
+                DarkMode.IsChecked = false;
+                break;
+            case BaseTheme.Dark:
+                theme.SetBaseTheme(BaseTheme.Dark);
+                DarkMode.IsChecked = true;
+                break;
+        }
+
+        paletteHelper.SetTheme(theme);
     }
 
     private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -57,7 +89,7 @@ public partial class MainWindow : Window
 
     private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
     {
-        ModifyTheme(DarkModeToggleButton.IsChecked == true);
+        ModifyTheme(DarkMode.IsChecked == true);
     }
 
     private static void ModifyTheme(bool isDarkTheme)
