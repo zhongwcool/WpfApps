@@ -61,17 +61,28 @@ public class MainViewModel : ObservableObject
         }
     }
 
-    private MyApp _config = new();
+    public async void UpdateSites(string newSite)
+    {
+        if (_config.Site == newSite) return;
+        _config.Channels.Clear();
+        await LoadDataAsync();
+    }
+
+    private MyApp _config;
+
     private const string JSON_FILE = "app.json";
 
     private readonly HttpClient _client;
     private readonly SemaphoreSlim _semaphore;
 
-    public async Task LoadDataAsync()
+    public async Task LoadDataAsync(bool useLocal = false)
     {
+        Channels.Clear();
+        Groups.Clear();
+        IsBusy = true;
         TxtStatus = "加载播放数据..";
 
-        if (_config.Channels.Count > 0)
+        if (useLocal && _config.Channels.Count > 0)
         {
             foreach (var channel in _config.Channels)
             {
@@ -149,6 +160,7 @@ public class MainViewModel : ObservableObject
             null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
         Directory.CreateDirectory(myAppFolder);
         var jsonFile = Path.Combine(myAppFolder, JSON_FILE);
+        _config.LastModified = DateTime.Now;
         JsonUtil.Save(jsonFile, _config);
     }
 

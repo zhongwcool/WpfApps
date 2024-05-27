@@ -11,8 +11,8 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
-        <PackageReference Include="LibVLCSharp" Version="3.8.4"/>
-        <PackageReference Include="LibVLCSharp.WPF" Version="3.8.4"/>
+        <PackageReference Include="LibVLCSharp" Version="3.8.5"/>
+        <PackageReference Include="LibVLCSharp.WPF" Version="3.8.5"/>
         <PackageReference Include="Mar.Console" Version="0.6.7"/>
         <PackageReference Include="MaterialDesignColors" Version="3.0.0"/>
         <PackageReference Include="MaterialDesignThemes" Version="5.0.0"/>

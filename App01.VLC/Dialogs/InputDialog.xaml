@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="App01.VLC.Dialogs.InputDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:App01.VLC.Dialogs"
+             xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:cv="clr-namespace:App01.VLC.Converter"
+             d:DataContext="{d:DesignInstance Type=local:InputDialogViewModel}"
+             mc:Ignorable="d" MaxWidth="400">
+    <UserControl.Resources>
+        <cv:StringToBoolConverter x:Key="StringToBoolConverter" />
+    </UserControl.Resources>
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="TxtView" Text="{Binding Site}"
+                 Margin="0,6,0,0"
+                 FontSize="16"
+                 md3:HintAssist.Hint="请输入m3u8直播源"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Grid.Row="0" />
+
+        <StackPanel Grid.Row="1"
+                    Margin="0,16,0,0"
+                    Orientation="Horizontal">
+            <Button Command="{x:Static md3:DialogHost.CloseDialogCommand}"
+                    IsDefault="True"
+                    IsEnabled="{Binding ElementName=TxtView, Path=Text.Length, Mode=OneWay, Converter={StaticResource StringToBoolConverter}}"
+                    Style="{StaticResource MaterialDesignFlatButton}">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+                确认
+            </Button>
+            <Button Margin="8,0,0,0"
+                    Command="{x:Static md3:DialogHost.CloseDialogCommand}"
+                    IsCancel="True"
+                    Style="{StaticResource MaterialDesignFlatButton}">
+                <Button.CommandParameter>
+                    <system:Boolean>False</system:Boolean>
+                </Button.CommandParameter>
+                取消
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

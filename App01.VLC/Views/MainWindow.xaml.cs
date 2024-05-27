@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using App01.VLC.Controls;
+using App01.VLC.Dialogs;
 using App01.VLC.Models;
 using App01.VLC.ViewModels;
 using MaterialDesignThemes.Wpf;
@@ -29,7 +30,7 @@ public partial class MainWindow : Window
 
         Loaded += async (_, _) =>
         {
-            if (DataContext is MainViewModel vm) await vm.LoadDataAsync();
+            if (DataContext is MainViewModel vm) await vm.LoadDataAsync(true);
         };
     }
 
@@ -68,5 +69,25 @@ public partial class MainWindow : Window
         //按Esc键移除VlcView
         if (e.Key != Key.Escape) return;
         ViewGrid.Children.Remove(_vlcview);
+    }
+
+    private async void ButtonSource_OnClick(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not MainViewModel vm) return;
+        var content = new InputDialog()
+        {
+            DataContext = new InputDialogViewModel()
+        };
+
+        await DialogHost.Show(content, "DialogRoot", null, (_, args) =>
+        {
+            var ret = args.Parameter is true;
+            // 获得Dialog输入结果
+            if (ret)
+            {
+                if (content.DataContext is not InputDialogViewModel vm0) return;
+                vm.UpdateSites(vm0.Site);
+            }
+        });
     }
 }
