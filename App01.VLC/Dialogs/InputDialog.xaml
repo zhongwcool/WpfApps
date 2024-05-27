@@ -30,7 +30,7 @@
                     Orientation="Horizontal">
             <Button Command="{x:Static md3:DialogHost.CloseDialogCommand}"
                     IsDefault="True"
-                    IsEnabled="{Binding ElementName=TxtView, Path=Text.Length, Mode=OneWay, Converter={StaticResource StringToBoolConverter}}"
+                    IsEnabled="{Binding ElementName=TxtView, Path=Text, Mode=OneWay, Converter={StaticResource StringToBoolConverter}}"
                     Style="{StaticResource MaterialDesignFlatButton}">
                 <Button.CommandParameter>
                     <system:Boolean>True</system:Boolean>

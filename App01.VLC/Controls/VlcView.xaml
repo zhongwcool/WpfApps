@@ -30,7 +30,8 @@
                                      IsIndeterminate="True"
                                      Style="{StaticResource MaterialDesignCircularProgressBar}"
                                      Value="33" />
-                        <TextBlock Text="数据准备中..." />
+                        <TextBlock Text="数据准备中..."
+                                   Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" />
                     </StackPanel>
                 </Grid>
             </Grid>

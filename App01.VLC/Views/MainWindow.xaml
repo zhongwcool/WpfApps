@@ -121,7 +121,9 @@
                             Height="{StaticResource IconSize}"
                             Kind="AndroidStudio" />
                     </Button>
-                    <TextBlock Text="更新源" HorizontalAlignment="Center" />
+                    <TextBlock Text="更新源" FontSize="10"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </StackPanel>
             </StackPanel>
 
@@ -134,7 +136,8 @@
                                  IsIndeterminate="True"
                                  Style="{StaticResource MaterialDesignCircularProgressBar}"
                                  Value="33" />
-                    <TextBlock Text="{Binding TxtStatus}" />
+                    <TextBlock Text="{Binding TxtStatus}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </StackPanel>
             </Grid>
 
@@ -142,7 +145,8 @@
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Visibility="{Binding IsBusy2, Converter={StaticResource True2VisibleConverter}}"
                         Width="150">
-                <TextBlock Text="{Binding TxtStatus}" />
+                <TextBlock Text="{Binding TxtStatus}"
+                           Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 <ProgressBar Maximum="{Binding Max}" Value="{Binding Index}" />
             </StackPanel>
         </Grid>
