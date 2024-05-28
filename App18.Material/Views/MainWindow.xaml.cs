@@ -19,7 +19,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainViewModel(MainSnackbar.MessageQueue!);
-        ReduceBackground();
         //开启全屏
         EntryMaximizedWindow();
 
@@ -138,21 +137,6 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ReduceBackground()
-    {
-        // 获取当前按钮的背景色 Brush
-        if (DrawerView.Background is not SolidColorBrush brush0) return;
-        // 创建具有修改透明度的新 Brush
-        var modifiedBackground = new SolidColorBrush(brush0.Color)
-        {
-            Opacity = 0.6 // 设置新的透明度
-        };
-
-        // 将按钮的背景色设置为修改后的 Brush
-        DrawerView.Background = modifiedBackground;
-        NavRail.Background = modifiedBackground;
-    }
-
     private void EntryMaximizedWindow()
     {
         WindowState = WindowState.Maximized;
@@ -169,6 +153,15 @@ public partial class MainWindow : Window
 
     private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
     {
-        MainSnackbar.MessageQueue?.Enqueue("Function is under development.");
+        var paletteHelper = new PaletteHelper();
+        var theme = paletteHelper.GetTheme();
+
+        theme.SetPrimaryColor(Colors.Gold);
+        theme.SetSecondaryColor(Colors.LimeGreen);
+
+        var colorAdjustment = theme.ColorAdjustment ?? new ColorAdjustment();
+        theme.ColorAdjustment = colorAdjustment;
+
+        paletteHelper.SetTheme(theme);
     }
 }

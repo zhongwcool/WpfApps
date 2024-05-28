@@ -11,10 +11,6 @@
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary
-                        Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
-                </ResourceDictionary.MergedDictionaries>
                 <cv:DateToHumanizeConverter x:Key="DateToHumanizeConverter" />
                 <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
                 <cv:Address2NickConverter x:Key="Address2NickConverter" />
@@ -55,8 +51,7 @@
                                 Style="{StaticResource MaterialDesignToolButton}">
                                 <md:PackIcon Kind="DeleteOutline" />
                             </Button>
-                            <md:PopupBox Padding="2,0,2,0"
-                                         Style="{StaticResource MaterialDesignToolPopupBox}">
+                            <md:PopupBox Padding="2,0,2,0">
                                 <StackPanel>
                                     <Button Content="More" />
                                     <Button Content="Options" />

@@ -12,82 +12,84 @@
         Style="{StaticResource MaterialDesignWindow}"
         Background="Transparent"
         Title="Material 3" Height="720" Width="1200">
-    <Grid>
-        <Grid Background="{DynamicResource MaterialDesign.Brush.Background}" />
+    <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
+                    SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <md3:ColorZone md3:ElevationAssist.Elevation="Dp0" DockPanel.Dock="Top" Mode="PrimaryMid" Grid.Row="0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Height="64" Orientation="Horizontal" Grid.Column="0">
-                        <Image Margin="15,0,15,0" Width="48" Height="48"
-                               Source="pack://application:,,,/Resources/logo_main.png" />
+            <Grid Background="{DynamicResource MaterialDesign.Brush.Background}" />
 
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   AutomationProperties.Name="Material Design In XAML Toolkit"
-                                   FontSize="22"
-                                   Text="Material Design In XAML Toolkit" />
-                    </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <md3:ColorZone md3:ElevationAssist.Elevation="Dp0" DockPanel.Dock="Top" Mode="PrimaryMid" Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Height="64" Orientation="Horizontal" Grid.Column="0">
+                            <Image Margin="15,0,15,0" Width="48" Height="48"
+                                   Source="pack://application:,,,/Resources/logo_main.png" />
 
-                    <DockPanel Grid.Column="2">
-                        <TextBlock x:Name="BlockPrefix" Margin="5,0,0,0"
-                                   FontSize="32" FontWeight="Black"
-                                   Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                                   VerticalAlignment="Center" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       AutomationProperties.Name="Material Design In XAML Toolkit"
+                                       FontSize="22"
+                                       Text="Material Design In XAML Toolkit" />
+                        </StackPanel>
 
-                        <TextBlock x:Name="BlockSecond" Margin="0,0,5,0" Width="40"
-                                   FontSize="32" FontWeight="Black"
-                                   Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                                   VerticalAlignment="Center" />
-                        <!-- 弹出菜单 -->
-                        <md3:PopupBox StaysOpen="False"
-                                      Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                                      PlacementMode="BottomAndAlignRightEdges">
-                            <StackPanel>
-                                <Grid Margin="10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Margin="0,0,10,0" Text="Light"
-                                               Grid.Row="0" Grid.Column="0" />
-                                    <ToggleButton x:Name="DarkMode"
-                                                  Click="MenuDarkModeButton_Click"
-                                                  Grid.Row="0" Grid.Column="1" />
-                                    <TextBlock Margin="10,0,0,0" Text="Dark"
-                                               Grid.Row="0" Grid.Column="2" />
-                                </Grid>
+                        <DockPanel Grid.Column="2">
+                            <TextBlock x:Name="BlockPrefix" Margin="5,0,0,0"
+                                       FontSize="32" FontWeight="Black"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                       VerticalAlignment="Center" />
 
-                                <Separator />
+                            <TextBlock x:Name="BlockSecond" Margin="0,0,5,0" Width="40"
+                                       FontSize="32" FontWeight="Black"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                       VerticalAlignment="Center" />
+                            <!-- 弹出菜单 -->
+                            <md3:PopupBox StaysOpen="False"
+                                          Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                          PlacementMode="BottomAndAlignRightEdges">
+                                <StackPanel>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Margin="0,0,10,0" Text="Light"
+                                                   Grid.Row="0" Grid.Column="0" />
+                                        <ToggleButton x:Name="DarkMode"
+                                                      Click="MenuDarkModeButton_Click"
+                                                      Grid.Row="0" Grid.Column="1" />
+                                        <TextBlock Margin="10,0,0,0" Text="Dark"
+                                                   Grid.Row="0" Grid.Column="2" />
+                                    </Grid>
 
-                                <Button Click="ButtonClose_OnClick" Content="退出程序" />
-                            </StackPanel>
-                        </md3:PopupBox>
-                    </DockPanel>
-                </Grid>
-            </md3:ColorZone>
+                                    <ListBox ItemsSource="{Binding ColorPresets}"
+                                             SelectedItem="{Binding SelectedColorPreset}"
+                                             DisplayMemberPath="Name" />
 
-            <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
-                            SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}"
-                            Grid.Row="1">
+                                    <Separator />
 
-                <md3:DrawerHost x:Name="NavDrawer"
-                                IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
-                                LeftDrawerCornerRadius="0 0 0 0"
-                                LeftDrawerBackground="Transparent"
-                                OpenMode="Modal">
+                                    <Button Click="ButtonClose_OnClick" Content="退出程序" />
+                                </StackPanel>
+                            </md3:PopupBox>
+                        </DockPanel>
+                    </Grid>
+                </md3:ColorZone>
+
+
+                <md3:DrawerHost x:Name="NavDrawer" OpenMode="Modal"
+                                LeftDrawerCornerRadius="0 0 0 0" LeftDrawerBackground="Transparent"
+                                Grid.Row="1">
 
                     <!-- 抽屉 -->
                     <md3:DrawerHost.LeftDrawerContent>
@@ -129,14 +131,15 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- 内容左-Bar -->
-                        <Grid x:Name="NavRail" Width="80" Grid.Column="0">
+                        <Grid x:Name="NavRail" Width="80"
+                              Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <!-- 抽屉-Bar-固定项 -->
                             <Viewbox VerticalAlignment="Top" Stretch="Uniform" Grid.Row="0">
-                                <ListBox VerticalAlignment="Top" Margin="0,12,0,0"
+                                <ListBox VerticalAlignment="Top" Margin="0,12,0,0" Background="Transparent"
                                          ItemsSource="{Binding NavigationItems}"
                                          SelectedValue="{Binding SelectedItem}">
                                     <ListBox.ItemContainerStyle>
@@ -183,8 +186,7 @@
                                             Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
                                             DataContext="{Binding SelectedItem}" />
 
-                            <md3:Snackbar x:Name="MainSnackbar"
-                                          MessageQueue="{md3:MessageQueue}" />
+                            <md3:Snackbar x:Name="MainSnackbar" MessageQueue="{md3:MessageQueue}" />
 
                             <md3:Badged Badge="{Binding Notifications}"
                                         Margin="0,0,28,28"
@@ -202,7 +204,8 @@
                         </Grid>
                     </Grid>
                 </md3:DrawerHost>
-            </md3:DialogHost>
+
+            </Grid>
         </Grid>
-    </Grid>
+    </md3:DialogHost>
 </Window>

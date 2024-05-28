@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Media;
 using App18.Material.Models;
 using App18.Material.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -14,14 +15,43 @@ public class MainViewModel : ObservableObject
 {
     public MainViewModel(ISnackbarMessageQueue snackbarMessageQueue)
     {
-        NavigationItems = new ObservableCollection<NavigationItem>
-        {
-            new(
+        ColorPresets =
+        [
+            new ColorPreset
+            {
+                Name = "清新自然风",
+                Primary = (Color)ColorConverter.ConvertFromString("#4CAF50")!,
+                Secondary = (Color)ColorConverter.ConvertFromString("#C8E6C9")!
+            },
+            new ColorPreset
+            {
+                Name = "沉稳高雅风",
+                Primary = (Color)ColorConverter.ConvertFromString("#607D8B")!,
+                Secondary = (Color)ColorConverter.ConvertFromString("#CFD8DC")!
+            },
+            new ColorPreset
+            {
+                Name = "活力四射风",
+                Primary = (Color)ColorConverter.ConvertFromString("#E53935")!,
+                Secondary = (Color)ColorConverter.ConvertFromString("#FFE0B2")!
+            },
+            new ColorPreset
+            {
+                Name = "海洋蓝调风",
+                Primary = (Color)ColorConverter.ConvertFromString("#0288D1")!,
+                Secondary = (Color)ColorConverter.ConvertFromString("#B3E5FC")!
+            },
+        ];
+        SelectedColorPreset = ColorPresets.FirstOrDefault();
+
+        NavigationItems =
+        [
+            new NavigationItem(
                 nameof(PageHome),
                 typeof(PageHome),
                 PackIconKind.TransitionMasked,
                 PackIconKind.Transition)
-        };
+        ];
 
         foreach (var item in GenerateNavigationItems(snackbarMessageQueue).OrderBy(i => i.Name))
             NavigationItems.Add(item);
@@ -70,7 +100,7 @@ public class MainViewModel : ObservableObject
 
     private int _notificationNumber;
 
-    public object? Notifications
+    public object Notifications
     {
         get
         {
@@ -93,4 +123,32 @@ public class MainViewModel : ObservableObject
         _notificationNumber = 0;
         OnPropertyChanged(nameof(Notifications));
     }
+
+    private ColorPreset _selectedColorPreset;
+
+    public ColorPreset SelectedColorPreset
+    {
+        get => _selectedColorPreset;
+        set
+        {
+            SetProperty(ref _selectedColorPreset, value);
+            ChangePreset(_selectedColorPreset);
+        }
+    }
+
+    private static void ChangePreset(ColorPreset preset)
+    {
+        var paletteHelper = new PaletteHelper();
+        var theme = paletteHelper.GetTheme();
+
+        theme.SetPrimaryColor(preset.Primary);
+        theme.SetSecondaryColor(preset.Secondary);
+
+        var colorAdjustment = theme.ColorAdjustment ?? new ColorAdjustment();
+        theme.ColorAdjustment = colorAdjustment;
+
+        paletteHelper.SetTheme(theme);
+    }
+
+    public ObservableCollection<ColorPreset> ColorPresets { set; get; }
 }
