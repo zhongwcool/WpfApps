@@ -42,7 +42,8 @@ public class MainViewModel : ObservableObject
                 Secondary = (Color)ColorConverter.ConvertFromString("#B3E5FC")!
             },
         ];
-        SelectedColorPreset = ColorPresets.FirstOrDefault();
+        SelectedColorPreset =
+            ColorPresets.FirstOrDefault(pre => pre.Name == _config?.Preset.Name) ?? ColorPresets.First();
 
         NavigationItems =
         [
@@ -61,6 +62,8 @@ public class MainViewModel : ObservableObject
         AddNewNotiCommand = new RelayCommand(AddNewNotification);
         DismissAllCommand = new RelayCommand(DismissAllNotifications);
     }
+
+    private readonly AppConfig _config = AppConfig.CreateInstance();
 
     private static IEnumerable<NavigationItem> GenerateNavigationItems(ISnackbarMessageQueue snackbarMessageQueue)
     {
@@ -82,9 +85,9 @@ public class MainViewModel : ObservableObject
 
     public ObservableCollection<NavigationItem> NavigationItems { get; }
 
-    private NavigationItem? _selectedItem;
+    private NavigationItem _selectedItem;
 
-    public NavigationItem? SelectedItem
+    public NavigationItem SelectedItem
     {
         get => _selectedItem;
         set => SetProperty(ref _selectedItem, value);
@@ -133,10 +136,11 @@ public class MainViewModel : ObservableObject
         {
             SetProperty(ref _selectedColorPreset, value);
             ChangePreset(_selectedColorPreset);
+            _config.Save();
         }
     }
 
-    private static void ChangePreset(ColorPreset preset)
+    private void ChangePreset(ColorPreset preset)
     {
         var paletteHelper = new PaletteHelper();
         var theme = paletteHelper.GetTheme();
@@ -148,6 +152,8 @@ public class MainViewModel : ObservableObject
         theme.ColorAdjustment = colorAdjustment;
 
         paletteHelper.SetTheme(theme);
+
+        _config.Preset = SelectedColorPreset;
     }
 
     public ObservableCollection<ColorPreset> ColorPresets { set; get; }

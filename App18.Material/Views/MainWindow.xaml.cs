@@ -143,7 +143,7 @@ public partial class MainWindow : Window
         Topmost = false;
     }
 
-    private void TickShowTime(object? sender, EventArgs e)
+    private void TickShowTime(object sender, EventArgs e)
     {
         var week = CultureInfo.GetCultureInfo("zh-CN").DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
         //获得时分秒
@@ -153,15 +153,6 @@ public partial class MainWindow : Window
 
     private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
     {
-        var paletteHelper = new PaletteHelper();
-        var theme = paletteHelper.GetTheme();
-
-        theme.SetPrimaryColor(Colors.Gold);
-        theme.SetSecondaryColor(Colors.LimeGreen);
-
-        var colorAdjustment = theme.ColorAdjustment ?? new ColorAdjustment();
-        theme.ColorAdjustment = colorAdjustment;
-
-        paletteHelper.SetTheme(theme);
+        MainSnackbar.MessageQueue?.Enqueue("Function is under development.");
     }
 }

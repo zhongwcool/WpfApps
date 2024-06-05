@@ -77,6 +77,7 @@ public class MainViewModel : ObservableObject
 
     public async Task LoadDataAsync(bool useLocal = false)
     {
+        IsBusy2 = false;
         Channels.Clear();
         Groups.Clear();
         IsBusy = true;
