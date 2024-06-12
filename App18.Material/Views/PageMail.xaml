@@ -8,14 +8,15 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance me:Mail, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <cv:DateToHumanizeConverter x:Key="DateToHumanizeConverter" />
+            <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
+            <cv:Address2NickConverter x:Key="Address2NickConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <Grid.Resources>
-            <ResourceDictionary>
-                <cv:DateToHumanizeConverter x:Key="DateToHumanizeConverter" />
-                <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
-                <cv:Address2NickConverter x:Key="Address2NickConverter" />
-            </ResourceDictionary>
-        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

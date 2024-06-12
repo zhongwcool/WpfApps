@@ -10,12 +10,14 @@
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         SizeChanged="Window_SizeChanged"
         Style="{StaticResource MaterialDesignWindow}"
-        Background="Transparent"
+        Background="{DynamicResource MaterialDesign.Brush.Background}"
         Title="Material 3" Height="720" Width="1200">
     <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
                     SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
-        <Grid>
-            <Grid Background="{DynamicResource MaterialDesign.Brush.Background}" />
+        <Grid Style="{StaticResource MaterialDesign3Grid}">
+            <Grid x:Name="PartDot"
+                  Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                  Height="1" Width="1" />
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -55,8 +57,9 @@
                                           PlacementMode="BottomAndAlignRightEdges">
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="10">
-                                        <TextBlock Margin="0,0,10,0" Text="暗色模式" />
-                                        <ToggleButton x:Name="DarkMode" Click="MenuDarkModeButton_Click" />
+                                        <TextBlock Text="暗色模式" VerticalAlignment="Center" />
+                                        <ToggleButton x:Name="DarkMode" VerticalAlignment="Center"
+                                                      Click="MenuDarkModeButton_Click" />
                                     </StackPanel>
 
                                     <ListBox ItemsSource="{Binding ColorPresets}"
@@ -80,7 +83,7 @@
                     <!-- 抽屉 -->
                     <md3:DrawerHost.LeftDrawerContent>
                         <DockPanel Width="220"
-                                   Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
+                                   Style="{StaticResource MaterialDesign3DockPanel}">
                             <ListBox Margin="0,16,0,16"
                                      ItemsSource="{Binding NavigationItems}"
                                      PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
@@ -120,7 +123,8 @@
 
                         <!-- 内容左-Bar -->
                         <Grid x:Name="NavRail" Width="80"
-                              Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Grid.Column="0">
+                              Style="{StaticResource MaterialDesign3Grid}"
+                              Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
