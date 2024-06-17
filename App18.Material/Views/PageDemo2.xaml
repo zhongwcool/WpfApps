@@ -8,56 +8,68 @@
     <Grid Style="{StaticResource MaterialDesign3Grid}">
         <Grid x:Name="PartDot" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Height="1" Width="1" />
 
-        <Grid Width="900" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
-                <ColumnDefinition Width="400" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}">MaterialDesign.Brush.Primary.Light</TextBox>
-            </Grid>
+        <Grid Width="900" VerticalAlignment="Top" HorizontalAlignment="Left"
+              Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}">MaterialDesign.Brush.Primary.Light</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}">MaterialDesign.Brush.Primary</TextBox>
-            </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}">MaterialDesign.Brush.Primary</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">MaterialDesign.Brush.Primary.Dark</TextBox>
-            </Grid>
+                <Grid Grid.Row="2" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">MaterialDesign.Brush.Primary.Dark</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Light}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}">MaterialDesign.Brush.Secondary.Light</TextBox>
-            </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Light}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}">MaterialDesign.Brush.Secondary.Light</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}">MaterialDesign.Brush.Secondary</TextBox>
-            </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}">MaterialDesign.Brush.Secondary</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Dark}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}">MaterialDesign.Brush.Secondary.Dark</TextBox>
-            </Grid>
+                <Grid Grid.Row="2" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Secondary.Dark}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}">MaterialDesign.Brush.Secondary.Dark</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="3" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Background}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Foreground</TextBox>
-            </Grid>
+                <Grid Grid.Row="3" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Foreground</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="3" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}">MaterialDesign.Brush.ForegroundLight</TextBox>
-            </Grid>
+                <Grid Grid.Row="3" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}">MaterialDesign.Brush.ForegroundLight</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="4" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Chip.Background}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Chip.Background</TextBox>
-            </Grid>
+                <Grid Grid.Row="4" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Chip.Background}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Chip.Background</TextBox>
+                </Grid>
 
-            <Grid Grid.Row="4" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
-                <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Background</TextBox>
+                <Grid Grid.Row="4" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Background</TextBox>
+                </Grid>
+
+                <Grid Grid.Row="5" Grid.Column="0" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Card.Background</TextBox>
+                </Grid>
+
+                <Grid Grid.Row="5" Grid.Column="1" Background="{DynamicResource MaterialDesign.Brush.Background}">
+                    <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Background</TextBox>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
