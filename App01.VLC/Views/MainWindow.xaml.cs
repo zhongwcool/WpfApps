@@ -79,7 +79,7 @@ public partial class MainWindow : Window
             DataContext = new InputDialogViewModel()
         };
 
-        await DialogHost.Show(content, "DialogRoot", null, (_, args) =>
+        await DialogHost.Show(content, "Dialog_Root_Main", null, (_, args) =>
         {
             var ret = args.Parameter is true;
             // 获得Dialog输入结果

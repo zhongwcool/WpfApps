@@ -1,0 +1,2198 @@
+{
+  "Site": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8",
+  "Channels": [
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-3综艺",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV3.png",
+      "Name": "CCTV-3综艺",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel3/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-7国防军事",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV7.png",
+      "Name": "CCTV-7国防军事",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel7/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-5体育",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV5.png",
+      "Name": "CCTV-5体育",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel5/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-8电视剧",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV8.png",
+      "Name": "CCTV-8电视剧",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel8/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-4中文国际",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV4.png",
+      "Name": "CCTV-4中文国际",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel4/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-6电影",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV6.png",
+      "Name": "CCTV-6电影",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel6/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-1综合",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV1.png",
+      "Name": "CCTV-1综合",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel91/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-12社会与法",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV12.png",
+      "Name": "CCTV-12社会与法",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel11/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-11戏曲",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV11.png",
+      "Name": "CCTV-11戏曲",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel41/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-10科教",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV10.png",
+      "Name": "CCTV-10科教",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel10/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-13新闻",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV13.png",
+      "Name": "CCTV-13新闻",
+      "Url": "https://event.pull.hebtv.com/jishi/cp4.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "天津卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/天津卫视.png",
+      "Name": "天津卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel28/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "北京卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/北京卫视.png",
+      "Name": "北京卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel24/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "东方卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/东方卫视.png",
+      "Name": "东方卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel26/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "青海卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/青海卫视.png",
+      "Name": "青海卫视",
+      "Url": "http://stream.qhbtv.com/qhws/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-4K超高清",
+      "TvgLogo": "http://epg.51zmt.top:8000/tb1/CCTV/CCTV4k.png",
+      "Name": "CCTV-4K超高清",
+      "Url": "http://113.96.179.241/liveali-tp4k.cctv.cn/live/4K10M.stream/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-14少儿",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV14.png",
+      "Name": "CCTV-14少儿",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel12/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "央视台",
+      "TvgId": "CCTV-15音乐",
+      "TvgLogo": "https://live.fanmingming.com/tv/CCTV15.png",
+      "Name": "CCTV-15音乐",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel40/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "吉林卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/吉林卫视.png",
+      "Name": "吉林卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel20/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "湖南卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/湖南卫视.png",
+      "Name": "湖南卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel25/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "山东卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/山东卫视.png",
+      "Name": "山东卫视",
+      "Url": "http://lives.jnnews.tv/video/s10001-SDTV/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "江苏卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/江苏卫视.png",
+      "Name": "江苏卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel18/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "安徽卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/安徽卫视.png",
+      "Name": "安徽卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel23/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "陕西卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/陕西卫视.png",
+      "Name": "陕西卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel55/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "深圳卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/深圳卫视.png",
+      "Name": "深圳卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel17/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "江西卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/江西卫视.png",
+      "Name": "江西卫视",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "广东卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/广东卫视.png",
+      "Name": "广东卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel16/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "云南卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/云南卫视.png",
+      "Name": "云南卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel61/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "四川卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/四川卫视.png",
+      "Name": "四川卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel31/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "湖北卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/湖北卫视.png",
+      "Name": "湖北卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel21/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "新疆卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/新疆卫视.png",
+      "Name": "新疆卫视",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel64/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广东电视台珠江频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1102/dc0d7948ecc04cbd8831052cc2e9d1b1.jpg",
+      "Name": "广东电视台珠江频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel65/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "教育",
+      "TvgId": "CETV1中国教育电视台一套",
+      "TvgLogo": "https://live.fanmingming.com/tv/CETV1.png",
+      "Name": "CETV1中国教育电视台一套",
+      "Url": "http://mobilelive-ds.ysp.cctv.cn/ysp/2022823801.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广东公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512041152983.jpg",
+      "Name": "广东公共频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel45/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广州电视台综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512042230403.jpg",
+      "Name": "广州电视台综合频道",
+      "Url": "https://tencentplay.gztv.com/live/zonghes.m3u8?txSecret=5d7708684007fcea395caff98369084c&txTime=19019c37743",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "TVS5广东少儿频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0612/20160612115155397.jpg",
+      "Name": "TVS5广东少儿频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel63/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "教育",
+      "TvgId": "CETV4空中课堂频道",
+      "TvgLogo": "https://live.fanmingming.com/tv/CETV4.png",
+      "Name": "CETV4空中课堂频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel38/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "南方卫视TVS2",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1118/c4d7c9c2c72ab6deb6d6177931553c11.jpg",
+      "Name": "南方卫视TVS2",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel58/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "数字电视",
+      "TvgId": "中国天气",
+      "TvgLogo": "https://live.fanmingming.com/tv/中国天气.png",
+      "Name": "中国天气",
+      "Url": "http://hls.weathertv.cn/tslslive/qCFIfHB/hls/live_sd.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广东体育",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0718/20140718061617261.jpg",
+      "Name": "广东体育",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel34/2300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广州电视台影视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512042346693.jpg",
+      "Name": "广州电视台影视频道",
+      "Url": "https://tencentplay.gztv.com/live/yingshi.m3u8?txSecret=cbfba109d1fef4ef29e93a1c6bba208e&txTime=19019e62015",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "深圳电视台都市频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512040002347.jpg",
+      "Name": "深圳电视台都市频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel46/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广州电视台法治频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1115/small2dc32ee498f65382d2fb9dab733c4c47.jpg",
+      "Name": "广州电视台法治频道",
+      "Url": "https://tencentplay.gztv.com/live/fazhi.m3u8?txSecret=491c40d07978ba7046704a7844042ff6&txTime=19019f3714e",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广州电视台新闻频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512042622928.jpg",
+      "Name": "广州电视台新闻频道",
+      "Url": "https://tencentplay.gztv.com/live/xinwen.m3u8?txSecret=f80e5b7654c57c7571a314d94befe320&txTime=19019c051d5",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广州竞赛频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512042736661.jpg",
+      "Name": "广州竞赛频道",
+      "Url": "https://tencentplay.gztv.com/live/jingsai.m3u8?txSecret=f0caf677b15fe7b314aa18a8e00702d3&txTime=19019f0d637",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "卫视台",
+      "TvgId": "兵团卫视",
+      "TvgLogo": "https://live.fanmingming.com/tv/兵团卫视.png",
+      "Name": "兵团卫视",
+      "Url": "https://liveout.btzx.com.cn/62ds9e/yil08g.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "广州南国都市频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2020/0608/small8794c1380bce42c709e47badc86e6c9c1591592752.jpg",
+      "Name": "广州南国都市频道",
+      "Url": "https://tencentplay.gztv.com/live/nanguodushi.m3u8?txSecret=59b2d3f371597c07d47815034a0e6e78&txTime=19019c65629",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "深圳电视剧频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0612/20160612114644475.jpg",
+      "Name": "深圳电视剧频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel47/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "深圳财经生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0612/20160612114223685.jpg",
+      "Name": "深圳财经生活频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel48/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "深圳娱乐频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0612/20160612113912525.jpg",
+      "Name": "深圳娱乐频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel49/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "深圳体育健康频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0612/20160612110619155.jpg",
+      "Name": "深圳体育健康频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel50/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "河源综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0611/20160611061323486.jpg",
+      "Name": "河源综合频道",
+      "Url": "http://tmpstream.hyrtv.cn/xwzh/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "河源公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0611/20160611061323486.jpg",
+      "Name": "河源公共频道",
+      "Url": "http://tmpstream.hyrtv.cn/hygg/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "蛇口综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0108/small39b114dd60d68199cbb39ff08f242abb1483882516.jpg",
+      "Name": "蛇口综合频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel37/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "清远综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0926/83b9eaaf3ff05700d065793708e7d8c5.jpg",
+      "Name": "清远综合频道",
+      "Url": "https://huodong.zuiqingyuan.com/dianshi/newxinwenpingdao.m3u8?token=B86ouFGGfrmwNY9CDr8t",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "深圳少儿频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0612/20160612110406512.jpg",
+      "Name": "深圳少儿频道",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel51/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广东台",
+      "TvgId": "清远文旅生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0926/83b9eaaf3ff05700d065793708e7d8c5.jpg",
+      "Name": "清远文旅生活频道",
+      "Url": "https://huodong.zuiqingyuan.com/dianshi/newwenlvshenghuo.m3u8?token=B86ouFGGfrmwNY9CDr8t932",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江苏台",
+      "TvgId": "江苏少儿频道优漫卡通",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2015/0417/20150417012413251.jpg",
+      "Name": "江苏少儿频道优漫卡通",
+      "Url": "http://116.162.6.192/4403-txt.otvstream.otvcloud.com/otv/skcc/live/channel53/1300.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江苏台",
+      "TvgId": "连云港公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0910/small0d2f1938a6403e2e6ab6aaa2c6e9c50d1505057861.jpg",
+      "Name": "连云港公共频道",
+      "Url": "http://live.lyg1.com/ggpd/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江苏台",
+      "TvgId": "泰州二套经济生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0710/small0310778e75fdfe2c2b35b440037aade61531220554.jpg",
+      "Name": "泰州二套经济生活频道",
+      "Url": "http://stream1.mytaizhou.net/jjsh/playlist.m3u8?_upt=b004a8e51718497142",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江苏台",
+      "TvgId": "泰州一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0710/small05db96b3f03b5fae06690247c69d57a31531220508.jpg",
+      "Name": "泰州一套新闻综合频道",
+      "Url": "http://stream1.mytaizhou.net/xwzh/playlist.m3u8?_upt=eb39547a1718490431",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "安徽影视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0711/small9b50d42d10cc0af26cfe42b5fadcae99.jpg",
+      "Name": "安徽影视频道",
+      "Url": "http://112.30.194.221:20080/live/d18ff95cb1fb4bbcb56215e189fc12be/hls.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "安徽经济生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0711/small45121591588d9e2cd2e62c7573cd550d.jpg",
+      "Name": "安徽经济生活频道",
+      "Url": "http://112.30.194.221:20080/live/eac499adad7b49ff9cfa79ba84693959/hls.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "安徽综艺体育频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0711/small401ad069d72756f41d5bb56c4685879a.jpg",
+      "Name": "安徽综艺体育频道",
+      "Url": "http://112.30.194.221:20080/live/c41f112b83f644ddb082669501c8ecd3/hls.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "岳西综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0301/20160301101914522.jpg",
+      "Name": "岳西综合频道",
+      "Url": "http://112.30.194.221:20080/live/b62955a9283f4c2ea8ccb96e8ac468bc/hls.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "宿州公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1004/e3ec2b38258f467e0fe074e33654a5c8.jpg",
+      "Name": "宿州公共频道",
+      "Url": "http://live.ahsz.tv/video/s10001-ggpd/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "宿州新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1004/e3ec2b38258f467e0fe074e33654a5c8.jpg",
+      "Name": "宿州新闻综合频道",
+      "Url": "http://live.ahsz.tv/video/s10001-szzh/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "宿州科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1004/e3ec2b38258f467e0fe074e33654a5c8.jpg",
+      "Name": "宿州科教频道",
+      "Url": "http://live.ahsz.tv/video/s10001-kxjy/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "滁州新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0619/small-3943790278.jpg",
+      "Name": "滁州新闻综合频道",
+      "Url": "http://live.cztv.cc:85/live/xwpd.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "滁州科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0915/small1e13492406026e47512b4d1370f4748e1505481616.jpg",
+      "Name": "滁州科教频道",
+      "Url": "http://live.cztv.cc:85/live/sjpd.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "安徽台",
+      "TvgId": "滁州公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0915/smallb782467c6fb906bfa1e5a2ed023761551505481741.jpg",
+      "Name": "滁州公共频道",
+      "Url": "http://live.cztv.cc:85/live/ggpd.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "浙江台",
+      "TvgId": "绍兴新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1205/8b4bcdec06d0ae3d219511dd0ed81997.jpg",
+      "Name": "绍兴新闻综合频道",
+      "Url": "http://live.shaoxing.com.cn/video/s10001-sxtv1/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "浙江台",
+      "TvgId": "绍兴文化影视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0619/20160619024154424.jpg",
+      "Name": "绍兴文化影视频道",
+      "Url": "http://live.shaoxing.com.cn/video/s10001-sxtv3/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "浙江台",
+      "TvgId": "绍兴电视台公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0619/20160619113053781.jpg",
+      "Name": "绍兴电视台公共频道",
+      "Url": "http://live.shaoxing.com.cn/video/s10001-sxtv2/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "浙江台",
+      "TvgId": "德清新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1105/small3ffce8cf8c4f3729bbb28e9d94a4f3ba1572920485.jpg",
+      "Name": "德清新闻综合频道",
+      "Url": "http://live.yingxi.tv/channel1/playlist.m3u8?_upt=b11ef5ec1718433358",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "浙江台",
+      "TvgId": "德清文化生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1105/smallf33a7d63a723801f8dd059eef9b52b8e1572920542.jpg",
+      "Name": "德清文化生活频道",
+      "Url": "http://live.yingxi.tv/channel2/playlist.m3u8?_upt=381991c21718433364",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "北京台",
+      "TvgId": "房山电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2022/0326/smallf7e7002ad94212bda9fa70cacc4482af1648266813.jpg",
+      "Name": "房山电视台",
+      "Url": "http://live.funhillrm.com/5/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "北京台",
+      "TvgId": "北京新闻频道BTV9",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0512/20140512034324556.jpg",
+      "Name": "北京新闻频道BTV9",
+      "Url": "https://live.funhillrm.com/5/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "辽宁台",
+      "TvgId": "锦州一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1117/small59a5958261bb68599cf3b898b4d4c8ac1510898790.jpg",
+      "Name": "锦州一套新闻综合频道",
+      "Url": "http://stream.jzgbdst.cn/1/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "辽宁台",
+      "TvgId": "锦州二套教育频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1117/small59a5958261bb68599cf3b898b4d4c8ac1510898790.jpg",
+      "Name": "锦州二套教育频道",
+      "Url": "http://stream.jzgbdst.cn/2/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西公共频道jxtv5",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0622/20160622055803922.jpg",
+      "Name": "江西公共频道jxtv5",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv5.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西影视旅游频道jxtv4",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0622/20160622055848918.jpg",
+      "Name": "江西影视旅游频道jxtv4",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv4.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西电视台都市频道jxtv2",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2014/0603/20140603064523286.jpg",
+      "Name": "江西电视台都市频道jxtv2",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西少儿频道jxtv6",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0622/20160622055508984.jpg",
+      "Name": "江西少儿频道jxtv6",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv6.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西新闻频道jxtv7",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0622/20160622055321249.jpg",
+      "Name": "江西新闻频道jxtv7",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv7.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西移动电视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1009/small48af83b9adb3bec6f176ba101d2bc0f61476011861.jpg",
+      "Name": "江西移动电视频道",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_jxtv8.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "风尚购物",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0919/4dee60b77302f28e1bee8d5612cf6fb7.jpg",
+      "Name": "风尚购物",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_fsgw.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "江西台",
+      "TvgId": "江西China陶瓷频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1009/smallf072d2bab81f612d51dadde61c938e3d1476014134.jpg",
+      "Name": "江西China陶瓷频道",
+      "Url": "http://116.162.6.191/yun-live.jxtvcn.com.cn/live/tv_taoci.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "济宁图文频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/small852be60175742dc5139c5dd5b4bf78ec1511247386.jpg",
+      "Name": "济宁图文频道",
+      "Url": "http://lives.jnnews.tv/video/s10001-JNTV4/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "济宁新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/small267cc5c3dada1d4cccffada8da5c13641511246949.jpg",
+      "Name": "济宁新闻综合频道",
+      "Url": "http://lives.jnnews.tv/video/s10001-JNTV-1/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "青州电视台新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/1018/small4406764b889fff28d1e186e000c1be0e1539830690.jpg",
+      "Name": "青州电视台新闻综合频道",
+      "Url": "http://sdqz.chinashadt.com:2036/live/stream:1.stream/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "青州电视台文化旅游频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/1018/smalld09089c79d43926fd828b285171ba9e61539831276.jpg",
+      "Name": "青州电视台文化旅游频道",
+      "Url": "http://sdqz.chinashadt.com:2036/live/stream:3.stream/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "青州电视台生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/1018/small8509c9f1ee0686d45ed03128d61f18c91539830945.jpg",
+      "Name": "青州电视台生活频道",
+      "Url": "http://sdqz.chinashadt.com:2036/live/stream:2.stream/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "济宁公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/small174f71253553c480ec8eba61c3f86416.jpg",
+      "Name": "济宁公共频道",
+      "Url": "http://lives.jnnews.tv/video/s10001-JNTV3/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "菏泽一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/smallbf7bee559d00a283fc008e28cd04d66d1511274224.jpg",
+      "Name": "菏泽一套新闻综合频道",
+      "Url": "http://live.hznet.tv:1935/live/live1/500K/tzwj_video.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "济宁教育频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/smallecfed3b0728336efb4b0fe6b43f5e2ad1511247832.jpg",
+      "Name": "济宁教育频道",
+      "Url": "http://lives.jnnews.tv/video/s10001-JNTV-2/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "菏泽二套经济生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/small93ef2fb81a8bbdffc43eaa85ca52ffe61511274337.jpg",
+      "Name": "菏泽二套经济生活频道",
+      "Url": "http://live.hznet.tv:1935/live/live2/500K/tzwj_video.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "菏泽三套影视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1121/small3b337a98db6f2164b63c27391ca585a21511274444.jpg",
+      "Name": "菏泽三套影视频道",
+      "Url": "http://live.hznet.tv:1935/live/live3/500K/tzwj_video.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "烟台公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1122/small5a551979a4de45711a674809ce8f6fe31511321665.jpg",
+      "Name": "烟台公共频道",
+      "Url": "http://live.yantaitv.cn/live/e50f104a4ffe4a41b2217cbda534146f/d86092e69df94668b33390278b061700-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "烟台影视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1122/small2c63a6fe7b351d57c0b1eaa53460c5471511321759.jpg",
+      "Name": "烟台影视频道",
+      "Url": "http://live.yantaitv.cn/live/e9f1d9045d474c31884d13fa4ffbbd16/a4a9b3704d854756907845107cc56129-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "威海一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0624/20160624105408278.jpg",
+      "Name": "威海一套新闻综合频道",
+      "Url": "http://l1.weihai.tv:8081/hls/969O76hb21.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "威海二套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0624/20160624104746966.jpg",
+      "Name": "威海二套公共频道",
+      "Url": "http://l1.weihai.tv:8081/hls/969O76hb21.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "威海三套海洋频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2020/0524/small3866d97a63fbf2a4821f68de82e656a91590309656.jpg",
+      "Name": "威海三套海洋频道",
+      "Url": "http://l1.weihai.tv:8081/hls/969O76hb21.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "枣庄公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0705/small235d6de058f24b51c4547975a421e3c51530760909.jpg",
+      "Name": "枣庄公共频道",
+      "Url": "http://stream.zztvzd.com/3/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "临沂农科频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1122/smalld57fa920f60359a272b80d1dfcea2bd41511330982.jpg",
+      "Name": "临沂农科频道",
+      "Url": "https://m3u8-channel.lytv.tv/nmip-media/channellive/channel115062/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "临沂新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1122/small453f8c94e42b110ca9d6c59b24ed841a1511330710.jpg",
+      "Name": "临沂新闻综合频道",
+      "Url": "https://m3u8-channel.lytv.tv/nmip-media/channellive/channel111841/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "临沂公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1122/small9209424334b1b8964825f75a91322db71511330890.jpg",
+      "Name": "临沂公共频道",
+      "Url": "https://m3u8-channel.lytv.tv/nmip-media/channellive/channel113571/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "云南都市频道yntv2",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0706/20160706014025815.jpg",
+      "Name": "云南都市频道yntv2",
+      "Url": "http://tvlive.ynradio.com/live/yunnandushi/chunks.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "云南娱乐频道yntv3",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0706/20160706013916898.jpg",
+      "Name": "云南娱乐频道yntv3",
+      "Url": "http://tvlive.ynradio.com/live/yunnanyule/chunks.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "云南公共频道yntv6",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0706/20160706013235740.jpg",
+      "Name": "云南公共频道yntv6",
+      "Url": "http://tvlive.ynradio.com/live/yunnangonggong/chunks.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "云南澜湄国际频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1013/28246fa822e2d3c9dd1956857d280451.jpg",
+      "Name": "云南澜湄国际频道",
+      "Url": "http://tvlive.ynradio.com/live/yunnanguoji/chunks.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "云南少儿频道yntv7",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0401/smallaa748a627103482f926ef9747cea22d81522588987.jpg",
+      "Name": "云南少儿频道yntv7",
+      "Url": "http://tvlive.ynradio.com/live/yunnanshaoer/chunks.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "上海台",
+      "TvgId": "上海金山电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0121/small1f81f481ac3b0f3a2ad54104300057b4.jpg",
+      "Name": "上海金山电视台",
+      "Url": "http://livejs1.newsjs.net/jspd/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "红河经济生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0722/small041a2f35ce8b619cf4a306a8b508836f.jpg",
+      "Name": "红河经济生活频道",
+      "Url": "http://file.hhtv.cc/cms/videos/nmip-media/channellive/channel1/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "红河一套新闻频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0722/small0967e5bfd5407063464a72bdb2d82f04.jpg",
+      "Name": "红河一套新闻频道",
+      "Url": "http://file.hhtv.cc/cms/videos/nmip-media/channellive/channel1/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "红河县电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0123/smalleee9fcb7d67adb0819a86e15f5da3add1548213462.jpg",
+      "Name": "红河县电视台",
+      "Url": "http://file.hhtv.cc/cms/videos/nmip-media/channellive/channel3/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "个旧电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0123/small7ccfeeca87f520956e5f62f34a4263091548216169.jpg",
+      "Name": "个旧电视台",
+      "Url": "http://file.hhtv.cc/cms/videos/nmip-media/channellive/channel6/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "屏边电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0123/smallddfd704a4d89c1483997f4f948eae0db1548216322.jpg",
+      "Name": "屏边电视台",
+      "Url": "http://file.hhtv.cc/cms/videos/nmip-media/channellive/channel5/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "文山新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0118/0d540a82f3447b1b48a820e86b51da22.jpg",
+      "Name": "文山新闻综合频道",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel7/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "文山公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0118/small109d58d2b22d79227720fa33948f47de1516273121.jpg",
+      "Name": "文山公共频道",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel8/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "砚山电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0118/small90601303a2aca7e7584430e3835befe91516284236.jpg",
+      "Name": "砚山电视台",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel16/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "麻栗坡电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/smallf546e6dc7064692a520d3ad2b280d6231516331629.jpg",
+      "Name": "麻栗坡电视台",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel18/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "西畴电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0118/small8b70ef4f03cc505a622334737fe730f51516284386.jpg",
+      "Name": "西畴电视台",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel11/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "广南电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/small1274a79d858f4de9d2f27f13c7bbec3f1516331889.jpg",
+      "Name": "广南电视台",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel19/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "富宁电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/small9a1330a08d4fac732a173b6103fe2bfb1516332162.jpg",
+      "Name": "富宁电视台",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel13/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "丘北电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/small8d32f908800cb0f2b7d9956d833b6ebf1516332349.jpg",
+      "Name": "丘北电视台",
+      "Url": "http://m3u8.channel.wsrtv.com.cn/cms/videos/nmip-media/channellive/channel14/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "西双版纳二套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/smallfa90b3a11b479ff175407cbf05ea4a711516333444.jpg",
+      "Name": "西双版纳二套",
+      "Url": "http://file.xsbnrtv.cn/vms/videos/nmip-media/channellive/channel3/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "云南台",
+      "TvgId": "西双版纳一套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/smallff90d28bfd4bddffcb34f5f0a73250861516333371.jpg",
+      "Name": "西双版纳一套",
+      "Url": "http://file.xsbnrtv.cn/vms/videos/nmip-media/channellive/channel1/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "四川台",
+      "TvgId": "德阳公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/small5678afc05c7bbdbb7a8fc2821c0b71dc1516349647.jpg",
+      "Name": "德阳公共频道",
+      "Url": "http://scdytv.cn:1935/live/m_ggpd_livevideo/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "四川台",
+      "TvgId": "广安新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/smallbcc0164044a54a4ccf90c32eaf904fd31516354774.jpg",
+      "Name": "广安新闻综合频道",
+      "Url": "http://live1.gatv.com.cn:85/live/XWZH.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "四川台",
+      "TvgId": "广安公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0119/smallecdf931f3ab319cad5df7d6381c315001516354852.jpg",
+      "Name": "广安公共频道",
+      "Url": "http://live1.gatv.com.cn:85/live/GGPD.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "登封新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "登封新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10185-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "巩义新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "巩义新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10181-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新密新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "新密新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10183-2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "荥阳新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "荥阳新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10182-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新郑新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "新郑新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10184-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "林州新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "林州新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10581-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "潍坊二套经济生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1010/234230e41bcc75eb7070a20e4b269b72.jpg",
+      "Name": "潍坊二套经济生活频道",
+      "Url": "https://wfrtv-live-tz.wfcmw.cn:5443/live/wftv2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "潍坊四套科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1120/small04b182cbbfda49a3bc8f6bbbacebaf241511190905.jpg",
+      "Name": "潍坊四套科教频道",
+      "Url": "https://wfrtv-live-tz.wfcmw.cn:5443/live/wftv4.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山东台",
+      "TvgId": "潍坊三套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/1120/small9daa76f47fd6c513ff9701292085d80f1511190761.jpg",
+      "Name": "潍坊三套公共频道",
+      "Url": "https://wfrtv-live-tz.wfcmw.cn:5443/live/wftv3.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "滑县一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "滑县一套新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10526-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "内黄新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "内黄新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10527-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "汤阴新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "汤阴新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10523-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "栾川新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "栾川新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10324-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "宜阳综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "宜阳综合频道",
+      "Url": "http://tvpull.dxhmt.cn:9081/tv/10327-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "浚县电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "浚县电视台",
+      "Url": "http://live.dxhmt.cn:9081/tv/10621-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "淇县电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "淇县电视台",
+      "Url": "http://live.dxhmt.cn:9081/tv/10622-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "汝阳综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "汝阳综合频道",
+      "Url": "http://tvpull.dxhmt.cn:9081/tv/10326-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "长垣新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "长垣新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10728-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "南乐电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1219/smallf636e2e7a1f824b97de6b4aa439ec5111576761585.jpg",
+      "Name": "南乐电视台",
+      "Url": "http://live.dxhmt.cn:9081/tv/10923-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "封丘一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "封丘一套新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10727-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "辉县新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "辉县新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10782-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新安电视台综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1219/small6d06f45dc8a4097cf59b76ce5f5b86b81576758998.jpg",
+      "Name": "新安电视台综合频道",
+      "Url": "http://tvpull.dxhmt.cn/tv/10323-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "获嘉新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "获嘉新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10724-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "卫辉新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "卫辉新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10781-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新乡县新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "新乡县新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10721-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "原阳新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "原阳新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10725-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "沁阳新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0705/small89d471d3faca24115061c82fc61193ee1530778725.jpg",
+      "Name": "沁阳新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10882-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "孟州新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "孟州新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10883-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "武陟新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "武陟新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10823-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "灵宝新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "灵宝新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11282-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "渑池新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "渑池新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11221-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "开封公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0121/smallab80cacd25b94cbd3de11c94c83882201516515134.jpg",
+      "Name": "开封公共频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10200-3.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "义马新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "义马新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11281-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "兰考新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "兰考新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10225-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "杞县新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "杞县新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10221-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "通许新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "通许新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10222-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "永城新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "永城新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11481-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "建安新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "建安新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11003-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "襄城新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "襄城新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11025-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "鄢陵新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "鄢陵新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11024-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "禹州新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "禹州新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11081-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "宝丰新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "宝丰新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10421-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "郏县新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "郏县新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10425-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "鲁山新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "鲁山新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10423-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "汝州科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "汝州科教频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10482-2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "舞钢一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "舞钢一套新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/10481-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "鹿邑综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "鹿邑综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11628-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "项城综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "项城综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11681-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "叶县电视台一套",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "叶县电视台一套",
+      "Url": "http://live.dxhmt.cn:9081/tv/10422-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "沈丘新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0916/small0b03f9f13be42ae3ed24f626b71bd1bd1568625391.jpg",
+      "Name": "沈丘新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11624-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "郸城新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "郸城新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11625-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "四川台",
+      "TvgId": "泸州科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0120/smallc63c71efa3c24aa2187c9fcfc9ed6cef1516423857.jpg",
+      "Name": "泸州科教频道",
+      "Url": "http://m3u8.channel.luzhoubs.com/nmip-media/channellive/channel103074/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "四川台",
+      "TvgId": "泸州公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0120/small24dff4032a35a2a680b02aab330af7b31516423781.jpg",
+      "Name": "泸州公共频道",
+      "Url": "http://m3u8.channel.luzhoubs.com/nmip-media/channellive/channel102221/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "西华综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0916/small5828996767422b33a05d9cc4d2211fe51568623914.jpg",
+      "Name": "西华综合频道",
+      "Url": "http://tvpull.dxhmt.cn:9081/tv/11622-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "舞阳新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "舞阳新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11121-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "唐河一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "唐河一套新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11328-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "淅川新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "淅川新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11326-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新野新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "新野新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11329-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "镇平新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "镇平新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11324-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "平舆新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "平舆新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11723-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新蔡新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "新蔡新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11729-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "西平新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "西平新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11721-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "确山新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "确山新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11725-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "遂平一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "遂平一套新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11728-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "淮滨新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "淮滨新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11527-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "罗山新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "罗山新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11521-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "潢川新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "潢川新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11526-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "新县新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "新县新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11523-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "商城新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "商城新闻综合频道",
+      "Url": "http://live.dxhmt.cn:9081/tv/11524-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河南台",
+      "TvgId": "济源电视台一套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/0916/small64a934d906ba3facb8422134d622f9361568622305.jpg",
+      "Name": "济源电视台一套",
+      "Url": "http://live.dxhmt.cn:9081/tv/19001-1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "湖北台",
+      "TvgId": "孝感公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0123/small574b18f327b12aa6bb6173a88466fbb81516684871.jpg",
+      "Name": "孝感公共频道",
+      "Url": "http://live.yingxi.tv/channel1/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "湖北台",
+      "TvgId": "荆门教育频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1019/ef25af68af87269fe0a1200b4501213c.jpg",
+      "Name": "荆门教育频道",
+      "Url": "http://stream.jmtv.com.cn/ggsh/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "湖北台",
+      "TvgId": "荆门新闻频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1019/00ce7db73be380982d4177b395225dec.jpg",
+      "Name": "荆门新闻频道",
+      "Url": "http://stream.jmtv.com.cn/xwzh/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "湖北台",
+      "TvgId": "荆门公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1019/2dee4a2bde22c0a663f6fda95e18d7c6.jpg",
+      "Name": "荆门公共频道",
+      "Url": "http://stream.jmtv.com.cn/ngpd/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "福建台",
+      "TvgId": "三明二套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0123/small954b52895793e4971dc23231b5d83dc11516719502.jpg",
+      "Name": "三明二套公共频道",
+      "Url": "http://stream.smntv.cn/smtv2/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "福建台",
+      "TvgId": "三明一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0123/small58feb455be207c2800179927dae0a27a1516719412.jpg",
+      "Name": "三明一套新闻综合频道",
+      "Url": "http://stream.smntv.cn/smtv1/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "福建台",
+      "TvgId": "新罗TV频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0707/small856547735983c8fab42f9d2ac46dfbd41530976848.jpg",
+      "Name": "新罗TV频道",
+      "Url": "http://stream.lyxltv.com/xltv/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "万州综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0629/small658c1e2250d4a57ea9c3fe295777bfa91498719246.jpg",
+      "Name": "万州综合频道",
+      "Url": "http://123.146.162.24:8017/iTXwrGs/800/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "荣昌综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0703/small557aaf1dc9baf1096d17e479c08b2e731499081843.jpg",
+      "Name": "荣昌综合频道",
+      "Url": "http://183.64.181.25:40023/rongchang01.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "万州三峡移民频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0629/small658c1e2250d4a57ea9c3fe295777bfa91498719246.jpg",
+      "Name": "万州三峡移民频道",
+      "Url": "http://123.146.162.24:8017/c2F0hmi/1000/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "万州影视文艺频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0629/small658c1e2250d4a57ea9c3fe295777bfa91498719246.jpg",
+      "Name": "万州影视文艺频道",
+      "Url": "http://123.146.162.24:8017/d4ceB1a/1000/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "万州科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0629/small658c1e2250d4a57ea9c3fe295777bfa91498719246.jpg",
+      "Name": "万州科教频道",
+      "Url": "http://123.146.162.24:8017/Cz7WPb8/800/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "垫江综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0630/smalle492e5c2fbf59943a78a2afd441fe5cc1498810366.jpg",
+      "Name": "垫江综合频道",
+      "Url": "http://125.62.24.185:80/1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "重庆时尚购物频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2020/0625/small8b5734c458942546e61af25e3758e00e.jpg",
+      "Name": "重庆时尚购物频道",
+      "Url": "https://tvlive.ugoshop.com/ugotvlive/ssgotv.m3u8?auth_key=2312509421-0-0-6642ec3645caa943da6855a9ef7e2129",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "石家庄新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0930/c5dba1a54ef3c23ffcd953a8ee32d5be.jpg",
+      "Name": "石家庄新闻综合频道",
+      "Url": "http://pluslive1.sjzntv.cn/xmzh/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "石家庄生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0930/f4ad96370c67264049703a52ab29b4eb.jpg",
+      "Name": "石家庄生活频道",
+      "Url": "http://pluslive1.sjzntv.cn/shenghuo/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "石家庄娱乐频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0930/fa9df07f7ee6768fc0746f379b631d4d.jpg",
+      "Name": "石家庄娱乐频道",
+      "Url": "http://pluslive1.sjzntv.cn/yule/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "开州综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0630/small907707fc279765f3aa9d3fc1246ba6001498798618.png",
+      "Name": "开州综合频道",
+      "Url": "https://qxlmlive9.cbg.cn/applive/kzpd01/chunklist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "忠县综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0630/small6e79735514de66fb5657ab8f93ea27391498832153.jpg",
+      "Name": "忠县综合频道",
+      "Url": "https://qxlmlive9.cbg.cn/applive/zxtv2/chunklist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "重庆台",
+      "TvgId": "忠县文旅频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2017/0630/small6e79735514de66fb5657ab8f93ea27391498832153.jpg",
+      "Name": "忠县文旅频道",
+      "Url": "https://qxlmlive9.cbg.cn/applive/zxtv2/chunklist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "石家庄都市频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/0930/c697c19d2839fbcaaabba76acd4cb01c.jpg",
+      "Name": "石家庄都市频道",
+      "Url": "http://pluslive1.sjzntv.cn/dushi/playlist.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "沧州电视台一套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/smallc658beb1adbf8b3f444e4647448645c51516861066.jpg",
+      "Name": "沧州电视台一套",
+      "Url": "http://czlive.czgd.tv:85/live/xnyt.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "沧州电视台二套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/smallfe0bee57d4a48ca48939f91d8673ff791516861179.jpg",
+      "Name": "沧州电视台二套",
+      "Url": "http://czlive.czgd.tv:85/live/xnet.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "沧州电视台三套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/small4b06dbb813889b1e8ccdea1f5269b6cb1516861237.jpg",
+      "Name": "沧州电视台三套",
+      "Url": "http://czlive.czgd.tv:85/live/xnst.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "张家口二套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/small6f71e70d9174827f5bc4aedea5c34bf61516865505.jpg",
+      "Name": "张家口二套公共频道",
+      "Url": "http://nlive.zjkgdcs.com:8091/live/zjktv2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "张家口一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/small6f71e70d9174827f5bc4aedea5c34bf61516865505.jpg",
+      "Name": "张家口一套新闻综合频道",
+      "Url": "http://nlive.zjkgdcs.com:8091/live/xwzhpd.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "吉林台",
+      "TvgId": "延边卫视",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1020/162de1a70b0fd0924285f87d70ff8c2c.jpg",
+      "Name": "延边卫视",
+      "Url": "http://live.ybtvyun.com/video/s10016-6f0dfd97912f/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "保定二套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/small1cb121a976f246a6a6db472ffe7ad5f61516856814.jpg",
+      "Name": "保定二套公共频道",
+      "Url": "http://live.bdgdw.com/channel2/playlist.m3u8?_upt=52208f941718438847",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "保定三套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/small09ae4c62cba3b2e23f13d4bc1f0c40311516857402.jpg",
+      "Name": "保定三套",
+      "Url": "http://live.bdgdw.com/channel3/playlist.m3u8?_upt=53a153db1718438854",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "河北台",
+      "TvgId": "保定一套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0125/small85accb8b06a8ffe41f15e0937dd1b8131516856684.jpg",
+      "Name": "保定一套",
+      "Url": "http://live.bdgdw.com/channel1/playlist.m3u8?_upt=6d1020571718438838",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "吉林台",
+      "TvgId": "延边一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1020/b46df47da4ad3be4c585d53affd029da.jpg",
+      "Name": "延边一套新闻综合频道",
+      "Url": "https://live.ybtvyun.com/video/s10006-ff4eb5dba33d/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "吉林台",
+      "TvgId": "延边二套汉语综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1021/34e5586e08864b4033141ed7b2d63e15.jpg",
+      "Name": "延边二套汉语综合频道",
+      "Url": "https://live.ybtvyun.com/video/s10006-e9c6f9e4d53b/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "南宁都市生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1024/12e0271c89147468562a01a537070074.jpg",
+      "Name": "南宁都市生活频道",
+      "Url": "http://hls.nntv.cn/nnlive/WLSH_24.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "南宁影视娱乐频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1024/9cd44c56225e0ddfdc69c697e2413425.jpg",
+      "Name": "南宁影视娱乐频道",
+      "Url": "http://hls.nntv.cn/nnlive/YSYL_244.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "南宁公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1024/c9299742301b92ab41fbd0d1f93784d8.jpg",
+      "Name": "南宁公共频道",
+      "Url": "http://hls.nntv.cn/nnlive/GGPD_24.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "南宁新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1024/0d6af2d9d5163a8b5f6acec50886b2b4.jpg",
+      "Name": "南宁新闻综合频道",
+      "Url": "http://hls.nntv.cn/nnlive/XWZH_24.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "隆安电视台",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1107/small25fa2b351a002ff77beaea96fa00ec9b1573113060.jpg",
+      "Name": "隆安电视台",
+      "Url": "https://hls.nntv.cn/nnlive/LATV_24.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "田东电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "田东电视台",
+      "Url": "https://live.gxrb.com.cn/gx/tiandong/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "融水电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "融水电视台",
+      "Url": "https://live.gxrb.com.cn/gx/rongshui/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "宾阳电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "宾阳电视台",
+      "Url": "https://live.gxrb.com.cn/gx/binyang/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "凌云电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "凌云电视台",
+      "Url": "https://live.gxrb.com.cn/gx/lingyun/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "靖西电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "靖西电视台",
+      "Url": "https://live.gxrb.com.cn/gx/jingxi/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "都安电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "都安电视台",
+      "Url": "https://live.gxrb.com.cn/gx/duan/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "巴马电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "巴马电视台",
+      "Url": "https://live.gxrb.com.cn/gx/bama/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "崇左综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0127/small202c53d3df03d0d3caa2dac5d6a9a2121517060289.jpg",
+      "Name": "崇左综合频道",
+      "Url": "https://live.gxrb.com.cn/gx/chongzuo/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "龙州电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "龙州电视台",
+      "Url": "https://live.gxrb.com.cn/gx/longzhou/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "北海新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0127/smallee28ad46471043ddb36149325d95adaf1517062160.jpg",
+      "Name": "北海新闻综合频道",
+      "Url": "https://live.gxrb.com.cn/gx/beihai/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山西台",
+      "TvgId": "优购物电视购物",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1024/d3cd568faf93aef426d5063fe57a4e1e.jpg",
+      "Name": "优购物电视购物",
+      "Url": "https://tvlive.ugoshop.com/ugotvlive/ugotv01.m3u8?auth_key=2312509421-0-0-f8f7e886fe98ee0a0c01458710bf26d3",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山西台",
+      "TvgId": "运城一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0130/small1169b8b887d3df8600d6271355339f221517314723.jpg",
+      "Name": "运城一套新闻综合频道",
+      "Url": "http://live.0359tv.com/lsdream/ss4Lj11/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山西台",
+      "TvgId": "运城二套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0130/small157f52c45c35f6e43017b68b7fb36f6c1517314850.jpg",
+      "Name": "运城二套公共频道",
+      "Url": "http://live.0359tv.com/lsdream/t667aTY/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "山西台",
+      "TvgId": "运城三套科教频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0130/small9c5e724ad76565e008ec5a7544276f3d1517314935.jpg",
+      "Name": "运城三套科教频道",
+      "Url": "http://live.0359tv.com/lsdream/p5eq48m/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "梧州新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0127/small7d904f3faa6bb81870c0a596ba066e351517044018.jpg",
+      "Name": "梧州新闻综合频道",
+      "Url": "http://live.wzrtv.cn:80/xwzh1/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "梧州公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0127/small7ea3868307130c24fc7b8cb8107620031517044084.jpg",
+      "Name": "梧州公共频道",
+      "Url": "http://live.wzrtv.cn:80/ggpd1/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "陕西台",
+      "TvgId": "延安二套公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0131/small5289e5916524b9f55012682b3539633a1517369638.jpg",
+      "Name": "延安二套公共频道",
+      "Url": "http://lives.cloud.yanews.cn/video/s10001-YATV-1/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "广西台",
+      "TvgId": "梧州教育生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0127/smalle6ef2ac656a747366eba98abeea095b31517044160.jpg",
+      "Name": "梧州教育生活频道",
+      "Url": "http://live.wzrtv.cn:80/jysh1/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "海南台",
+      "TvgId": "海口三套城乡经济频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0201/small052ba0c6bfdd918f2a0a79ae7fa1c2491517494449.jpg",
+      "Name": "海口三套城乡经济频道",
+      "Url": "http://tvbf.hkbtv.cn/tv/tv3.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "海南台",
+      "TvgId": "海口二套生活娱乐频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0201/small1a7e13a782f5d8212de10bff5b56ce4e1517494375.jpg",
+      "Name": "海口二套生活娱乐频道",
+      "Url": "http://tvbf.hkbtv.cn/tv/tv2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "海南台",
+      "TvgId": "海口一套综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0201/smalla2ad1cf2b8f858b1d0b00c51fea1c2271517494297.jpg",
+      "Name": "海口一套综合频道",
+      "Url": "http://tvbf.hkbtv.cn/tv/tv1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "内蒙古台",
+      "TvgId": "鄂托克旗电视台",
+      "TvgLogo": "http://tv.haoqu99.com/e/data/images/notemp.gif",
+      "Name": "鄂托克旗电视台",
+      "Url": "http://110.19.181.138:10080/hls/F509Rh7GR/F509Rh7GR_live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "新疆台",
+      "TvgId": "哈密电视台3套",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0319/small73d2ebff4a113299ffc3b5d69c92cef71521440638.jpg",
+      "Name": "哈密电视台3套",
+      "Url": "http://stream.hmgbtv.com/hm3/hd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "内蒙古台",
+      "TvgId": "乌兰察布生活频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2019/1229/smalleee1e4dd810fd0feed776eb045b922b61577586793.jpg",
+      "Name": "乌兰察布生活频道",
+      "Url": "http://pluslive.wrbtv.cn/wrbtv3/sd/live.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "青海台",
+      "TvgId": "安多卫视",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1112/374a57994e7103ce8ef306c4d5238f23.jpg",
+      "Name": "安多卫视",
+      "Url": "http://stream.qhbtv.com/adws/playlist.m3u8?_upt=d60823ce1718441050",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "青海台",
+      "TvgId": "青海都市频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1112/70cfb982719ac176d2711b3693bad103.jpg",
+      "Name": "青海都市频道",
+      "Url": "http://stream.qhbtv.com/qhds/sd/live.m3u8?_upt=d051e0221718437797",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "青海台",
+      "TvgId": "青海经视频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2021/0320/small15bc421ea75393ad60b4604b2af8f4d3.jpg",
+      "Name": "青海经视频道",
+      "Url": "http://stream.qhbtv.com/qhsh/sd/live.m3u8?_upt=89b3097a1718432055",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "青海台",
+      "TvgId": "西宁新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1112/ce21f1bcfbd3fa4661423626bfa05ca1.jpg",
+      "Name": "西宁新闻综合频道",
+      "Url": "https://liveout.xntv.tv/a65jur/96iln2.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "贵州台",
+      "TvgId": "遵义新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0320/smallc46e9e6fb96a821ded677d2b8234895e1521541273.jpg",
+      "Name": "遵义新闻综合频道",
+      "Url": "http://pluslive.zunyifb.com/xwpd/playlist.m3u8?_upt=8c5cb1a51718440961",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "贵州台",
+      "TvgId": "遵义都市频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0320/small27dbec7c469b1db6721230f55078b2031521541360.jpg",
+      "Name": "遵义都市频道",
+      "Url": "http://pluslive.zunyifb.com/dspd/playlist.m3u8?_upt=72ca47f71718439560",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "青海台",
+      "TvgId": "西宁生活服务频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2016/1112/31c78e268aa487753cbbd410e7a5c4a5.jpg",
+      "Name": "西宁生活服务频道",
+      "Url": "https://liveout.xntv.tv/a65jur/90p2i1.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "贵州台",
+      "TvgId": "遵义公共频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0320/small468cb6267f3f7862f55682a9282a22b81521541449.jpg",
+      "Name": "遵义公共频道",
+      "Url": "http://pluslive.zunyifb.com/ggpd/playlist.m3u8?_upt=09fe43271718440973",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "国际",
+      "TvgId": "CGTN纪录",
+      "TvgLogo": "https://live.fanmingming.com/tv/CGTNDoc.png",
+      "Name": "CGTN纪录",
+      "Url": "https://livedoc.cgtn.com/1000d/prog_index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "香港台",
+      "TvgId": "凤凰资讯",
+      "TvgLogo": "https://live.fanmingming.com/tv/凤凰卫视资讯台.png",
+      "Name": "凤凰资讯",
+      "Url": "http://116.162.6.191/1301-txt.sichuan.otvcloud.com/otv/skcc/live/channel52002/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "香港台",
+      "TvgId": "凤凰中文",
+      "TvgLogo": "https://live.fanmingming.com/tv/凤凰卫视中文台.png",
+      "Name": "凤凰中文",
+      "Url": "http://116.162.6.191/1301-txt.sichuan.otvcloud.com/otv/skcc/live/channel52003/index.m3u8",
+      "HasStar": false
+    },
+    {
+      "GroupTitle": "陕西台",
+      "TvgId": "延安一套新闻综合频道",
+      "TvgLogo": "http://tv.haoqu99.com/d/file/2018/0131/small1179b7772bea1ba44ce228b03be0ac5b1517369545.jpg",
+      "Name": "延安一套新闻综合频道",
+      "Url": "http://lives.cloud.yanews.cn/video/s10001-YATV-2/index.m3u8",
+      "HasStar": false
+    }
+  ],
+  "LastModified": "2024-06-20T15:35:51.2307367+08:00"
+}

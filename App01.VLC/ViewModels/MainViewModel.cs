@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using App01.VLC.Models;
+using App01.VLC.Utils;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Mar.Cheese;
 using Channel = App01.VLC.Models.Channel;
@@ -63,7 +64,7 @@ public class MainViewModel : ObservableObject
 
     public async void UpdateSites(string newSite)
     {
-        if (_config.Site == newSite) return;
+        _config.Site = newSite;
         _config.Channels.Clear();
         await LoadDataAsync();
     }
@@ -145,7 +146,8 @@ public class MainViewModel : ObservableObject
         catch (Exception e)
         {
             Console.WriteLine(e);
-            TxtStatus = $"!更新数据出错..请稍后重试";
+            IsBusy = false;
+            Dialog.Show("Dialog_Root_Main", $"更新数据出错..请稍后重试");
         }
     }
 

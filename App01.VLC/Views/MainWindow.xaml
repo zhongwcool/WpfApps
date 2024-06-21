@@ -16,7 +16,7 @@
         <cv:True2VisibleConverter x:Key="True2VisibleConverter" />
         <system:Double x:Key="IconSize">20</system:Double>
     </Window.Resources>
-    <md3:DialogHost DialogTheme="Inherit" Identifier="DialogRoot"
+    <md3:DialogHost DialogTheme="Inherit" Identifier="Dialog_Root_Main"
                     SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <Grid x:Name="ViewGrid" Background="{DynamicResource MaterialDesign.Brush.Background}">
             <ScrollViewer>

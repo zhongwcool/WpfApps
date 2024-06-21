@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="App01.VLC.Dialogs.NotifyDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dialogs="clr-namespace:App01.VLC.Dialogs"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance d:Type=dialogs:NotifyDialogViewModel, IsDesignTimeCreatable=True}">
+    <Grid Margin="16">
+        <StackPanel>
+            <TextBlock Margin="0,8,0,0" FontSize="14" Text="{Binding Body}" />
+            <Button Margin="0,8,0,0"
+                    Command="{x:Static md3:DialogHost.CloseDialogCommand}"
+                    Content="AWESOME"
+                    IsDefault="True"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
