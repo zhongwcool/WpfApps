@@ -10,6 +10,8 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+        <PackageReference Include="Mar.Console" Version="0.6.8"/>
+        <PackageReference Include="MaterialDesignThemes" Version="5.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -18,6 +20,12 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="MaterialDesignThemes.Wpf">
+            <HintPath>C:\Users\alex\.nuget\packages\materialdesignthemes\5.0.0\lib\net7.0\MaterialDesignThemes.Wpf.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

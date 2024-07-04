@@ -9,5 +9,9 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainViewModel();
+        Loaded += async (_, _) =>
+        {
+            if (DataContext is MainViewModel vm) await vm.LoadDataAsync();
+        };
     }
 }
