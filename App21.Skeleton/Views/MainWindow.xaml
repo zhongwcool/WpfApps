@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:App21.Skeleton.ViewModels"
         xmlns:cv="clr-namespace:App21.Skeleton.Converter"
+        xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         Style="{StaticResource MaterialDesignWindow}"
         Background="{DynamicResource MaterialDesign.Brush.Background}"
+        SizeChanged="MainWindow_OnSizeChanged"
         Title="骨架屏" Height="750" Width="800">
     <Window.Resources>
         <cv:True2VisibleConverter x:Key="True2VisibleConverter" />
@@ -19,7 +21,7 @@
         <DataTemplate x:Key="SkeletonDataTemplate">
             <Grid>
                 <!-- 灰色矩形代表正在加载的内容 -->
-                <Rectangle x:Name="BreathingLightRectangle" Fill="#EEE">
+                <Rectangle x:Name="BreathingLightRectangle" Fill="#DDD">
                     <!-- 添加加载动效 -->
                     <Rectangle.Triggers>
                         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -29,7 +31,7 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="BreathingLightRectangle"
                                         Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                        To="#DDD" Duration="0:0:1"
+                                        To="#CCC" Duration="0:0:1"
                                         AutoReverse="True" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -49,74 +51,92 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="Header1" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+        </Style>
     </Window.Resources>
     <Grid>
-        <Grid Height="400" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MaxWidth="600" />
-                <ColumnDefinition Width="600" />
-                <ColumnDefinition Width="*" MaxWidth="600" />
-            </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding Products}" x:Name="ScrollViewer" Width="600"
+                  VerticalAlignment="Top" HorizontalAlignment="Left">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
 
-            <ContentControl Margin="5" Grid.Column="0">
-                <Border>
-                    <Grid>
-                        <Border CornerRadius="5">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill"
-                                            ImageSource="https://gd-hbimg.huaban.com/3bb312d3dd4754036f6e0ad0b5ebce6246c7c4ca200a3-9zhcor" />
-                            </Border.Background>
-                        </Border>
-                    </Grid>
-                </Border>
-            </ContentControl>
-            <ContentControl Margin="5" Grid.Column="1">
-                <Border>
-                    <Grid>
-                        <Border CornerRadius="5">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill"
-                                            ImageSource="https://gd-hbimg.huaban.com/0b3b8c2562d89917e744a04065b4b21c033df17b19b743-dyiM8G_fw658webp" />
-                            </Border.Background>
-                        </Border>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentControl Margin="5,15,5,15">
+                                    <md3:Card md3:ElevationAssist.Elevation="Dp16" Width="600" Height="400">
+                                        <Grid>
+                                            <Border CornerRadius="6">
+                                                <Border.Background>
+                                                    <ImageBrush Stretch="UniformToFill"
+                                                                ImageSource="{Binding Source}" />
+                                                </Border.Background>
+                                            </Border>
 
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0">
-                            <StackPanel.Resources>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="Foreground" Value="White" />
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="Width" Value="600" />
-                                    <Setter Property="Margin" Value="0,5,0,5" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <ContentControl>
-                                <TextBlock Text="9.99$" FontSize="16" />
-                            </ContentControl>
-                            <ContentControl>
-                                <TextBlock Text="Live In-Game Events" FontSize="30" TextWrapping="Wrap" />
-                            </ContentControl>
-                            <ContentControl>
-                                <TextBlock Text="Light up the sky" FontSize="16" Opacity="0.7" />
-                            </ContentControl>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </ContentControl>
-            <ContentControl Margin="5" Grid.Column="2">
-                <Border>
-                    <Grid>
-                        <Border CornerRadius="5">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill"
-                                            ImageSource="https://gd-hbimg.huaban.com/e046907e0e2f6dae57a9c08ae934a0bcd3ca552c1a1d17-b5BcWW_fw658webp" />
-                            </Border.Background>
-                        </Border>
-                    </Grid>
-                </Border>
-            </ContentControl>
-        </Grid>
+                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                        Margin="30,0,0,0">
+                                                <ContentControl>
+                                                    <ListView ItemsSource="{Binding Tips}">
+                                                        <ListView.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <VirtualizingStackPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ListView.ItemsPanel>
+                                                        <ListView.ItemContainerStyle>
+                                                            <Style TargetType="{x:Type ListViewItem}">
+                                                                <Setter Property="Template">
+                                                                    <Setter.Value>
+                                                                        <ControlTemplate
+                                                                            TargetType="{x:Type ListViewItem}">
+                                                                            <Border CornerRadius="5" Margin="0,0,5,0"
+                                                                                Background="{Binding ElementName=PART_Dot, Path=Foreground, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.5}">
+                                                                                <Grid Margin="10,5,10,5">
+                                                                                    <TextBlock Text="{Binding }"
+                                                                                        Foreground="White"
+                                                                                        TextAlignment="Center"
+                                                                                        TextWrapping="Wrap" />
+                                                                                    <TextBlock x:Name="PART_Dot"></TextBlock>
+                                                                                </Grid>
+                                                                            </Border>
+                                                                        </ControlTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </ListView.ItemContainerStyle>
+                                                    </ListView>
+                                                </ContentControl>
+                                                <ContentControl>
+                                                    <TextBlock FontSize="30" TextWrapping="Wrap"
+                                                               Style="{StaticResource Header1}"
+                                                               Text="{Binding Title}" />
+                                                </ContentControl>
+                                                <ContentControl>
+                                                    <TextBlock FontSize="16" TextWrapping="Wrap" Opacity="0.7"
+                                                               Style="{StaticResource Header1}"
+                                                               Text="{Binding Note}" />
+                                                </ContentControl>
+                                            </StackPanel>
+                                        </Grid>
+                                    </md3:Card>
+                                </ContentControl>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
         <ToggleButton IsChecked="{Binding IsButtonChecked, Mode=TwoWay}"
                       VerticalAlignment="Bottom" HorizontalAlignment="Left" />

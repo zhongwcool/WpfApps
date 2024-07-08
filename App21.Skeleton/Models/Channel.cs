@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace App21.Skeleton.Models;
+﻿namespace App21.Skeleton.Models;
 
 public class Channel
 {
@@ -9,6 +7,6 @@ public class Channel
     public string TvgLogo { get; set; }
     public string Name { get; set; }
     public string Url { get; set; }
-    [NotMapped] public string Delay { get; set; }
+    public string Delay { get; set; }
     public bool HasStar { get; set; }
 }

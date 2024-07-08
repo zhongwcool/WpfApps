@@ -47,4 +47,10 @@ public partial class MainWindow : Window
 
         paletteHelper.SetTheme(theme);
     }
+
+    private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        //将实际宽度赋值作为ScrollViewer的宽度
+        ScrollViewer.Width = ActualWidth - 15;
+    }
 }
