@@ -1,0 +1,42 @@
+﻿<Window x:Class="App22.Selected.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cv="clr-namespace:App22.Selected.Converters"
+        xmlns:vm="clr-namespace:App22.Selected.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
+        Title="App22.Selected" Height="450" Width="400">
+    <Window.Resources>
+        <cv:StatusToStyleConverter x:Key="StatusToStyleConverter" />
+
+        <!-- 锁定样式 -->
+
+        <!-- 解锁样式 -->
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border Margin="10" Grid.Row="0">
+            <Border.Style>
+                <MultiBinding Converter="{StaticResource StatusToStyleConverter}">
+                    <Binding Path="CurrentStatus" />
+                    <Binding RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+            </Border.Style>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="{Binding CurrentStatus}" Margin="5" />
+            </StackPanel>
+        </Border>
+
+        <ListBox ItemsSource="{Binding StatusList}"
+                 SelectedItem="{Binding CurrentStatus}"
+                 VerticalAlignment="Center" HorizontalAlignment="Center"
+                 Style="{StaticResource MaterialDesignChoiceChipListBox}"
+                 Grid.Row="1" />
+    </Grid>
+</Window>
