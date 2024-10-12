@@ -12,8 +12,30 @@
         <cv:StatusToStyleConverter x:Key="StatusToStyleConverter" />
 
         <!-- 锁定样式 -->
+        <Style x:Key="LockedStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="#FFF0F0F0" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" BlurRadius="5" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <!-- 解锁样式 -->
+        <Style x:Key="UnlockedStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="LightGray" />
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="#FFE0F7FA" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="LightBlue" BlurRadius="5" Opacity="0.3" />
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -37,6 +59,7 @@
                  SelectedItem="{Binding CurrentStatus}"
                  VerticalAlignment="Center" HorizontalAlignment="Center"
                  Style="{StaticResource MaterialDesignChoiceChipListBox}"
+                 ItemContainerStyle="{StaticResource Md3ToolToggleListBoxItem}"
                  Grid.Row="1" />
     </Grid>
 </Window>
