@@ -99,6 +99,10 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
+                            <Ellipse x:Name="GeometryEllipse2"
+                                     Fill="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}"
+                                     Focusable="False"
+                                     IsHitTestVisible="False" />
                             <Border x:Name="MouseOverBorder"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                     Opacity="0"
