@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:App22.Selected.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
+        Style="{StaticResource MaterialDesignWindow}"
         Title="App22.Selected" Height="450" Width="400">
     <Window.Resources>
         <cv:StatusToStyleConverter x:Key="StatusToStyleConverter" />

@@ -11,6 +11,7 @@
                 Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Padding" Value="14,6,14,6" />
         <Setter Property="Height" Value="34" />
+        <Setter Property="Width" Value="34" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
@@ -100,14 +101,18 @@
                         <Grid>
                             <Border x:Name="MouseOverBorder"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                    Opacity="0" />
+                                    Opacity="0"
+                                    CornerRadius="17" />
                             <Border x:Name="SelectedBackgroundBorder"
                                     Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-                                    Opacity="0" />
+                                    Opacity="0"
+                                    CornerRadius="17" />
                             <m3:Ripple x:Name="Ripple"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}"
+                                       ClipToBounds="True"
                                        Content="{TemplateBinding Content}"
                                        ContentTemplate="{TemplateBinding ContentTemplate}"
                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
@@ -119,7 +124,12 @@
                                     BorderBrush="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
                                     BorderThickness="0"
                                     Opacity="0"
-                                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}" />
+                                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}"
+                                    CornerRadius="17" />
+                            <Ellipse x:Name="GeometryEllipse"
+                                     Fill="Transparent"
+                                     Focusable="False"
+                                     IsHitTestVisible="False" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
