@@ -11,6 +11,7 @@
         Title="App22.Selected" Height="450" Width="400">
     <Window.Resources>
         <cv:StatusToStyleConverter x:Key="StatusToStyleConverter" />
+        <cv:IconKeyToGeometryConverter x:Key="IconKeyToGeometryConverter" />
 
         <!-- 锁定样式 -->
         <Style x:Key="LockedStyle" TargetType="Border">
@@ -61,6 +62,16 @@
                  VerticalAlignment="Center" HorizontalAlignment="Center"
                  Style="{StaticResource MaterialDesignChoiceChipListBox}"
                  ItemContainerStyle="{StaticResource Md3ToolToggleListBoxItem}"
-                 Grid.Row="1" />
+                 Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Path Data="{Binding IconKey, Converter={StaticResource IconKeyToGeometryConverter}}"
+                              Stretch="Fill" Margin="5"
+                              Fill="Black" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

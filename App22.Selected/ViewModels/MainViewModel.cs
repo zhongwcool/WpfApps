@@ -1,21 +1,45 @@
 ﻿using System.Collections.ObjectModel;
+using App22.Selected.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace App22.Selected.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
-    private string _currentStatus = "Locked";
+    public MainViewModel()
+    {
+        CurrentStatus = StatusList.First();
+    }
 
-    public string CurrentStatus
+    private StatusItem _currentStatus = new StatusItem();
+
+    public StatusItem CurrentStatus
     {
         get => _currentStatus;
         set => SetProperty(ref _currentStatus, value);
     }
 
-    public ObservableCollection<string> StatusList { get; set; } =
+    public ObservableCollection<StatusItem> StatusList { get; set; } =
     [
-        "Locked",
-        "Unlocked"
+        new()
+        {
+            Status = "Locked",
+            IconKey = "IconCircle"
+        },
+        new()
+        {
+            Status = "Unlocked",
+            IconKey = "IconCircle"
+        },
+        new()
+        {
+            Status = "Locking",
+            IconKey = "IconProt"
+        },
+        new()
+        {
+            Status = "Unknown",
+            IconKey = "IconPoke"
+        }
     ];
 }

@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    <Geometry o:Freeze="True" x:Key="IconUnknown">
+        M 100,50
+        A 50,50 0 1,1 99.999,50
+        M 100,50
+        A 50,50 0 1,1 100.001,50
+    </Geometry>
+    <Geometry o:Freeze="True" x:Key="IconProt">
+        M15,19a1,1,0,0,0-1-1H13V17h3a2,2,0,0,0,2-2V8L13,3H8A2,2,0,0,0,6,5V15a2,2,0,0,0,2,2h3v1H10a1,1,0,0,0-1,1H2v2H9a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1h7V19ZM12,4.5,16.5,9H12Z
+    </Geometry>
+    <Geometry o:Freeze="True" x:Key="IconPoke">
+        M18,7a1,1,0,0,0-1-1H16V2H14V6H10V2H8V6H7A1,1,0,0,0,6,7V8H2v2H6v4H2v2H6v1a1,1,0,0,0,1,1H8v4h2V18h4v4h2V18h1a1,1,0,0,0,1-1V16h4V14H18V10h4V8H18Zm-7,4H9V9h2Z
+    </Geometry>
+    <CombinedGeometry x:Key="IconCircle">
+        <CombinedGeometry.Geometry1>
+            <EllipseGeometry Center="100,100" RadiusX="50" RadiusY="50" />
+        </CombinedGeometry.Geometry1>
+        <CombinedGeometry.Geometry2>
+            <EllipseGeometry Center="100,100" RadiusX="30" RadiusY="30" />
+        </CombinedGeometry.Geometry2>
+        <CombinedGeometry.GeometryCombineMode>
+            Exclude
+        </CombinedGeometry.GeometryCombineMode>
+    </CombinedGeometry>
+</ResourceDictionary>
