@@ -53,21 +53,21 @@
                 </MultiBinding>
             </Border.Style>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="{Binding CurrentStatus}" Margin="5" />
+                <TextBlock Text="{Binding CurrentStatus.Status}" Margin="5" />
             </StackPanel>
         </Border>
 
         <ListBox ItemsSource="{Binding StatusList}"
                  SelectedItem="{Binding CurrentStatus}"
                  VerticalAlignment="Center" HorizontalAlignment="Center"
-                 Style="{StaticResource MaterialDesignChoiceChipListBox}"
-                 ItemContainerStyle="{StaticResource Md3ToolToggleListBoxItem}"
+                 Style="{StaticResource M3ChoiceChipPrimaryListBox}"
+                 Margin="0,0,0,10"
                  Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Path Data="{Binding IconKey, Converter={StaticResource IconKeyToGeometryConverter}}"
-                              Stretch="Fill" Margin="5"
+                              Stretch="Fill" Margin="2"
                               Fill="Black" />
                     </Grid>
                 </DataTemplate>
