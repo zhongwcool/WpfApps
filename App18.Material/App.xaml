@@ -6,7 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <md3:BundledTheme BaseTheme="Inherit" PrimaryColor="Brown" SecondaryColor="Lime" />
+                <md3:BundledTheme BaseTheme="Inherit" ColorAdjustment="{md3:ColorAdjustment}" PrimaryColor="Orange"
+                                  SecondaryColor="Lime" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
 

@@ -24,7 +24,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <md3:ColorZone md3:ElevationAssist.Elevation="Dp0" DockPanel.Dock="Top" Mode="PrimaryMid" Grid.Row="0">
+                <md3:ColorZone md3:ElevationAssist.Elevation="Dp0" Mode="PrimaryMid" Grid.Row="0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />

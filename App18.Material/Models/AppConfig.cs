@@ -56,6 +56,6 @@ public class AppConfig : MyApp
         Directory.CreateDirectory(myAppFolder);
         var jsonFile = Path.Combine(myAppFolder, "app.json");
         _instance.LastModified = DateTime.Now;
-        JsonUtil.Save<MyApp>(jsonFile, this);
+        JsonUtil.Save(jsonFile, this);
     }
 }
