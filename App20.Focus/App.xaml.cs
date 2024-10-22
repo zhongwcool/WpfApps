@@ -5,7 +5,7 @@ using Serilog;
 
 namespace App20.Focus;
 
-public partial class App : Application
+public partial class App
 {
     private readonly string _file = Path.Combine("Log", "log.txt");
 
@@ -20,7 +20,7 @@ public partial class App : Application
                 rollOnFileSizeLimit: true,
                 outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
             .CreateLogger();
-        SystemUtil.PrintSystemInfo(OutOptions.UseSerilog);
+        SystemUtil.PrintSystemInfoAsync(OutOptions.UseSerilog);
     }
 
     protected override void OnExit(ExitEventArgs e)

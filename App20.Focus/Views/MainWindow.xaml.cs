@@ -18,10 +18,8 @@ public partial class MainWindow : Window
         {
             Dispatcher.Invoke(() =>
             {
-                var console = new ConsoleWindow(this)
-                {
-                    PrintHello = false
-                };
+                var console = ConsoleWindow.GetInstance(this);
+                console.PrintHello = false;
                 console.Show();
             });
         });
