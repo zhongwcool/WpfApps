@@ -7,6 +7,9 @@
         Style="{StaticResource MaterialDesignWindow}"
         Title="Bottom Sheets" Height="450" Width="800">
     <Window.Resources>
+        <DropShadowEffect x:Key="BottomSheetShadowEffect" Color="Black" BlurRadius="50" ShadowDepth="10"
+                          Direction="270" />
+
         <!-- Storyboard for showing overlay -->
         <Storyboard x:Key="ShowOverlayStoryboard">
             <DoubleAnimation
@@ -39,17 +42,18 @@
         </Grid>
 
         <!-- Overlay for detecting outside clicks -->
-        <Grid x:Name="Overlay" Background="Black" Opacity="0.5" Visibility="Collapsed"
+        <Grid x:Name="Overlay" Background="White" Opacity="0.5" Visibility="Collapsed"
               MouseDown="Overlay_MouseDown">
             <!--Rectangle x:Name="MosaicRectangle" /-->
         </Grid>
 
         <!-- Bottom Sheet Panel -->
-        <Border x:Name="BottomSheet" CornerRadius="20,20,0,0"
+        <Border x:Name="BottomSheet" CornerRadius="10,10,0,0"
                 Background="{DynamicResource MaterialDesign.Brush.Card.Background}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                 Height="200"
-                RenderTransformOrigin="0.5,1">
+                RenderTransformOrigin="0.5,1"
+                Effect="{StaticResource BottomSheetShadowEffect}">
             <Border.RenderTransform>
                 <TranslateTransform Y="200" />
             </Border.RenderTransform>

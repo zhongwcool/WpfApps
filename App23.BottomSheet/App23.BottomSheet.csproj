@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Resources\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Page Update="Views\MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
