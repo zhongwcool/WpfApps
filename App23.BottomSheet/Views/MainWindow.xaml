@@ -1,0 +1,46 @@
+﻿<Window x:Class="App23.BottomSheet.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Bottom Sheets" Height="450" Width="800">
+    <Grid>
+        <!-- Main Content -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Main Content" FontSize="24" Margin="10" Grid.Row="0" />
+            <Grid Grid.Row="1">
+                <WrapPanel HorizontalAlignment="Center" Margin="0,20,0,20">
+                    <Button Content="Show Bottom Sheet" Click="ShowBottomSheet_Click" />
+                </WrapPanel>
+            </Grid>
+        </Grid>
+
+        <!-- Overlay for detecting outside clicks -->
+        <Grid x:Name="Overlay" Background="Black" Opacity="0.5" Visibility="Collapsed"
+              MouseDown="Overlay_MouseDown">
+        </Grid>
+
+        <!-- Bottom Sheet Panel -->
+        <Border x:Name="BottomSheet" Margin="2,0,2,2" CornerRadius="2"
+                Background="{DynamicResource MaterialDesign.Brush.Card.Background}"
+                HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                Height="200"
+                RenderTransformOrigin="0.5,1">
+            <Border.RenderTransform>
+                <TranslateTransform Y="200" />
+            </Border.RenderTransform>
+            <StackPanel>
+                <TextBlock Text="Bottom Sheet Content" FontSize="24" Margin="10" />
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Hide Bottom Sheet" Click="HideBottomSheet_Click" />
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
