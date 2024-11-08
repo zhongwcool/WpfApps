@@ -4,7 +4,7 @@ using System.Windows.Media.Animation;
 
 namespace App23.BottomSheet.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow
 {
     public MainWindow()
     {
@@ -13,14 +13,15 @@ public partial class MainWindow : Window
 
     private void ShowBottomSheet_Click(object sender, RoutedEventArgs e)
     {
-        // Show the Overlay
+        // Show the Overlay with animation
         Overlay.Visibility = Visibility.Visible;
+        var showOverlayStoryboard = Resources["ShowOverlayStoryboard"] as Storyboard;
+        showOverlayStoryboard?.Begin();
 
         // Animate the Bottom Sheet to slide up
         var animation = new DoubleAnimationUsingKeyFrames();
         animation.KeyFrames.Add(new SplineDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.3)),
             new KeySpline(0.2, 0.8, 0.3, 1.0)));
-
         BottomSheet.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animation);
     }
 
@@ -43,8 +44,10 @@ public partial class MainWindow : Window
 
         animation.Completed += (s, e) =>
         {
-            // Hide the Overlay when the animation finishes
-            Overlay.Visibility = Visibility.Collapsed;
+            // Hide the Overlay with animation
+            if (Resources["HideOverlayStoryboard"] is not Storyboard hideOverlayStoryboard) return;
+            hideOverlayStoryboard.Completed += (s2, e2) => Overlay.Visibility = Visibility.Collapsed;
+            hideOverlayStoryboard.Begin();
         };
 
         BottomSheet.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animation);
