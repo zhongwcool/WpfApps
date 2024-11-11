@@ -27,22 +27,25 @@ public partial class MainWindow : Window
         _vm = new MainViewModel();
         DataContext = _vm;
 
-        Task.Delay(500).ContinueWith(_ =>
-        {
-            Dispatcher.Invoke(() =>
-            {
-                var console = new ConsoleWindow(this)
-                {
-                    Capacity = 2000,
-                    PrintEnv = true
-                };
-                console.Show();
-            });
-        });
+        StartConsole();
 
         Prepare();
         CheckVenv();
         SendTimer();
+    }
+
+    private async void StartConsole()
+    {
+        await Task.Delay(500).ContinueWith(_ =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                var console = ConsoleWindow.GetInstance(this);
+                console.Capacity = 3000;
+                console.PrintHello = false;
+                console.Show();
+            });
+        });
     }
 
     private readonly DispatcherTimer _dispatcherTimer = new();

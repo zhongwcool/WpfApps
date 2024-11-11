@@ -20,7 +20,7 @@ public partial class App : Application
                 rollOnFileSizeLimit: true,
                 outputTemplate: "{Timestamp:HH:mm:ss.fff} [{Level:u3}] {Message:l}{NewLine}{Exception}")
             .CreateLogger();
-        SystemUtil.PrintSystemInfo(OutOptions.UseSerilog);
+        SystemUtil.PrintSystemInfoAsync(OutOptions.UseSerilog);
     }
 
     protected override void OnExit(ExitEventArgs e)
