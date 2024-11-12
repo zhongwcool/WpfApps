@@ -15,7 +15,7 @@
         </Grid>
     </DataTemplate>
 
-    <Style x:Key="Md3ToolToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="M3ChoiceChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ListBoxItem.Border}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -167,7 +167,7 @@
     <Style x:Key="M3ChoiceChipPrimaryListBox"
            TargetType="{x:Type ListBox}"
            BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource Md3ToolToggleListBoxItem}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource M3ChoiceChipPrimaryListBoxItem}" />
         <Setter Property="ItemTemplate" Value="{StaticResource IconOnlyItemTemplate}" />
     </Style>
 
