@@ -42,7 +42,8 @@
         </Grid>
 
         <!-- Overlay for detecting outside clicks -->
-        <Grid x:Name="Overlay" Background="White" Opacity="0.5" Visibility="Collapsed"
+        <Grid x:Name="Overlay" Background="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" Opacity="0.5"
+              Visibility="Collapsed"
               MouseDown="Overlay_MouseDown">
             <!--Rectangle x:Name="MosaicRectangle" /-->
         </Grid>

@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 
 namespace App23.BottomSheet.Views;
 
@@ -9,6 +11,18 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
+
+        // 加载主题
+        UpdateTheme();
+        // 监听系统主题变化
+        SystemEvents.UserPreferenceChanged += (_, args) =>
+        {
+            // 当事件是由于主题变化引起的
+            if (args.Category == UserPreferenceCategory.General)
+                // 这里你可以写代码来处理主题变化，例如，重新加载样式或者资源
+                UpdateTheme();
+        };
+
         //CreateMosaic();
     }
 
@@ -84,4 +98,22 @@ public partial class MainWindow
         MosaicRectangle.Fill = mosaicBrush;
     }
     */
+
+    private static void UpdateTheme()
+    {
+        var paletteHelper = new PaletteHelper();
+        var theme = paletteHelper.GetTheme();
+        // 检查当前主题并应用
+        switch (Theme.GetSystemTheme())
+        {
+            case BaseTheme.Light:
+                theme.SetBaseTheme(BaseTheme.Light);
+                break;
+            case BaseTheme.Dark:
+                theme.SetBaseTheme(BaseTheme.Dark);
+                break;
+        }
+
+        paletteHelper.SetTheme(theme);
+    }
 }
