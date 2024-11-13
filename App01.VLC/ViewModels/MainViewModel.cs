@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -46,8 +47,7 @@ public class MainViewModel : ObservableObject
     {
         var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         var assembly = Assembly.GetEntryAssembly()?.GetName();
-        var myAppFolder = Path.Combine(appDataPath,
-            null == assembly || string.IsNullOrEmpty(assembly.Name) ? "DouTV" : assembly.Name);
+        var myAppFolder = Path.Combine(appDataPath, assembly?.Name!);
         var jsonFile = Path.Combine(myAppFolder, JSON_FILE);
 
         try
@@ -112,21 +112,19 @@ public class MainViewModel : ObservableObject
                 _ = Task.Run(async () =>
                 {
                     await _semaphore.WaitAsync();
-                    var isAvailable = await CheckIptvUrl(channel);
-                    if (isAvailable)
+                    var delay = await CheckIptvUrl(channel);
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        Application.Current.Dispatcher.Invoke(() =>
+                        channel.Delay = delay;
+                        Channels.Add(channel);
+                        //将channel中的GroupTitle添加到Groups中
+                        if (Groups.All(gp => gp.Title != channel.GroupTitle))
                         {
-                            Channels.Add(channel);
-                            //将channel中的GroupTitle添加到Groups中
-                            if (Groups.All(gp => gp.Title != channel.GroupTitle))
-                            {
-                                Groups.Add(new TvGroup { Title = channel.GroupTitle });
-                            }
+                            Groups.Add(new TvGroup { Title = channel.GroupTitle });
+                        }
 
-                            IsBusy2 = true;
-                        });
-                    }
+                        IsBusy2 = true;
+                    });
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
@@ -261,18 +259,22 @@ public class MainViewModel : ObservableObject
         return channels;
     }
 
-    private async Task<bool> CheckIptvUrl(Channel channel)
+    private async Task<string> CheckIptvUrl(Channel channel)
     {
         try
         {
-            var response = await _client.GetAsync(channel.Url, HttpCompletionOption.ResponseHeadersRead);
-            return response.IsSuccessStatusCode &&
-                   response.Content.Headers.ContentType?.MediaType == "application/vnd.apple.mpegurl";
+            var stopwatch = Stopwatch.StartNew();
+            // 请求M3U8文件
+            var m3U8Response = await _client.GetAsync(channel.Url);
+            // m3U8Response.EnsureSuccessStatusCode();
+            await m3U8Response.Content.ReadAsStringAsync();
+            stopwatch.Stop();
+            var m3U8Duration = stopwatch.Elapsed;
+            return Math.Round(m3U8Duration.TotalMilliseconds, 1) + "ms";
         }
         catch (Exception e)
         {
-            "Exception Caught!".PrintErr();
-            $"Message :{e.Message} ".PrintErr();
+            $"Exception Caught! Message :{e.Message} ".PrintErr();
         }
         finally
         {
@@ -280,7 +282,7 @@ public class MainViewModel : ObservableObject
             _semaphore.Release();
         }
 
-        return false;
+        return "超时";
     }
 
     private bool CollectionFilter(object obj)

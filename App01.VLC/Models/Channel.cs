@@ -1,4 +1,6 @@
-﻿namespace App01.VLC.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace App01.VLC.Models;
 
 public class Channel
 {
@@ -7,5 +9,6 @@ public class Channel
     public string TvgLogo { get; set; }
     public string Name { get; set; }
     public string Url { get; set; }
+    [NotMapped] public string Delay { get; set; }
     public bool HasStar { get; set; }
 }
