@@ -23,7 +23,7 @@ public partial class MainWindow
                 UpdateTheme();
         };
 
-        //CreateMosaic();
+        // Mosaic.Draw(MosaicRectangle);
     }
 
     private void ShowBottomSheet_Click(object sender, RoutedEventArgs e)
@@ -67,37 +67,6 @@ public partial class MainWindow
 
         BottomSheet.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animation);
     }
-
-    /*
-    private void CreateMosaic()
-    {
-        var mosaicBrush = new DrawingBrush();
-        var drawingGroup = new DrawingGroup();
-
-        const double tileSize = 20; // 每个马赛克块的大小
-
-        for (var y = 0; y < 2; ++y)
-        {
-            for (var x = 0; x < 2; ++x)
-            {
-                var isWhite = (x + y) % 2 == 0;
-                var tile = new GeometryDrawing
-                {
-                    Brush = isWhite ? Brushes.White : Brushes.LightGray,
-                    Geometry = new RectangleGeometry(new Rect(x * tileSize, y * tileSize, tileSize, tileSize))
-                };
-                drawingGroup.Children.Add(tile);
-            }
-        }
-
-        mosaicBrush.Drawing = drawingGroup;
-        mosaicBrush.TileMode = TileMode.Tile;
-        mosaicBrush.Viewport = new Rect(0, 0, tileSize * 2, tileSize * 2);
-        mosaicBrush.ViewportUnits = BrushMappingMode.Absolute;
-
-        MosaicRectangle.Fill = mosaicBrush;
-    }
-    */
 
     private static void UpdateTheme()
     {
