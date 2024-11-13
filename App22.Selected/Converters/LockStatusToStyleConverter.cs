@@ -2,11 +2,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using App22.Selected.Enums;
 using App22.Selected.Models;
 
 namespace App22.Selected.Converters;
 
-public class StatusToStyleConverter : IMultiValueConverter
+public class LockStatusToStyleConverter : IMultiValueConverter
 {
     public object? Convert(object[] values, Type targetType, object? parameter, CultureInfo culture)
     {
@@ -14,9 +15,10 @@ public class StatusToStyleConverter : IMultiValueConverter
         if (values[1] is not Border border) return null;
         return item?.Status switch
         {
-            "Locked" => border.TryFindResource("LockedStyle") as Style,
-            "Unlocked" => border.TryFindResource("UnlockedStyle") as Style,
-            _ => null
+            LockStatus.Locked => border.TryFindResource("LockedStyle") as Style,
+            LockStatus.Unlocked => border.TryFindResource("UnlockedStyle") as Style,
+            LockStatus.Locking => border.TryFindResource("LockingStyle") as Style,
+            _ => border.TryFindResource("UnknownStyle") as Style
         };
     }
 

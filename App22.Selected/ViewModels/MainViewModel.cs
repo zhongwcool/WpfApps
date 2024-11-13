@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using App22.Selected.Enums;
 using App22.Selected.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -11,7 +12,7 @@ public class MainViewModel : ObservableObject
         CurrentStatus = StatusList.First();
     }
 
-    private StatusItem _currentStatus = new StatusItem();
+    private StatusItem _currentStatus = new();
 
     public StatusItem CurrentStatus
     {
@@ -23,23 +24,23 @@ public class MainViewModel : ObservableObject
     [
         new()
         {
-            Status = "Locked",
-            IconKey = "IconCircle"
+            Status = LockStatus.Locked,
+            IconKey = "IconCherry"
         },
         new()
         {
-            Status = "Unlocked",
-            IconKey = "IconCircle"
+            Status = LockStatus.Unlocked,
+            IconKey = "IconGrape"
         },
         new()
         {
-            Status = "Locking",
-            IconKey = "IconProt"
+            Status = LockStatus.Locking,
+            IconKey = "IconCheese"
         },
         new()
         {
-            Status = "Unknown",
-            IconKey = "IconPoke"
+            Status = LockStatus.Unknown,
+            IconKey = "IconLemon"
         }
     ];
 }
