@@ -15,10 +15,10 @@ public class LockStatusToStyleConverter : IMultiValueConverter
         if (values[1] is not Border border) return null;
         return item?.Status switch
         {
-            LockStatus.Locked => border.TryFindResource("LockedStyle") as Style,
-            LockStatus.Unlocked => border.TryFindResource("UnlockedStyle") as Style,
-            LockStatus.Locking => border.TryFindResource("LockingStyle") as Style,
-            _ => border.TryFindResource("UnknownStyle") as Style
+            LockStatus.Locked => Application.Current.TryFindResource("LockedStyle") as Style,
+            LockStatus.Unlocked => Application.Current.TryFindResource("UnlockedStyle") as Style,
+            LockStatus.Locking => Application.Current.TryFindResource("LockingStyle") as Style,
+            _ => Application.Current.TryFindResource("UnknownStyle") as Style
         };
     }
 

@@ -13,6 +13,7 @@
                 <!-- Other merged dictionaries here -->
                 <ResourceDictionary Source="Resources/Icons.xaml" />
                 <ResourceDictionary Source="Styles/Other.xaml" />
+                <ResourceDictionary Source="Styles/ShiningItem.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
