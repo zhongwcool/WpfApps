@@ -8,8 +8,8 @@
              xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:Demo1ViewModel, IsDesignTimeCreatable=True}">
-    <Grid Style="{StaticResource MaterialDesign3Grid}">
-        <Grid x:Name="PartDot" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Height="1" Width="1" />
+    <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
         <Grid Margin="{StaticResource ControlPageContentMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="270" />

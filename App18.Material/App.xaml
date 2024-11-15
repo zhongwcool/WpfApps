@@ -10,6 +10,8 @@
                                   SecondaryColor="Lime" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
 
                 <!-- Other merged dictionaries here -->
                 <ResourceDictionary Source="Styles/Other.xaml" />

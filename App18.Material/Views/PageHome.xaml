@@ -13,9 +13,9 @@
         <cv:DateToHumanizeConverter x:Key="DateToHumanizeConverter" />
         <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
     </UserControl.Resources>
-    <Grid Style="{StaticResource MaterialDesign3Grid}">
-        <Grid x:Name="PartDot" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Height="1" Width="1" />
-        <Grid>
+    <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
+        <Grid Margin="{StaticResource ControlPageContentMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

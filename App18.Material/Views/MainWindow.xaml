@@ -10,15 +10,11 @@
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         SizeChanged="Window_SizeChanged"
         Style="{StaticResource MaterialDesignWindow}"
-        Background="{DynamicResource MaterialDesign.Brush.Background}"
         Title="Material 3" Height="800" Width="1100">
     <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
                     SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
-        <Grid Style="{StaticResource MaterialDesign3Grid}">
-            <Grid x:Name="PartDot"
-                  Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-                  Height="1" Width="1" />
-
+        <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+              Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -75,15 +71,14 @@
                     </Grid>
                 </md3:ColorZone>
 
-
                 <md3:DrawerHost x:Name="NavDrawer" OpenMode="Modal"
                                 LeftDrawerCornerRadius="0 0 0 0" LeftDrawerBackground="Transparent"
                                 Grid.Row="1">
-
                     <!-- 抽屉 -->
                     <md3:DrawerHost.LeftDrawerContent>
                         <DockPanel Width="220"
-                                   Style="{StaticResource MaterialDesign3DockPanel}">
+                                   Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                                   Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
                             <ListBox Margin="0,16,0,16"
                                      ItemsSource="{Binding NavigationItems}"
                                      PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
@@ -123,7 +118,8 @@
 
                         <!-- 内容左-Bar -->
                         <Grid x:Name="NavRail" Width="80"
-                              Style="{StaticResource MaterialDesign3Grid}"
+                              Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                              Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}"
                               Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -196,7 +192,6 @@
                         </Grid>
                     </Grid>
                 </md3:DrawerHost>
-
             </Grid>
         </Grid>
     </md3:DialogHost>

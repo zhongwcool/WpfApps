@@ -5,11 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
-    <Grid Style="{StaticResource MaterialDesign3Grid}">
-        <Grid x:Name="PartDot" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Height="1" Width="1" />
-
+    <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
         <ScrollViewer Width="800" VerticalAlignment="Top" HorizontalAlignment="Left"
-                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      Margin="{StaticResource ControlPageContentMargin}">
             <Grid Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="400" />
