@@ -19,8 +19,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainViewModel(MainSnackbar.MessageQueue!);
-        //开启全屏
-        EntryMaximizedWindow();
 
         // 加载主题
         UpdateTheme();

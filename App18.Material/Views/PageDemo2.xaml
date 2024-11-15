@@ -8,9 +8,9 @@
     <Grid Style="{StaticResource MaterialDesign3Grid}">
         <Grid x:Name="PartDot" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}" Height="1" Width="1" />
 
-        <Grid Width="900" VerticalAlignment="Top" HorizontalAlignment="Left"
-              Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
-            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
+        <ScrollViewer Width="800" VerticalAlignment="Top" HorizontalAlignment="Left"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="400" />
                     <ColumnDefinition Width="400" />
@@ -71,6 +71,6 @@
                     <TextBox Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">MaterialDesign.Brush.Background</TextBox>
                 </Grid>
             </Grid>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>
