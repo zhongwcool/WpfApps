@@ -7,10 +7,10 @@
         <Setter Property="BorderBrush" Value="#D93F3B" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#D93F3B" BlurRadius="0" Opacity="0.6" Direction="270" />
+                <DropShadowEffect Color="#D93F3B" BlurRadius="5" Opacity="0.6" Direction="315" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
@@ -46,10 +46,10 @@
         <Setter Property="BorderBrush" Value="#4CBB70" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#4CBB70" BlurRadius="8" Opacity="0.4" Direction="270" />
+                <DropShadowEffect Color="#4CBB70" BlurRadius="5" Opacity="0.4" Direction="315" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
@@ -86,10 +86,10 @@
         <Setter Property="BorderBrush" Value="#FFCE00" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#FFCE00" BlurRadius="8" Opacity="0.6" Direction="270" />
+                <DropShadowEffect Color="#FFCE00" BlurRadius="5" Opacity="0.6" Direction="315" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
@@ -125,10 +125,10 @@
         <Setter Property="BorderBrush" Value="#4A90E2" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#4A90E2" BlurRadius="8" Opacity="0.5" Direction="270" />
+                <DropShadowEffect Color="#4A90E2" BlurRadius="5" Opacity="0.5" Direction="315" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
