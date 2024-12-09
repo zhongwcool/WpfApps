@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App22.Selected", "App22.Sel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App23.BottomSheet", "App23.BottomSheet\App23.BottomSheet.csproj", "{B7DED438-B279-4670-A109-3BC3CDB52DE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App24.LicenseInput", "App24.LicenseInput\App24.LicenseInput.csproj", "{D6B379E8-18CE-47E0-B0E7-97C0CB0BCF32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,5 +146,9 @@ Global
 		{B7DED438-B279-4670-A109-3BC3CDB52DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7DED438-B279-4670-A109-3BC3CDB52DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7DED438-B279-4670-A109-3BC3CDB52DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6B379E8-18CE-47E0-B0E7-97C0CB0BCF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B379E8-18CE-47E0-B0E7-97C0CB0BCF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B379E8-18CE-47E0-B0E7-97C0CB0BCF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B379E8-18CE-47E0-B0E7-97C0CB0BCF32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
