@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace App24.LicenseInput;
+namespace App24.LicenseInput.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow
 {
     public MainWindow()
     {
@@ -14,12 +14,20 @@ public partial class MainWindow : Window
         DisableInputMethod(Part2);
         DisableInputMethod(Part3);
         DisableInputMethod(Part4);
+        DisableInputMethod(Part5);
+        DisableInputMethod(Part6);
+        DisableInputMethod(Part7);
+        DisableInputMethod(Part8);
 
         // 添加接受粘贴处理
         DataObject.AddPastingHandler(Part1, OnPaste);
         DataObject.AddPastingHandler(Part2, OnPaste);
         DataObject.AddPastingHandler(Part3, OnPaste);
         DataObject.AddPastingHandler(Part4, OnPaste);
+        DataObject.AddPastingHandler(Part5, OnPaste);
+        DataObject.AddPastingHandler(Part6, OnPaste);
+        DataObject.AddPastingHandler(Part7, OnPaste);
+        DataObject.AddPastingHandler(Part8, OnPaste);
     }
 
     private static void DisableInputMethod(TextBox textBox)
@@ -31,7 +39,8 @@ public partial class MainWindow : Window
     {
         if (sender is not TextBox textBox) return;
         var caretPosition = textBox.CaretIndex;
-        ShiftText(Part1.Text + Part2.Text + Part3.Text + Part4.Text);
+        ShiftText(Part1.Text + Part2.Text + Part3.Text + Part4.Text + Part5.Text + Part6.Text + Part7.Text +
+                  Part8.Text);
         textBox.CaretIndex = caretPosition;
     }
 
@@ -72,17 +81,54 @@ public partial class MainWindow : Window
         }
         else
             Part4.Text = "";
+
+        if (inputCode.Length > 16)
+        {
+            Part5.Text = inputCode.Substring(16, Math.Min(4, inputCode.Length - 16));
+            Part5.CaretIndex = Part5.Text.Length;
+            Part5.Focus();
+        }
+        else
+            Part5.Text = "";
+
+        if (inputCode.Length > 20)
+        {
+            Part6.Text = inputCode.Substring(20, Math.Min(4, inputCode.Length - 20));
+            Part6.CaretIndex = Part6.Text.Length;
+            Part6.Focus();
+        }
+        else
+            Part6.Text = "";
+
+        if (inputCode.Length > 24)
+        {
+            Part7.Text = inputCode.Substring(24, Math.Min(4, inputCode.Length - 24));
+            Part7.CaretIndex = Part7.Text.Length;
+            Part7.Focus();
+        }
+        else
+            Part7.Text = "";
+
+        if (inputCode.Length > 28)
+        {
+            Part8.Text = inputCode.Substring(28, Math.Min(4, inputCode.Length - 28));
+            Part8.CaretIndex = Part8.Text.Length;
+            Part8.Focus();
+        }
+        else
+            Part8.Text = "";
     }
 
     private void MoveFocusBasedOnTextLength(TextBox currentTextBox)
     {
-        if (currentTextBox.Text.Length == 4)
+        switch (currentTextBox.Text.Length)
         {
-            MoveFocusToNextTextBox(currentTextBox);
-        }
-        else if (currentTextBox.Text.Length == 0)
-        {
-            MoveFocusToPreviousTextBox(currentTextBox);
+            case 4:
+                MoveFocusToNextTextBox(currentTextBox);
+                break;
+            case 0:
+                MoveFocusToPreviousTextBox(currentTextBox);
+                break;
         }
     }
 
@@ -94,6 +140,14 @@ public partial class MainWindow : Window
             Part3.Focus();
         else if (currentTextBox == Part3)
             Part4.Focus();
+        else if (currentTextBox == Part4)
+            Part5.Focus();
+        else if (currentTextBox == Part5)
+            Part6.Focus();
+        else if (currentTextBox == Part6)
+            Part7.Focus();
+        else if (currentTextBox == Part7)
+            Part8.Focus();
     }
 
     private void MoveFocusToPreviousTextBox(TextBox currentTextBox)
@@ -113,6 +167,26 @@ public partial class MainWindow : Window
             Part3.Focus();
             Part3.CaretIndex = Part3.Text.Length;
         }
+        else if (currentTextBox == Part5)
+        {
+            Part4.Focus();
+            Part4.CaretIndex = Part4.Text.Length;
+        }
+        else if (currentTextBox == Part6)
+        {
+            Part5.Focus();
+            Part5.CaretIndex = Part5.Text.Length;
+        }
+        else if (currentTextBox == Part7)
+        {
+            Part6.Focus();
+            Part6.CaretIndex = Part6.Text.Length;
+        }
+        else if (currentTextBox == Part8)
+        {
+            Part7.Focus();
+            Part7.CaretIndex = Part7.Text.Length;
+        }
     }
 
     private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -124,7 +198,8 @@ public partial class MainWindow : Window
         else
         {
             if (sender is not TextBox textBox) return;
-            var summary = Part1.Text + Part2.Text + Part3.Text + Part4.Text;
+            var summary = Part1.Text + Part2.Text + Part3.Text + Part4.Text + Part5.Text + Part6.Text + Part7.Text +
+                          Part8.Text;
             //把输入的字符插入到sum中，将当前textbox的光标换算出sum对应的位置
             var caretIndex = textBox.CaretIndex;
             summary = textBox.Name switch
@@ -133,6 +208,10 @@ public partial class MainWindow : Window
                 nameof(Part2) => summary.Insert(caretIndex + 4 * 1, e.Text),
                 nameof(Part3) => summary.Insert(caretIndex + 4 * 2, e.Text),
                 nameof(Part4) => summary.Insert(caretIndex + 4 * 3, e.Text),
+                nameof(Part5) => summary.Insert(caretIndex + 4 * 4, e.Text),
+                nameof(Part6) => summary.Insert(caretIndex + 4 * 5, e.Text),
+                nameof(Part7) => summary.Insert(caretIndex + 4 * 6, e.Text),
+                nameof(Part8) => summary.Insert(caretIndex + 4 * 7, e.Text),
                 _ => summary
             };
             ShiftText(summary);
@@ -144,7 +223,7 @@ public partial class MainWindow : Window
 
     private static bool IsTextAllowed(string text)
     {
-        var regex = new Regex("[^0-9A-Za-z]");
+        var regex = MyRegex();
         return !regex.IsMatch(text);
     }
 
@@ -167,4 +246,7 @@ public partial class MainWindow : Window
 
         e.CancelCommand();
     }
+
+    [GeneratedRegex("[^0-9A-Za-z]")]
+    private static partial Regex MyRegex();
 }

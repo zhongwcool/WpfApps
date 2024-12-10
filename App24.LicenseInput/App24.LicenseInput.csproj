@@ -9,4 +9,12 @@
         <ApplicationIcon>Resources\main.ico</ApplicationIcon>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Page Update="Views\MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+    </ItemGroup>
+
 </Project>
