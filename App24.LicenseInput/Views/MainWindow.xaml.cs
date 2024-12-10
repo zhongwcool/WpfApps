@@ -204,20 +204,29 @@ public partial class MainWindow
             var caretIndex = textBox.CaretIndex;
             summary = textBox.Name switch
             {
-                nameof(Part1) => summary.Insert(caretIndex, e.Text),
-                nameof(Part2) => summary.Insert(caretIndex + 4 * 1, e.Text),
-                nameof(Part3) => summary.Insert(caretIndex + 4 * 2, e.Text),
-                nameof(Part4) => summary.Insert(caretIndex + 4 * 3, e.Text),
-                nameof(Part5) => summary.Insert(caretIndex + 4 * 4, e.Text),
-                nameof(Part6) => summary.Insert(caretIndex + 4 * 5, e.Text),
-                nameof(Part7) => summary.Insert(caretIndex + 4 * 6, e.Text),
-                nameof(Part8) => summary.Insert(caretIndex + 4 * 7, e.Text),
+                nameof(Part1) => InsertWord(summary, caretIndex, 0),
+                nameof(Part2) => InsertWord(summary, caretIndex, 1),
+                nameof(Part3) => InsertWord(summary, caretIndex, 2),
+                nameof(Part4) => InsertWord(summary, caretIndex, 3),
+                nameof(Part5) => InsertWord(summary, caretIndex, 4),
+                nameof(Part6) => InsertWord(summary, caretIndex, 5),
+                nameof(Part7) => InsertWord(summary, caretIndex, 6),
+                nameof(Part8) => InsertWord(summary, caretIndex, 7),
                 _ => summary
             };
             ShiftText(summary);
 
             MoveFocusBasedOnTextLength(textBox);
             e.Handled = true;
+        }
+
+        return;
+
+        string InsertWord(string summary, int caretIndex, int phase)
+        {
+            return summary.Length >= 4 * phase
+                ? summary.Insert(caretIndex + 4 * phase, e.Text)
+                : summary.Insert(summary.Length, e.Text);
         }
     }
 

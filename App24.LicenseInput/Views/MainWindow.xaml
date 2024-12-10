@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
         Title="License Key" Height="200" Width="600" Background="#242a2c">
     <Window.Resources>
         <Style TargetType="TextBox">
@@ -15,7 +16,6 @@
             <Setter Property="Padding" Value="3" />
             <Setter Property="FontFamily" Value="Consolas" />
             <Setter Property="FontWeight" Value="Bold" />
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -39,36 +39,52 @@
         </Style>
     </Window.Resources>
     <Grid Margin="20">
-        <Label Content="Product Key: 4162-4326-7275-2438" HorizontalAlignment="Left" VerticalAlignment="Top"
-               Foreground="White"
-               Margin="10,10,0,0" />
-        <Label Content="License Key:" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
-               Margin="10,40,0,0" />
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,40,0,0">
-            <TextBox x:Name="Part1" Width="50" MaxLength="4" HorizontalContentAlignment="Left"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part2" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part3" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part4" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part5" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part6" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part7" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <TextBox x:Name="Part8" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
-                     TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
-                     PreviewKeyDown="TextBox_PreviewKeyDown" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Product Key: 4162-4326-7275-2438" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Foreground="White"
+                   Margin="0,0,0,0" />
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="License Key:" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Foreground="White"
+                       Margin="0,0,0,0" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Margin="0,0,0,0">
+                    <TextBox x:Name="Part1" Width="50" MaxLength="4" HorizontalContentAlignment="Left"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part2" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part3" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part4" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part5" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part6" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part7" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                    <TextBox x:Name="Part8" Width="50" MaxLength="4" HorizontalContentAlignment="Left" Margin="5,0,0,0"
+                             TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"
+                             PreviewKeyDown="TextBox_PreviewKeyDown" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
+            <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" />
         </StackPanel>
     </Grid>
 </Window>
