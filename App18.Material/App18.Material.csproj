@@ -10,11 +10,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
         <PackageReference Include="Humanizer.Core.zh-CN" Version="2.14.1" />
-        <PackageReference Include="Mar.Console" Version="0.8.0"/>
-        <PackageReference Include="MaterialDesignColors" Version="3.1.0"/>
-        <PackageReference Include="MaterialDesignThemes" Version="5.1.0"/>
+        <PackageReference Include="Mar.Console" Version="0.8.1"/>
+        <PackageReference Include="MaterialDesignThemes" Version="5.2.1"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -4,9 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:m3="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
+          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static m3:BrushOpacityConverter.Instance}, ConverterParameter=0.4}">
         <ScrollViewer Width="800" VerticalAlignment="Top" HorizontalAlignment="Left"
                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                       Margin="{StaticResource ControlPageContentMargin}">

@@ -4,23 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:m3="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:App18.Material.ViewModels"
         xmlns:md="clr-namespace:App18.Material.Models"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}"
         SizeChanged="Window_SizeChanged"
         Style="{StaticResource MaterialDesignWindow}"
         Title="Material 3" Height="800" Width="1100">
-    <md3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
-                    SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+    <m3:DialogHost DialogTheme="Inherit" Identifier="RootDialog"
+                   SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-              Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
+              Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static m3:BrushOpacityConverter.Instance}, ConverterParameter=0.4}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <md3:ColorZone md3:ElevationAssist.Elevation="Dp0" Mode="PrimaryMid" Grid.Row="0">
+                <m3:ColorZone m3:ElevationAssist.Elevation="Dp0" Mode="PrimaryMid" Grid.Row="0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
@@ -48,9 +48,9 @@
                                        Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                        VerticalAlignment="Center" />
                             <!-- 弹出菜单 -->
-                            <md3:PopupBox StaysOpen="False"
-                                          Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                                          PlacementMode="BottomAndAlignRightEdges">
+                            <m3:PopupBox StaysOpen="False"
+                                         Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                         PlacementMode="BottomAndAlignRightEdges">
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="10">
                                         <TextBlock Text="暗色模式" VerticalAlignment="Center" />
@@ -66,19 +66,19 @@
 
                                     <Button Click="ButtonClose_OnClick" Content="退出程序" />
                                 </StackPanel>
-                            </md3:PopupBox>
+                            </m3:PopupBox>
                         </DockPanel>
                     </Grid>
-                </md3:ColorZone>
+                </m3:ColorZone>
 
-                <md3:DrawerHost x:Name="NavDrawer" OpenMode="Modal"
-                                LeftDrawerCornerRadius="0 0 0 0" LeftDrawerBackground="Transparent"
-                                Grid.Row="1">
+                <m3:DrawerHost x:Name="NavDrawer" OpenMode="Modal"
+                               LeftDrawerCornerRadius="0 0 0 0" LeftDrawerBackground="Transparent"
+                               Grid.Row="1">
                     <!-- 抽屉 -->
-                    <md3:DrawerHost.LeftDrawerContent>
+                    <m3:DrawerHost.LeftDrawerContent>
                         <DockPanel Width="220"
                                    Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-                                   Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
+                                   Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static m3:BrushOpacityConverter.Instance}, ConverterParameter=0.4}">
                             <ListBox Margin="0,16,0,16"
                                      ItemsSource="{Binding NavigationItems}"
                                      PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
@@ -96,9 +96,9 @@
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem"
                                            BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
-                                        <Setter Property="md3:NavigationDrawerAssist.SelectedIcon"
+                                        <Setter Property="m3:NavigationDrawerAssist.SelectedIcon"
                                                 Value="{Binding SelectedIcon}" />
-                                        <Setter Property="md3:NavigationDrawerAssist.UnselectedIcon"
+                                        <Setter Property="m3:NavigationDrawerAssist.UnselectedIcon"
                                                 Value="{Binding UnselectedIcon}" />
                                         <Setter Property="Width" Value="200" />
                                         <Setter Property="Background"
@@ -107,7 +107,7 @@
                                 </ListBox.ItemContainerStyle>
                             </ListBox>
                         </DockPanel>
-                    </md3:DrawerHost.LeftDrawerContent>
+                    </m3:DrawerHost.LeftDrawerContent>
 
                     <!-- 内容区 -->
                     <Grid>
@@ -119,7 +119,7 @@
                         <!-- 内容左-Bar -->
                         <Grid x:Name="NavRail" Width="80"
                               Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-                              Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}"
+                              Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static m3:BrushOpacityConverter.Instance}, ConverterParameter=0.4}"
                               Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -133,17 +133,17 @@
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="ListBoxItem"
                                                BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
-                                            <Setter Property="md3:BadgedAssist.Badge"
+                                            <Setter Property="m3:BadgedAssist.Badge"
                                                     Value="{Binding Notifications}" />
-                                            <Setter Property="md3:BadgedAssist.BadgeBackground"
+                                            <Setter Property="m3:BadgedAssist.BadgeBackground"
                                                     Value="#930006" />
-                                            <Setter Property="md3:BadgedAssist.BadgeForeground"
+                                            <Setter Property="m3:BadgedAssist.BadgeForeground"
                                                     Value="#FFDAD4" />
-                                            <Setter Property="md3:NavigationRailAssist.IsTextVisible"
+                                            <Setter Property="m3:NavigationRailAssist.IsTextVisible"
                                                     Value="True" />
-                                            <Setter Property="md3:NavigationRailAssist.SelectedIcon"
+                                            <Setter Property="m3:NavigationRailAssist.SelectedIcon"
                                                     Value="{Binding SelectedIcon}" />
-                                            <Setter Property="md3:NavigationRailAssist.UnselectedIcon"
+                                            <Setter Property="m3:NavigationRailAssist.UnselectedIcon"
                                                     Value="{Binding UnselectedIcon}" />
                                         </Style>
                                     </ListBox.ItemContainerStyle>
@@ -161,10 +161,10 @@
                             <Button Click="SettingsButton_OnClick" Margin="0,0,0,16"
                                     Style="{StaticResource MaterialDesignIconButton}"
                                     Height="50"
-                                    md3:ButtonAssist.CornerRadius="25"
+                                    m3:ButtonAssist.CornerRadius="25"
                                     ToolTip="Open Settings"
                                     Grid.Row="1">
-                                <md3:PackIcon Kind="Cog" />
+                                <m3:PackIcon Kind="Cog" />
                             </Button>
                         </Grid>
 
@@ -174,25 +174,25 @@
                                             Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
                                             DataContext="{Binding SelectedItem}" />
 
-                            <md3:Snackbar x:Name="MainSnackbar" MessageQueue="{md3:MessageQueue}" />
+                            <m3:Snackbar x:Name="MainSnackbar" MessageQueue="{m3:MessageQueue}" />
 
-                            <md3:Badged Badge="{Binding Notifications}"
-                                        Margin="0,0,28,28"
-                                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                        BadgeColorZoneMode="PrimaryDark">
+                            <m3:Badged Badge="{Binding Notifications}"
+                                       Margin="0,0,28,28"
+                                       HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                       BadgeColorZoneMode="PrimaryDark">
                                 <Button Width="56" Height="56"
-                                        md3:ButtonAssist.CornerRadius="28"
+                                        m3:ButtonAssist.CornerRadius="28"
                                         Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                                         BorderThickness="0"
                                         Command="{Binding AddNewNotiCommand}"
                                         Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}">
-                                    <md3:PackIcon Width="26" Height="26" Kind="Github" />
+                                    <m3:PackIcon Width="26" Height="26" Kind="Github" />
                                 </Button>
-                            </md3:Badged>
+                            </m3:Badged>
                         </Grid>
                     </Grid>
-                </md3:DrawerHost>
+                </m3:DrawerHost>
             </Grid>
         </Grid>
-    </md3:DialogHost>
+    </m3:DialogHost>
 </Window>

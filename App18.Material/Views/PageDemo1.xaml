@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:App18.Material.ViewModels"
              xmlns:md="clr-namespace:App18.Material.Models"
-             xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:m3="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:Demo1ViewModel, IsDesignTimeCreatable=True}">
     <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
+          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static m3:BrushOpacityConverter.Instance}, ConverterParameter=0.4}">
         <Grid Margin="{StaticResource ControlPageContentMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="270" />
@@ -95,9 +95,9 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Border VerticalAlignment="Center" Grid.Column="0">
-                                                    <md3:PackIcon x:Name="PART_Icon"
-                                                                  Kind="{Binding UnselectedIcon}"
-                                                                  Margin="5,0,5,0" Height="35" Width="35" />
+                                                    <m3:PackIcon x:Name="PART_Icon"
+                                                                 Kind="{Binding UnselectedIcon}"
+                                                                 Margin="5,0,5,0" Height="35" Width="35" />
                                                 </Border>
 
                                                 <Grid Grid.Column="1" VerticalAlignment="Center">
@@ -131,7 +131,7 @@
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter TargetName="PART_Bar" Property="Visibility" Value="Visible" />
-                                            <Setter TargetName="PART_Icon" Property="md3:PackIcon.Kind"
+                                            <Setter TargetName="PART_Icon" Property="m3:PackIcon.Kind"
                                                     Value="{Binding SelectedIcon}" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>

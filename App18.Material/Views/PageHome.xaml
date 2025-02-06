@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:App18.Material.ViewModels"
              xmlns:cv="clr-namespace:App18.Material.Converters"
-             xmlns:md3="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:m3="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:views="clr-namespace:App18.Material.Views"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:PageHomeViewModel, IsDesignTimeCreatable=True}">
@@ -14,7 +14,7 @@
         <cv:Empty2CollapsedConverter x:Key="Empty2CollapsedConverter" />
     </UserControl.Resources>
     <Grid Tag="{DynamicResource MaterialDesign.Brush.Primary.Light}"
-          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.4}">
+          Background="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static m3:BrushOpacityConverter.Instance}, ConverterParameter=0.4}">
         <Grid Margin="{StaticResource ControlPageContentMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -40,23 +40,23 @@
                         </Grid.ColumnDefinitions>
                         <Button
                             Style="{StaticResource MaterialDesignToolButton}">
-                            <md3:PackIcon Margin="8,0,0,0" Kind="Search" Opacity=".56" />
+                            <m3:PackIcon Margin="8,0,0,0" Kind="Search" Opacity=".56" />
                         </Button>
                         <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
                                  Grid.Column="1"
                                  MinWidth="200"
                                  Margin="8,0,0,0"
                                  VerticalAlignment="Center"
-                                 md3:HintAssist.Hint="Build a search bar"
-                                 md3:TextFieldAssist.DecorationVisibility="Hidden"
+                                 m3:HintAssist.Hint="Build a search bar"
+                                 m3:TextFieldAssist.DecorationVisibility="Hidden"
                                  BorderThickness="0" />
-                        <md3:Card Width="34" Height="34"
-                                  UniformCornerRadius="17" Margin="8,0,8,0"
-                                  Grid.Column="2">
+                        <m3:Card Width="34" Height="34"
+                                 UniformCornerRadius="17" Margin="8,0,8,0"
+                                 Grid.Column="2">
                             <Image VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    Source="{Binding MyAvatar}" />
-                        </md3:Card>
+                        </m3:Card>
                     </Grid>
                 </Border>
 
@@ -88,12 +88,12 @@
 
                                                         <DockPanel Height="50" Grid.Row="0">
                                                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                                                <md3:Card Width="36" Height="36"
-                                                                          UniformCornerRadius="18">
+                                                                <m3:Card Width="36" Height="36"
+                                                                         UniformCornerRadius="18">
                                                                     <Image VerticalAlignment="Center"
                                                                            HorizontalAlignment="Center"
                                                                            Source="{Binding FromAvatar}" />
-                                                                </md3:Card>
+                                                                </m3:Card>
 
                                                                 <StackPanel Opacity="0.9" Margin="8,5,0,5"
                                                                             VerticalAlignment="Center">
@@ -108,8 +108,8 @@
                                                                         HorizontalAlignment="Right"
                                                                         DockPanel.Dock="Right">
                                                                 <ToggleButton IsChecked="{Binding HasStar}"
-                                                                              md3:ToggleButtonAssist.OnContent="{md3:PackIcon Kind=Star}"
-                                                                              Content="{md3:PackIcon Kind=StarOutline}"
+                                                                              m3:ToggleButtonAssist.OnContent="{m3:PackIcon Kind=Star}"
+                                                                              Content="{m3:PackIcon Kind=StarOutline}"
                                                                               Background="{DynamicResource MaterialDesign.Brush.Card.Background}"
                                                                               Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                                                                               Style="{StaticResource MaterialDesignActionToggleButton}" />
@@ -127,12 +127,12 @@
                                                                        TextTrimming="CharacterEllipsis" />
                                                         </StackPanel>
 
-                                                        <md3:Card Grid.Row="2" Margin="5,5,5,0"
-                                                                  UniformCornerRadius="4"
-                                                                  Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}">
+                                                        <m3:Card Grid.Row="2" Margin="5,5,5,0"
+                                                                 UniformCornerRadius="4"
+                                                                 Visibility="{Binding Link1, Converter={StaticResource Empty2CollapsedConverter}}">
                                                             <Image Source="{Binding Link1}" Height="80"
                                                                    Stretch="UniformToFill" />
-                                                        </md3:Card>
+                                                        </m3:Card>
                                                     </Grid>
                                                 </Grid>
                                             </Border>
