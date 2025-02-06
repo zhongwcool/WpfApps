@@ -13,6 +13,23 @@
     <Grid>
         <wpf:VideoView x:Name="VideoView" Background="Black">
             <Grid>
+                <TextBlock Text="{Binding Name}"
+                           FontSize="48" FontWeight="Bold"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           x:Name="MyTextBlock">
+                    <TextBlock.Background>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Canvas>
+                                    <!-- 使用绘制文字轮廓的 DrawingBrush -->
+                                    <Path Fill="Red" Stroke="DarkBlue" StrokeThickness="2"
+                                          Data="{Binding ElementName=MyTextBlock, Path=Text}" />
+                                </Canvas>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+
                 <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5">
                     <WrapPanel.Background>
                         <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
@@ -24,7 +41,7 @@
                     <ct:ClickableTextBlock Text="{Binding Name}" Click="OnTitleClick" />
                 </WrapPanel>
 
-                <Grid x:Name="ViewLoad" Background="#2fff">
+                <Grid x:Name="ViewLoad" Background="#2fff" IsHitTestVisible="True">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <ProgressBar Width="24" Height="24" Margin="16"
                                      IsIndeterminate="True"

@@ -10,12 +10,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2"/>
-        <PackageReference Include="LibVLCSharp" Version="3.9.0"/>
-        <PackageReference Include="LibVLCSharp.WPF" Version="3.9.0"/>
-        <PackageReference Include="Mar.Console" Version="0.8.0"/>
-        <PackageReference Include="MaterialDesignColors" Version="3.1.0"/>
-        <PackageReference Include="MaterialDesignThemes" Version="5.1.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="LibVLCSharp" Version="3.9.2"/>
+        <PackageReference Include="LibVLCSharp.WPF" Version="3.9.2"/>
+        <PackageReference Include="Mar.Console" Version="0.8.1"/>
+        <PackageReference Include="MaterialDesignColors" Version="5.2.1"/>
+        <PackageReference Include="MaterialDesignThemes" Version="5.2.1"/>
         <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21"/>
     </ItemGroup>
 
